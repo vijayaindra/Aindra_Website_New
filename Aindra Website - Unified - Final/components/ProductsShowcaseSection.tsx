@@ -1,0 +1,266 @@
+
+import React, { useState, useEffect, useRef } from 'react';
+
+interface ProductData {
+  id: string;
+  title: string;
+  name: string;
+  description: string;
+  image: string;
+  href: string;
+  isCustomUI?: boolean;
+}
+
+export const ProductsShowcaseSection: React.FC = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const products: ProductData[] = [
+    {
+      id: '01',
+      title: 'Sample Preparation & Intellistain data',
+      name: 'Intellistain',
+      description: 'Aindra builds purpose-designed technology that supports every stage of this workflow, specifically optimized for high-precision automated staining and slide preparation.',
+      image: 'https://www.aindra.in/wp-content/uploads/2018/10/Intellistain.png',
+      href: '#/intellistain',
+    },
+    {
+      id: '02',
+      title: 'Sample Preparation & VisionX Data',
+      name: 'VisionX',
+      description: "Aindra's VisionX is a Brightfield whole slide image scanner used for high-resolution scanning of pathology samples. It supports high-throughput digital pathology with seamless integration.",
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop',
+      href: '#/visionx',
+    },
+    {
+      id: '03',
+      title: 'Sample Preparation & Astra data',
+      name: 'Astra',
+      description: 'The Astra analysis engine leverages deep learning to identify suspicious regions in digitized slides, providing pathologists with high-confidence diagnostic support.',
+      image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1000&auto=format&fit=crop',
+      href: '#/astra',
+    },
+    {
+      id: '04',
+      title: 'Sample Preparation & Clustr data',
+      name: 'Clustr',
+      description: 'Clustr serves as the centralized reporting and collaboration hub, allowing expert review from anywhere in the world with Bethesda-standardized output.',
+      image: '',
+      href: '#/clustr',
+      isCustomUI: true,
+    },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const { top, height } = containerRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const progress = -top / (height - viewportHeight);
+      setScrollProgress(Math.min(1, Math.max(0, progress)));
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Map 0-1 progress to a "staircase" index for clean state transitions
+  const activeIndex = Math.min(products.length - 1, Math.floor(scrollProgress * products.length));
+  const progressPerItem = 1 / products.length;
+
+  // Fixed height for each stepper item to ensure perfect bar alignment
+  const STEPPER_ITEM_HEIGHT = 80;
+
+  return (
+    <div ref={containerRef} className="relative h-[600vh] bg-white">
+      {/* Sticky Content Frame */}
+      <section className="sticky top-0 h-screen w-full overflow-hidden flex flex-col pt-32 pb-24 px-6 md:px-12 lg:px-24">
+        
+        {/* Persistent Background Grid Lines */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute left-[25%] top-0 bottom-0 w-px bg-slate-100"></div>
+          <div className="absolute left-[66%] top-0 bottom-0 w-px bg-slate-100"></div>
+          <div className="absolute top-[57%] left-0 right-0 h-px bg-slate-100"></div>
+        </div>
+
+        {/* PERSISTENT HEADER */}
+        <div className="relative z-20 grid grid-cols-12 gap-8 mb-8 lg:mb-12">
+          <div className="col-span-12 lg:col-span-3">
+            <div className="flex items-center space-x-2">
+               <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Our Products</span>
+               <div className="flex items-center">
+                  <div className="w-16 h-px bg-[#00a3ff]/30"></div>
+                  <div className="w-1.5 h-1.5 rounded-full border border-[#00a3ff]/50"></div>
+               </div>
+            </div>
+          </div>
+          <div className="col-span-12 lg:col-span-9">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium text-slate-900 leading-[1.1] max-w-4xl">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            </h2>
+          </div>
+        </div>
+
+        {/* DYNAMIC CONTENT AREA */}
+        <div className="relative z-10 grid grid-cols-12 gap-8 flex-1 items-center h-full">
+          
+          {/* Left Side: Vertical Stepper - Refined for Perfect Alignment */}
+          <div className="col-span-12 lg:col-span-3 h-full flex items-center pr-4">
+            <div className="relative w-full" style={{ height: `${products.length * STEPPER_ITEM_HEIGHT}px` }}>
+              
+              {/* Vertical Scroll Bar (Indicator) */}
+              <div 
+                className="absolute right-0 w-[4px] bg-[#00a3ff] hidden lg:block transition-all duration-700 cubic-bezier(0.23, 1, 0.32, 1) rounded-full shadow-[0_0_12px_rgba(0,163,255,0.4)]"
+                style={{ 
+                  top: `${activeIndex * STEPPER_ITEM_HEIGHT}px`, 
+                  height: `${STEPPER_ITEM_HEIGHT - 10}px` 
+                }}
+              ></div>
+              
+              {products.map((p, idx) => (
+                <div 
+                  key={p.id} 
+                  className={`flex flex-col justify-center text-right pr-8 lg:pr-12 transition-all duration-700 ease-in-out ${idx === activeIndex ? 'opacity-100 scale-105 origin-right' : 'opacity-10 scale-95 origin-right'}`}
+                  style={{ height: `${STEPPER_ITEM_HEIGHT}px` }}
+                >
+                  <span className={`block text-lg font-black tracking-tighter mb-0.5 transition-colors duration-500 ${idx === activeIndex ? 'text-[#00a3ff]' : 'text-slate-400'}`}>
+                    {p.id}
+                  </span>
+                  <span className={`text-sm lg:text-[15px] font-black uppercase tracking-tight block leading-[1.2] transition-colors duration-500 ${idx === activeIndex ? 'text-slate-900' : 'text-slate-300'}`}>
+                    {p.title}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Center: Dynamic Image Transition Area */}
+          <div className="col-span-12 lg:col-span-5 flex justify-center h-full items-center relative">
+             {products.map((p, idx) => {
+               const start = idx * progressPerItem;
+               const end = (idx + 1) * progressPerItem;
+               const relativeProgress = (scrollProgress - start) / (end - start);
+               
+               let opacity = 0;
+               if (relativeProgress >= 0 && relativeProgress <= 1) {
+                  if (relativeProgress < 0.15) opacity = relativeProgress / 0.15;
+                  else if (relativeProgress > 0.85) opacity = 1 - (relativeProgress - 0.85) / 0.15;
+                  else opacity = 1;
+               }
+               
+               const scale = 0.9 + opacity * 0.1;
+               const blur = (1 - opacity) * 6;
+
+               return (
+                 <div 
+                  key={p.id}
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none transition-transform duration-75 ease-out"
+                  style={{ 
+                    opacity: Math.max(0, opacity),
+                    transform: `scale(${scale}) translateY(${(1 - opacity) * 30}px)`,
+                    filter: `blur(${blur}px)`,
+                    visibility: opacity > 0 ? 'visible' : 'hidden',
+                  }}
+                 >
+                    {p.isCustomUI ? (
+                      <div className="relative w-full max-w-xl">
+                        <div className="bg-black rounded-t-xl p-2 pb-0 shadow-2xl border-x-4 border-t-4 border-slate-800">
+                          <div className="bg-white rounded-t-lg overflow-hidden h-[180px] lg:h-[220px] flex flex-col">
+                            <div className="px-4 py-2 border-b border-slate-100 flex items-center justify-between bg-white">
+                               <span className="text-[10px] font-extrabold tracking-tighter text-cyan-500">AiNDRA</span>
+                               <div className="flex space-x-1">
+                                 <div className="w-1 h-1 rounded-full bg-slate-200"></div>
+                                 <div className="w-1 h-1 rounded-full bg-slate-200"></div>
+                               </div>
+                            </div>
+                            <div className="flex-1 p-4 bg-[#f8fbff] grid grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <div className="h-4 w-3/4 bg-slate-200 rounded"></div>
+                                <div className="h-3 w-1/2 bg-slate-100 rounded"></div>
+                              </div>
+                              <div className="bg-slate-900 rounded-lg h-20 overflow-hidden flex items-center justify-center">
+                                <div className="w-6 h-6 rounded-full border border-cyan-500/30 animate-ping"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="w-full flex flex-col items-center">
+                          <div className="w-14 h-6 lg:h-10 bg-slate-300"></div>
+                          <div className="w-20 h-2 bg-slate-400 rounded-b-xl"></div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="relative w-full max-w-sm">
+                        <div className="absolute inset-0 bg-blue-50 blur-[100px] rounded-full opacity-60"></div>
+                        <img 
+                          src={p.image} 
+                          alt={p.name} 
+                          className="relative z-10 w-full h-auto max-h-[40vh] lg:max-h-[45vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)]"
+                          onError={(e) => {
+                            e.currentTarget.src = "https://images.unsplash.com/photo-1579165466541-71835479444a?q=80&w=800&auto=format&fit=crop";
+                          }}
+                        />
+                      </div>
+                    )}
+                 </div>
+               );
+             })}
+          </div>
+
+          {/* Right Side: Product Details */}
+          <div className="col-span-12 lg:col-span-4 pl-0 lg:pl-16 h-full flex items-center relative">
+            {products.map((p, idx) => {
+               const start = idx * progressPerItem;
+               const end = (idx + 1) * progressPerItem;
+               const relativeProgress = (scrollProgress - start) / (end - start);
+               
+               let opacity = 0;
+               if (relativeProgress >= 0 && relativeProgress <= 1) {
+                  if (relativeProgress < 0.2) opacity = relativeProgress / 0.2;
+                  else if (relativeProgress > 0.8) opacity = 1 - (relativeProgress - 0.8) / 0.2;
+                  else opacity = 1;
+               }
+
+               const translateY = (1 - opacity) * 40;
+
+               return (
+                 <div 
+                  key={p.id}
+                  className="absolute inset-x-0 lg:left-16 space-y-6 lg:space-y-8"
+                  style={{ 
+                    opacity: Math.max(0, opacity),
+                    transform: `translateY(${translateY}px)`,
+                    visibility: opacity > 0 ? 'visible' : 'hidden',
+                  }}
+                 >
+                   <div className="space-y-4 lg:space-y-6">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-8 h-8 lg:w-10 lg:h-10 bg-[#00a3ff] rounded-md flex items-center justify-center text-sm font-black text-white shadow-xl shadow-blue-200">
+                        {p.id}
+                      </div>
+                      <h3 className="text-4xl lg:text-6xl font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-2 lg:pb-3">
+                        {p.name}
+                      </h3>
+                    </div>
+                    <p className="text-base lg:text-lg text-slate-500 leading-relaxed font-light max-w-sm">
+                      {p.description}
+                    </p>
+                  </div>
+                  
+                  <div className="pt-2 lg:pt-4">
+                    <a href={p.href} className="group inline-flex items-center space-x-4 px-8 lg:px-10 py-3 lg:py-4 bg-slate-900 text-white rounded-full font-bold text-[11px] lg:text-[12px] tracking-widest uppercase hover:bg-[#00a3ff] transition-all shadow-xl shadow-slate-200 active:scale-95">
+                      <span>Explore {p.name}</span>
+                      <svg className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </a>
+                  </div>
+                 </div>
+               );
+            })}
+          </div>
+
+        </div>
+      </section>
+    </div>
+  );
+};
