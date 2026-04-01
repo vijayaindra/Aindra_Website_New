@@ -1,52 +1,73 @@
-
 import React from 'react';
 
 export const TrustAndMarketingSection: React.FC = () => {
   return (
-    <section className="relative w-full overflow-hidden flex flex-col md:flex-row min-h-[600px]">
-      
-      {/* Left Column: Why Trust Us */}
-      <div className="relative w-full md:w-[60%] flex flex-col justify-center p-12 md:p-20 lg:p-32 overflow-hidden">
-        {/* Blurry Background Image */}
+    <section className="relative w-full overflow-hidden flex flex-col md:flex-row min-h-[680px]">
+      <div className="relative w-full md:w-[60%] flex flex-col justify-center p-12 md:p-20 lg:p-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=2000&auto=format&fit=crop" 
-            alt="Medical Background" 
+          <img
+            src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=2000&auto=format&fit=crop"
+            alt="Medical Background"
             className="w-full h-full object-cover scale-110 blur-[40px] opacity-70"
           />
-          {/* Overlay Gradient for Readability */}
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-slate-900/60"></div>
         </div>
 
-        <div className="relative z-10 space-y-8">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-tight max-w-2xl">
-            Rigorous enough for the lab. Ready for the world.
+        <div className="relative z-10 space-y-8 max-w-2xl">
+          <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-tight">
+            Medical-Grade AI. Validated for Clinical Use.
           </h2>
-          <p className="text-white/80 text-lg md:text-xl font-light leading-relaxed max-w-xl">
-            We are building the new standard for computational pathology. See why leading institutions choose Aindra for precision, speed, and reliability.
+          <p className="text-white/80 text-lg md:text-3xl font-light leading-relaxed">
+            Aindra is building the new standard for computational pathology with 10M+ slides processed across 50+ cities.
           </p>
-          <div className="pt-4">
-            <button className="px-10 py-4 bg-white text-slate-900 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-[#00a3ff] hover:text-white transition-all shadow-xl">
-              Why Trust Us
+
+          <div className="flex items-center gap-4 pt-2">
+            <div className="text-center">
+              <div className="w-12 h-12 rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[10px] font-bold">CDSCO</div>
+              <div className="mt-1 text-[10px] text-white/60 uppercase tracking-wider">Approved</div>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[10px] font-bold">CE-IVD</div>
+              <div className="mt-1 text-[10px] text-white/60 uppercase tracking-wider">Certified</div>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[10px] font-bold">ISO 13485</div>
+              <div className="mt-1 text-[10px] text-white/60 uppercase tracking-wider">Compliant</div>
+            </div>
+          </div>
+
+          <div className="pt-4 flex flex-wrap gap-3">
+            <button className="px-8 py-3 bg-white text-slate-900 rounded-full font-bold text-sm tracking-wider uppercase hover:bg-slate-100 transition-all">
+              View Validation Data
+            </button>
+            <button className="px-8 py-3 border border-white/30 text-white rounded-full font-bold text-sm tracking-wider uppercase hover:bg-white/10 transition-all">
+              Clinical Publications
             </button>
           </div>
         </div>
       </div>
 
-      {/* Right Column: Clustr Marketing */}
-      <div className="w-full md:w-[40%] bg-white flex flex-col justify-center p-12 md:p-20 lg:p-24 border-l border-slate-100">
-        <div className="space-y-12">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-slate-900 tracking-tighter leading-tight">
-            &lt; Clustr marketing website &gt;
+      <div className="w-full md:w-[40%] bg-white flex flex-col justify-center p-12 md:p-16 lg:p-20 border-l border-slate-100">
+        <div className="space-y-8">
+          <div className="text-xs font-bold tracking-[0.2em] text-[#00a3ff] uppercase">In the Media</div>
+          <h2 className="text-4xl md:text-5xl font-medium text-slate-900 tracking-tight leading-tight">
+            Recognized for Innovation in MedTech
           </h2>
-          <div className="pt-8">
-            <a href="#/clustr" className="inline-flex px-12 py-4 border border-slate-900 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-slate-900 hover:text-white transition-all">
-              Visit
-            </a>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="h-10 border border-slate-100 text-slate-300 font-bold text-xs flex items-center justify-center">FORBES</div>
+            <div className="h-10 border border-slate-100 text-slate-300 font-bold text-xs flex items-center justify-center">TECHCRUNCH</div>
+            <div className="h-10 border border-slate-100 text-slate-300 font-bold text-xs flex items-center justify-center">ET HEALTH</div>
+            <div className="h-10 border border-slate-100 text-slate-300 font-bold text-xs flex items-center justify-center">WIRED</div>
+          </div>
+
+          <div className="pt-6">
+            <button className="px-12 py-4 border border-slate-900 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-slate-900 hover:text-white transition-all">
+              Press Kit
+            </button>
           </div>
         </div>
       </div>
-
     </section>
   );
 };
