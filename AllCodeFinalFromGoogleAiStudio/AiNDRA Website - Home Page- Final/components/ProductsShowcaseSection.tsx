@@ -7,7 +7,6 @@ interface ProductData {
   name: string;
   description: string;
   image: string;
-  href: string;
   isCustomUI?: boolean;
 }
 
@@ -18,35 +17,31 @@ export const ProductsShowcaseSection: React.FC = () => {
   const products: ProductData[] = [
     {
       id: '01',
-      title: 'Automated Staining',
+      title: 'Sample Preparation & Intellistain data',
       name: 'Intellistain',
-      description: 'Automates the staining process with 100% consistency, reducing manual lab labor by 40% and ensuring high-quality slides for digital analysis.',
+      description: 'Aindra builds purpose-designed technology that supports every stage of this workflow, specifically optimized for high-precision automated staining and slide preparation.',
       image: 'https://www.aindra.in/wp-content/uploads/2018/10/Intellistain.png',
-      href: '#/intellistain',
     },
     {
       id: '02',
-      title: 'WSI Scanning',
+      title: 'Sample Preparation & VisionX Data',
       name: 'VisionX',
-      description: 'High-resolution Brightfield whole slide scanner. Captures digital slides in under 60 seconds with sub-micron precision for seamless remote diagnostics.',
+      description: "Aindra's VisionX is a Brightfield whole slide image scanner used for high-resolution scanning of pathology samples. It supports high-throughput digital pathology with seamless integration.",
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop',
-      href: '#/visionx',
     },
     {
       id: '03',
-      title: 'AI Analysis Engine',
+      title: 'Sample Preparation & Astra data',
       name: 'Astra',
-      description: 'Deep learning engine that automatically screens and flags suspicious morphological features, reducing primary screening time by 70% with 99% accuracy.',
+      description: 'The Astra analysis engine leverages deep learning to identify suspicious regions in digitized slides, providing pathologists with high-confidence diagnostic support.',
       image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1000&auto=format&fit=crop',
-      href: '#/astra',
     },
     {
       id: '04',
-      title: 'Reporting Hub',
+      title: 'Sample Preparation & Clustr data',
       name: 'Clustr',
-      description: 'Centralized collaboration and reporting platform. Enables instant Bethesda & CAP guidelines standardized reports and remote case review from anywhere in the world.',
+      description: 'Clustr serves as the centralized reporting and collaboration hub, allowing expert review from anywhere in the world with Bethesda-standardized output.',
       image: '',
-      href: '#/clustr',
       isCustomUI: true,
     },
   ];
@@ -95,7 +90,7 @@ export const ProductsShowcaseSection: React.FC = () => {
           </div>
           <div className="col-span-12 lg:col-span-9">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium text-slate-900 leading-[1.1] max-w-4xl">
-              A Unified Ecosystem for Computational Pathology.
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             </h2>
           </div>
         </div>
@@ -247,12 +242,12 @@ export const ProductsShowcaseSection: React.FC = () => {
                   </div>
                   
                   <div className="pt-2 lg:pt-4">
-                    <a href={p.href} className="group inline-flex items-center space-x-4 px-8 lg:px-10 py-3 lg:py-4 bg-slate-900 text-white rounded-full font-bold text-[11px] lg:text-[12px] tracking-widest uppercase hover:bg-[#00a3ff] transition-all shadow-xl shadow-slate-200 active:scale-95">
+                    <button className="group flex items-center space-x-4 px-8 lg:px-10 py-3 lg:py-4 bg-slate-900 text-white rounded-full font-bold text-[11px] lg:text-[12px] tracking-widest uppercase hover:bg-[#00a3ff] transition-all shadow-xl shadow-slate-200 active:scale-95">
                       <span>Explore {p.name}</span>
                       <svg className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
-                    </a>
+                    </button>
                   </div>
                  </div>
                );
