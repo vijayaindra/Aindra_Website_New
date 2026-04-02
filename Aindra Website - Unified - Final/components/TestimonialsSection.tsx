@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface Testimonial {
   name: string;
@@ -48,14 +48,7 @@ const testimonials: Testimonial[] = [
 ];
 
 export const TestimonialsSection: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  const [activeIndex, setActiveIndex] = useState(1);
 
   const handleNext = () => setActiveIndex((prev) => (prev + 1) % testimonials.length);
   const handlePrev = () => setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
@@ -76,7 +69,7 @@ export const TestimonialsSection: React.FC = () => {
             Hear what others have to say
           </h2>
 
-          <div className="flex items-center space-x-3 mt-4 md:mt-0">
+          <div className="hidden items-center space-x-3 mt-4 md:mt-0">
             <button 
               onClick={handlePrev}
               className="w-10 h-10 rounded-full border border-[#00a3ff] flex items-center justify-center text-[#00a3ff] hover:bg-[#00a3ff] hover:text-white transition-all active:scale-95"
@@ -99,18 +92,9 @@ export const TestimonialsSection: React.FC = () => {
         {/* Main Content: Portrait + Quote Box */}
         <div className="relative flex flex-col lg:flex-row items-center justify-center">
           
-          {/* Circular Portrait Area */}
+          {/* Circular Portrait Placeholder Area */}
           <div className="relative z-20 w-64 h-64 md:w-[340px] md:h-[340px] flex-shrink-0 lg:-mr-24">
-            <div className="w-full h-full rounded-full overflow-hidden border-[8px] border-white shadow-xl bg-slate-50 relative">
-              {testimonials.map((t, idx) => (
-                <img 
-                  key={idx}
-                  src={t.image} 
-                  alt={t.name} 
-                  className={`absolute inset-0 w-full h-full object-cover scale-110 grayscale-[0.2] transition-opacity duration-700 ease-in-out ${idx === activeIndex ? 'opacity-100' : 'opacity-0'}`}
-                />
-              ))}
-            </div>
+            <div className="w-full h-full rounded-full border-[8px] border-white shadow-xl bg-slate-100"></div>
           </div>
 
           {/* Quote Container: More compact pill shape */}
@@ -157,7 +141,7 @@ export const TestimonialsSection: React.FC = () => {
             
             {/* Pagination Dots */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center space-x-2">
-              {testimonials.map((_, idx) => (
+              {[0, 1, 2, 3, 4].map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveIndex(idx)}
