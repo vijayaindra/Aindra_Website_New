@@ -35,18 +35,12 @@ const testimonials: Testimonial[] = [
 
 export const TestimonialsSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const transitionTimeoutRef = useRef<number | null>(null);
   const intervalRef = useRef<number | null>(null);
   const activeTestimonial = testimonials[activeIndex];
 
   const changeTestimonial = (targetIndex: number) => {
-    if (isTransitioning || targetIndex === activeIndex) return;
-    setIsTransitioning(true);
-    transitionTimeoutRef.current = window.setTimeout(() => {
-      setActiveIndex(targetIndex);
-      setIsTransitioning(false);
-    }, 220);
+    if (targetIndex === activeIndex) return;
+    setActiveIndex(targetIndex);
   };
 
   const handleNext = () => {
@@ -68,11 +62,10 @@ export const TestimonialsSection: React.FC = () => {
     return () => {
       if (intervalRef.current) window.clearInterval(intervalRef.current);
     };
-  }, [activeIndex, isTransitioning]);
+  }, [activeIndex]);
 
   useEffect(() => {
     return () => {
-      if (transitionTimeoutRef.current) window.clearTimeout(transitionTimeoutRef.current);
       if (intervalRef.current) window.clearInterval(intervalRef.current);
     };
   }, []);
@@ -82,29 +75,31 @@ export const TestimonialsSection: React.FC = () => {
       <div className={sectionContainer}>
         
         {/* Header Area */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 relative">
-          <div className="flex items-center space-x-2 mb-4 md:mb-0">
-             <div className="w-8 h-px bg-slate-200"></div>
-             <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Testimonials</span>
-             <div className="w-2 h-2 rounded-full border border-slate-200"></div>
+        <div className="relative mb-10 md:mb-12 md:min-h-[64px]">
+          <div className="mb-4 flex items-center justify-center space-x-2 md:absolute md:left-0 md:top-1/2 md:mb-0 md:-translate-y-1/2 md:justify-start">
+            <div className="w-8 h-px bg-slate-200"></div>
+            <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Testimonials</span>
+            <div className="w-2 h-2 rounded-full border border-slate-200"></div>
           </div>
-          
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-slate-900 leading-[1.1] tracking-tight">
+
+          <h2 className="px-3 text-center text-2xl sm:text-3xl md:text-[46px] lg:text-[52px] font-medium text-slate-900 leading-[1.1] tracking-tight md:mx-auto md:max-w-none md:px-24 lg:px-28 md:whitespace-nowrap">
             Hear what others have to say
           </h2>
 
-          <div className="hidden items-center space-x-3 mt-4 md:mt-0">
-            <button 
+          <div className="mt-4 flex items-center justify-center space-x-3 md:absolute md:right-0 md:top-1/2 md:mt-0 md:-translate-y-1/2">
+            <button
               onClick={handlePrev}
-              className="w-10 h-10 rounded-full border border-[#00a3ff] flex items-center justify-center text-[#00a3ff] hover:bg-[#00a3ff] hover:text-white transition-all active:scale-95"
+              className="w-10 h-10 rounded-full border border-[#00a3ff] flex items-center justify-center text-[#00a3ff] hover:bg-[#00a3ff]/10 active:bg-[#00a3ff] active:text-white transition-all active:scale-95"
+              aria-label="Previous testimonial"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            <button 
+            <button
               onClick={handleNext}
-              className="w-10 h-10 rounded-full border border-[#00a3ff] flex items-center justify-center text-[#00a3ff] hover:bg-[#00a3ff] hover:text-white transition-all active:scale-95"
+              className="w-10 h-10 rounded-full border border-[#00a3ff] flex items-center justify-center text-[#00a3ff] hover:bg-[#00a3ff]/10 active:bg-[#00a3ff] active:text-white transition-all active:scale-95"
+              aria-label="Next testimonial"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -121,14 +116,14 @@ export const TestimonialsSection: React.FC = () => {
             <img
               src={testimonials[activeIndex].image}
               alt={testimonials[activeIndex].name}
-              className={`w-full h-full rounded-full border-[8px] border-white shadow-xl object-cover bg-slate-100 transition-all duration-300 ease-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
+              className="w-full h-full rounded-full border-[8px] border-white shadow-xl object-cover bg-slate-100"
             />
           </div>
 
           {/* Quote Container: More compact pill shape */}
-          <div className="relative z-10 w-full lg:max-w-4xl bg-white border border-slate-900 rounded-[32px] sm:rounded-[48px] md:rounded-[64px] lg:rounded-[96px] py-10 sm:py-12 px-5 sm:px-8 md:px-12 lg:pl-28 lg:pr-14 shadow-sm min-h-[260px] md:min-h-[300px] flex flex-col justify-center mt-[-40px] sm:mt-[-56px] lg:mt-0 overflow-hidden">
+          <div className="relative z-10 w-full lg:max-w-4xl bg-white border border-slate-900 rounded-[32px] sm:rounded-[48px] md:rounded-[64px] lg:rounded-[96px] py-10 sm:py-12 px-5 sm:px-8 md:px-12 lg:pl-28 lg:pr-14 shadow-sm h-[360px] md:h-[420px] flex flex-col justify-center mt-[-40px] sm:mt-[-56px] lg:mt-0 overflow-hidden">
             
-            <div className={`relative transition-all duration-300 ease-out ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+            <div className="relative">
               <div className="relative">
                 {/* Opening Quotes Icon */}
                 <div className="absolute -left-2 sm:-left-4 md:-left-8 -top-2 text-[#005bc4]">
@@ -137,9 +132,11 @@ export const TestimonialsSection: React.FC = () => {
                   </svg>
                 </div>
 
-                <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed font-normal">
-                  {activeTestimonial.quote}
-                </p>
+                <div className="max-h-[170px] sm:max-h-[190px] md:max-h-[230px] overflow-y-auto pr-2">
+                  <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed font-normal">
+                    {activeTestimonial.quote}
+                  </p>
+                </div>
 
                 {/* Closing Quotes Icon */}
                 <div className="absolute -right-2 sm:-right-3 -bottom-2 text-[#005bc4]">
