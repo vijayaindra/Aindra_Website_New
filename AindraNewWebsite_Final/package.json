@@ -6,9 +6,12 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 8080",
     "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 8080"
+    "preview": "vite preview --host 0.0.0.0 --port 8080",
+    "firebase:serve": "firebase emulators:start --only hosting",
+    "firebase:deploy": "firebase deploy --only hosting"
   },
   "dependencies": {
+    "firebase": "^11.0.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "@google/genai": "^1.38.0"
