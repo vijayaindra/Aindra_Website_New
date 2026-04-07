@@ -39,16 +39,16 @@ export const TrustedInstitutionsSection: React.FC = () => {
         </div>
 
         {/* Institutions Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 border-l border-t border-slate-200">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
           {partnerLogos.map((item, i) => (
             <div 
               key={i} 
-              className="aspect-[2.2/1] border-r border-b border-slate-200 flex items-center justify-center p-4 md:p-5 transition-colors duration-300 hover:bg-slate-50 group"
+              className="h-28 md:h-32 flex items-center justify-center p-2"
             >
               <img
                 src={item.src}
                 alt={item.name}
-                className="max-h-16 md:max-h-20 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                className="max-h-20 md:max-h-24 w-auto object-contain"
                 loading="lazy"
               />
             </div>
