@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './components/Header';
+import { Navbar } from '../../components/Navbar';
 import Hero from './components/Hero';
 import WhoWeAre from './components/WhoWeAre';
 import BenefitsSection from './components/BenefitsSection';
@@ -9,8 +9,8 @@ import AIAssistant from './components/AIAssistant';
 const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
-      <Header />
-      <main className="w-full">
+      <Navbar />
+      <main className="w-full pt-20 sm:pt-24">
         <Hero />
         <WhoWeAre />
         <BenefitsSection />
