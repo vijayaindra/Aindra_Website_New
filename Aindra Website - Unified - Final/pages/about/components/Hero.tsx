@@ -3,10 +3,10 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="px-6 pt-4 pb-20">
+    <section className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-4 pb-14 md:pb-20">
       <div className="mb-6">
-        <h1 className="text-7xl font-extrabold tracking-tight text-gray-900 mb-2">About us</h1>
-        <p className="text-xl text-gray-600 font-medium mb-6">Precision Staining Seamlessly Scaled</p>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-2">About us</h1>
+        <p className="text-base sm:text-lg md:text-xl text-gray-600 font-medium mb-6">Precision Staining Seamlessly Scaled</p>
         <hr className="border-gray-200" />
       </div>
       
@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
         />
       </div>
 
-      <div className="w-full text-center px-4 md:px-8 mb-20">
+      <div className="w-full text-center px-0 md:px-2 mb-16 md:mb-20">
         <div className="max-w-[1400px] mx-auto">
           <h2 className="text-[22px] md:text-[30px] lg:text-[38px] font-bold text-[#00AEEF] leading-[1.3] mb-12 tracking-tight">
             "Our mission is to democratize healthcare by making medical imaging accessible to everyone around the world."

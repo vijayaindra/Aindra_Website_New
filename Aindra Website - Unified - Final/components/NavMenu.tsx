@@ -46,7 +46,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
       <div 
         className={`fixed top-0 left-0 w-full z-[100] bg-[#ecf1f4] shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] border-b border-cyan-500
           ${isOpen ? 'translate-y-0' : '-translate-y-full'}
-          min-h-[50vh] md:max-h-[60vh] flex flex-col overflow-y-auto`}
+          min-h-[55dvh] max-h-[85dvh] md:max-h-[70dvh] flex flex-col overflow-y-auto`}
       >
         <div className="flex-1 flex flex-col md:flex-row w-full h-full relative">
           
@@ -62,14 +62,14 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
           </button>
 
           {/* Left Column: Primary Navigation Links */}
-          <div className="w-full md:w-[30%] lg:w-[25%] flex flex-col justify-center px-8 md:px-12 lg:px-20 py-10 md:py-8 border-b md:border-b-0 md:border-r border-slate-300">
+          <div className="w-full md:w-[30%] lg:w-[25%] flex flex-col justify-center px-6 sm:px-8 md:px-10 lg:px-14 py-8 md:py-8 border-b md:border-b-0 md:border-r border-slate-300">
             <div className="space-y-3 md:space-y-4 lg:space-y-5">
               {navLinks.map((link, idx) => (
                 <a 
                   key={idx}
                   href={link.href}
                   onClick={onClose}
-                  className="block text-lg md:text-xl lg:text-2xl font-bold text-slate-600 hover:text-slate-900 transition-colors tracking-tight"
+                  className="block text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-600 hover:text-slate-900 transition-colors tracking-tight"
                 >
                   {link.label}
                 </a>
@@ -78,7 +78,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
           </div>
 
           {/* Right Column: Products Section */}
-          <div className="flex-1 flex flex-col justify-center px-8 md:px-12 lg:px-24 py-8 md:py-8">
+          <div className="flex-1 flex flex-col justify-center px-6 sm:px-8 md:px-10 lg:px-16 py-6 md:py-8">
             <div className="w-full max-w-3xl">
               <h2 className="text-lg md:text-xl font-bold text-[#00a3ff] mb-6 md:mb-8">
                 Our Products
@@ -93,10 +93,10 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
                     className={`group flex items-center py-3 md:py-4 border-t ${idx === products.length - 1 ? 'border-b' : ''} border-slate-400/30 transition-all cursor-pointer hover:bg-slate-200/20 px-3 -mx-3 rounded-sm`}
                   >
                     {/* Product Thumbnail - Light Gray Square */}
-                    <div className="w-12 h-12 md:w-14 md:h-14 bg-[#d9d9d9] flex-shrink-0 mr-6 md:mr-8 rounded-sm shadow-sm"></div>
+                    <div className="w-11 h-11 md:w-14 md:h-14 bg-[#d9d9d9] flex-shrink-0 mr-4 md:mr-8 rounded-sm shadow-sm"></div>
                     
                     {/* Product Name */}
-                    <span className="text-base md:text-lg font-bold text-slate-900 flex-1 tracking-tight">
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-slate-900 flex-1 tracking-tight">
                       {product.name}
                     </span>
 

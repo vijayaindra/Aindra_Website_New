@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import drVaniRavikumarImage from '../assets/testimonials/dr-vani.jpg';
 import drKristianOlsonImage from '../assets/testimonials/Dr.Kristian-Olson.png';
 import drMalathiMImage from '../assets/testimonials/Dr.Malathi M.jpg';
+import { sectionContainer, sectionShell } from './layout';
 
 interface Testimonial {
   name: string;
@@ -77,8 +78,8 @@ export const TestimonialsSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative pt-24 pb-12 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className={`relative pt-16 md:pt-20 lg:pt-24 pb-12 ${sectionShell} bg-white overflow-hidden`}>
+      <div className={sectionContainer}>
         
         {/* Header Area */}
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 relative">
@@ -88,7 +89,7 @@ export const TestimonialsSection: React.FC = () => {
              <div className="w-2 h-2 rounded-full border border-slate-200"></div>
           </div>
           
-          <h2 className="text-3xl md:text-5xl font-medium text-slate-900 leading-[1.1] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-slate-900 leading-[1.1] tracking-tight">
             Hear what others have to say
           </h2>
 
@@ -116,7 +117,7 @@ export const TestimonialsSection: React.FC = () => {
         <div className="relative flex flex-col lg:flex-row items-center justify-center">
           
           {/* Circular Portrait Placeholder Area */}
-          <div className="relative z-20 w-64 h-64 md:w-[340px] md:h-[340px] flex-shrink-0 lg:-mr-24">
+          <div className="relative z-20 w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-[320px] lg:h-[320px] flex-shrink-0 lg:-mr-14">
             <img
               src={testimonials[activeIndex].image}
               alt={testimonials[activeIndex].name}
@@ -125,23 +126,23 @@ export const TestimonialsSection: React.FC = () => {
           </div>
 
           {/* Quote Container: More compact pill shape */}
-          <div className="relative z-10 w-full lg:max-w-4xl bg-white border border-slate-900 rounded-[60px] md:rounded-[120px] py-12 px-8 md:px-24 lg:pl-36 lg:pr-16 shadow-sm min-h-[300px] flex flex-col justify-center mt-[-60px] lg:mt-0 overflow-hidden">
+          <div className="relative z-10 w-full lg:max-w-4xl bg-white border border-slate-900 rounded-[32px] sm:rounded-[48px] md:rounded-[64px] lg:rounded-[96px] py-10 sm:py-12 px-5 sm:px-8 md:px-12 lg:pl-28 lg:pr-14 shadow-sm min-h-[260px] md:min-h-[300px] flex flex-col justify-center mt-[-40px] sm:mt-[-56px] lg:mt-0 overflow-hidden">
             
             <div className={`relative transition-all duration-300 ease-out ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
               <div className="relative">
                 {/* Opening Quotes Icon */}
-                <div className="absolute -left-8 md:-left-10 -top-2 text-[#005bc4]">
+                <div className="absolute -left-2 sm:-left-4 md:-left-8 -top-2 text-[#005bc4]">
                   <svg width="30" height="22" viewBox="0 0 40 30" fill="currentColor">
                     <path d="M0 30V15C0 6.7 6.7 0 15 0H18V6H15C10 6 6 10 6 15V18H12V30H0ZM22 30V15C22 6.7 28.7 0 37 0H40V6H37C32 6 28 10 28 15V18H34V30H22Z" />
                   </svg>
                 </div>
 
-                <p className="text-base md:text-lg text-slate-700 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed font-normal">
                   {activeTestimonial.quote}
                 </p>
 
                 {/* Closing Quotes Icon */}
-                <div className="absolute -right-6 -bottom-2 text-[#005bc4]">
+                <div className="absolute -right-2 sm:-right-3 -bottom-2 text-[#005bc4]">
                   <svg width="30" height="22" viewBox="0 0 40 30" fill="currentColor" className="rotate-180">
                     <path d="M0 30V15C0 6.7 6.7 0 15 0H18V6H15C10 6 6 10 6 15V18H12V30H0ZM22 30V15C22 6.7 28.7 0 37 0H40V6H37C32 6 28 10 28 15V18H34V30H22Z" />
                   </svg>
@@ -150,7 +151,7 @@ export const TestimonialsSection: React.FC = () => {
 
               {/* Author Info */}
               <div className="mt-8">
-                <h4 className="text-lg font-bold text-[#005bc4] tracking-tight mb-0.5">
+                <h4 className="text-base sm:text-lg font-bold text-[#005bc4] tracking-tight mb-0.5">
                   {activeTestimonial.name}
                 </h4>
                 <p className="text-slate-500 font-medium text-xs md:text-sm">

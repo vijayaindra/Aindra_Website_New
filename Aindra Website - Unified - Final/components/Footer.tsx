@@ -1,13 +1,14 @@
 import React from 'react';
+import { sectionContainer, sectionShell } from './layout';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-[#ecf1f4] px-6 md:px-12 lg:px-24 py-12 md:py-24 border-t border-slate-200">
-      <div className="max-w-7xl mx-auto">
+    <footer className={`w-full bg-[#ecf1f4] ${sectionShell} py-12 md:py-16 lg:py-20 border-t border-slate-200`}>
+      <div className={sectionContainer}>
         <div className="flex flex-col md:flex-row border-b border-slate-300 pb-12 md:pb-16">
           <div className="flex-1 flex items-center justify-center md:justify-start pb-10 md:pb-0">
             <div className="flex items-center">
-              <span className="text-6xl sm:text-7xl lg:text-[100px] font-extrabold tracking-tighter text-[#00a3ff] select-none">
+              <span className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tighter text-[#00a3ff] select-none">
                 AiNDRA
               </span>
             </div>
@@ -42,9 +43,9 @@ export const Footer: React.FC = () => {
               >
                 <span className="text-lg md:text-xl font-bold tracking-tight">in</span>
               </a>
-              <div>
+              <div className="w-full sm:w-auto">
                 <div className="text-[10px] font-bold tracking-[0.16em] text-slate-400 uppercase mb-2">Certifications</div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <span className="px-2 py-1 border border-slate-300 text-[9px] text-slate-500 font-bold">CDSCO</span>
                   <span className="px-2 py-1 border border-slate-300 text-[9px] text-slate-500 font-bold">CE-IVD</span>
                   <span className="px-2 py-1 border border-slate-300 text-[9px] text-slate-500 font-bold">ISO 13485</span>
@@ -54,9 +55,9 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-sm text-slate-500 font-light text-center md:text-left">
+        <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] md:text-sm text-slate-500 font-light text-center md:text-left">
           <div className="mb-4 md:mb-0">@2026 Aindra Systems. All rights reserved</div>
-          <div className="flex items-center space-x-6 md:space-x-12">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-2 md:gap-x-10">
             <a href="#" className="hover:text-slate-900 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-slate-900 transition-colors">Terms and Conditions</a>
           </div>

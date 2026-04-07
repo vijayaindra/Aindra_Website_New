@@ -8,6 +8,7 @@ import kmcManipalLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Tru
 import imagesJpegLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/images.jpeg';
 import rajarajeswariLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/Rajarajeswari Medical College.jpeg';
 import drMuftiLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/dr-mufti.png';
+import { sectionContainer, sectionShell } from './layout';
 
 export const TrustedInstitutionsSection: React.FC = () => {
   const partnerLogos = [
@@ -22,8 +23,8 @@ export const TrustedInstitutionsSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative pt-12 pb-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className={`relative pt-12 pb-20 md:pb-24 ${sectionShell} bg-white overflow-hidden`}>
+      <div className={sectionContainer}>
         
         {/* Header Area - Reduced margin and height */}
         <div className="flex flex-col md:flex-row md:items-center space-y-3 md:space-y-0 md:space-x-12 mb-10">
@@ -39,16 +40,16 @@ export const TrustedInstitutionsSection: React.FC = () => {
         </div>
 
         {/* Institutions Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {partnerLogos.map((item, i) => (
             <div 
               key={i} 
-              className="h-28 md:h-32 flex items-center justify-center p-2"
+              className="h-20 sm:h-24 md:h-28 lg:h-32 flex items-center justify-center p-2"
             >
               <img
                 src={item.src}
                 alt={item.name}
-                className="max-h-20 md:max-h-24 w-auto object-contain"
+                className="max-h-14 sm:max-h-16 md:max-h-20 lg:max-h-24 w-auto object-contain"
                 loading="lazy"
               />
             </div>

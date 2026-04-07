@@ -3,6 +3,7 @@ import React from 'react';
 import hpvBlogImage from '../assets/spotlight/blog-hpv-cervical-cancer.png';
 import aiPathologyBlogImage from '../assets/spotlight/blog-ai-digital-pathology.png';
 import telemedicineBlogImage from '../assets/spotlight/blog-telemedicine.png';
+import { sectionContainer, sectionShell } from './layout';
 
 interface NewsItem {
   image: string;
@@ -38,8 +39,8 @@ export const SpotlightSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className={`relative py-16 md:py-20 lg:py-24 ${sectionShell} bg-white overflow-hidden`}>
+      <div className={sectionContainer}>
         
         {/* Header Area */}
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-16">
@@ -49,7 +50,7 @@ export const SpotlightSection: React.FC = () => {
              <div className="w-2 h-2 rounded-full border border-slate-200"></div>
           </div>
           
-          <h2 className="text-3xl md:text-5xl font-medium text-slate-900 tracking-tight flex-1 md:ml-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-slate-900 tracking-tight flex-1 md:ml-12">
             Aindra in the Spotlight
           </h2>
 
@@ -68,7 +69,7 @@ export const SpotlightSection: React.FC = () => {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10">
           {newsItems.map((item, i) => (
             <div key={i} className="flex flex-col group">
               <a

@@ -44,7 +44,7 @@ const ContactHero: React.FC = () => {
           <span className={`mt-2 text-[10px] font-bold tracking-tight whitespace-nowrap transition-colors ${expertStep >= 2 ? 'text-gray-900' : 'text-gray-400'}`}>ISSUE WITH DEVICE</span>
         </div>
       </div>
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[300px] h-[1px] bg-gray-300 -z-0"></div>
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[78%] h-[1px] bg-gray-300 -z-0"></div>
     </div>
   );
 
@@ -167,12 +167,12 @@ const ContactHero: React.FC = () => {
   );
 
   return (
-    <section className="w-full bg-white pt-8 pb-24 px-6 md:px-12">
-      <div className="max-w-[1400px] mx-auto">
-        <h1 className="text-[56px] md:text-[72px] font-extrabold text-gray-900 tracking-tight leading-none mb-4">
+    <section className="w-full bg-white pt-8 pb-16 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+      <div className="max-w-[1440px] mx-auto">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-extrabold text-gray-900 tracking-tight leading-none mb-4">
           Contact us
         </h1>
-        <p className="text-[20px] text-gray-500 font-medium mb-10">
+        <p className="text-base sm:text-lg md:text-[20px] text-gray-500 font-medium mb-8 md:mb-10">
           How can we help you?
         </p>
         
@@ -220,9 +220,9 @@ const ContactHero: React.FC = () => {
 
           {/* Right Side Form Content */}
           <div className="lg:col-span-8">
-            <div className="w-full bg-[#EBF8FF] rounded-[24px] p-10 md:p-12 shadow-sm border border-blue-100/50">
+            <div className="w-full bg-[#EBF8FF] rounded-[20px] md:rounded-[24px] p-5 sm:p-7 md:p-10 lg:p-12 shadow-sm border border-blue-100/50">
               <div className="text-center mb-10">
-                <h2 className="text-[26px] md:text-[30px] font-extrabold text-gray-900 mb-2">
+                <h2 className="text-2xl md:text-[30px] font-extrabold text-gray-900 mb-2">
                   {activeTab === 'product' ? 'Have a question? Speak with our experts' : 'Need help with your Aindra product?'}
                 </h2>
                 <p className="text-[14px] text-gray-500 font-medium">

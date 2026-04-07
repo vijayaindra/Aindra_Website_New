@@ -2,8 +2,8 @@ import React from 'react';
 
 const ContactDetails: React.FC = () => {
   return (
-    <section className="w-full bg-white pt-24 pb-0 relative overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative">
+    <section className="w-full bg-white pt-14 md:pt-20 pb-0 relative overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative">
         {/* Top Left "CONTACT" Indicator */}
         <div className="absolute left-6 md:left-12 top-0 flex flex-col items-start z-20">
           <span className="text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase">CONTACT</span>
@@ -13,8 +13,8 @@ const ContactDetails: React.FC = () => {
           </div>
         </div>
 
-        <div className="mb-16">
-          <h2 className="text-[32px] md:text-[40px] font-extrabold text-gray-900 tracking-tight ml-0 md:ml-48">
+        <div className="mb-12 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-[40px] font-extrabold text-gray-900 tracking-tight ml-0 md:ml-40">
             Get in touch with us
           </h2>
         </div>
@@ -85,8 +85,7 @@ const ContactDetails: React.FC = () => {
         </div>
       </div>
 
-      {/* Map Section - Increased negative margin to md:-mt-80 to move the map even higher as requested */}
-      <div className="w-full h-[550px] relative md:-mt-80 grayscale-[0.2] z-0">
+      <div className="w-full h-[380px] sm:h-[430px] md:h-[500px] lg:h-[550px] relative mt-10 md:mt-14 grayscale-[0.2] z-0">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.1558903348074!2d77.58498007567798!3d12.903038616480575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1513a8907f1f%3A0x8673322197609a4b!2sAindra%20Systems!5e0!3m2!1sen!2sin!4v1715858853488!5m2!1sen!2sin"
           width="100%"

@@ -17,8 +17,8 @@ const mediaLogos = [
 
 export const TrustAndMarketingSection: React.FC = () => {
   return (
-    <section className="relative w-full overflow-hidden flex flex-col md:flex-row min-h-[680px]">
-      <div className="relative w-full md:w-[60%] flex flex-col justify-center p-12 md:p-20 lg:p-24 overflow-hidden">
+    <section className="relative w-full overflow-hidden flex flex-col md:flex-row min-h-[560px] md:min-h-[680px]">
+      <div className="relative w-full md:w-[60%] flex flex-col justify-center p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=2000&auto=format&fit=crop"
@@ -29,10 +29,10 @@ export const TrustAndMarketingSection: React.FC = () => {
         </div>
 
         <div className="relative z-10 space-y-8 max-w-2xl">
-          <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-tight">
             Medical-Grade AI. Validated for Clinical Use.
           </h2>
-          <p className="text-white/80 text-lg md:text-3xl font-light leading-relaxed">
+          <p className="text-white/80 text-base sm:text-lg md:text-2xl lg:text-3xl font-light leading-relaxed">
             Aindra is building the new standard for computational pathology with 10M+ slides processed across 50+ cities.
           </p>
 
@@ -62,23 +62,23 @@ export const TrustAndMarketingSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full md:w-[40%] bg-white flex flex-col justify-center p-12 md:p-16 lg:p-20 border-l border-slate-100">
+      <div className="w-full md:w-[40%] bg-white flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-14 xl:p-16 border-t md:border-t-0 md:border-l border-slate-100">
         <div className="space-y-8">
           <div className="text-xs font-bold tracking-[0.2em] text-[#00a3ff] uppercase">In the Media</div>
-          <h2 className="text-4xl md:text-5xl font-medium text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-slate-900 tracking-tight leading-tight">
             Recognized for Innovation in MedTech
           </h2>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-4 sm:gap-5 md:gap-6">
             {mediaLogos.map((logo) => (
               <div
                 key={logo.name}
-                className="h-24 md:h-28 flex items-center justify-center px-3"
+                className="h-16 sm:h-20 md:h-24 lg:h-28 flex items-center justify-center px-2 sm:px-3"
               >
                 <img
                   src={logo.src}
                   alt={logo.name}
-                  className="max-h-14 md:max-h-16 w-auto object-contain"
+                  className="max-h-10 sm:max-h-12 md:max-h-14 lg:max-h-16 w-auto object-contain"
                   loading="lazy"
                 />
               </div>

@@ -77,7 +77,31 @@ export const SolutionsShowcase: React.FC = () => {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] bg-[#f8fbff]">
+    <>
+    <section className="lg:hidden w-full bg-[#f8fbff] px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16">
+      <div className="mx-auto w-full max-w-[1440px]">
+        <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Our Solutions</span>
+        <h2 className="mt-3 text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight max-w-3xl">
+          AI modules for every stage of clinical pathology.
+        </h2>
+        <div className="mt-6 space-y-6">
+          {solutions.map((s) => (
+            <article key={s.id} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <div className="aspect-[4/3] bg-slate-100">
+                <img src={s.image} alt={s.name} className="h-full w-full object-cover" />
+              </div>
+              <div className="p-4">
+                <div className="text-xs font-bold tracking-wider text-[#00a3ff]">{s.id}</div>
+                <h3 className="mt-1 text-xl font-bold text-slate-900">{s.name}</h3>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">{s.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div ref={containerRef} className="relative hidden lg:block h-[400vh] bg-[#f8fbff]">
       {/* Sticky Frame */}
       <section className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-6 md:px-12 lg:px-24">
         
@@ -192,5 +216,6 @@ export const SolutionsShowcase: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };

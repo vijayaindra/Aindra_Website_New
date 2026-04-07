@@ -18,9 +18,9 @@ const AIAssistant: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-2 sm:bottom-6 sm:right-6 z-50">
       {isOpen ? (
-        <div className="bg-white rounded-2xl shadow-2xl w-80 md:w-96 overflow-hidden border border-gray-100 animate-in fade-in slide-in-from-bottom-4 duration-300">
+        <div className="bg-white rounded-2xl shadow-2xl w-[min(22rem,calc(100vw-1rem))] sm:w-80 md:w-96 overflow-hidden border border-gray-100 animate-in fade-in slide-in-from-bottom-4 duration-300">
           <div className="bg-blue-600 p-4 text-white flex justify-between items-center">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>

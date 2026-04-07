@@ -2,18 +2,18 @@ import React from 'react';
 
 const Header: React.FC = () => {
   return (
-    <header className="w-full px-6 py-4 flex items-center justify-between bg-white">
-      <div className="flex items-center space-x-2">
-        <a href="#/" className="text-2xl font-bold tracking-tight text-[#00AEEF]">AINDRA</a>
+    <header className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-3 sm:py-4 flex items-center justify-between bg-white border-b border-gray-100 relative z-50">
+      <div className="flex items-center">
+        <a href="#/" className="text-xl sm:text-2xl font-semibold tracking-tight text-[#00AEEF]">AiNDRA</a>
       </div>
-      
-      <div className="flex items-center space-x-4">
-        <button className="p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+
+      <div className="flex items-center gap-2 sm:gap-3">
+        <button className="w-11 h-11 flex items-center justify-center rounded-full bg-[#00AEEF] text-white hover:bg-[#0096ce] transition-colors" aria-label="Open menu">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <a href="#/contact" className="px-6 py-2.5 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-shadow shadow-md">
+        <a href="#/contact" className="inline-flex h-11 items-center justify-center px-4 sm:px-6 bg-[#00AEEF] text-white font-semibold rounded-full hover:bg-[#0096ce] transition-shadow shadow-sm text-sm">
           Contact us
         </a>
       </div>

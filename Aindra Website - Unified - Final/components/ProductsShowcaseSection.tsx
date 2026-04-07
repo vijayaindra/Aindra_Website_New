@@ -1,5 +1,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import intellistainImage from '../assets/Product images-20260407T101738Z-3-001/Product images/Intellistain1.png';
+import visionXImage from '../assets/Product images-20260407T101738Z-3-001/Product images/VisionX2 (1).png';
+import astraImage from '../assets/Product images-20260407T101738Z-3-001/Product images/Astra.png';
+import clustrImage from '../assets/Product images-20260407T101738Z-3-001/Product images/Clustr.jpg';
 
 interface ProductData {
   id: string;
@@ -21,7 +25,7 @@ export const ProductsShowcaseSection: React.FC = () => {
       title: 'Automated Staining',
       name: 'Intellistain',
       description: 'Automates the staining process with 100% consistency, reducing manual lab labor by 40% and ensuring high-quality slides for digital analysis.',
-      image: 'https://www.aindra.in/wp-content/uploads/2018/10/Intellistain.png',
+      image: intellistainImage,
       href: '#/intellistain',
     },
     {
@@ -29,7 +33,7 @@ export const ProductsShowcaseSection: React.FC = () => {
       title: 'WSI Scanning',
       name: 'VisionX',
       description: 'High-resolution Brightfield whole slide scanner. Captures digital slides in under 60 seconds with sub-micron precision for seamless remote diagnostics.',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop',
+      image: visionXImage,
       href: '#/visionx',
     },
     {
@@ -37,7 +41,7 @@ export const ProductsShowcaseSection: React.FC = () => {
       title: 'AI Analysis Engine',
       name: 'Astra',
       description: 'Deep learning engine that automatically screens and flags suspicious morphological features, reducing primary screening time by 70% with 99% accuracy.',
-      image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1000&auto=format&fit=crop',
+      image: astraImage,
       href: '#/astra',
     },
     {
@@ -45,9 +49,8 @@ export const ProductsShowcaseSection: React.FC = () => {
       title: 'Reporting Hub',
       name: 'Clustr',
       description: 'Centralized collaboration and reporting platform. Enables instant Bethesda & CAP guidelines standardized reports and remote case review from anywhere in the world.',
-      image: '',
+      image: clustrImage,
       href: '#/clustr',
-      isCustomUI: true,
     },
   ];
 
@@ -71,7 +74,47 @@ export const ProductsShowcaseSection: React.FC = () => {
   const STEPPER_ITEM_HEIGHT = 80;
 
   return (
-    <div ref={containerRef} className="relative h-[600vh] bg-white">
+    <>
+    <section className="lg:hidden w-full px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16 bg-white">
+      <div className="mx-auto w-full max-w-[1440px]">
+        <div className="mb-8">
+          <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Our Products</span>
+          <h2 className="mt-3 text-2xl sm:text-3xl font-medium text-slate-900 leading-[1.15] max-w-3xl">
+            A Unified Ecosystem for Computational Pathology.
+          </h2>
+        </div>
+        <div className="space-y-6">
+          {products.map((p) => (
+            <article key={p.id} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-md bg-[#00a3ff] text-xs font-black text-white">{p.id}</div>
+                <h3 className="text-2xl font-bold text-slate-900 tracking-tight">{p.name}</h3>
+              </div>
+              <div className="mb-4 overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+                {p.isCustomUI ? (
+                  <div className="h-40 w-full bg-gradient-to-br from-slate-100 to-slate-200" />
+                ) : (
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="h-44 w-full object-contain p-3"
+                    onError={(e) => {
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1579165466541-71835479444a?q=80&w=800&auto=format&fit=crop";
+                    }}
+                  />
+                )}
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed">{p.description}</p>
+              <a href={p.href} className="mt-4 inline-flex min-h-11 items-center rounded-full bg-slate-900 px-5 py-2 text-xs font-bold tracking-wider uppercase text-white hover:bg-[#00a3ff] transition-colors">
+                Explore {p.name}
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div ref={containerRef} className="relative hidden lg:block h-[600vh] bg-white">
       {/* Sticky Content Frame */}
       <section className="sticky top-0 h-screen w-full overflow-hidden flex flex-col pt-32 pb-24 px-6 md:px-12 lg:px-24">
         
@@ -262,5 +305,6 @@ export const ProductsShowcaseSection: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };

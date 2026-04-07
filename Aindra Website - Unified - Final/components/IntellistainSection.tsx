@@ -20,7 +20,7 @@ export const IntellistainSection: React.FC = () => {
 
       {/* Top Header Row */}
       <div className="relative z-10 grid grid-cols-12 gap-8 mb-16">
-        <div className="col-span-12 lg:col-span-2">
+        <div className="hidden lg:block lg:col-span-2">
           <div className="flex items-center space-x-2">
              <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Our Products</span>
              <div className="flex items-center">
@@ -40,7 +40,7 @@ export const IntellistainSection: React.FC = () => {
       <div className="relative z-10 grid grid-cols-12 gap-8 flex-1 items-center">
         
         {/* Left Side: Vertical Stepper */}
-        <div className="col-span-12 lg:col-span-2">
+        <div className="hidden lg:block lg:col-span-2">
           <div className="flex flex-col space-y-10 relative">
             {/* Active indicator line */}
             <div className="absolute left-[150px] top-0 h-16 w-[2px] bg-slate-900 hidden lg:block"></div>
@@ -78,7 +78,7 @@ export const IntellistainSection: React.FC = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <div className="w-6 h-6 bg-[#00a3ff] rounded-sm flex items-center justify-center text-[10px] font-bold text-white">T</div>
-              <h3 className="text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight border-b border-blue-400/30 inline-block pb-2">
+              <h3 className="text-5xl lg:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight border-b border-blue-400/30 inline-block pb-2">
                 Intellistain
               </h3>
             </div>

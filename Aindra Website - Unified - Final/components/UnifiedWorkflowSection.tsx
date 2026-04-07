@@ -101,7 +101,25 @@ export const UnifiedWorkflowSection: React.FC = () => {
   const activeStepIdx = Math.round(Math.max(0, currentSlideProgress - 1));
 
   return (
-    <div ref={containerRef} className="relative h-[900vh] bg-white">
+    <>
+    <section className="lg:hidden w-full bg-white px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16">
+      <div className="mx-auto w-full max-w-[1440px]">
+        <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
+          We’ve condensed the pathology workflow from staining to screening into four steps.
+        </p>
+        <div className="mt-6 space-y-4">
+          {steps.map((step) => (
+            <article key={step.id} className="rounded-2xl border border-slate-200 p-4">
+              <div className="text-3xl font-bold text-[#00a3ff]">{step.id}</div>
+              <h3 className="mt-1 text-xl font-semibold text-slate-900">{step.title}</h3>
+              <p className="mt-2 text-sm text-slate-600">{step.caption}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div ref={containerRef} className="relative hidden lg:block h-[900vh] bg-white">
       <section className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         
         {/* Persistent Background */}
@@ -202,5 +220,6 @@ export const UnifiedWorkflowSection: React.FC = () => {
 
       </section>
     </div>
+    </>
   );
 };

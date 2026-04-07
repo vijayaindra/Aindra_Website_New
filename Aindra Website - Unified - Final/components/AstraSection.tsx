@@ -21,7 +21,7 @@ export const AstraSection: React.FC = () => {
       {/* Main Showcase Area */}
       <div className="grid grid-cols-12 gap-8 items-center">
         {/* Left Side: Stepper */}
-        <div className="col-span-12 lg:col-span-2 space-y-12">
+        <div className="hidden lg:block lg:col-span-2 space-y-12">
           <div className="flex flex-col space-y-8 relative">
             {/* Vertical Line Container */}
             <div className="absolute left-[152px] top-0 h-full w-px bg-slate-100 hidden lg:block"></div>
@@ -63,7 +63,7 @@ export const AstraSection: React.FC = () => {
 
         {/* Right Side: Product Description */}
         <div className="col-span-12 lg:col-span-4 space-y-8">
-          <h3 className="text-6xl font-bold text-slate-900 tracking-tight">
+          <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight">
             Astra
           </h3>
           <p className="text-lg text-slate-500 leading-relaxed font-light">
