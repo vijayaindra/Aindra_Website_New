@@ -28,10 +28,10 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
   ];
 
   const products = [
-    { name: 'Intellistain', href: '#/intellistain', active: true },
-    { name: 'VisionX', href: '#/visionx', active: false },
-    { name: 'Astra', href: '#/astra', active: false },
-    { name: 'Clustr', href: '#/clustr', active: false },
+    { name: 'Intellistain', href: '#/intellistain' },
+    { name: 'VisionX', href: '#/visionx' },
+    { name: 'Astra', href: '#/astra' },
+    { name: 'Clustr', href: '#/clustr' },
   ];
 
   return (
@@ -101,7 +101,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
                     </span>
 
                     {/* Circle Arrow Icon */}
-                    <div className={`w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all ${product.active ? 'bg-[#00a3ff] text-white' : 'bg-[#b0b0b0] text-white group-hover:bg-[#00a3ff]'}`}>
+                    <div className="w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all bg-[#b0b0b0] text-white group-hover:bg-[#00a3ff]">
                       <svg className="w-2.5 h-2.5 md:w-3 md:h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
                       </svg>
