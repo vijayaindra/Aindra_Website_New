@@ -1,5 +1,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import cervAstraImage from '../assets/ProductImages/CervAstra.png';
+import lungAstraImage from '../assets/ProductImages/LungAstra.png';
+import proAstraImage from '../assets/ProductImages/ProAstra.png';
+import thyroAstraImage from '../assets/ProductImages/ThyroAstra.png';
 
 interface Solution {
   id: string;
@@ -19,7 +23,7 @@ export const SolutionsShowcase: React.FC = () => {
       id: '01',
       name: 'CervAstra',
       description: 'Geography is no longer a barrier. Slides are reviewed remotely, and Bethesda-format reports are generated instantly, bridging the gap between rural clinics and expert pathologists.',
-      image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1600&auto=format&fit=crop',
+      image: cervAstraImage,
       glowColor: 'bg-red-500',
       glowPos: { top: '50%', left: '45%' }
     },
@@ -27,7 +31,7 @@ export const SolutionsShowcase: React.FC = () => {
       id: '02',
       name: 'LungAstra',
       description: 'Advanced AI detection for pulmonary and thoracic cytology. LungAstra identifies malignant morphological features in seconds, streamlining clinical workflows.',
-      image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1600&auto=format&fit=crop',
+      image: lungAstraImage,
       glowColor: 'bg-orange-500',
       glowPos: { top: '55%', left: '58%' }
     },
@@ -35,7 +39,7 @@ export const SolutionsShowcase: React.FC = () => {
       id: '03',
       name: 'ProsAstra',
       description: 'Standardizing prostate pathology. Our AI models assist in the precise identification and grading of prostate malignancies, ensuring reproducible diagnostic results.',
-      image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1600&auto=format&fit=crop',
+      image: proAstraImage,
       glowColor: 'bg-orange-500',
       glowPos: { top: '52%', left: '44%' }
     },
@@ -43,7 +47,7 @@ export const SolutionsShowcase: React.FC = () => {
       id: '04',
       name: 'ThyroAstra',
       description: 'ThyroAstra brings deep learning to thyroid cytopathology, assisting in the evaluation of fine needle aspiration samples with unparalleled accuracy.',
-      image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1600&auto=format&fit=crop',
+      image: thyroAstraImage,
       glowColor: 'bg-orange-500',
       glowPos: { top: '48%', left: '58%' }
     }
