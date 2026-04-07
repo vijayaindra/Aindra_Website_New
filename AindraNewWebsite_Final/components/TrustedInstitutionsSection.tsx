@@ -49,7 +49,11 @@ export const TrustedInstitutionsSection: React.FC = () => {
               <img
                 src={item.src}
                 alt={item.name}
-                className="max-h-14 sm:max-h-16 md:max-h-20 lg:max-h-24 w-auto object-contain"
+                className={`w-auto object-contain ${
+                  item.name === 'Dr Mufti'
+                    ? 'max-h-24 sm:max-h-24 md:max-h-32 lg:max-h-36'
+                    : 'max-h-14 sm:max-h-16 md:max-h-20 lg:max-h-24'
+                }`}
                 loading="lazy"
               />
             </div>
