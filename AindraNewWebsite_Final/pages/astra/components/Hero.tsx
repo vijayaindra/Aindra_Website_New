@@ -1,4 +1,5 @@
 import React from 'react';
+import astraImage from '../../../assets/ProductImages/Astra.png';
 
 const Hero: React.FC = () => {
   return (
@@ -10,12 +11,10 @@ const Hero: React.FC = () => {
       
       <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm shadow-xl mt-8">
         <img 
-          src="https://picsum.photos/id/111/1600/600" 
+          src={astraImage}
           alt="Histopathology cell staining" 
-          className="w-full h-full object-cover grayscale-[0.2] contrast-125"
-          style={{ filter: 'hue-rotate(300deg) saturate(1.5)' }} 
+          className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-pink-500/10 mix-blend-multiply pointer-events-none"></div>
       </div>
     </section>
   );

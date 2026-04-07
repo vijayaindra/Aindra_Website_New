@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import intellistainImage from '../../../assets/ProductImages/Intellistain1.png';
 
 interface ProductCardProps {
   name: string;
@@ -20,11 +21,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ name, active = false, onClick
       <span className={`text-xs sm:text-sm md:text-[15px] font-bold tracking-tight transition-colors duration-300 ${active ? 'text-black' : 'text-gray-900'}`}>
         {name}
       </span>
-      <div className={`transition-all duration-500 flex items-center justify-center ${active ? 'w-16 h-16' : 'w-10 h-10 opacity-60'}`}>
+      <div className={`transition-all duration-500 flex items-center justify-center overflow-hidden rounded-md ${active ? 'w-16 h-16' : 'w-10 h-10 opacity-60'}`}>
         <img 
-          src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&q=80&w=100" 
+          src={intellistainImage}
           alt={name} 
-          className="w-full h-full object-contain mix-blend-multiply" 
+          className="w-full h-full object-cover" 
         />
       </div>
     </div>
@@ -86,15 +87,12 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
           </div>
           
           <div className="relative z-10 w-[260px] sm:w-[340px] md:w-[450px] drop-shadow-2xl transition-all duration-700 ease-in-out transform">
-            <div className="bg-white rounded-[40px] p-2 shadow-2xl overflow-hidden border border-gray-100">
-               <img 
-                key={activeVariant}
-                src="https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=800" 
-                alt={`Intellistain ${activeVariant} Device`} 
-                className="w-full h-auto rounded-[32px] object-cover animate-in fade-in duration-700"
-              />
-              <div className="absolute inset-0 rounded-[32px] bg-gradient-to-tr from-transparent via-white/5 to-white/20 pointer-events-none"></div>
-            </div>
+            <img
+              key={activeVariant}
+              src={intellistainImage}
+              alt={`Intellistain ${activeVariant} Device`}
+              className="w-full h-auto object-contain animate-in fade-in duration-700"
+            />
           </div>
           
           <div className="absolute bottom-10 right-10 text-gray-300">

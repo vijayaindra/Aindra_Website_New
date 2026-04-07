@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import visionXImage from '../../../assets/ProductImages/VisionX2 (1).png';
+import visionXFImage from '../../../assets/ProductImages/FWSI.jpg';
 
 interface ProductCardProps {
   name: string;
+  imageSrc: string;
   active?: boolean;
   onClick: () => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ name, active = false, onClick }) => (
+const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc, active = false, onClick }) => (
   <button 
     onClick={onClick}
     className={`flex items-center transition-all duration-500 ease-in-out h-14 sm:h-16 md:h-[84px] overflow-hidden rounded-none ${
@@ -19,11 +22,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ name, active = false, onClick
       <span className={`text-xs sm:text-sm md:text-[15px] font-bold tracking-tight transition-colors duration-300 ${active ? 'text-black' : 'text-gray-900'}`}>
         {name}
       </span>
-      <div className={`transition-all duration-500 flex items-center justify-center ${active ? 'w-16 h-16' : 'w-10 h-10 opacity-60'}`}>
+      <div className={`transition-all duration-500 flex items-center justify-center overflow-hidden rounded-md ${active ? 'w-16 h-16' : 'w-10 h-10 opacity-60'}`}>
         <img 
-          src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&q=80&w=100" 
+          src={imageSrc}
           alt={name} 
-          className="w-full h-full object-contain mix-blend-multiply" 
+          className="w-full h-full object-cover" 
         />
       </div>
     </div>
@@ -39,11 +42,12 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
   const [activeVariant, setActiveVariant] = useState('VX1');
 
   const variants = [
-    { id: 'VX1', label: 'VX1' },
-    { id: 'VX6', label: 'VX6' },
-    { id: 'VX mini', label: 'VX mini' },
-    { id: 'VXF', label: 'VXF' }
+    { id: 'VX1', label: 'VX1', image: visionXImage },
+    { id: 'VX6', label: 'VX6', image: visionXImage },
+    { id: 'VX mini', label: 'VX mini', image: visionXImage },
+    { id: 'VXF', label: 'VXF', image: visionXFImage }
   ];
+  const activeVariantData = variants.find((variant) => variant.id === activeVariant) ?? variants[0];
 
   const tabs = ['OVERVIEW', 'IMAGE QUALITY', 'SPECIFICATIONS', 'RESOURCES'];
 
@@ -56,6 +60,7 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
             <ProductCard 
               key={variant.id}
               name={variant.label} 
+              imageSrc={variant.image}
               active={activeVariant === variant.id}
               onClick={() => setActiveVariant(variant.id)}
             />
@@ -89,15 +94,12 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
           
           {/* Machine Image */}
           <div className="relative z-10 w-[260px] sm:w-[340px] md:w-[450px] drop-shadow-2xl transition-all duration-700 ease-in-out transform">
-            <div className="bg-white rounded-[40px] p-2 shadow-2xl overflow-hidden border border-gray-100">
-               <img 
-                key={activeVariant}
-                src="https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=800" 
-                alt={`VisionX ${activeVariant} Device`} 
-                className="w-full h-auto rounded-[32px] object-cover animate-in fade-in duration-700"
-              />
-              <div className="absolute inset-0 rounded-[32px] bg-gradient-to-tr from-transparent via-white/5 to-white/20 pointer-events-none"></div>
-            </div>
+            <img
+              key={activeVariant}
+              src={activeVariantData.image}
+              alt={`VisionX ${activeVariant} Device`}
+              className="w-full h-auto object-contain animate-in fade-in duration-700"
+            />
           </div>
           
           {/* Sparkling icon at bottom right of image area */}
