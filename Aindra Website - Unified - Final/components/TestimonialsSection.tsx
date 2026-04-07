@@ -1,5 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import drVaniRavikumarImage from '../assets/testimonials/dr-vani.jpg';
+import drKristianOlsonImage from '../assets/testimonials/Dr.Kristian-Olson.png';
+import drMalathiMImage from '../assets/testimonials/Dr.Malathi M.jpg';
 
 interface Testimonial {
   name: string;
@@ -10,48 +13,68 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    name: "Kristian Olson",
-    role: "Director at CamTech",
-    quote: "Aindra is delivering what pathology needs better care at lower cost. Designed for India, but scalable globally, it brings precision, efficiency, and AI-readiness to diagnostic workflows. Tools like Intellistain and VisionX empower pathologists to focus on what matters faster, more accurate cancer detection.",
-    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=600&auto=format&fit=crop"
+    name: "Dr. Vani Ravikumar",
+    role: "Director, RV Metropolis",
+    quote: "With over 30 years of experience into Onco Pathology, Dr.Vani has been instrumental in leading the research and Validation activities at AIndra. She has been closely associated with the AIndra team with valuable feedbacks for CervAstra",
+    image: drVaniRavikumarImage
   },
   {
-    name: "Dr. Sarah Jenkins",
-    role: "Chief Pathologist at City Labs",
-    quote: "The automation level AiNDRA provides is a game-changer for high-volume laboratories. We've seen a significant reduction in processing time without compromising on the quality of diagnostic insights. It's truly the future of clinical pathology.",
-    image: "https://images.unsplash.com/photo-1559839734-2b71f1536783?q=80&w=600&auto=format&fit=crop"
+    name: "Dr. Kristian Olson",
+    role: "Director of the Consortium for Affordable Medical Technologies",
+    quote: "Kristian Olson is the Director of the Consortium for Affordable Medical Technologies (CAMTech). He is both a Pediatrician and Internist and also serves as a Clinician Educator at the Massachusetts General Hospital and an Assistant Professor at Harvard Medical School. He has worked in Darfur, Indonesia, Cambodia, Ethiopia, Uganda, and India, is a serial innovator and one of the architects of the CAMTech Innovation platform. He completed an undergraduate degree in biology at the University of British Columbia, medical school at the Vanderbilt University School of Medicine and his residency training in the Combined Harvard Medicine and Pediatrics Program. He trained in the Masters of Public Health program at the University of Sydney as a US Fulbright Scholar and completed a Diploma in Tropical Medicine at the London School of Hygiene and Tropical Medicine in 2003. In 2009, he was named to the Scientific American Top 10 Honor Roll as an individual who has demonstrated leadership in applying new technologies and biomedical discoveries for the benefit of humanity.",
+    image: drKristianOlsonImage
   },
   {
-    name: "Prof. Amit Shah",
-    role: "Head of Oncology Research",
-    quote: "Seeing such precision in AI-assisted diagnosis gives us immense confidence in the future of cancer screening. Aindra's ability to condense complex workflows into a unified digital experience is exactly what the healthcare sector needs right now.",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=600&auto=format&fit=crop"
-  },
-  {
-    name: "Dr. Elena Rodriguez",
-    role: "Clinical Consultant, Madrid",
-    quote: "Efficiency and accuracy usually don't go hand in hand in pathology, but Aindra proves otherwise. Their cloud-based analysis platform Astra has bridged the gap for our remote clinics, allowing expert review from anywhere in the world.",
-    image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=600&auto=format&fit=crop"
-  },
-  {
-    name: "Michael Chen",
-    role: "HealthTech Innovator",
-    quote: "Scaling diagnostics globally requires robust, reliable, and user-friendly tools. VisionX is a masterpiece of engineering that makes high-resolution digital scanning accessible to everyone, from small clinics to large research hospitals.",
-    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=600&auto=format&fit=crop"
-  },
-  {
-    name: "Dr. Priya Sharma",
-    role: "Diagnostic Lead, HealthPlus",
-    quote: "The seamless integration with our existing LIS systems made the transition to digital pathology incredibly smooth. The AI-driven heatmaps are particularly helpful for highlighting areas of concern that require a pathologist's immediate attention.",
-    image: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=600&auto=format&fit=crop"
+    name: "Dr. Malathi M",
+    role: "Associate Proffessor, Cytology, Kidwai Hospital",
+    quote: "Dr. Malathi has a rich experience of over 40 years in the field of Oncopathology and is the Principal Investigator for Aindra's Clinical Validations. She has rendered immense support and feedback for Aindra's Cervical Cancer screening tool CervAstra.",
+    image: drMalathiMImage
   }
 ];
 
 export const TestimonialsSection: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const transitionTimeoutRef = useRef<number | null>(null);
+  const intervalRef = useRef<number | null>(null);
+  const activeTestimonial = testimonials[activeIndex];
 
-  const handleNext = () => setActiveIndex((prev) => (prev + 1) % testimonials.length);
-  const handlePrev = () => setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const changeTestimonial = (targetIndex: number) => {
+    if (isTransitioning || targetIndex === activeIndex) return;
+    setIsTransitioning(true);
+    transitionTimeoutRef.current = window.setTimeout(() => {
+      setActiveIndex(targetIndex);
+      setIsTransitioning(false);
+    }, 220);
+  };
+
+  const handleNext = () => {
+    const nextIndex = (activeIndex + 1) % testimonials.length;
+    changeTestimonial(nextIndex);
+  };
+
+  const handlePrev = () => {
+    const prevIndex = (activeIndex - 1 + testimonials.length) % testimonials.length;
+    changeTestimonial(prevIndex);
+  };
+
+  useEffect(() => {
+    intervalRef.current = window.setInterval(() => {
+      const nextIndex = (activeIndex + 1) % testimonials.length;
+      changeTestimonial(nextIndex);
+    }, 6000);
+
+    return () => {
+      if (intervalRef.current) window.clearInterval(intervalRef.current);
+    };
+  }, [activeIndex, isTransitioning]);
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimeoutRef.current) window.clearTimeout(transitionTimeoutRef.current);
+      if (intervalRef.current) window.clearInterval(intervalRef.current);
+    };
+  }, []);
 
   return (
     <section className="relative pt-24 pb-12 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
@@ -94,57 +117,54 @@ export const TestimonialsSection: React.FC = () => {
           
           {/* Circular Portrait Placeholder Area */}
           <div className="relative z-20 w-64 h-64 md:w-[340px] md:h-[340px] flex-shrink-0 lg:-mr-24">
-            <div className="w-full h-full rounded-full border-[8px] border-white shadow-xl bg-slate-100"></div>
+            <img
+              src={testimonials[activeIndex].image}
+              alt={testimonials[activeIndex].name}
+              className={`w-full h-full rounded-full border-[8px] border-white shadow-xl object-cover bg-slate-100 transition-all duration-300 ease-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
+            />
           </div>
 
           {/* Quote Container: More compact pill shape */}
           <div className="relative z-10 w-full lg:max-w-4xl bg-white border border-slate-900 rounded-[60px] md:rounded-[120px] py-12 px-8 md:px-24 lg:pl-36 lg:pr-16 shadow-sm min-h-[300px] flex flex-col justify-center mt-[-60px] lg:mt-0 overflow-hidden">
             
-            <div className="relative h-48 md:h-40 flex items-center">
-              {testimonials.map((t, idx) => (
-                <div 
-                  key={idx}
-                  className={`absolute inset-0 transition-all duration-700 ease-in-out flex flex-col justify-center ${idx === activeIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                >
-                  <div className="relative">
-                    {/* Opening Quotes Icon */}
-                    <div className="absolute -left-8 md:-left-10 -top-2 text-[#005bc4]">
-                       <svg width="30" height="22" viewBox="0 0 40 30" fill="currentColor">
-                         <path d="M0 30V15C0 6.7 6.7 0 15 0H18V6H15C10 6 6 10 6 15V18H12V30H0ZM22 30V15C22 6.7 28.7 0 37 0H40V6H37C32 6 28 10 28 15V18H34V30H22Z" />
-                       </svg>
-                    </div>
-
-                    <p className="text-base md:text-lg text-slate-700 leading-relaxed font-normal">
-                      {t.quote}
-                    </p>
-
-                    {/* Closing Quotes Icon */}
-                    <div className="absolute -right-6 -bottom-2 text-[#005bc4]">
-                      <svg width="30" height="22" viewBox="0 0 40 30" fill="currentColor" className="rotate-180">
-                         <path d="M0 30V15C0 6.7 6.7 0 15 0H18V6H15C10 6 6 10 6 15V18H12V30H0ZM22 30V15C22 6.7 28.7 0 37 0H40V6H37C32 6 28 10 28 15V18H34V30H22Z" />
-                      </svg>
-                    </div>
-                  </div>
-
-                  {/* Author Info */}
-                  <div className="mt-8">
-                    <h4 className="text-lg font-bold text-[#005bc4] tracking-tight mb-0.5">
-                      {t.name}
-                    </h4>
-                    <p className="text-slate-500 font-medium text-xs md:text-sm">
-                      {t.role}
-                    </p>
-                  </div>
+            <div className={`relative transition-all duration-300 ease-out ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+              <div className="relative">
+                {/* Opening Quotes Icon */}
+                <div className="absolute -left-8 md:-left-10 -top-2 text-[#005bc4]">
+                  <svg width="30" height="22" viewBox="0 0 40 30" fill="currentColor">
+                    <path d="M0 30V15C0 6.7 6.7 0 15 0H18V6H15C10 6 6 10 6 15V18H12V30H0ZM22 30V15C22 6.7 28.7 0 37 0H40V6H37C32 6 28 10 28 15V18H34V30H22Z" />
+                  </svg>
                 </div>
-              ))}
+
+                <p className="text-base md:text-lg text-slate-700 leading-relaxed font-normal">
+                  {activeTestimonial.quote}
+                </p>
+
+                {/* Closing Quotes Icon */}
+                <div className="absolute -right-6 -bottom-2 text-[#005bc4]">
+                  <svg width="30" height="22" viewBox="0 0 40 30" fill="currentColor" className="rotate-180">
+                    <path d="M0 30V15C0 6.7 6.7 0 15 0H18V6H15C10 6 6 10 6 15V18H12V30H0ZM22 30V15C22 6.7 28.7 0 37 0H40V6H37C32 6 28 10 28 15V18H34V30H22Z" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Author Info */}
+              <div className="mt-8">
+                <h4 className="text-lg font-bold text-[#005bc4] tracking-tight mb-0.5">
+                  {activeTestimonial.name}
+                </h4>
+                <p className="text-slate-500 font-medium text-xs md:text-sm">
+                  {activeTestimonial.role}
+                </p>
+              </div>
             </div>
             
             {/* Pagination Dots */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center space-x-2">
-              {[0, 1, 2, 3, 4].map((_, idx) => (
+              {testimonials.map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setActiveIndex(idx)}
+                  onClick={() => changeTestimonial(idx)}
                   className={`rounded-full transition-all duration-500 ${idx === activeIndex ? 'w-4 h-1.5 bg-[#005bc4]' : 'w-1.5 h-1.5 bg-slate-200 hover:bg-slate-300'}`}
                 />
               ))}
