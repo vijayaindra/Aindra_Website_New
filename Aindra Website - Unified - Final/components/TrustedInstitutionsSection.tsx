@@ -43,12 +43,12 @@ export const TrustedInstitutionsSection: React.FC = () => {
           {partnerLogos.map((item, i) => (
             <div 
               key={i} 
-              className="aspect-[2.4/1] border-r border-b border-slate-200 flex items-center justify-center p-6 transition-colors duration-300 hover:bg-slate-50 group"
+              className="aspect-[2.2/1] border-r border-b border-slate-200 flex items-center justify-center p-4 md:p-5 transition-colors duration-300 hover:bg-slate-50 group"
             >
               <img
                 src={item.src}
                 alt={item.name}
-                className="max-h-12 md:max-h-14 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                className="max-h-16 md:max-h-20 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
                 loading="lazy"
               />
             </div>
