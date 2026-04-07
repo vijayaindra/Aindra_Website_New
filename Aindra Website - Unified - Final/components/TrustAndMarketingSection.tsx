@@ -1,4 +1,19 @@
 import React from 'react';
+import medgeneraLogo from '../assets/media/medgenera.png';
+import yourstoryLogo from '../assets/media/yourstory.png';
+import economicTimesLogo from '../assets/media/economic-times.png';
+import techcircleLogo from '../assets/media/techcircle.png';
+import geektimeLogo from '../assets/media/geektime.png';
+import venturebeatLogo from '../assets/media/venturebeat.png';
+
+const mediaLogos = [
+  { name: 'Medgenera', src: medgeneraLogo },
+  { name: 'YourStory', src: yourstoryLogo },
+  { name: 'The Economic Times', src: economicTimesLogo },
+  { name: 'Techcircle', src: techcircleLogo },
+  { name: 'Geektime', src: geektimeLogo },
+  { name: 'VentureBeat', src: venturebeatLogo }
+];
 
 export const TrustAndMarketingSection: React.FC = () => {
   return (
@@ -55,16 +70,19 @@ export const TrustAndMarketingSection: React.FC = () => {
           </h2>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="h-10 border border-slate-100 text-slate-300 font-bold text-xs flex items-center justify-center">FORBES</div>
-            <div className="h-10 border border-slate-100 text-slate-300 font-bold text-xs flex items-center justify-center">TECHCRUNCH</div>
-            <div className="h-10 border border-slate-100 text-slate-300 font-bold text-xs flex items-center justify-center">ET HEALTH</div>
-            <div className="h-10 border border-slate-100 text-slate-300 font-bold text-xs flex items-center justify-center">WIRED</div>
-          </div>
-
-          <div className="pt-6">
-            <button className="px-12 py-4 border border-slate-900 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-slate-900 hover:text-white transition-all">
-              Press Kit
-            </button>
+            {mediaLogos.map((logo) => (
+              <div
+                key={logo.name}
+                className="h-20 border border-slate-100 bg-white flex items-center justify-center px-5"
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.name}
+                  className="max-h-10 w-auto object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

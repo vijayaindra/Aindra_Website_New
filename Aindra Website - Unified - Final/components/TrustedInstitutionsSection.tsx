@@ -1,22 +1,24 @@
 
 import React from 'react';
+import kidwaiLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/KIDWAI Memorial Institute of Oncology.png';
+import rvMetropolisLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/RV Metropolis.png';
+import sakraLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/sakra.png';
+import logo21 from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/logo-21.webp';
+import kmcManipalLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/KMC Manipal.png';
+import imagesJpegLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/images.jpeg';
+import rajarajeswariLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/Rajarajeswari Medical College.jpeg';
+import drMuftiLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/dr-mufti.png';
 
 export const TrustedInstitutionsSection: React.FC = () => {
-  const institutions = [
-    { short: 'KMIO', full: 'Kidwai Memorial Institute of Oncology' },
-    { short: 'APOLLO', full: 'Apollo Hospitals' },
-    { short: 'MANIPAL', full: 'Manipal Hospitals' },
-    { short: 'NH', full: 'Narayana Health' },
-    { short: 'TMH', full: 'Tata Memorial Hospital' },
-    { short: 'AIIMS', full: 'AIIMS Delhi' },
-    { short: 'FORTIS', full: 'Fortis Healthcare' },
-    { short: 'MAX', full: 'Max Healthcare' },
-    { short: 'MEDANTA', full: 'Medanta' },
-    { short: 'ASTER', full: 'Aster DM Healthcare' },
-    { short: 'CLOUDNINE', full: 'Cloudnine Hospitals' },
-    { short: 'COLUMBIA', full: 'Columbia Asia' },
-    { short: 'KIMS', full: 'KIMS Hospitals' },
-    { short: 'CARE', full: 'Care Hospitals' },
+  const partnerLogos = [
+    { name: 'Kidwai Memorial Institute of Oncology', src: kidwaiLogo },
+    { name: 'RV Metropolis', src: rvMetropolisLogo },
+    { name: 'Sakra', src: sakraLogo },
+    { name: 'Partner Logo 21', src: logo21 },
+    { name: 'KMC Manipal', src: kmcManipalLogo },
+    { name: 'Partner Logo', src: imagesJpegLogo },
+    { name: 'Rajarajeswari Medical College', src: rajarajeswariLogo },
+    { name: 'Dr Mufti', src: drMuftiLogo }
   ];
 
   return (
@@ -37,20 +39,18 @@ export const TrustedInstitutionsSection: React.FC = () => {
         </div>
 
         {/* Institutions Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 border-l border-t border-slate-200">
-          {institutions.map((item, i) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 border-l border-t border-slate-200">
+          {partnerLogos.map((item, i) => (
             <div 
               key={i} 
-              className="aspect-[2/1] border-r border-b border-slate-200 flex items-center justify-center p-6 transition-colors duration-300 hover:bg-slate-50 group"
+              className="aspect-[2.4/1] border-r border-b border-slate-200 flex items-center justify-center p-6 transition-colors duration-300 hover:bg-slate-50 group"
             >
-              <div className="text-center leading-tight">
-                <div className={`text-[10px] font-bold uppercase tracking-tight ${item.short === 'CARE' ? 'text-[#00a3ff]' : 'text-slate-400'}`}>
-                  {item.short}
-                </div>
-                <div className="mt-1 text-[9px] text-slate-400">
-                  {item.full}
-                </div>
-              </div>
+              <img
+                src={item.src}
+                alt={item.name}
+                className="max-h-12 md:max-h-14 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>
