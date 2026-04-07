@@ -1,13 +1,13 @@
 
 import React from 'react';
-import kidwaiLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/KIDWAI Memorial Institute of Oncology.png';
-import rvMetropolisLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/RV Metropolis.png';
-import sakraLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/sakra.png';
-import logo21 from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/logo-21.webp';
-import kmcManipalLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/KMC Manipal.png';
-import imagesJpegLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/images.jpeg';
-import rajarajeswariLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/Rajarajeswari Medical College.jpeg';
-import drMuftiLogo from '../assets/Trusted by Logo-20260407T085650Z-3-001/Trusted by Logo/dr-mufti.png';
+import kidwaiLogo from '../assets/TrustedByLogo/KIDWAI Memorial Institute of Oncology.png';
+import rvMetropolisLogo from '../assets/TrustedByLogo/RV Metropolis.png';
+import sakraLogo from '../assets/TrustedByLogo/sakra.png';
+import logo21 from '../assets/TrustedByLogo/logo-21.webp';
+import kmcManipalLogo from '../assets/TrustedByLogo/KMC Manipal.png';
+import imagesJpegLogo from '../assets/TrustedByLogo/images.jpeg';
+import rajarajeswariLogo from '../assets/TrustedByLogo/Rajarajeswari Medical College.jpeg';
+import drMuftiLogo from '../assets/TrustedByLogo/dr-mufti.png';
 import { sectionContainer, sectionShell } from './layout';
 
 export const TrustedInstitutionsSection: React.FC = () => {

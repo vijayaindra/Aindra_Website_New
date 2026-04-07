@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import intellistainImage from '../assets/Product images-20260407T101738Z-3-001/Product images/Intellistain1.png';
-import visionXImage from '../assets/Product images-20260407T101738Z-3-001/Product images/VisionX2 (1).png';
-import astraImage from '../assets/Product images-20260407T101738Z-3-001/Product images/Astra.png';
-import clustrImage from '../assets/Product images-20260407T101738Z-3-001/Product images/Clustr.jpg';
+import intellistainImage from '../assets/ProductImages/Intellistain1.png';
+import visionXImage from '../assets/ProductImages/VisionX2 (1).png';
+import astraImage from '../assets/ProductImages/Astra.png';
+import clustrImage from '../assets/ProductImages/Clustr.jpg';
 
 interface ProductData {
   id: string;
