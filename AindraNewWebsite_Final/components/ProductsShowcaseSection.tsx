@@ -175,6 +175,7 @@ export const ProductsShowcaseSection: React.FC = () => {
                const start = idx * progressPerItem;
                const end = (idx + 1) * progressPerItem;
                const relativeProgress = (scrollProgress - start) / (end - start);
+               const isActive = idx === activeIndex;
                
                let opacity = 0;
                if (relativeProgress >= 0 && relativeProgress <= 1) {
@@ -182,19 +183,20 @@ export const ProductsShowcaseSection: React.FC = () => {
                   else if (relativeProgress > 0.85) opacity = 1 - (relativeProgress - 0.85) / 0.15;
                   else opacity = 1;
                }
-               
-               const scale = 0.9 + opacity * 0.1;
-               const blur = (1 - opacity) * 6;
+
+               const resolvedOpacity = isActive ? Math.max(opacity, 0.98) : opacity;
+               const scale = isActive ? 1 : 0.9 + resolvedOpacity * 0.1;
+               const blur = isActive ? 0 : (1 - resolvedOpacity) * 6;
 
                return (
                  <div 
                   key={p.id}
-                  className="absolute inset-0 flex items-center justify-center pointer-events-none transition-transform duration-75 ease-out"
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-300 ease-out"
                   style={{ 
-                    opacity: Math.max(0, opacity),
-                    transform: `scale(${scale}) translateY(${(1 - opacity) * 30}px)`,
+                    opacity: Math.max(0, resolvedOpacity),
+                    transform: `scale(${scale}) translateY(${isActive ? 0 : (1 - resolvedOpacity) * 30}px)`,
                     filter: `blur(${blur}px)`,
-                    visibility: opacity > 0 ? 'visible' : 'hidden',
+                    visibility: isActive || resolvedOpacity > 0.02 ? 'visible' : 'hidden',
                   }}
                  >
                     {p.isCustomUI ? (
@@ -248,6 +250,7 @@ export const ProductsShowcaseSection: React.FC = () => {
                const start = idx * progressPerItem;
                const end = (idx + 1) * progressPerItem;
                const relativeProgress = (scrollProgress - start) / (end - start);
+               const isActive = idx === activeIndex;
                
                let opacity = 0;
                if (relativeProgress >= 0 && relativeProgress <= 1) {
@@ -256,16 +259,17 @@ export const ProductsShowcaseSection: React.FC = () => {
                   else opacity = 1;
                }
 
-               const translateY = (1 - opacity) * 40;
+               const resolvedOpacity = isActive ? Math.max(opacity, 0.98) : opacity;
+               const translateY = isActive ? 0 : (1 - resolvedOpacity) * 40;
 
                return (
                  <div 
                   key={p.id}
-                  className="absolute inset-x-0 lg:left-16 space-y-6 lg:space-y-8"
+                  className="absolute inset-x-0 lg:left-16 space-y-6 lg:space-y-8 transition-all duration-300 ease-out"
                   style={{ 
-                    opacity: Math.max(0, opacity),
+                    opacity: Math.max(0, resolvedOpacity),
                     transform: `translateY(${translateY}px)`,
-                    visibility: opacity > 0 ? 'visible' : 'hidden',
+                    visibility: isActive || resolvedOpacity > 0.02 ? 'visible' : 'hidden',
                   }}
                  >
                    <div className="space-y-4 lg:space-y-6">
