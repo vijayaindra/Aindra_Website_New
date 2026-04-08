@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import visionXImage from '../../../assets/ProductImages/VisionX2 (1).png';
+import visionX6Image from '../../../assets/ProductImages/VX6.png';
 import visionXFImage from '../../../assets/ProductImages/FWSI.jpg';
 
 interface ProductCardProps {
@@ -50,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
 
   const variants = [
     { id: 'VX1', label: 'VX1', image: visionXImage, softenBackground: false },
-    { id: 'VX6', label: 'VX6', image: visionXImage, softenBackground: false },
+    { id: 'VX6', label: 'VX6', image: visionX6Image, softenBackground: false },
     { id: 'VX mini', label: 'VX mini', image: visionXImage, softenBackground: false },
     { id: 'VXF', label: 'VXF', image: visionXFImage, softenBackground: true }
   ];

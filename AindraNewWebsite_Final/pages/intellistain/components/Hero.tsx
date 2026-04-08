@@ -1,14 +1,16 @@
 
 import React, { useState } from 'react';
-import intellistainImage from '../../../assets/ProductImages/Intellistain1.png';
+import intellistain15Image from '../../../assets/ProductImages/IS-15.png';
+import intellistain30Image from '../../../assets/ProductImages/IS-30.png';
 
 interface ProductCardProps {
   name: string;
+  imageSrc: string;
   active?: boolean;
   onClick: () => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ name, active = false, onClick }) => (
+const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc, active = false, onClick }) => (
   <button 
     onClick={onClick}
     className={`flex items-center transition-all duration-500 ease-in-out h-14 sm:h-16 md:h-[84px] overflow-hidden rounded-none ${
@@ -23,9 +25,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ name, active = false, onClick
       </span>
       <div className={`transition-all duration-500 flex items-center justify-center overflow-hidden rounded-md ${active ? 'w-16 h-16' : 'w-10 h-10 opacity-60'}`}>
         <img 
-          src={intellistainImage}
+          src={imageSrc}
           alt={name} 
-          className="w-full h-full object-cover" 
+          className="w-full h-full object-contain" 
         />
       </div>
     </div>
@@ -41,9 +43,10 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
   const [activeVariant, setActiveVariant] = useState('IS15');
 
   const variants = [
-    { id: 'IS15', label: 'IS15' },
-    { id: 'IS30', label: 'IS30' }
+    { id: 'IS15', label: 'IS15', image: intellistain15Image },
+    { id: 'IS30', label: 'IS30', image: intellistain30Image }
   ];
+  const activeVariantData = variants.find((variant) => variant.id === activeVariant) ?? variants[0];
 
   const tabs = ['OVERVIEW', 'STAINING QUALITY', 'SPECIFICATIONS', 'RESOURCES'];
 
@@ -56,6 +59,7 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
             <ProductCard 
               key={variant.id}
               name={variant.label} 
+              imageSrc={variant.image}
               active={activeVariant === variant.id}
               onClick={() => setActiveVariant(variant.id)}
             />
@@ -89,7 +93,7 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
           <div className="relative z-10 w-[260px] sm:w-[340px] md:w-[450px] drop-shadow-2xl transition-all duration-700 ease-in-out transform">
             <img
               key={activeVariant}
-              src={intellistainImage}
+              src={activeVariantData.image}
               alt={`Intellistain ${activeVariant} Device`}
               className="w-full h-auto object-contain animate-in fade-in duration-700"
             />

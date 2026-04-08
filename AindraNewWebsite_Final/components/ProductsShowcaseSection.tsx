@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import intellistainImage from '../assets/ProductImages/Intellistain1.png';
+import intellistainImage from '../assets/ProductImages/IS-15.png';
 import visionXImage from '../assets/ProductImages/VisionX2 (1).png';
 import astraImage from '../assets/ProductImages/Astra.png';
-import clustrImage from '../assets/ProductImages/Clustr.jpg';
+import clustrImage from '../assets/ProductImages/ClustrHomePage.png';
 
 interface ProductData {
   id: string;
