@@ -1,5 +1,9 @@
 
 import React, { useEffect } from 'react';
+import intellistainImage from '../assets/ProductImages/IS-15.png';
+import visionXImage from '../assets/ProductImages/VisionX2 (1).png';
+import astraImage from '../assets/ProductImages/Astra.png';
+import clustrImage from '../assets/ProductImages/ClustrHomePage.png';
 
 interface NavMenuProps {
   isOpen: boolean;
@@ -28,10 +32,10 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
   ];
 
   const products = [
-    { name: 'Intellistain', href: '#/intellistain' },
-    { name: 'VisionX', href: '#/visionx' },
-    { name: 'Astra', href: '#/astra' },
-    { name: 'Clustr', href: '#/clustr' },
+    { name: 'Intellistain', href: '#/intellistain', image: intellistainImage },
+    { name: 'VisionX', href: '#/visionx', image: visionXImage },
+    { name: 'Astra', href: '#/astra', image: astraImage },
+    { name: 'Clustr', href: '#/clustr', image: clustrImage },
   ];
 
   return (
@@ -92,8 +96,15 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
                     onClick={onClose}
                     className={`group flex items-center py-3 md:py-4 border-t ${idx === products.length - 1 ? 'border-b' : ''} border-slate-400/30 transition-all cursor-pointer hover:bg-slate-200/20 px-3 -mx-3 rounded-sm`}
                   >
-                    {/* Product Thumbnail - Light Gray Square */}
-                    <div className="w-11 h-11 md:w-14 md:h-14 bg-[#d9d9d9] flex-shrink-0 mr-4 md:mr-8 rounded-sm shadow-sm"></div>
+                    {/* Product Thumbnail */}
+                    <div className="w-11 h-11 md:w-14 md:h-14 flex-shrink-0 mr-4 md:mr-8 rounded-sm overflow-hidden bg-white shadow-sm">
+                      <img
+                        src={product.image}
+                        alt={`${product.name} thumbnail`}
+                        className="w-full h-full object-contain"
+                        loading="lazy"
+                      />
+                    </div>
                     
                     {/* Product Name */}
                     <span className="text-sm sm:text-base md:text-lg font-bold text-slate-900 flex-1 tracking-tight">
