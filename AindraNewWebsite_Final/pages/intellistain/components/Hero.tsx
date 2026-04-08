@@ -95,11 +95,6 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
             />
           </div>
           
-          <div className="absolute bottom-10 right-10 text-gray-300">
-            <svg className="w-12 h-12" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0l2.4 9.6h9.6l-7.2 5.4 2.4 9-7.2-5.4-7.2 5.4 2.4-9-7.2-5.4h9.6z" />
-            </svg>
-          </div>
         </div>
       </div>
 

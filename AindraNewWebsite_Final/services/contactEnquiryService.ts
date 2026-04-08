@@ -1,7 +1,14 @@
-import type { ContactEnquiryPayload, ContactEnquirySubmissionResult } from '../types/contactEnquiry';
+import type {
+  ContactEnquiryPayload,
+  ContactEnquirySubmissionResult,
+  ProductSupportEnquiryPayload,
+} from '../types/contactEnquiry';
 
 const CONTACT_ENQUIRIES_COLLECTION = 'contactEnquiries';
-const FALLBACK_STORAGE_KEY = 'aindra:contactEnquiries';
+const PRODUCT_SUPPORT_COLLECTION = 'productSupportEnquiries';
+const CONTACT_FALLBACK_STORAGE_KEY = 'aindra:contactEnquiries';
+const PRODUCT_SUPPORT_FALLBACK_STORAGE_KEY = 'aindra:productSupportEnquiries';
+
 const shouldUseFirebaseSubmissions = (): boolean => {
   const env = import.meta.env;
 
@@ -24,33 +31,37 @@ const dynamicImport = async <T>(moduleName: string): Promise<T> => {
   return importer(moduleName);
 };
 
-const toFallbackRecord = (payload: ContactEnquiryPayload) => ({
-  ...payload,
-  createdAt: new Date().toISOString(),
-  status: 'new',
-  sourcePage: 'contact',
-});
-
-const storeFallbackEnquiry = (payload: ContactEnquiryPayload): void => {
-  const record = toFallbackRecord(payload);
+const storeFallbackEnquiry = (
+  payload: Record<string, unknown>,
+  storageKey: string,
+  collectionName: string
+): void => {
+  const record = {
+    ...payload,
+    createdAt: new Date().toISOString(),
+    status: 'new',
+    sourcePage: 'contact',
+  };
 
   try {
-    const previousRaw = window.localStorage.getItem(FALLBACK_STORAGE_KEY);
+    const previousRaw = window.localStorage.getItem(storageKey);
     const previous = previousRaw ? JSON.parse(previousRaw) : [];
     const next = Array.isArray(previous) ? [...previous, record] : [record];
-    window.localStorage.setItem(FALLBACK_STORAGE_KEY, JSON.stringify(next));
+    window.localStorage.setItem(storageKey, JSON.stringify(next));
   } catch (error) {
     console.warn('[ContactEnquiry] Failed to persist fallback locally.', error);
   }
 
-  console.info('[ContactEnquiryFallback] Stored enquiry locally:', record);
+  console.info(`[ContactEnquiryFallback:${collectionName}] Stored enquiry locally:`, record);
 };
 
-export const submitContactEnquiry = async (
-  payload: ContactEnquiryPayload
+const submitEnquiry = async (
+  payload: Record<string, unknown>,
+  collectionName: string,
+  fallbackStorageKey: string
 ): Promise<ContactEnquirySubmissionResult> => {
   if (!shouldUseFirebaseSubmissions()) {
-    storeFallbackEnquiry(payload);
+    storeFallbackEnquiry(payload, fallbackStorageKey, collectionName);
     return { success: true, mode: 'fallback' };
   }
 
@@ -81,15 +92,12 @@ export const submitContactEnquiry = async (
     const app = appModule.getApps().length ? appModule.getApp() : appModule.initializeApp(firebaseConfig);
     const db = firestoreModule.getFirestore(app);
 
-    const docRef = await firestoreModule.addDoc(
-      firestoreModule.collection(db, CONTACT_ENQUIRIES_COLLECTION),
-      {
+    const docRef = await firestoreModule.addDoc(firestoreModule.collection(db, collectionName), {
       ...payload,
       createdAt: firestoreModule.serverTimestamp(),
       status: 'new',
       sourcePage: 'contact',
-      }
-    );
+    });
 
     return {
       success: true,
@@ -103,4 +111,16 @@ export const submitContactEnquiry = async (
       error: error instanceof Error ? error.message : 'Unknown submission error',
     };
   }
+};
+
+export const submitContactEnquiry = async (
+  payload: ContactEnquiryPayload
+): Promise<ContactEnquirySubmissionResult> => {
+  return submitEnquiry(payload, CONTACT_ENQUIRIES_COLLECTION, CONTACT_FALLBACK_STORAGE_KEY);
+};
+
+export const submitProductSupportEnquiry = async (
+  payload: ProductSupportEnquiryPayload
+): Promise<ContactEnquirySubmissionResult> => {
+  return submitEnquiry(payload, PRODUCT_SUPPORT_COLLECTION, PRODUCT_SUPPORT_FALLBACK_STORAGE_KEY);
 };

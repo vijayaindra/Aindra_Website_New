@@ -5,11 +5,18 @@ import visionXFImage from '../../../assets/ProductImages/FWSI.jpg';
 interface ProductCardProps {
   name: string;
   imageSrc: string;
+  softenBackground?: boolean;
   active?: boolean;
   onClick: () => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc, active = false, onClick }) => (
+const ProductCard: React.FC<ProductCardProps> = ({
+  name,
+  imageSrc,
+  softenBackground = false,
+  active = false,
+  onClick,
+}) => (
   <button 
     onClick={onClick}
     className={`flex items-center transition-all duration-500 ease-in-out h-14 sm:h-16 md:h-[84px] overflow-hidden rounded-none ${
@@ -26,7 +33,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc, active = fals
         <img 
           src={imageSrc}
           alt={name} 
-          className="w-full h-full object-cover" 
+          className={`w-full h-full object-contain ${softenBackground ? 'mix-blend-multiply' : ''}`}
         />
       </div>
     </div>
@@ -42,10 +49,10 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
   const [activeVariant, setActiveVariant] = useState('VX1');
 
   const variants = [
-    { id: 'VX1', label: 'VX1', image: visionXImage },
-    { id: 'VX6', label: 'VX6', image: visionXImage },
-    { id: 'VX mini', label: 'VX mini', image: visionXImage },
-    { id: 'VXF', label: 'VXF', image: visionXFImage }
+    { id: 'VX1', label: 'VX1', image: visionXImage, softenBackground: false },
+    { id: 'VX6', label: 'VX6', image: visionXImage, softenBackground: false },
+    { id: 'VX mini', label: 'VX mini', image: visionXImage, softenBackground: false },
+    { id: 'VXF', label: 'VXF', image: visionXFImage, softenBackground: true }
   ];
   const activeVariantData = variants.find((variant) => variant.id === activeVariant) ?? variants[0];
 
@@ -61,6 +68,7 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
               key={variant.id}
               name={variant.label} 
               imageSrc={variant.image}
+              softenBackground={variant.softenBackground}
               active={activeVariant === variant.id}
               onClick={() => setActiveVariant(variant.id)}
             />
@@ -98,15 +106,8 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
               key={activeVariant}
               src={activeVariantData.image}
               alt={`VisionX ${activeVariant} Device`}
-              className="w-full h-auto object-contain animate-in fade-in duration-700"
+              className={`w-full h-auto object-contain animate-in fade-in duration-700 ${activeVariantData.softenBackground ? 'mix-blend-multiply' : ''}`}
             />
-          </div>
-          
-          {/* Sparkling icon at bottom right of image area */}
-          <div className="absolute bottom-10 right-10 text-gray-300">
-            <svg className="w-12 h-12" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0l2.4 9.6h9.6l-7.2 5.4 2.4 9-7.2-5.4-7.2 5.4 2.4-9-7.2-5.4h9.6z" />
-            </svg>
           </div>
         </div>
       </div>
