@@ -556,7 +556,7 @@ const ContactHero: React.FC = () => {
                 <h3 className={`text-[20px] font-bold transition-colors ${activeTab === 'product' ? 'text-[#00AEEF]' : 'text-gray-400 group-hover:text-[#00AEEF]'}`}>
                   Product Support
                 </h3>
-                <p className="text-[14px] text-gray-500">I am a client and need support with my Aindra product</p>
+                <p className="text-[14px] text-gray-500">want to ask you a specific question?</p>
               </div>
               <div
                 className={`w-7 h-7 rounded-full flex items-center justify-center text-white shadow-md transition-all ${activeTab === 'product' ? 'bg-[#00AEEF] shadow-blue-200' : 'bg-gray-200 group-hover:bg-[#00AEEF]'}`}
@@ -576,7 +576,7 @@ const ContactHero: React.FC = () => {
                 <h3 className={`text-[20px] font-extrabold transition-colors ${activeTab === 'experts' ? 'text-[#00AEEF]' : 'text-gray-900 group-hover:text-[#00AEEF]'}`}>
                   Contact our experts
                 </h3>
-                <p className="text-[14px] text-gray-500">want to ask you a specific question?</p>
+                <p className="text-[14px] text-gray-500">I am a client and need support with my Aindra product</p>
               </div>
               <div
                 className={`w-7 h-7 rounded-full flex items-center justify-center text-white transition-all ${activeTab === 'experts' ? 'bg-[#00AEEF] shadow-md shadow-blue-200' : 'bg-gray-400 group-hover:bg-[#00AEEF]'}`}
@@ -593,17 +593,17 @@ const ContactHero: React.FC = () => {
               <div className="text-center mb-10">
                 <h2 className="text-2xl md:text-[30px] font-extrabold text-gray-900 mb-2">
                   {activeTab === 'product'
-                    ? 'Need help with your Aindra product?'
-                    : 'Have a question? Speak with our experts'}
+                    ? 'Have a question? Speak with our experts'
+                    : 'Need help with your Aindra product?'}
                 </h2>
                 <p className="text-[14px] text-gray-500 font-medium">
                   {activeTab === 'product'
-                    ? 'Let us know how we can assist you.'
-                    : "We'll get back within 1 business days"}
+                    ? "We'll get back within 1 business days"
+                    : 'Let us know how we can assist you.'}
                 </p>
               </div>
 
-              {activeTab === 'product' ? (
+              {activeTab === 'experts' ? (
                 <>
                   <div className="flex flex-col items-center mb-16 relative">
                     <div className="flex items-center justify-between w-full max-w-[400px] relative z-10">
