@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar } from '../../components/Navbar';
+import { sectionContainer, sectionShell } from '../../components/layout';
 import Breadcrumbs from './components/Breadcrumbs';
 import Hero from './components/Hero';
 import BenefitsSection from './components/BenefitsSection';
@@ -13,10 +14,12 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
       <Navbar />
       <main className="w-full pt-20 sm:pt-24">
-        <div className="px-4 md:px-8">
-          <Breadcrumbs />
-          <Hero />
-        </div>
+        <section className={sectionShell}>
+          <div className={sectionContainer}>
+            <Breadcrumbs />
+          </div>
+        </section>
+        <Hero />
         <BenefitsSection />
         <FAQSection />
         <ProcessFlow />
