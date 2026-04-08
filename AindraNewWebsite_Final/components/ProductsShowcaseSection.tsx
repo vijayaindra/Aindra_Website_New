@@ -118,13 +118,6 @@ export const ProductsShowcaseSection: React.FC = () => {
       {/* Sticky Content Frame */}
       <section className="sticky top-0 h-screen w-full overflow-hidden flex flex-col pt-32 pb-24 px-6 md:px-12 lg:px-24">
         
-        {/* Persistent Background Grid Lines */}
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="absolute left-[25%] top-0 bottom-0 w-px bg-slate-100"></div>
-          <div className="absolute left-[66%] top-0 bottom-0 w-px bg-slate-100"></div>
-          <div className="absolute top-[57%] left-0 right-0 h-px bg-slate-100"></div>
-        </div>
-
         {/* PERSISTENT HEADER */}
         <div className="relative z-20 grid grid-cols-12 gap-8 mb-8 lg:mb-12">
           <div className="col-span-12 lg:col-span-3">

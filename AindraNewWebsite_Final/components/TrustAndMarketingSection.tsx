@@ -69,16 +69,16 @@ export const TrustAndMarketingSection: React.FC = () => {
             Recognized for Innovation in MedTech
           </h2>
 
-          <div className="grid grid-cols-2 gap-4 sm:gap-5 md:gap-6">
+          <div className="grid grid-cols-2 gap-5 sm:gap-6 md:gap-8">
             {mediaLogos.map((logo) => (
               <div
                 key={logo.name}
-                className="h-16 sm:h-20 md:h-24 lg:h-28 flex items-center justify-center px-2 sm:px-3"
+                className="h-24 sm:h-28 md:h-32 lg:h-36 flex items-center justify-center px-1"
               >
                 <img
                   src={logo.src}
                   alt={logo.name}
-                  className="max-h-10 sm:max-h-12 md:max-h-14 lg:max-h-16 w-auto object-contain"
+                  className="max-h-20 sm:max-h-24 md:max-h-28 lg:max-h-32 w-auto object-contain"
                   loading="lazy"
                 />
               </div>
