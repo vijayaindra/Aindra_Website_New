@@ -3,6 +3,10 @@ import {
   submitContactEnquiry,
   submitProductSupportEnquiry,
 } from '../../../services/contactEnquiryService';
+import {
+  sendContactEnquiryEmail,
+  sendProductSupportEmail,
+} from '../../../services/emailService';
 import type {
   ContactEnquiryPayload,
   ContactUserType,
@@ -466,22 +470,43 @@ const ContactHero: React.FC = () => {
     setContactSubmitStatus('submitting');
     setContactSubmitMessage('Submitting your enquiry...');
 
-    const result = await submitContactEnquiry(payload);
+    const persistenceResult = await submitContactEnquiry(payload);
+    const emailResult = await sendContactEnquiryEmail(payload);
 
-    if (result.success) {
+    if (persistenceResult.success && emailResult.success) {
       setContactSubmitStatus('success');
       setContactSubmitMessage(
-        result.mode === 'firebase'
-          ? 'Enquiry submitted successfully. Our team will contact you soon.'
-          : 'Enquiry captured in local safe mode. Enable Firebase to store it in Firestore.'
+        persistenceResult.mode === 'firebase'
+          ? 'Enquiry submitted successfully. Email sent to contactus@aindra.in.'
+          : 'Enquiry submitted in local safe mode and email sent to contactus@aindra.in.'
       );
       setContactExpertsForm(INITIAL_CONTACT_EXPERTS_FORM);
       setContactErrors({});
       return;
     }
 
+    if (persistenceResult.success && !emailResult.success) {
+      setContactSubmitStatus('success');
+      setContactSubmitMessage('Enquiry saved successfully, but email sending failed. Please check EmailJS configuration.');
+      setContactExpertsForm(INITIAL_CONTACT_EXPERTS_FORM);
+      setContactErrors({});
+      return;
+    }
+
+    if (!persistenceResult.success && emailResult.success) {
+      setContactSubmitStatus('success');
+      setContactSubmitMessage('Email sent successfully, but Firestore/local save failed.');
+      setContactExpertsForm(INITIAL_CONTACT_EXPERTS_FORM);
+      setContactErrors({});
+      return;
+    }
+
     setContactSubmitStatus('error');
-    setContactSubmitMessage(result.error ?? 'Unable to submit your enquiry right now. Please try again.');
+    setContactSubmitMessage(
+      emailResult.error ??
+        persistenceResult.error ??
+        'Unable to submit your enquiry right now. Please try again.'
+    );
   };
 
   const handleSupportSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -512,14 +537,15 @@ const ContactHero: React.FC = () => {
     setSupportSubmitStatus('submitting');
     setSupportSubmitMessage('Submitting support request...');
 
-    const result = await submitProductSupportEnquiry(payload);
+    const persistenceResult = await submitProductSupportEnquiry(payload);
+    const emailResult = await sendProductSupportEmail(payload);
 
-    if (result.success) {
+    if (persistenceResult.success && emailResult.success) {
       setSupportSubmitStatus('success');
       setSupportSubmitMessage(
-        result.mode === 'firebase'
-          ? 'Support request submitted successfully. Our team will contact you soon.'
-          : 'Support request captured in local safe mode. Enable Firebase to store it in Firestore.'
+        persistenceResult.mode === 'firebase'
+          ? 'Support request submitted successfully. Email sent to contactus@aindra.in.'
+          : 'Support request submitted in local safe mode and email sent to contactus@aindra.in.'
       );
       setSupportStep1Form(INITIAL_SHARED_FIELDS);
       setSupportStep2Form(INITIAL_PRODUCT_SUPPORT_STEP2);
@@ -529,8 +555,34 @@ const ContactHero: React.FC = () => {
       return;
     }
 
+    if (persistenceResult.success && !emailResult.success) {
+      setSupportSubmitStatus('success');
+      setSupportSubmitMessage('Support request saved successfully, but email sending failed. Please check EmailJS configuration.');
+      setSupportStep1Form(INITIAL_SHARED_FIELDS);
+      setSupportStep2Form(INITIAL_PRODUCT_SUPPORT_STEP2);
+      setSupportStep1Errors({});
+      setSupportStep2Errors({});
+      setSupportStep(1);
+      return;
+    }
+
+    if (!persistenceResult.success && emailResult.success) {
+      setSupportSubmitStatus('success');
+      setSupportSubmitMessage('Support request email sent successfully, but Firestore/local save failed.');
+      setSupportStep1Form(INITIAL_SHARED_FIELDS);
+      setSupportStep2Form(INITIAL_PRODUCT_SUPPORT_STEP2);
+      setSupportStep1Errors({});
+      setSupportStep2Errors({});
+      setSupportStep(1);
+      return;
+    }
+
     setSupportSubmitStatus('error');
-    setSupportSubmitMessage(result.error ?? 'Unable to submit support request right now. Please try again.');
+    setSupportSubmitMessage(
+      emailResult.error ??
+        persistenceResult.error ??
+        'Unable to submit support request right now. Please try again.'
+    );
   };
 
   return (

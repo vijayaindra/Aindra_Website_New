@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { submitCareerApplication } from '../../../services/careerApplicationService';
+import { sendCareerApplicationEmail } from '../../../services/emailService';
+import type { CareerApplicationPayload } from '../../../types/careerApplication';
 
 interface JobOpening {
   id: number;
@@ -39,17 +42,195 @@ const JobItem: React.FC<{ job: JobOpening }> = ({ job }) => (
   </div>
 );
 
-const FormField = ({ label, children, required = true, sublabel = "" }: { label: string, children?: React.ReactNode, required?: boolean, sublabel?: string }) => (
+const FormField = ({
+  label,
+  children,
+  required = true,
+  sublabel = "",
+  error = "",
+}: {
+  label: string;
+  children?: React.ReactNode;
+  required?: boolean;
+  sublabel?: string;
+  error?: string;
+}) => (
   <div className="mb-6">
     <label className="block text-[11px] font-bold text-gray-900 uppercase tracking-wider mb-2">
       {label} {required && <span className="text-red-500">*</span>}
       {sublabel && <span className="ml-2 text-gray-400 lowercase font-normal">{sublabel}</span>}
     </label>
     {children}
+    {error && <p className="mt-2 text-[11px] text-red-500 font-medium">{error}</p>}
   </div>
 );
 
 const ApplicationForm = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    location: '',
+    gender: '',
+    linkedinProfile: '',
+    positionApplyingFor: '',
+    yearsOfExperience: '',
+    availableFrom: '',
+    cvFileName: '',
+    coverLetterFileName: '',
+    motivation: '',
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const PHONE_REGEX = /^\+?[0-9()\-\s]{7,20}$/;
+  const LINKEDIN_REGEX = /^https?:\/\/(www\.)?linkedin\.com\/.+/i;
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => {
+      if (!prev[name]) return prev;
+      const next = { ...prev };
+      delete next[name];
+      return next;
+    });
+    if (submitState !== 'idle') {
+      setSubmitState('idle');
+      setSubmitMessage('');
+    }
+  };
+
+  const handleFileChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    field: 'cvFileName' | 'coverLetterFileName'
+  ) => {
+    const file = event.target.files?.[0];
+    setFormData((prev) => ({ ...prev, [field]: file ? file.name : '' }));
+    setErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  };
+
+  const validate = () => {
+    const nextErrors: Record<string, string> = {};
+
+    if (!formData.firstName.trim()) nextErrors.firstName = 'First name is required.';
+    if (!formData.lastName.trim()) nextErrors.lastName = 'Last name is required.';
+    if (!formData.email.trim()) nextErrors.email = 'Email is required.';
+    else if (!EMAIL_REGEX.test(formData.email.trim())) nextErrors.email = 'Enter a valid email.';
+    if (!formData.phoneNumber.trim()) nextErrors.phoneNumber = 'Phone number is required.';
+    else if (!PHONE_REGEX.test(formData.phoneNumber.trim())) nextErrors.phoneNumber = 'Enter a valid phone number.';
+    if (!formData.location.trim()) nextErrors.location = 'Location is required.';
+    if (!formData.gender.trim()) nextErrors.gender = 'Gender is required.';
+    if (!formData.linkedinProfile.trim()) nextErrors.linkedinProfile = 'LinkedIn profile is required.';
+    else if (!LINKEDIN_REGEX.test(formData.linkedinProfile.trim())) {
+      nextErrors.linkedinProfile = 'Enter a valid LinkedIn URL.';
+    }
+    if (!formData.positionApplyingFor.trim()) nextErrors.positionApplyingFor = 'Position is required.';
+    if (!formData.yearsOfExperience.trim()) nextErrors.yearsOfExperience = 'Experience is required.';
+    if (!formData.availableFrom.trim()) nextErrors.availableFrom = 'Availability is required.';
+    if (!formData.cvFileName.trim()) nextErrors.cvFileName = 'CV file is required.';
+    if (!formData.coverLetterFileName.trim()) nextErrors.coverLetterFileName = 'Cover letter file is required.';
+    if (!formData.motivation.trim()) nextErrors.motivation = 'This field is required.';
+
+    return nextErrors;
+  };
+
+  const resetForm = () => {
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phoneNumber: '',
+      location: '',
+      gender: '',
+      linkedinProfile: '',
+      positionApplyingFor: '',
+      yearsOfExperience: '',
+      availableFrom: '',
+      cvFileName: '',
+      coverLetterFileName: '',
+      motivation: '',
+    });
+    setErrors({});
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setSubmitState('error');
+      setSubmitMessage('Please fix the highlighted fields and try again.');
+      return;
+    }
+
+    const payload: CareerApplicationPayload = {
+      flowType: 'career_application',
+      firstName: formData.firstName.trim(),
+      lastName: formData.lastName.trim(),
+      email: formData.email.trim(),
+      phoneNumber: formData.phoneNumber.trim(),
+      location: formData.location.trim(),
+      gender: formData.gender.trim(),
+      linkedinProfile: formData.linkedinProfile.trim(),
+      positionApplyingFor: formData.positionApplyingFor.trim(),
+      yearsOfExperience: formData.yearsOfExperience.trim(),
+      availableFrom: formData.availableFrom.trim(),
+      cvFileName: formData.cvFileName.trim(),
+      coverLetterFileName: formData.coverLetterFileName.trim(),
+      motivation: formData.motivation.trim(),
+    };
+
+    setSubmitState('submitting');
+    setSubmitMessage('Submitting application...');
+
+    const persistenceResult = await submitCareerApplication(payload);
+    const emailResult = await sendCareerApplicationEmail(payload);
+
+    if (persistenceResult.success && emailResult.success) {
+      setSubmitState('success');
+      setSubmitMessage(
+        persistenceResult.mode === 'firebase'
+          ? 'Application submitted successfully. Email sent to contactus@aindra.in.'
+          : 'Application submitted in local safe mode and email sent to contactus@aindra.in.'
+      );
+      resetForm();
+      return;
+    }
+
+    if (persistenceResult.success && !emailResult.success) {
+      setSubmitState('success');
+      setSubmitMessage('Application saved successfully, but email sending failed. Please check EmailJS configuration.');
+      resetForm();
+      return;
+    }
+
+    if (!persistenceResult.success && emailResult.success) {
+      setSubmitState('success');
+      setSubmitMessage('Application email sent successfully, but Firestore/local save failed.');
+      resetForm();
+      return;
+    }
+
+    setSubmitState('error');
+    setSubmitMessage(
+      emailResult.error ??
+        persistenceResult.error ??
+        'Unable to submit application right now. Please try again.'
+    );
+  };
+
   return (
     <div className="mt-20 bg-[#f1f4f6] rounded-[32px] p-8 md:p-16 border border-gray-100 w-full">
       <div className="text-center mb-16">
@@ -59,45 +240,45 @@ const ApplicationForm = () => {
         </p>
       </div>
 
-      <form className="max-w-full mx-auto" onSubmit={(e) => e.preventDefault()}>
+      <form className="max-w-full mx-auto" onSubmit={handleSubmit} noValidate>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
-          <FormField label="Your Full Name">
+          <FormField label="Your Full Name" error={errors.firstName || errors.lastName}>
             <div className="grid grid-cols-2 gap-4">
-              <input type="text" placeholder="First" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
-              <input type="text" placeholder="Last" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
+              <input name="firstName" value={formData.firstName} onChange={handleChange} type="text" placeholder="First" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
+              <input name="lastName" value={formData.lastName} onChange={handleChange} type="text" placeholder="Last" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
             </div>
           </FormField>
           
           <div className="md:col-span-2">
-            <FormField label="Email">
-              <input type="email" placeholder="email@example.com" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
+            <FormField label="Email" error={errors.email}>
+              <input name="email" value={formData.email} onChange={handleChange} type="email" placeholder="email@example.com" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
             </FormField>
           </div>
 
           <div className="md:col-span-2">
-            <FormField label="Phone Number">
-              <input type="tel" placeholder="+91 00000 00000" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
+            <FormField label="Phone Number" error={errors.phoneNumber}>
+              <input name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} type="tel" placeholder="+91 00000 00000" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
             </FormField>
           </div>
 
-          <FormField label="Location">
-            <input type="text" placeholder="City, Country" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
+          <FormField label="Location" error={errors.location}>
+            <input name="location" value={formData.location} onChange={handleChange} type="text" placeholder="City, Country" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
           </FormField>
 
-          <FormField label="Gender">
-            <input type="text" placeholder="Preferred Gender" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
+          <FormField label="Gender" error={errors.gender}>
+            <input name="gender" value={formData.gender} onChange={handleChange} type="text" placeholder="Preferred Gender" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
           </FormField>
 
           <div className="md:col-span-2">
-            <FormField label="Linkdln Profile">
-              <input type="url" placeholder="https://linkedin.com/in/username" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
+            <FormField label="Linkdln Profile" error={errors.linkedinProfile}>
+              <input name="linkedinProfile" value={formData.linkedinProfile} onChange={handleChange} type="url" placeholder="https://linkedin.com/in/username" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
             </FormField>
           </div>
 
           <div className="md:col-span-2">
-            <FormField label="Position Applying For">
+            <FormField label="Position Applying For" error={errors.positionApplyingFor}>
               <div className="relative">
-                <select className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm appearance-none" defaultValue="">
+                <select name="positionApplyingFor" value={formData.positionApplyingFor} onChange={handleChange} className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm appearance-none">
                   <option value="" disabled>Select a position</option>
                   <option value="Developer">Developer</option>
                   <option value="Electronics Engineer">Electronics Engineer</option>
@@ -113,38 +294,58 @@ const ApplicationForm = () => {
             </FormField>
           </div>
 
-          <FormField label="Years of Experience">
-            <input type="text" placeholder="e.g. 5 years" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
+          <FormField label="Years of Experience" error={errors.yearsOfExperience}>
+            <input name="yearsOfExperience" value={formData.yearsOfExperience} onChange={handleChange} type="text" placeholder="e.g. 5 years" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
           </FormField>
 
-          <FormField label="Available From">
-            <input type="text" placeholder="Date or Notice Period" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
+          <FormField label="Available From" error={errors.availableFrom}>
+            <input name="availableFrom" value={formData.availableFrom} onChange={handleChange} type="text" placeholder="Date or Notice Period" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
           </FormField>
 
-          <FormField label="CV" sublabel="Accepted file types: pdf, doc, docx, txt, rtf">
+          <FormField label="CV" sublabel="Accepted file types: pdf, doc, docx, txt, rtf" error={errors.cvFileName}>
             <div className="flex items-center gap-4">
-              <button type="button" className="px-6 py-2 bg-white rounded-full text-[11px] font-bold uppercase shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors">Choose File</button>
-              <span className="text-[11px] text-gray-400 uppercase tracking-wider">Max 10MB</span>
+              <label className="cursor-pointer">
+                <input type="file" className="hidden" onChange={(event) => handleFileChange(event, 'cvFileName')} />
+                <span className="px-6 py-2 inline-block bg-white rounded-full text-[11px] font-bold uppercase shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors">Choose File</span>
+              </label>
+              <span className="text-[11px] text-gray-400 uppercase tracking-wider">{formData.cvFileName || 'Max 10MB'}</span>
             </div>
           </FormField>
 
-          <FormField label="Cover Letter" sublabel="Accepted file types: pdf, doc, docx, txt, rtf">
+          <FormField label="Cover Letter" sublabel="Accepted file types: pdf, doc, docx, txt, rtf" error={errors.coverLetterFileName}>
             <div className="flex items-center gap-4">
-              <button type="button" className="px-6 py-2 bg-white rounded-full text-[11px] font-bold uppercase shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors">Choose File</button>
-              <span className="text-[11px] text-gray-400 uppercase tracking-wider">Max 10MB</span>
+              <label className="cursor-pointer">
+                <input type="file" className="hidden" onChange={(event) => handleFileChange(event, 'coverLetterFileName')} />
+                <span className="px-6 py-2 inline-block bg-white rounded-full text-[11px] font-bold uppercase shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors">Choose File</span>
+              </label>
+              <span className="text-[11px] text-gray-400 uppercase tracking-wider">{formData.coverLetterFileName || 'Max 10MB'}</span>
             </div>
           </FormField>
 
           <div className="md:col-span-2">
-            <FormField label="Tell us why you're a great fit">
-              <textarea placeholder="Share your motivation, relevant skills, or career goals" rows={6} className="w-full px-6 py-5 rounded-[24px] bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm resize-none"></textarea>
+            <FormField label="Tell us why you're a great fit" error={errors.motivation}>
+              <textarea name="motivation" value={formData.motivation} onChange={handleChange} placeholder="Share your motivation, relevant skills, or career goals" rows={6} className="w-full px-6 py-5 rounded-[24px] bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm resize-none"></textarea>
             </FormField>
           </div>
         </div>
 
+        {submitState !== 'idle' && (
+          <p
+            className={`text-center text-sm font-semibold ${
+              submitState === 'success'
+                ? 'text-emerald-600'
+                : submitState === 'submitting'
+                  ? 'text-[#00AEEF]'
+                  : 'text-red-500'
+            }`}
+          >
+            {submitMessage}
+          </p>
+        )}
+
         <div className="mt-12 flex justify-center">
-          <button type="submit" className="px-12 py-4 bg-[#00AEEF] text-white text-[18px] font-bold rounded-full shadow-lg shadow-blue-500/20 hover:bg-[#0096ce] transition-all hover:scale-[1.02] active:scale-[0.98] uppercase tracking-wider">
-            Sumbit Application
+          <button type="submit" disabled={submitState === 'submitting'} className="px-12 py-4 bg-[#00AEEF] text-white text-[18px] font-bold rounded-full shadow-lg shadow-blue-500/20 hover:bg-[#0096ce] disabled:bg-[#7bc8ed] disabled:cursor-not-allowed transition-all hover:scale-[1.02] active:scale-[0.98] uppercase tracking-wider">
+            {submitState === 'submitting' ? 'Submitting...' : 'Sumbit Application'}
           </button>
         </div>
       </form>
