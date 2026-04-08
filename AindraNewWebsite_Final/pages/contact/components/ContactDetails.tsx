@@ -1,6 +1,13 @@
 import React from 'react';
 
 const ContactDetails: React.FC = () => {
+  const officeAddress =
+    '#26, 19th Cross, 24th Main Rd, J P Nagar Phase 5, Bengaluru, Karnataka 560078';
+  const mapsPlaceUrl =
+    'https://www.google.com/maps?cid=8630151537160111869&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA&hl=en-US&source=embed';
+  const mapsEmbedUrl =
+    'https://www.google.com/maps?q=Aindra%20Systems,%2026,%2019th%20Cross%20Rd,%2024th%20Main%20Rd,%20JP%20Nagar%20Phase%205,%20J.%20P.%20Nagar,%20Bengaluru,%20Karnataka%20560078&z=18&output=embed';
+
   return (
     <section className="w-full bg-white pt-14 md:pt-20 pb-0 relative overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative">
@@ -74,7 +81,7 @@ const ContactDetails: React.FC = () => {
                   <div className="flex flex-col bg-white pr-4 py-2">
                     <span className="text-[17px] font-extrabold text-gray-900 mb-0.5 whitespace-nowrap">Office Location</span>
                     <span className="text-[13px] text-gray-500 font-medium leading-relaxed max-w-[220px]">
-                      #26, 19th Cross, 24th Main Rd, J P Nagar Phase 5, Bengaluru, Karnataka 560078
+                      {officeAddress}
                     </span>
                   </div>
                 </div>
@@ -85,17 +92,32 @@ const ContactDetails: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full h-[380px] sm:h-[430px] md:h-[500px] lg:h-[550px] relative mt-10 md:mt-14 grayscale-[0.2] z-0">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.1558903348074!2d77.58498007567798!3d12.903038616480575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1513a8907f1f%3A0x8673322197609a4b!2sAindra%20Systems!5e0!3m2!1sen!2sin!4v1715858853488!5m2!1sen!2sin"
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          allowFullScreen={true}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Aindra Systems Location"
-        ></iframe>
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative z-0 pb-12 md:pb-16">
+        <div className="relative mt-8 sm:mt-10 md:mt-14 overflow-hidden rounded-xl sm:rounded-2xl border border-slate-200 shadow-[0_20px_45px_rgba(15,23,42,0.08)]">
+          <div className="w-full h-[320px] min-[390px]:h-[340px] sm:h-[430px] md:h-[500px] lg:h-[560px]">
+            <iframe
+              src={mapsEmbedUrl}
+              width="100%"
+              height="100%"
+              style={{ border: 0, filter: 'saturate(1.1) contrast(1.06)' }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Aindra Systems Location"
+            />
+          </div>
+        </div>
+        <div className="mt-3 flex justify-end">
+          <a
+            href={mapsPlaceUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[#00AEEF] px-3 py-1 text-[11px] sm:text-[12px] font-semibold text-[#007CC3] hover:bg-[#00AEEF] hover:text-white transition-colors"
+          >
+            Open in Google Maps
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
     </section>
   );
