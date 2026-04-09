@@ -32,10 +32,10 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
   ];
 
   const products = [
-    { name: 'Intellistain', href: '#/intellistain', image: intellistainImage },
-    { name: 'VisionX', href: '#/visionx', image: visionXImage },
-    { name: 'Astra', href: '#/astra', image: astraImage },
-    { name: 'Clustr', href: '#/clustr', image: clustrImage },
+    { name: 'Intellistain', href: '#/intellistain', image: intellistainImage, imageClass: 'object-contain scale-95' },
+    { name: 'VisionX', href: '#/visionx', image: visionXImage, imageClass: 'object-contain scale-95' },
+    { name: 'Astra', href: '#/astra', image: astraImage, imageClass: 'object-contain scale-105' },
+    { name: 'Clustr', href: '#/clustr', image: clustrImage, imageClass: 'object-contain scale-95' },
   ];
 
   return (
@@ -97,11 +97,11 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
                     className={`group flex items-center py-3 md:py-4 border-t ${idx === products.length - 1 ? 'border-b' : ''} border-slate-400/30 transition-all cursor-pointer hover:bg-slate-200/20 px-3 -mx-3 rounded-sm`}
                   >
                     {/* Product Thumbnail */}
-                    <div className="w-11 h-11 md:w-14 md:h-14 flex-shrink-0 mr-4 md:mr-8 rounded-sm overflow-hidden bg-white shadow-sm">
+                    <div className="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 mr-4 md:mr-8 rounded-sm overflow-hidden bg-white border border-slate-200 shadow-sm p-1">
                       <img
                         src={product.image}
                         alt={`${product.name} thumbnail`}
-                        className="w-full h-full object-contain"
+                        className={`w-full h-full ${product.imageClass} transition-transform duration-300`}
                         loading="lazy"
                       />
                     </div>

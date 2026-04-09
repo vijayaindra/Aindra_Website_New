@@ -9,11 +9,11 @@ const Hero: React.FC = () => {
         <p className="text-base sm:text-lg md:text-xl text-gray-600 font-medium">Precision Staining Seamlessly Scaled</p>
       </div>
       
-      <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm shadow-xl mt-8">
+      <div className="relative w-full overflow-hidden rounded-sm shadow-xl mt-8 bg-white">
         <img 
           src={astraImage}
           alt="Histopathology cell staining" 
-          className="w-full h-full object-cover"
+          className="w-full h-auto object-contain"
         />
       </div>
     </section>
