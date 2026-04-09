@@ -9,10 +9,10 @@ const ContactDetails: React.FC = () => {
     'https://www.google.com/maps?q=Aindra%20Systems,%2026,%2019th%20Cross%20Rd,%2024th%20Main%20Rd,%20JP%20Nagar%20Phase%205,%20J.%20P.%20Nagar,%20Bengaluru,%20Karnataka%20560078&z=18&output=embed';
 
   return (
-    <section className="w-full bg-white pt-14 md:pt-20 pb-0 relative overflow-hidden">
+    <section className="w-full bg-white pt-10 md:pt-20 pb-0 relative overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8 relative">
         {/* Top Left "CONTACT" Indicator */}
-        <div className="absolute left-6 md:left-12 top-0 flex flex-col items-start z-20">
+        <div className="hidden md:flex absolute left-6 md:left-12 top-0 flex-col items-start z-20">
           <span className="text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase">CONTACT</span>
           <div className="flex items-center w-16 mt-1">
             <div className="h-[1px] flex-1 bg-gray-200"></div>
@@ -28,17 +28,17 @@ const ContactDetails: React.FC = () => {
 
         {/* Staggered Contact Info Section */}
         <div className="relative min-h-[160px] mb-0">
-          <div className="relative grid grid-cols-1 md:grid-cols-3 h-full">
+          <div className="relative grid grid-cols-1 md:grid-cols-3 h-full gap-y-8 md:gap-y-0">
             
             {/* Column 1: Empty */}
-            <div className="flex flex-col items-center md:items-start z-10">
+            <div className="hidden md:flex flex-col items-center md:items-start z-10">
               {/* This column remains empty for balanced staggered layout */}
             </div>
 
             {/* Column 2: Phone Number Only (Top row) */}
             <div className="flex flex-col items-center md:items-start z-10">
               {/* Phone Number */}
-              <div className="md:pt-[60px] w-full flex justify-center md:justify-start">
+              <div className="w-full flex justify-center md:justify-start md:pt-[60px]">
                 <div className="flex items-center space-x-6 md:-translate-x-[48px]">
                   <div className="w-24 h-24 rounded-full bg-[#EBF8FF] flex items-center justify-center shrink-0 shadow-sm border border-blue-50/50">
                     <svg className="w-10 h-10 text-[#56A8E8]" fill="currentColor" viewBox="0 0 24 24">
@@ -56,7 +56,7 @@ const ContactDetails: React.FC = () => {
             {/* Column 3: Email Address AND Office Location */}
             <div className="flex flex-col items-center md:items-start z-10">
               {/* Email Address */}
-              <div className="md:pt-[60px] w-full flex justify-center md:justify-start">
+              <div className="w-full flex justify-center md:justify-start md:pt-[60px]">
                 <div className="flex items-center space-x-6 md:-translate-x-[48px]">
                   <div className="w-24 h-24 rounded-full bg-[#EBF8FF] flex items-center justify-center shrink-0 shadow-sm border border-blue-50/50">
                     <svg className="w-10 h-10 text-[#56A8E8]" fill="currentColor" viewBox="0 0 24 24">
