@@ -27,7 +27,7 @@ const SectionHeader: React.FC<{ title: string }> = ({ title }) => (
 
 const SpecificationsSection: React.FC = () => {
   return (
-    <section className="w-full bg-white px-6 md:px-16 py-20 max-w-[1440px] mx-auto animate-in fade-in duration-700">
+    <section className="w-full bg-white px-4 md:px-6 lg:px-8 py-20 max-w-[1280px] mx-auto animate-in fade-in duration-700">
       {/* Top Heading */}
       <div className="mb-20">
         <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">

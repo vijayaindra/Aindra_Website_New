@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import visionXImage from '../../../assets/ProductImages/VisionX2 (1).png';
 import visionX6Image from '../../../assets/ProductImages/VX6.png';
 import visionXFImage from '../../../assets/ProductImages/FWSI.jpg';
+import { sectionContainer, sectionShell } from '../../../components/layout';
 
 export const VISIONX_VARIANT_EVENT = 'visionx:variant-change';
 
@@ -68,7 +69,8 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
   return (
     <section className="relative w-full bg-white overflow-hidden min-h-[70vh] md:min-h-[85vh] flex flex-col">
       {/* Product Selector at top - Exact match of provided reference visuals */}
-      <div className="flex justify-center items-center pt-8 pb-12">
+      <div className={`${sectionShell} pt-8 pb-12`}>
+        <div className={`${sectionContainer} flex justify-center items-center`}>
         <div className="flex items-center space-x-4 bg-[#f0f2f4]/30 p-1">
           {variants.map((variant) => (
             <ProductCard 
@@ -81,9 +83,10 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
             />
           ))}
         </div>
+        </div>
       </div>
 
-      <div className="flex-grow flex flex-col md:flex-row items-center px-4 sm:px-6 md:px-12 lg:px-16 pt-4 pb-16 md:pb-20 relative">
+      <div className={`flex-grow flex flex-col md:flex-row items-center ${sectionShell} ${sectionContainer} pt-4 pb-16 md:pb-20 relative`}>
         {/* Left Content */}
         <div className="w-full md:w-1/2 z-10 pr-0 md:pr-14 lg:pr-20">
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-6 md:mb-8 leading-tight">
@@ -121,7 +124,7 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
 
       {/* Bottom Tabs Bar */}
       <div className="w-full border-t border-gray-100 bg-white absolute bottom-0">
-        <div className="px-4 sm:px-6 md:px-12 lg:px-16 flex gap-4 sm:gap-8 overflow-x-auto">
+        <div className={`${sectionContainer} ${sectionShell} flex gap-4 sm:gap-8 overflow-x-auto`}>
           {tabs.map((tab) => (
             <button 
               key={tab} 

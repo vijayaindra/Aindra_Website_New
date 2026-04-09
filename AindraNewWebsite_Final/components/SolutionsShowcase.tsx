@@ -83,7 +83,7 @@ export const SolutionsShowcase: React.FC = () => {
   return (
     <>
     <section className="lg:hidden w-full bg-[#f8fbff] px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16">
-      <div className="mx-auto w-full max-w-[1440px]">
+      <div className="mx-auto w-full max-w-[1280px]">
         <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Our Solutions</span>
         <h2 className="mt-3 text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight max-w-3xl">
           AI modules for every stage of clinical pathology.

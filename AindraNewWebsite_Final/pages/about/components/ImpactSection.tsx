@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { sectionContainer, sectionShell } from '../../../components/layout';
 
 const stats = [
   {
@@ -27,7 +28,7 @@ const stats = [
 const ImpactSection: React.FC = () => {
   return (
     <section className="w-full bg-white py-24 overflow-hidden">
-      <div className="w-full">
+      <div className={`${sectionContainer} ${sectionShell}`}>
         {/* Header Section */}
         <div className="flex flex-col md:flex-row items-start mb-16 w-full">
           {/* Section Label */}
@@ -52,8 +53,8 @@ const ImpactSection: React.FC = () => {
         </div>
 
         {/* Map Visualization */}
-        <div className="w-full px-6 md:px-12 lg:px-24 mb-24">
-          <div className="relative w-full max-w-[1200px] mx-auto group">
+        <div className="w-full mb-24">
+          <div className="relative w-full max-w-[1280px] mx-auto group">
             <img 
               src="https://images.unsplash.com/photo-1589519160732-57fc498494f8?auto=format&fit=crop&q=80&w=2000" 
               alt="Global impact map" 
@@ -71,7 +72,7 @@ const ImpactSection: React.FC = () => {
 
         {/* Stats Grid */}
         <div className="w-full border-t border-gray-100">
-          <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 py-16">
+          <div className="max-w-[1280px] mx-auto py-16">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
               {stats.map((stat, index) => (
                 <div key={index} className="flex flex-col items-start relative">

@@ -10,7 +10,7 @@ const ContactDetails: React.FC = () => {
 
   return (
     <section className="w-full bg-white pt-14 md:pt-20 pb-0 relative overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8 relative">
         {/* Top Left "CONTACT" Indicator */}
         <div className="absolute left-6 md:left-12 top-0 flex flex-col items-start z-20">
           <span className="text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase">CONTACT</span>
@@ -92,7 +92,7 @@ const ContactDetails: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative z-0 pb-12 md:pb-16">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8 relative z-0 pb-12 md:pb-16">
         <div className="relative mt-8 sm:mt-10 md:mt-14 overflow-hidden rounded-xl sm:rounded-2xl border border-slate-200 shadow-[0_20px_45px_rgba(15,23,42,0.08)]">
           <div className="w-full h-[320px] min-[390px]:h-[340px] sm:h-[430px] md:h-[500px] lg:h-[560px]">
             <iframe

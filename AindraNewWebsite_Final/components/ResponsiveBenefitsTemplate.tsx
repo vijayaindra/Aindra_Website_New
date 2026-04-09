@@ -86,8 +86,8 @@ export const ResponsiveBenefitsTemplate: React.FC<ResponsiveBenefitsTemplateProp
   };
 
   return (
-    <section className="w-full bg-white px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-14 md:py-20">
-      <div className="mx-auto w-full max-w-[1440px]">
+    <section className="w-full bg-white px-4 md:px-6 lg:px-8 py-14 md:py-20">
+      <div className="mx-auto w-full max-w-[1280px]">
         <div className="mb-10 md:mb-12">
           <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-[#00AEEF]">{eyebrow}</span>
           <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.2] tracking-tight text-[#111827] max-w-[1000px]">

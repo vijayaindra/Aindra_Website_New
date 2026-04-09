@@ -1,7 +1,7 @@
 export const sectionShell =
-  "w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12";
+  "w-full px-4 md:px-6 lg:px-8";
 
-export const sectionContainer = "mx-auto w-full max-w-[1440px]";
+export const sectionContainer = "mx-auto w-full max-w-[1280px]";
 
 export const sectionY = "py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24";
 

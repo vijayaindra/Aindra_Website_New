@@ -55,8 +55,8 @@ const FeaturesCarousel: React.FC = () => {
   const currentFeature = features[activeIndex];
 
   return (
-    <section className="w-full px-6 py-20 bg-white">
-      <div className="max-w-[1200px] mx-auto">
+    <section className="w-full bg-white py-20 px-4 md:px-6 lg:px-8">
+      <div className="max-w-[1280px] mx-auto">
         <div className="bg-[#f0f3f5] rounded-[32px] p-8 md:p-12 flex flex-col md:flex-row items-center gap-12 min-h-[500px] transition-all duration-700 ease-in-out">
           <div className="w-full md:w-3/5 overflow-hidden">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">

@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import intellistainImage from '../assets/ProductImages/IS-15.png';
 import visionXImage from '../assets/ProductImages/VisionX2 (1).png';
-import astraImage from '../assets/ProductImages/Astra.png';
+import astraImage from '../assets/ProductImages/AstraThumbnail.png';
 import clustrImage from '../assets/ProductImages/ClustrHomePage.png';
 
 interface NavMenuProps {
