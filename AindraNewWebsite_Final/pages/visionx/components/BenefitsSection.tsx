@@ -324,6 +324,10 @@ const BenefitsSection: React.FC = () => {
   const currentContent = visionXContent[normalizedVariant];
   const currentBenefits = currentContent.benefits;
   const currentFeatures = currentContent.features;
+  const benefitsHeading =
+    normalizedVariant === 'VXF'
+      ? 'VXF fluorescent slide scanners capture stunning high-resolution fluorescence imaging.'
+      : 'VisionX whole slide scanners deliver fast, high-quality digital pathology imaging with onboard AI.';
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -412,7 +416,7 @@ const BenefitsSection: React.FC = () => {
             </div>
             <div className="flex-1 mt-0">
               <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">
-                VisionX whole slide scanners deliver fast, high-quality digital pathology imaging with onboard AI.
+                {benefitsHeading}
               </h2>
             </div>
           </div>
