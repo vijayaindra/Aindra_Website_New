@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { INTELLISTAIN_VARIANT_EVENT } from './Hero';
+
+type IntellistainVariant = 'IS15' | 'IS30';
 
 interface Feature {
   id: number;
@@ -7,38 +10,148 @@ interface Feature {
   image: string;
 }
 
-const features: Feature[] = [
-  {
-    id: 0,
-    title: "Precision Staining",
-    description: "Our advanced Astra platform delivers unrivaled accuracy in tissue staining, ensuring consistent results across high-volume laboratory workloads.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000"
-  },
-  {
-    id: 1,
-    title: "AI-Driven Insights",
-    description: "Leverage the power of deep learning to identify patterns and anomalies with superhuman precision. Astra's AI core processes millions of pixels.",
-    image: "https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=1000"
-  },
-  {
-    id: 2,
-    title: "Scalable Workflow",
-    description: "Seamlessly integrate Astra into your existing laboratory information systems. Our modular design allows you to scale from single-clinic operations.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000"
-  },
-  {
-    id: 4,
-    title: "Real-time Monitoring",
-    description: "Keep track of every slide and every stain in real-time. Our intuitive dashboard provides immediate feedback on system performance.",
-    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1000"
-  },
-  {
-    id: 5,
-    title: "Cloud Connectivity",
-    description: "Securely access your data from anywhere in the world. Astra's cloud-native architecture ensures your diagnostic results are backed up.",
-    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000"
-  }
+interface Benefit {
+  title: string;
+  description: string;
+}
+
+interface IntellistainContent {
+  benefits: Benefit[];
+  features: Feature[];
+}
+
+const featureImages = [
+  'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000',
 ];
+
+const intellistainContent: Record<IntellistainVariant, IntellistainContent> = {
+  IS15: {
+    benefits: [
+      {
+        title: 'Space Optimization',
+        description:
+          'Compact 18x18-inch footprint fits effortlessly in small labs without sacrificing performance.',
+      },
+      {
+        title: 'Superior Consistency',
+        description:
+          'Dip mechanics with agitation ensures clear, reproducible staining for histology and cytology slides.',
+      },
+      {
+        title: 'Reagent Savings',
+        description:
+          'Intelligent trough design minimizes waste, filling only half for smaller loads to cut costs.',
+      },
+      {
+        title: 'Routine Efficiency',
+        description:
+          'One-stop solution for all staining needs, freeing staff for higher-value tasks.',
+      },
+    ],
+    features: [
+      {
+        id: 0,
+        title: '15-Slide Capacity',
+        description:
+          'Processes up to 15 slides per run with precise dip staining mechanics.',
+        image: featureImages[0],
+      },
+      {
+        id: 1,
+        title: 'Customizable Programs',
+        description:
+          'User-friendly touch screen for creating unlimited staining protocols.',
+        image: featureImages[1],
+      },
+      {
+        id: 2,
+        title: 'Agitation Mechanism',
+        description:
+          'Periodic slide agitation in reagents for unparalleled clarity and quality.',
+        image: featureImages[2],
+      },
+      {
+        id: 3,
+        title: 'Intelligent Troughs',
+        description:
+          'Efficient reagent use adapts to load size, reducing wastage significantly.',
+        image: featureImages[3],
+      },
+      {
+        id: 4,
+        title: 'Versatile Applications',
+        description:
+          'Stains histology, cytology, and hematology slides with state-of-the-art mechatronics.',
+        image: featureImages[4],
+      },
+    ],
+  },
+  IS30: {
+    benefits: [
+      {
+        title: 'High-Volume Productivity',
+        description:
+          'Handles 30 slides per run, ideal for busy labs needing scalable staining.',
+      },
+      {
+        title: 'Unrivaled Consistency',
+        description:
+          'Advanced dip mechanics deliver exceptional staining quality every time.',
+      },
+      {
+        title: 'Operational Savings',
+        description:
+          'Optimized reagent troughs slash waste and costs for larger batches.',
+      },
+      {
+        title: 'Lab Versatility',
+        description:
+          'Supports all slide types, integrating seamlessly into digital pathology workflows.',
+      },
+    ],
+    features: [
+      {
+        id: 0,
+        title: '30-Slide Capacity',
+        description:
+          'High-capacity runs for up to 30 slides using reliable dip staining.',
+        image: featureImages[0],
+      },
+      {
+        id: 1,
+        title: 'Programmable Touch Interface',
+        description:
+          'Intuitive software for endless custom staining programs and protocols.',
+        image: featureImages[1],
+      },
+      {
+        id: 2,
+        title: 'Precision Agitation',
+        description:
+          'Special mechatronics agitates slides for consistent, high-clarity results.',
+        image: featureImages[2],
+      },
+      {
+        id: 3,
+        title: 'Adaptive Reagent System',
+        description:
+          'Smart troughs optimize fill levels based on slide volume for efficiency.',
+        image: featureImages[3],
+      },
+      {
+        id: 4,
+        title: 'Multi-Sample Support',
+        description:
+          'Handles histology, cytology, and hematology with compact, tabletop design.',
+        image: featureImages[4],
+      },
+    ],
+  },
+};
 
 const AIChipIcon = () => (
   <svg width="58" height="58" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#00AEEF] mb-6">
@@ -52,12 +165,22 @@ const AIChipIcon = () => (
   </svg>
 );
 
-const FeatureCard = ({ className = "", style = {} }: { className?: string; style?: React.CSSProperties }) => (
+const FeatureCard = ({
+  title,
+  description,
+  className = '',
+  style = {},
+}: {
+  title: string;
+  description: string;
+  className?: string;
+  style?: React.CSSProperties;
+}) => (
   <div className={`flex flex-col items-start w-full max-w-[340px] transition-all duration-1000 ease-out ${className}`} style={style}>
     <AIChipIcon />
-    <h3 className="text-[21px] font-bold text-[#111827] mb-3 tracking-tight">AI-Ready Platform</h3>
+    <h3 className="text-[21px] font-bold text-[#111827] mb-3 tracking-tight">{title}</h3>
     <p className="text-[14px] leading-[1.6] text-gray-500 font-normal">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+      {description}
     </p>
   </div>
 );
@@ -66,13 +189,32 @@ const BenefitsSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeVariant, setActiveVariant] = useState<IntellistainVariant>('IS15');
+
+  const currentContent = intellistainContent[activeVariant];
+  const currentBenefits = currentContent.benefits;
+  const currentFeatures = currentContent.features;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % features.length);
+      setActiveIndex((prev) => (prev + 1) % currentFeatures.length);
     }, 5000);
     return () => clearInterval(interval);
+  }, [currentFeatures.length]);
+
+  useEffect(() => {
+    const handleVariantChange = (event: Event) => {
+      const variant = (event as CustomEvent<IntellistainVariant>).detail;
+      if (variant === 'IS15' || variant === 'IS30') setActiveVariant(variant);
+    };
+
+    window.addEventListener(INTELLISTAIN_VARIANT_EVENT, handleVariantChange);
+    return () => window.removeEventListener(INTELLISTAIN_VARIANT_EVENT, handleVariantChange);
   }, []);
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [activeVariant]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -140,7 +282,7 @@ const BenefitsSection: React.FC = () => {
             </div>
             <div className="flex-1 mt-0">
               <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                IntelliStain automated slide stainers deliver consistent, high-quality results using dip mechanics.
               </h2>
             </div>
           </div>
@@ -168,8 +310,14 @@ const BenefitsSection: React.FC = () => {
                   visibility: yellowOpacity < 0.01 ? 'hidden' : 'visible'
                 }}
               >
-                <FeatureCard />
-                <FeatureCard />
+                <FeatureCard
+                  title={currentBenefits[0].title}
+                  description={currentBenefits[0].description}
+                />
+                <FeatureCard
+                  title={currentBenefits[1].title}
+                  description={currentBenefits[1].description}
+                />
               </div>
 
               {/* Bottom Horizontal Row */}
@@ -181,8 +329,16 @@ const BenefitsSection: React.FC = () => {
                   visibility: greenOpacity < 0.01 ? 'hidden' : 'visible'
                 }}
               >
-                <FeatureCard className="flex-1" />
-                <FeatureCard className="flex-1" />
+                <FeatureCard
+                  title={currentBenefits[2].title}
+                  description={currentBenefits[2].description}
+                  className="flex-1"
+                />
+                <FeatureCard
+                  title={currentBenefits[3].title}
+                  description={currentBenefits[3].description}
+                  className="flex-1"
+                />
               </div>
             </div>
           </div>
@@ -205,9 +361,9 @@ const BenefitsSection: React.FC = () => {
                 <div className="w-full md:w-[55%] overflow-hidden">
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[16/10] bg-white">
                     <img 
-                      key={features[activeIndex].image}
-                      src={features[activeIndex].image} 
-                      alt={features[activeIndex].title} 
+                      key={currentFeatures[activeIndex].image}
+                      src={currentFeatures[activeIndex].image} 
+                      alt={currentFeatures[activeIndex].title} 
                       className="w-full h-full object-cover block animate-in fade-in zoom-in-95 duration-1000"
                     />
                   </div>
@@ -218,15 +374,15 @@ const BenefitsSection: React.FC = () => {
                      <div className="h-[2px] w-8 bg-blue-100"></div>
                   </div>
                   <h2 className="text-[32px] md:text-[36px] font-bold text-gray-900 mb-6 leading-[1.1]">
-                    {features[activeIndex].title}
+                    {currentFeatures[activeIndex].title}
                   </h2>
                   <p className="text-[16px] leading-relaxed text-gray-600 font-normal">
-                    {features[activeIndex].description}
+                    {currentFeatures[activeIndex].description}
                   </p>
                 </div>
               </div>
               <div className="mt-8 flex justify-center items-center gap-4 w-full max-w-[400px] mx-auto">
-                {features.map((_, index) => (
+                {currentFeatures.map((_, index) => (
                   <button key={index} onClick={() => setActiveIndex(index)} className="group relative h-4 flex-1 flex items-center">
                     <div className={`h-[4px] w-full rounded-full transition-all duration-500 ${index === activeIndex ? 'bg-black' : 'bg-gray-200 group-hover:bg-gray-300'}`} />
                   </button>

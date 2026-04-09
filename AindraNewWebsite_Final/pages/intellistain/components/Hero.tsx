@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import intellistain15Image from '../../../assets/ProductImages/IS-15.png';
 import intellistain30Image from '../../../assets/ProductImages/IS-30.png';
 
+export const INTELLISTAIN_VARIANT_EVENT = 'intellistain:variant-change';
+
 interface ProductCardProps {
   name: string;
   imageSrc: string;
@@ -47,6 +49,10 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
     { id: 'IS30', label: 'IS30', image: intellistain30Image }
   ];
   const activeVariantData = variants.find((variant) => variant.id === activeVariant) ?? variants[0];
+
+  React.useEffect(() => {
+    window.dispatchEvent(new CustomEvent(INTELLISTAIN_VARIANT_EVENT, { detail: activeVariant }));
+  }, [activeVariant]);
 
   const tabs = ['OVERVIEW', 'STAINING QUALITY', 'SPECIFICATIONS', 'RESOURCES'];
 

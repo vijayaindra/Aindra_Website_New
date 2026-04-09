@@ -7,35 +7,68 @@ interface Feature {
   image: string;
 }
 
+interface Benefit {
+  title: string;
+  description: string;
+}
+
+const benefits: Benefit[] = [
+  {
+    title: 'Accelerated Diagnosis',
+    description:
+      'Provides initial analysis and heatmaps, slashing review time for pathologists.',
+  },
+  {
+    title: 'Early Detection Precision',
+    description:
+      'Pinpoints abnormalities with AI accuracy, enabling earlier interventions for better outcomes.',
+  },
+  {
+    title: 'Pathologist Empowerment',
+    description:
+      'Augments expertise with visual heatmaps, reducing diagnostic fatigue and errors.',
+  },
+  {
+    title: 'Seamless Workflow Integration',
+    description:
+      'Analyzes VisionX scans onboard, then uploads to Clustr for telepathology collaboration.',
+  },
+];
+
 const features: Feature[] = [
   {
     id: 0,
-    title: "Precision Staining",
-    description: "Our advanced Astra platform delivers unrivaled accuracy in tissue staining, ensuring consistent results across high-volume laboratory workloads.",
+    title: 'Multi-Cancer Analysis',
+    description:
+      'Supports cervical, lung, prostate, and thyroid cancer detection from whole slide images.',
     image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 1,
-    title: "AI-Driven Insights",
-    description: "Leverage the power of deep learning to identify patterns and anomalies with superhuman precision. Astra's AI core processes millions of pixels.",
+    title: 'Abnormality Heatmaps',
+    description:
+      'Generates intuitive visual heatmaps highlighting suspected cancerous regions.',
     image: "https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 2,
-    title: "Scalable Workflow",
-    description: "Seamlessly integrate Astra into your existing laboratory information systems. Our modular design allows you to scale from single-clinic operations.",
+    title: 'Real-Time Processing',
+    description:
+      'Onboard AI delivers rapid initial findings without cloud dependency.',
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 4,
-    title: "Real-time Monitoring",
-    description: "Keep track of every slide and every stain in real-time. Our intuitive dashboard provides immediate feedback on system performance.",
+    title: 'Clustr Upload Ready',
+    description:
+      'Seamlessly transfers analysis and heatmaps to ClustrPath for expert review.',
     image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 5,
-    title: "Cloud Connectivity",
-    description: "Securely access your data from anywhere in the world. Astra's cloud-native architecture ensures your diagnostic results are backed up.",
+    title: 'Self-Learning Capability',
+    description:
+      'Improves accuracy over time through pathologist feedback loops.',
     image: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000"
   }
 ];
@@ -52,12 +85,22 @@ const AIChipIcon = () => (
   </svg>
 );
 
-const FeatureCard = ({ className = "", style = {} }: { className?: string; style?: React.CSSProperties }) => (
+const FeatureCard = ({
+  title,
+  description,
+  className = '',
+  style = {},
+}: {
+  title: string;
+  description: string;
+  className?: string;
+  style?: React.CSSProperties;
+}) => (
   <div className={`flex flex-col items-start w-full max-w-[340px] transition-all duration-1000 ease-out ${className}`} style={style}>
     <AIChipIcon />
-    <h3 className="text-[21px] font-bold text-[#111827] mb-3 tracking-tight">AI-Ready Platform</h3>
+    <h3 className="text-[21px] font-bold text-[#111827] mb-3 tracking-tight">{title}</h3>
     <p className="text-[14px] leading-[1.6] text-gray-500 font-normal">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+      {description}
     </p>
   </div>
 );
@@ -182,7 +225,7 @@ const BenefitsSection: React.FC = () => {
             </div>
             <div className="flex-1 mt-0">
               <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Astra AI suite powers precise pathology analysis with abnormality detection and heatmaps.
               </h2>
             </div>
           </div>
@@ -210,8 +253,14 @@ const BenefitsSection: React.FC = () => {
                   visibility: yellowOpacity < 0.01 ? 'hidden' : 'visible'
                 }}
               >
-                <FeatureCard />
-                <FeatureCard />
+                <FeatureCard
+                  title={benefits[0].title}
+                  description={benefits[0].description}
+                />
+                <FeatureCard
+                  title={benefits[1].title}
+                  description={benefits[1].description}
+                />
               </div>
 
               {/* Bottom Horizontal Row (Marked Yellow in request, follows Red Arrow) */}
@@ -223,8 +272,16 @@ const BenefitsSection: React.FC = () => {
                   visibility: greenOpacity < 0.01 ? 'hidden' : 'visible'
                 }}
               >
-                <FeatureCard className="flex-1" />
-                <FeatureCard className="flex-1" />
+                <FeatureCard
+                  title={benefits[2].title}
+                  description={benefits[2].description}
+                  className="flex-1"
+                />
+                <FeatureCard
+                  title={benefits[3].title}
+                  description={benefits[3].description}
+                  className="flex-1"
+                />
               </div>
             </div>
           </div>
