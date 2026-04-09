@@ -3,6 +3,8 @@ import visionXImage from '../../../assets/ProductImages/VisionX2 (1).png';
 import visionX6Image from '../../../assets/ProductImages/VX6.png';
 import visionXFImage from '../../../assets/ProductImages/FWSI.jpg';
 
+export const VISIONX_VARIANT_EVENT = 'visionx:variant-change';
+
 interface ProductCardProps {
   name: string;
   imageSrc: string;
@@ -56,6 +58,10 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
     { id: 'VXF', label: 'VXF', image: visionXFImage, softenBackground: true }
   ];
   const activeVariantData = variants.find((variant) => variant.id === activeVariant) ?? variants[0];
+
+  React.useEffect(() => {
+    window.dispatchEvent(new CustomEvent(VISIONX_VARIANT_EVENT, { detail: activeVariant }));
+  }, [activeVariant]);
 
   const tabs = ['OVERVIEW', 'IMAGE QUALITY', 'SPECIFICATIONS', 'RESOURCES'];
 

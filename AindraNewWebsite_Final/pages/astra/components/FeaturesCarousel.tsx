@@ -10,31 +10,31 @@ interface Feature {
 const features: Feature[] = [
   {
     id: 0,
-    title: "Feature 1: Precision Staining",
+    title: "Precision Staining",
     description: "Our advanced Astra platform delivers unrivaled accuracy in tissue staining, ensuring consistent results across high-volume laboratory workloads. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
     image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 1,
-    title: "Feature 2: AI-Driven Insights",
+    title: "AI-Driven Insights",
     description: "Leverage the power of deep learning to identify patterns and anomalies with superhuman precision. Astra's AI core processes millions of pixels to assist pathologists in faster decision making.",
     image: "https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 2,
-    title: "Feature 3: Scalable Workflow",
+    title: "Scalable Workflow",
     description: "Seamlessly integrate Astra into your existing laboratory information systems. Our modular design allows you to scale from single-clinic operations to multi-site diagnostic networks.",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 3,
-    title: "Feature 4: Real-time Monitoring",
+    title: "Real-time Monitoring",
     description: "Keep track of every slide and every stain in real-time. Our intuitive dashboard provides immediate feedback on system performance and reagent levels to prevent downtime.",
     image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 4,
-    title: "Feature 5: Cloud Connectivity",
+    title: "Cloud Connectivity",
     description: "Securely access your data from anywhere in the world. Astra's cloud-native architecture ensures your diagnostic results are backed up and available for remote consultation.",
     image: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000"
   }

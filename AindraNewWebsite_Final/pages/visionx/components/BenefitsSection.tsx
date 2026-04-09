@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { VISIONX_VARIANT_EVENT } from './Hero';
+
+type VisionXVariant = 'VX1' | 'VX6' | 'VX mini' | 'VXF';
 
 interface Feature {
   id: number;
@@ -7,38 +10,270 @@ interface Feature {
   image: string;
 }
 
-const features: Feature[] = [
-  {
-    id: 0,
-    title: "Feature 1: Precision Staining",
-    description: "Our advanced Astra platform delivers unrivaled accuracy in tissue staining, ensuring consistent results across high-volume laboratory workloads.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000"
-  },
-  {
-    id: 1,
-    title: "Feature 2: AI-Driven Insights",
-    description: "Leverage the power of deep learning to identify patterns and anomalies with superhuman precision. Astra's AI core processes millions of pixels.",
-    image: "https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=1000"
-  },
-  {
-    id: 2,
-    title: "Feature 3: Scalable Workflow",
-    description: "Seamlessly integrate Astra into your existing laboratory information systems. Our modular design allows you to scale from single-clinic operations.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000"
-  },
-  {
-    id: 4,
-    title: "Feature 4: Real-time Monitoring",
-    description: "Keep track of every slide and every stain in real-time. Our intuitive dashboard provides immediate feedback on system performance.",
-    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1000"
-  },
-  {
-    id: 5,
-    title: "Feature 5: Cloud Connectivity",
-    description: "Securely access your data from anywhere in the world. Astra's cloud-native architecture ensures your diagnostic results are backed up.",
-    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000"
-  }
+interface Benefit {
+  title: string;
+  description: string;
+}
+
+interface VisionXContent {
+  benefits: Benefit[];
+  features: Feature[];
+}
+
+const featureImages = [
+  'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000',
 ];
+
+const visionXContent: Record<'VX1' | 'VX6' | 'VX mini' | 'VXF', VisionXContent> = {
+  VX1: {
+    benefits: [
+      {
+        title: 'Rapid Turnaround',
+        description:
+          'Scan slides in 150 seconds for immediate digital access, accelerating pathology workflows.',
+      },
+      {
+        title: 'Space-Saving Design',
+        description:
+          'Ultra-compact footprint fits seamlessly into any lab, even space-constrained environments.',
+      },
+      {
+        title: 'Cost Efficiency',
+        description:
+          'Subscription-based pricing delivers high performance without massive upfront costs.',
+      },
+      {
+        title: 'Remote Collaboration',
+        description:
+          'High-res images with initial AI analysis upload to Clustr for secure sharing and expert consultations anywhere.',
+      },
+    ],
+    features: [
+      {
+        id: 0,
+        title: '150-Second Scanning',
+        description:
+          'Capture 15x15mm slide areas in just 150 seconds with automated brightfield technology.',
+        image: featureImages[0],
+      },
+      {
+        id: 1,
+        title: 'High-Resolution Imaging',
+        description:
+          '0.52μm pixel resolution at 20x with 40x digital zoom for crisp, detailed views.',
+        image: featureImages[1],
+      },
+      {
+        id: 2,
+        title: 'Single-Slide Capacity',
+        description:
+          'Designed for quick, on-demand single-slide processing with minimal setup.',
+        image: featureImages[2],
+      },
+      {
+        id: 3,
+        title: 'Automated Z-Stacking',
+        description:
+          'Precision focusing technique ensures sharp images across entire slide thickness.',
+        image: featureImages[3],
+      },
+      {
+        id: 4,
+        title: 'Onboard AI Analysis',
+        description:
+          'VisionX analyzes images onboard with Astra AI, providing initial analysis and heatmaps before uploading to Clustr cloud.',
+        image: featureImages[4],
+      },
+    ],
+  },
+  VX6: {
+    benefits: [
+      {
+        title: 'High-Throughput Efficiency',
+        description:
+          'Batch-scan up to 6 slides in minutes, ideal for busy labs handling high volumes.',
+      },
+      {
+        title: 'Unmatched Reliability',
+        description:
+          'Robust design with global shutter camera ensures consistent, high-quality results.',
+      },
+      {
+        title: 'Scalable Operations',
+        description:
+          'Expands lab capacity economically, supporting growth without infrastructure overhauls.',
+      },
+      {
+        title: 'Enhanced Diagnostics',
+        description:
+          'Onboard AI initial analysis with heatmaps speeds up pathologist review via Clustr upload.',
+      },
+    ],
+    features: [
+      {
+        id: 0,
+        title: '150-Second Per Slide',
+        description:
+          'Processes 15x15mm areas per slide in 150 seconds across 6-slide batches.',
+        image: featureImages[0],
+      },
+      {
+        id: 1,
+        title: 'Multi-Slide Loader',
+        description:
+          '6-slide capacity for uninterrupted, high-volume scanning sessions.',
+        image: featureImages[1],
+      },
+      {
+        id: 2,
+        title: 'Superior Resolution',
+        description:
+          'Delivers 0.52μm pixels at 20x magnification with advanced 40x zoom.',
+        image: featureImages[2],
+      },
+      {
+        id: 3,
+        title: 'Z-Stacking Focus',
+        description:
+          'Automated multi-layer focusing captures every detail without manual adjustments.',
+        image: featureImages[3],
+      },
+      {
+        id: 4,
+        title: 'Onboard AI Analysis',
+        description:
+          'VisionX performs real-time Astra AI processing for initial analysis and heatmaps, then uploads to Clustr telepathology platform.',
+        image: featureImages[4],
+      },
+    ],
+  },
+  'VX mini': {
+    benefits: [
+      {
+        title: 'Ultimate Portability',
+        description:
+          'Even smaller and lighter than VX1, perfect for point-of-care or mobile pathology.',
+      },
+      {
+        title: 'Instant Productivity',
+        description:
+          '150-second scans with onboard AI enable rapid digitization in resource-limited settings.',
+      },
+      {
+        title: 'Affordable Entry',
+        description:
+          'Compact innovation at low cost, democratizing digital pathology for all labs.',
+      },
+      {
+        title: 'Flexible Deployment',
+        description:
+          'Fits anywhere—clinics, field labs, or research—with AI heatmaps uploading to Clustr.',
+      },
+    ],
+    features: [
+      {
+        id: 0,
+        title: 'Ultra-Fast Scanning',
+        description:
+          '150 seconds for 15x15mm areas, optimized for speed in a tiny package.',
+        image: featureImages[0],
+      },
+      {
+        id: 1,
+        title: 'Miniaturized High-Res',
+        description:
+          'Maintains 0.52μm resolution at 20x with digital 40x zoom despite compact size.',
+        image: featureImages[1],
+      },
+      {
+        id: 2,
+        title: 'Single-Slide Efficiency',
+        description:
+          'Streamlined loader for one-slide-at-a-time precision scanning.',
+        image: featureImages[2],
+      },
+      {
+        id: 3,
+        title: 'Smart Auto-Focus',
+        description:
+          'Advanced Z-stacking ensures focus across depths in a portable form factor.',
+        image: featureImages[3],
+      },
+      {
+        id: 4,
+        title: 'Onboard AI Analysis',
+        description:
+          'VisionX delivers initial AI analysis and heatmaps directly, ready for Clustr cloud upload and telepathology sharing.',
+        image: featureImages[4],
+      },
+    ],
+  },
+  VXF: {
+    benefits: [
+      {
+        title: 'Brilliant Fluorescence Capture',
+        description:
+          'Reveals intricate fluorescent details with superior clarity, enhancing research and diagnostic confidence.',
+      },
+      {
+        title: 'Customizable for Any Lab',
+        description:
+          'Three configurable filter sets adapt perfectly to your specific fluorescent markers and protocols.',
+      },
+      {
+        title: 'Rapid Digital Transition',
+        description:
+          'Scans fluorescent slides quickly, enabling instant digital sharing and analysis workflows.',
+      },
+      {
+        title: 'Seamless Integration',
+        description:
+          'Pairs effortlessly with ClustrPath for telepathology review of fluorescence data across teams.',
+      },
+    ],
+    features: [
+      {
+        id: 0,
+        title: 'Fluorescent-Optimized Scanning',
+        description:
+          'High-sensitivity capture of fluorescent samples with minimal photobleaching and maximum signal.',
+        image: featureImages[0],
+      },
+      {
+        id: 1,
+        title: 'Triple Filter Configuration',
+        description:
+          'Three customizable filter sets tailored to customer wavelengths—DAPI, FITC, TRITC, or your choice.',
+        image: featureImages[1],
+      },
+      {
+        id: 2,
+        title: 'High-Resolution Fluorescence',
+        description:
+          'Delivers crisp 20x optics with digital zoom for publication-quality fluorescent whole slides.',
+        image: featureImages[2],
+      },
+      {
+        id: 3,
+        title: 'Automated Slide Handling',
+        description:
+          'Precise Z-stacking and focus for even the faintest fluorescent signals across entire slides.',
+        image: featureImages[3],
+      },
+      {
+        id: 4,
+        title: 'ClustrPath Compatible',
+        description:
+          'Direct upload of fluorescence scans to telepathology platform for collaborative review.',
+        image: featureImages[4],
+      },
+    ],
+  },
+};
 
 const AIChipIcon = () => (
   <svg width="58" height="58" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#00AEEF] mb-6">
@@ -52,12 +287,22 @@ const AIChipIcon = () => (
   </svg>
 );
 
-const FeatureCard = ({ className = "", style = {} }: { className?: string; style?: React.CSSProperties }) => (
+const FeatureCard = ({
+  title,
+  description,
+  className = '',
+  style = {},
+}: {
+  title: string;
+  description: string;
+  className?: string;
+  style?: React.CSSProperties;
+}) => (
   <div className={`flex flex-col items-start w-full max-w-[340px] transition-all duration-1000 ease-out ${className}`} style={style}>
     <AIChipIcon />
-    <h3 className="text-[21px] font-bold text-[#111827] mb-3 tracking-tight">AI-Ready Platform</h3>
+    <h3 className="text-[21px] font-bold text-[#111827] mb-3 tracking-tight">{title}</h3>
     <p className="text-[14px] leading-[1.6] text-gray-500 font-normal">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+      {description}
     </p>
   </div>
 );
@@ -66,13 +311,40 @@ const BenefitsSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeVariant, setActiveVariant] = useState<VisionXVariant>('VX1');
+
+  const normalizedVariant: 'VX1' | 'VX6' | 'VX mini' | 'VXF' =
+    activeVariant === 'VX6'
+      ? 'VX6'
+      : activeVariant === 'VX mini'
+        ? 'VX mini'
+        : activeVariant === 'VXF'
+          ? 'VXF'
+          : 'VX1';
+  const currentContent = visionXContent[normalizedVariant];
+  const currentBenefits = currentContent.benefits;
+  const currentFeatures = currentContent.features;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % features.length);
+      setActiveIndex((prev) => (prev + 1) % currentFeatures.length);
     }, 5000);
     return () => clearInterval(interval);
+  }, [currentFeatures.length]);
+
+  useEffect(() => {
+    const handleVariantChange = (event: Event) => {
+      const variant = (event as CustomEvent<VisionXVariant>).detail;
+      if (variant) setActiveVariant(variant);
+    };
+
+    window.addEventListener(VISIONX_VARIANT_EVENT, handleVariantChange);
+    return () => window.removeEventListener(VISIONX_VARIANT_EVENT, handleVariantChange);
   }, []);
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [normalizedVariant]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -140,7 +412,7 @@ const BenefitsSection: React.FC = () => {
             </div>
             <div className="flex-1 mt-0">
               <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                VisionX whole slide scanners deliver fast, high-quality digital pathology imaging with onboard AI.
               </h2>
             </div>
           </div>
@@ -168,8 +440,14 @@ const BenefitsSection: React.FC = () => {
                   visibility: yellowOpacity < 0.01 ? 'hidden' : 'visible'
                 }}
               >
-                <FeatureCard />
-                <FeatureCard />
+                <FeatureCard
+                  title={currentBenefits[0].title}
+                  description={currentBenefits[0].description}
+                />
+                <FeatureCard
+                  title={currentBenefits[1].title}
+                  description={currentBenefits[1].description}
+                />
               </div>
 
               {/* Bottom Horizontal Row */}
@@ -181,8 +459,16 @@ const BenefitsSection: React.FC = () => {
                   visibility: greenOpacity < 0.01 ? 'hidden' : 'visible'
                 }}
               >
-                <FeatureCard className="flex-1" />
-                <FeatureCard className="flex-1" />
+                <FeatureCard
+                  title={currentBenefits[2].title}
+                  description={currentBenefits[2].description}
+                  className="flex-1"
+                />
+                <FeatureCard
+                  title={currentBenefits[3].title}
+                  description={currentBenefits[3].description}
+                  className="flex-1"
+                />
               </div>
             </div>
           </div>
@@ -205,9 +491,9 @@ const BenefitsSection: React.FC = () => {
                 <div className="w-full md:w-[55%] overflow-hidden">
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[16/10] bg-white">
                     <img 
-                      key={features[activeIndex].image}
-                      src={features[activeIndex].image} 
-                      alt={features[activeIndex].title} 
+                      key={currentFeatures[activeIndex].image}
+                      src={currentFeatures[activeIndex].image} 
+                      alt={currentFeatures[activeIndex].title} 
                       className="w-full h-full object-cover block animate-in fade-in zoom-in-95 duration-1000"
                     />
                   </div>
@@ -218,15 +504,15 @@ const BenefitsSection: React.FC = () => {
                      <div className="h-[2px] w-8 bg-blue-100"></div>
                   </div>
                   <h2 className="text-[32px] md:text-[36px] font-bold text-gray-900 mb-6 leading-[1.1]">
-                    {features[activeIndex].title}
+                    {currentFeatures[activeIndex].title}
                   </h2>
                   <p className="text-[16px] leading-relaxed text-gray-600 font-normal">
-                    {features[activeIndex].description}
+                    {currentFeatures[activeIndex].description}
                   </p>
                 </div>
               </div>
               <div className="mt-8 flex justify-center items-center gap-4 w-full max-w-[400px] mx-auto">
-                {features.map((_, index) => (
+                {currentFeatures.map((_, index) => (
                   <button key={index} onClick={() => setActiveIndex(index)} className="group relative h-4 flex-1 flex items-center">
                     <div className={`h-[4px] w-full rounded-full transition-all duration-500 ${index === activeIndex ? 'bg-black' : 'bg-gray-200 group-hover:bg-gray-300'}`} />
                   </button>

@@ -8,35 +8,68 @@ interface Feature {
   image: string;
 }
 
+interface Benefit {
+  title: string;
+  description: string;
+}
+
+const benefits: Benefit[] = [
+  {
+    title: 'Enhanced Efficiency',
+    description:
+      'Digitizing the pathology workflow streamlines processes, making reporting and analysis faster and more reliable.',
+  },
+  {
+    title: 'Workplace Flexibility',
+    description:
+      'Cloud access empowers pathologists to view and report slides anytime, anywhere, boosting productivity.',
+  },
+  {
+    title: 'Risk Elimination',
+    description:
+      'No more shipping physical slides for consultations, removing transportation risks and delays.',
+  },
+  {
+    title: 'Expanded Expertise',
+    description:
+      'Share cases effortlessly with expert pathologists for second opinions and grow your service network geographically.',
+  },
+];
+
 const features: Feature[] = [
   {
     id: 0,
-    title: "Feature 1: Precision Staining",
-    description: "Our advanced Clustr platform delivers unrivaled accuracy in tissue staining, ensuring consistent results across high-volume laboratory workloads. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    title: 'Remote Slide Access',
+    description:
+      'Gain secure remote access to high-resolution slide images for efficient reporting from any location.',
     image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 1,
-    title: "Feature 2: AI-Driven Insights",
-    description: "Leverage the power of deep learning to identify patterns and anomalies with superhuman precision. Clustr's AI core processes millions of pixels to assist pathologists in faster decision making.",
+    title: 'Multi-User Sharing',
+    description:
+      'Easily share slides with multiple pathologists or collaborators for consultations and reviews.',
     image: "https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 2,
-    title: "Feature 3: Scalable Workflow",
-    description: "Seamlessly integrate Clustr into your existing laboratory information systems. Our modular design allows you to scale from single-clinic operations to multi-site diagnostic networks.",
+    title: 'Digital Reporting',
+    description:
+      'Generate professional reports complete with digital signatures for quick and compliant sign-off.',
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 3,
-    title: "Feature 4: Real-time Monitoring",
-    description: "Keep track of every slide and every stain in real-time. Our intuitive dashboard provides immediate feedback on system performance and reagent levels to prevent downtime.",
-    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd+auto=format&fit=crop&q=80&w=1000"
+    title: 'Real-time Monitoring',
+    description:
+      'Keep track of every slide and every stain in real-time. Our intuitive dashboard provides immediate feedback on system performance and reagent levels to prevent downtime.',
+    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1000"
   },
   {
     id: 4,
-    title: "Feature 5: Cloud Connectivity",
-    description: "Securely access your data from anywhere in the world. Clustr's cloud-native architecture ensures your diagnostic results are backed up and available for remote consultation.",
+    title: 'Advanced Image Viewer',
+    description:
+      'Integrated viewer supports pan, zoom, and annotations on high-resolution images for precise analysis.',
     image: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000"
   }
 ];
@@ -54,12 +87,22 @@ const AIChipIcon = () => (
   </svg>
 );
 
-const FeatureCard = ({ className = "", style = {} }: { className?: string; style?: React.CSSProperties }) => (
+const FeatureCard = ({
+  title,
+  description,
+  className = "",
+  style = {},
+}: {
+  title: string;
+  description: string;
+  className?: string;
+  style?: React.CSSProperties;
+}) => (
   <div className={`flex flex-col items-start w-full max-w-[340px] ${className}`} style={style}>
     <AIChipIcon />
-    <h3 className="text-[21px] font-bold text-[#111827] mb-3 tracking-tight">AI-Ready Platform</h3>
+    <h3 className="text-[21px] font-bold text-[#111827] mb-3 tracking-tight">{title}</h3>
     <p className="text-[14px] leading-[1.6] text-gray-500 font-normal">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+      {description}
     </p>
   </div>
 );
@@ -129,7 +172,7 @@ const BenefitsSection: React.FC = () => {
             </div>
             <div className="flex-1 mt-0">
               <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Clustr revolutionizes telepathology with seamless slide reporting, viewing, and sharing.
               </h2>
             </div>
           </div>
@@ -151,20 +194,32 @@ const BenefitsSection: React.FC = () => {
                 className="relative flex flex-col justify-end pr-2 will-change-transform"
                 style={{ transform: `translateY(${benefitsTranslate}px)`, opacity: scrollProgress > 0.01 ? 1 : 0 }}
               >
-                <FeatureCard />
+                <FeatureCard
+                  title={benefits[0].title}
+                  description={benefits[0].description}
+                />
               </div>
               <div 
                 className="relative flex flex-col justify-end px-2 will-change-transform"
                 style={{ transform: `translateY(${benefitsTranslate}px)`, opacity: scrollProgress > 0.01 ? 1 : 0 }}
               >
-                <FeatureCard />
+                <FeatureCard
+                  title={benefits[1].title}
+                  description={benefits[1].description}
+                />
               </div>
               <div 
                 className="relative flex flex-col pl-6 space-y-12 pt-6 will-change-transform"
                 style={{ transform: `translateY(${benefitsTranslate * 0.7}px)` }} 
               >
-                <FeatureCard />
-                <FeatureCard />
+                <FeatureCard
+                  title={benefits[2].title}
+                  description={benefits[2].description}
+                />
+                <FeatureCard
+                  title={benefits[3].title}
+                  description={benefits[3].description}
+                />
               </div>
             </div>
           </div>
