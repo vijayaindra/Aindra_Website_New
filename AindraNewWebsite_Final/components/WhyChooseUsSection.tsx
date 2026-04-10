@@ -7,8 +7,8 @@ export const WhyChooseUsSection: React.FC = () => {
   const tabs = ['Hospitals', 'Diagnostic Labs', 'Clinics', 'MedEd'];
 
   return (
-    <section className="relative py-16 md:py-32 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-16 md:py-24 lg:py-28 px-4 sm:px-5 md:px-6 lg:px-6 xl:px-8 bg-white overflow-hidden">
+      <div className="max-w-[1400px] mx-auto">
         
         {/* Top Header Row */}
         <div className="grid grid-cols-12 gap-6 md:gap-8 items-start mb-12 md:mb-24">

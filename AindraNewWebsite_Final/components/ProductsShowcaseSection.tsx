@@ -76,7 +76,7 @@ export const ProductsShowcaseSection: React.FC = () => {
   return (
     <>
     <section className="lg:hidden w-full px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16 bg-white">
-      <div className="mx-auto w-full max-w-[1280px]">
+      <div className="mx-auto w-full max-w-[1400px]">
         <div className="mb-8">
           <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Our Products</span>
           <h2 className="mt-3 text-2xl sm:text-3xl font-medium text-slate-900 leading-[1.15] max-w-3xl">

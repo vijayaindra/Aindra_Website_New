@@ -440,7 +440,7 @@ const BenefitsSection: React.FC = () => {
             pointerEvents: stage1Opacity > 0.5 ? 'auto' : 'none'
           }}
         >
-          <div className="h-full flex flex-col w-full max-w-[1280px] mx-auto px-4 md:px-8 pt-12 relative">
+          <div className="h-full flex flex-col w-full max-w-[1400px] mx-auto px-4 md:px-8 pt-12 relative">
             <div className="absolute inset-0 flex flex-col pt-12 gap-24 md:pl-[200px] pointer-events-none">
               <div 
                 style={{ 
@@ -511,7 +511,7 @@ const BenefitsSection: React.FC = () => {
 
         {/* Positions Container (Fades in and scrolls naturally) */}
         <div 
-          className="w-full max-w-[1280px] mx-auto px-4 md:px-8 pb-32 relative z-20"
+          className="w-full max-w-[1400px] mx-auto px-4 md:px-8 pb-32 relative z-20"
           style={{ 
             opacity: positionsOpacity,
             visibility: positionsOpacity < 0.01 ? 'hidden' : 'visible',

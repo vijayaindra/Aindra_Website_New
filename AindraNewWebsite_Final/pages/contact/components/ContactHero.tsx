@@ -587,7 +587,7 @@ const ContactHero: React.FC = () => {
 
   return (
     <section className="w-full bg-white pt-8 pb-16 md:pb-24 px-4 md:px-6 lg:px-8">
-      <div className="max-w-[1280px] mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-extrabold text-gray-900 tracking-tight leading-none mb-4">
           Contact us
         </h1>

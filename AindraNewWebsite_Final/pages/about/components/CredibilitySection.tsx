@@ -12,7 +12,7 @@ const credibilityItems = [
 const CredibilitySection: React.FC = () => {
   return (
     <section className="w-full bg-[#f0f7ff] pb-24 overflow-hidden">
-      <div className="max-w-[1280px] mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row items-start mb-16 w-full px-6 md:px-10">
           {/* Section Label */}

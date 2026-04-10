@@ -83,7 +83,7 @@ export const SolutionsShowcase: React.FC = () => {
   return (
     <>
     <section className="lg:hidden w-full bg-[#f8fbff] px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16">
-      <div className="mx-auto w-full max-w-[1280px]">
+      <div className="mx-auto w-full max-w-[1400px]">
         <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Our Solutions</span>
         <h2 className="mt-3 text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight max-w-3xl">
           AI modules for every stage of clinical pathology.
@@ -107,11 +107,11 @@ export const SolutionsShowcase: React.FC = () => {
 
     <div ref={containerRef} className="relative hidden lg:block h-[400vh] bg-[#f8fbff]">
       {/* Sticky Frame */}
-      <section className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-6 md:px-12 lg:px-24">
+      <section className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-4 sm:px-5 md:px-6 lg:px-6 xl:px-8">
         
-        <div className="max-w-7xl mx-auto w-full">
+        <div className="max-w-[1400px] mx-auto w-full">
           {/* Section Header */}
-          <div className="absolute top-24 left-6 md:left-12 lg:left-24">
+          <div className="absolute top-24 left-4 sm:left-5 md:left-6 lg:left-6 xl:left-8">
             <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Our Solutions</span>
           </div>
 

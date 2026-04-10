@@ -12,7 +12,7 @@ import { TrustedInstitutionsSection } from './components/TrustedInstitutionsSect
 import { SpotlightSection } from './components/SpotlightSection';
 import { TrustAndMarketingSection } from './components/TrustAndMarketingSection';
 import { Footer } from './components/Footer';
-import { sectionContainer, sectionShell } from './components/layout';
+import { sectionContainerWide, sectionShell } from './components/layout';
 import AboutPage from './pages/about/App';
 import AstraPage from './pages/astra/App';
 import CareersPage from './pages/careers/App';
@@ -60,7 +60,7 @@ const HomePage: React.FC = () => {
 
       <main className="relative z-10">
         <section className={`relative ${sectionShell} pt-28 sm:pt-32 lg:pt-36 pb-14 md:pb-16 lg:pb-20 overflow-hidden`}>
-          <div className={sectionContainer}>
+          <div className={sectionContainerWide}>
             <Hero />
             <div className="mt-12 md:mt-16 lg:mt-20">
               <InvestorStrip />

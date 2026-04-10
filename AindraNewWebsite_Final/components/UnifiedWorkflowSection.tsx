@@ -103,7 +103,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
   return (
     <>
     <section className="lg:hidden w-full bg-white px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16">
-      <div className="mx-auto w-full max-w-[1280px]">
+      <div className="mx-auto w-full max-w-[1400px]">
         <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
           We’ve condensed the pathology workflow from staining to screening into four steps.
         </p>
