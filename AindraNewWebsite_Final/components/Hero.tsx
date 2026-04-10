@@ -14,14 +14,14 @@ export const Hero: React.FC = () => {
         </p>
         <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
           <a
-            href="#/contact"
-            className="inline-flex min-h-11 items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-[#12a8ea] text-white font-semibold tracking-wide uppercase text-xs sm:text-sm hover:bg-[#0f9ddd] transition-colors"
+            href="#/contact?tab=product"
+            className="inline-flex min-h-11 items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full border border-[#d8e0ea] bg-white text-[#2f3e59] font-semibold tracking-wide uppercase text-xs sm:text-sm hover:bg-[#f6f8fb] active:bg-[#12a8ea] active:border-[#12a8ea] active:text-white active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#12a8ea]/40 transition-all [-webkit-tap-highlight-color:transparent]"
           >
             Request a demo
           </a>
           <a
-            href="#/contact"
-            className="inline-flex min-h-11 items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full border border-[#d8e0ea] text-[#2f3e59] font-semibold tracking-wide uppercase text-xs sm:text-sm hover:bg-[#f6f8fb] transition-colors"
+            href="#/contact?tab=experts"
+            className="inline-flex min-h-11 items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full border border-[#d8e0ea] bg-white text-[#2f3e59] font-semibold tracking-wide uppercase text-xs sm:text-sm hover:bg-[#f6f8fb] active:bg-[#12a8ea] active:border-[#12a8ea] active:text-white active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#12a8ea]/35 transition-all [-webkit-tap-highlight-color:transparent]"
           >
             Talk to a clinical expert
           </a>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   submitContactEnquiry,
   submitProductSupportEnquiry,
@@ -296,7 +296,14 @@ const validateSupportStep2 = (values: ProductSupportStep2Values): SupportStep2Er
 };
 
 const ContactHero: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<ActiveTab>('product');
+  const getTabFromHash = (): ActiveTab => {
+    const hash = window.location.hash || '';
+    const query = hash.includes('?') ? hash.split('?')[1] : '';
+    const params = new URLSearchParams(query);
+    return params.get('tab') === 'experts' ? 'experts' : 'product';
+  };
+
+  const [activeTab, setActiveTab] = useState<ActiveTab>(getTabFromHash);
   const [supportStep, setSupportStep] = useState<1 | 2>(1);
 
   const [contactExpertsForm, setContactExpertsForm] = useState<ContactExpertsFormValues>(
@@ -326,7 +333,23 @@ const ContactHero: React.FC = () => {
     setActiveTab(tab);
     setSupportStep(1);
     resetStatuses();
+
+    const params = new URLSearchParams(window.location.hash.split('?')[1] ?? '');
+    params.set('tab', tab);
+    window.history.replaceState(null, '', `#/contact?${params.toString()}`);
   };
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const nextTab = getTabFromHash();
+      setActiveTab(nextTab);
+      setSupportStep(1);
+      resetStatuses();
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const handleContactExpertsInput = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -608,7 +631,7 @@ const ContactHero: React.FC = () => {
                 <h3 className={`text-[20px] font-bold transition-colors ${activeTab === 'product' ? 'text-[#00AEEF]' : 'text-gray-400 group-hover:text-[#00AEEF]'}`}>
                   Product Support
                 </h3>
-                <p className="text-[14px] text-gray-500">want to ask you a specific question?</p>
+                <p className="text-[14px] text-gray-500">I am a client and need support with my Aindra product</p>
               </div>
               <div
                 className={`w-7 h-7 rounded-full flex items-center justify-center text-white shadow-md transition-all ${activeTab === 'product' ? 'bg-[#00AEEF] shadow-blue-200' : 'bg-gray-200 group-hover:bg-[#00AEEF]'}`}
@@ -628,7 +651,7 @@ const ContactHero: React.FC = () => {
                 <h3 className={`text-[20px] font-extrabold transition-colors ${activeTab === 'experts' ? 'text-[#00AEEF]' : 'text-gray-900 group-hover:text-[#00AEEF]'}`}>
                   Contact our experts
                 </h3>
-                <p className="text-[14px] text-gray-500">I am a client and need support with my Aindra product</p>
+                <p className="text-[14px] text-gray-500">Want to ask us a specific question?</p>
               </div>
               <div
                 className={`w-7 h-7 rounded-full flex items-center justify-center text-white transition-all ${activeTab === 'experts' ? 'bg-[#00AEEF] shadow-md shadow-blue-200' : 'bg-gray-400 group-hover:bg-[#00AEEF]'}`}
@@ -645,17 +668,17 @@ const ContactHero: React.FC = () => {
               <div className="text-center mb-10">
                 <h2 className="text-2xl md:text-[30px] font-extrabold text-gray-900 mb-2">
                   {activeTab === 'product'
-                    ? 'Have a question? Speak with our experts'
-                    : 'Need help with your Aindra product?'}
+                    ? 'Need help with your Aindra product?'
+                    : 'Have a question? Speak with our experts'}
                 </h2>
                 <p className="text-[14px] text-gray-500 font-medium">
                   {activeTab === 'product'
-                    ? "We'll get back within 1 business days"
-                    : 'Let us know how we can assist you.'}
+                    ? 'Let us know how we can assist you.'
+                    : "We'll get back within 1 business days"}
                 </p>
               </div>
 
-              {activeTab === 'experts' ? (
+              {activeTab === 'product' ? (
                 <>
                   <div className="flex flex-col items-center mb-16 relative">
                     <div className="flex items-center justify-between w-full max-w-[400px] relative z-10">
