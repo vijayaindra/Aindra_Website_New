@@ -141,8 +141,8 @@ const BenefitsSection: React.FC = () => {
   
   const easedFade = fadeStage * fadeStage * (3 - 2 * fadeStage);
 
-  const benefitsTranslate = 120 - (benefitsStage * 350) - (easedFade * 200);
-  const benefitsScale = 1 - (easedFade * 0.08);
+  const benefitsTranslate = 48 - (benefitsStage * 120) - (easedFade * 120);
+  const benefitsScale = 1 - (easedFade * 0.05);
 
   const featuresEntryTranslate = 60 * (1 - easedFade);
   const featuresEntryScale = 0.94 + (0.06 * easedFade);
@@ -152,34 +152,36 @@ const BenefitsSection: React.FC = () => {
   return (
     <div ref={containerRef} className="relative w-full" style={{ height: '500vh' }}>
       <section className="sticky top-0 w-full h-screen bg-white overflow-hidden flex flex-col">
-        <div className="relative z-40 bg-white px-4 md:px-8 pt-4 pb-4">
-          <div className="flex flex-col md:flex-row items-start w-full">
-            <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10">
-              <div className="flex flex-col items-start w-full">
-                <div className="h-4 relative w-full overflow-hidden">
-                   <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-1000 ease-in-out ${scrollProgress < (transitionStart + transitionDuration / 2) ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
-                    BENEFITS
-                  </span>
-                  <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-1000 ease-in-out ${scrollProgress >= (transitionStart + transitionDuration / 2) ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
-                    FEATURES
-                  </span>
-                </div>
-                <div className="relative w-full flex items-center pr-1 mt-1">
-                  <div className="flex-grow h-[1px] bg-gray-200"></div>
-                  <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]"></div>
+        <div className="relative z-40 bg-white px-4 md:px-6 lg:px-8 pt-4 pb-4">
+          <div className="mx-auto w-full max-w-[1400px]">
+            <div className="flex flex-col md:flex-row items-start w-full">
+              <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10">
+                <div className="flex flex-col items-start w-full">
+                  <div className="h-4 relative w-full overflow-hidden">
+                    <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-1000 ease-in-out ${scrollProgress < (transitionStart + transitionDuration / 2) ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
+                      BENEFITS
+                    </span>
+                    <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-1000 ease-in-out ${scrollProgress >= (transitionStart + transitionDuration / 2) ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
+                      FEATURES
+                    </span>
+                  </div>
+                  <div className="relative w-full flex items-center pr-1 mt-1">
+                    <div className="flex-grow h-[1px] bg-gray-200"></div>
+                    <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]"></div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="flex-1 mt-0">
-              <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">
-                Clustr revolutionizes telepathology with seamless slide reporting, viewing, and sharing.
-              </h2>
+              <div className="flex-1 mt-0">
+                <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">
+                  Clustr revolutionizes telepathology with seamless slide reporting, viewing, and sharing.
+                </h2>
+              </div>
             </div>
           </div>
         </div>
 
         <div 
-          className="flex-grow relative z-10 px-4 md:px-8 overflow-hidden"
+          className="flex-grow relative z-10 px-4 md:px-6 lg:px-8 overflow-hidden"
           style={{ 
             opacity: 1 - easedFade,
             visibility: easedFade === 1 ? 'hidden' : 'visible',
@@ -187,46 +189,35 @@ const BenefitsSection: React.FC = () => {
             transition: 'opacity 0.15s linear' 
           }}
         >
-          <div className="h-full flex flex-col md:flex-row w-full">
-            <div className="hidden md:block w-[120px] md:w-[160px] mr-6 md:mr-10 shrink-0"></div>
-            <div className="flex-1 grid grid-cols-1 md:grid-cols-3 h-full pb-8 relative gap-x-4">
-              <div 
-                className="relative flex flex-col justify-end pr-2 will-change-transform"
-                style={{ transform: `translateY(${benefitsTranslate}px)`, opacity: scrollProgress > 0.01 ? 1 : 0 }}
-              >
-                <FeatureCard
-                  title={benefits[0].title}
-                  description={benefits[0].description}
-                />
-              </div>
-              <div 
-                className="relative flex flex-col justify-end px-2 will-change-transform"
-                style={{ transform: `translateY(${benefitsTranslate}px)`, opacity: scrollProgress > 0.01 ? 1 : 0 }}
-              >
-                <FeatureCard
-                  title={benefits[1].title}
-                  description={benefits[1].description}
-                />
-              </div>
-              <div 
-                className="relative flex flex-col pl-6 space-y-12 pt-6 will-change-transform"
-                style={{ transform: `translateY(${benefitsTranslate * 0.7}px)` }} 
-              >
-                <FeatureCard
-                  title={benefits[2].title}
-                  description={benefits[2].description}
-                />
-                <FeatureCard
-                  title={benefits[3].title}
-                  description={benefits[3].description}
-                />
+          <div className="mx-auto w-full max-w-[1400px] h-full">
+            <div className="h-full flex flex-col md:flex-row w-full">
+              <div className="hidden md:block w-[120px] md:w-[160px] mr-6 md:mr-10 shrink-0"></div>
+              <div className="flex-1 pb-10 md:pb-14">
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10 sm:gap-8 md:gap-10 h-full items-end">
+                  {benefits.map((benefit, index) => (
+                    <div
+                      key={benefit.title}
+                      className="will-change-transform"
+                      style={{
+                        transform: `translateY(${benefitsTranslate + index * 8}px)`,
+                        opacity: scrollProgress > 0.01 ? 1 : 0,
+                      }}
+                    >
+                      <FeatureCard
+                        title={benefit.title}
+                        description={benefit.description}
+                        className="max-w-none"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <div 
-          className="absolute inset-0 flex flex-col justify-center px-4 md:px-8 pt-24 z-20 pointer-events-none"
+          className="absolute inset-0 flex flex-col justify-center px-4 md:px-6 lg:px-8 pt-24 z-20 pointer-events-none"
           style={{ 
             opacity: easedFade,
             visibility: easedFade < 0.01 ? 'hidden' : 'visible',
@@ -235,54 +226,56 @@ const BenefitsSection: React.FC = () => {
             transition: 'opacity 0.3s ease-out'
           }}
         >
-          <div className="w-full h-full flex flex-col md:flex-row">
-            <div className="hidden md:block w-[120px] md:w-[160px] mr-6 md:mr-10 shrink-0"></div>
-            <div className="flex-1 flex flex-col justify-center">
-              <div className="bg-[#f8fafb] rounded-[48px] p-8 md:p-14 flex flex-col md:flex-row items-center gap-10 min-h-[440px] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100">
-                <div className="w-full md:w-[58%] overflow-hidden">
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[16/10] bg-white group">
-                    <img 
-                      key={currentFeature.image}
-                      src={currentFeature.image} 
-                      alt={currentFeature.title} 
-                      className="w-full h-full object-cover block animate-in fade-in zoom-in-95 duration-1000 ease-out transition-transform duration-700 hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-blue-500/5 mix-blend-screen pointer-events-none"></div>
+          <div className="mx-auto w-full max-w-[1400px] h-full">
+            <div className="w-full h-full flex flex-col md:flex-row">
+              <div className="hidden md:block w-[120px] md:w-[160px] mr-6 md:mr-10 shrink-0"></div>
+              <div className="flex-1 flex flex-col justify-center">
+                <div className="bg-[#f8fafb] rounded-[48px] p-8 md:p-14 flex flex-col md:flex-row items-center gap-10 min-h-[440px] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100">
+                  <div className="w-full md:w-[58%] overflow-hidden">
+                    <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[16/10] bg-white group">
+                      <img 
+                        key={currentFeature.image}
+                        src={currentFeature.image} 
+                        alt={currentFeature.title} 
+                        className="w-full h-full object-cover block animate-in fade-in zoom-in-95 duration-1000 ease-out transition-transform duration-700 hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-blue-500/5 mix-blend-screen pointer-events-none"></div>
+                    </div>
+                  </div>
+                  <div className="w-full md:w-[42%] flex flex-col justify-center">
+                    <div className="mb-4 inline-flex items-center space-x-3">
+                      <span className="text-[11px] font-extrabold text-blue-500 uppercase tracking-[0.2em]">INNOVATION {activeIndex + 1}</span>
+                      <div className="h-[2px] w-8 bg-blue-100"></div>
+                    </div>
+                    <h2 key={`title-${activeIndex}`} className="text-[32px] md:text-[36px] font-bold text-gray-900 mb-6 leading-[1.1] animate-in slide-in-from-right-4 duration-500 ease-out">
+                      {currentFeature.title}
+                    </h2>
+                    <p key={`desc-${activeIndex}`} className="text-[16px] leading-relaxed text-gray-600 font-normal animate-in slide-in-from-right-8 duration-700 ease-out">
+                      {currentFeature.description}
+                    </p>
+                    <div className="mt-8">
+                      <button className="text-[14px] font-bold text-[#00AEEF] hover:text-blue-600 flex items-center group transition-colors">
+                        Explore Clustr Platform 
+                        <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div className="w-full md:w-[42%] flex flex-col justify-center">
-                  <div className="mb-4 inline-flex items-center space-x-3">
-                     <span className="text-[11px] font-extrabold text-blue-500 uppercase tracking-[0.2em]">INNOVATION {activeIndex + 1}</span>
-                     <div className="h-[2px] w-8 bg-blue-100"></div>
-                  </div>
-                  <h2 key={`title-${activeIndex}`} className="text-[32px] md:text-[36px] font-bold text-gray-900 mb-6 leading-[1.1] animate-in slide-in-from-right-4 duration-500 ease-out">
-                    {currentFeature.title}
-                  </h2>
-                  <p key={`desc-${activeIndex}`} className="text-[16px] leading-relaxed text-gray-600 font-normal animate-in slide-in-from-right-8 duration-700 ease-out">
-                    {currentFeature.description}
-                  </p>
-                  <div className="mt-8">
-                     <button className="text-[14px] font-bold text-[#00AEEF] hover:text-blue-600 flex items-center group transition-colors">
-                       Explore Clustr Platform 
-                       <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                       </svg>
-                     </button>
-                  </div>
+                <div className="mt-8 flex justify-center items-center gap-4 w-full max-w-[400px] mx-auto">
+                  {features.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setActiveIndex(index)}
+                      className="group relative h-4 flex-1 flex items-center focus:outline-none"
+                    >
+                      <div className={`h-[4px] w-full rounded-full transition-all duration-500 ${
+                        index === activeIndex ? 'bg-black' : 'bg-gray-200 group-hover:bg-gray-300'
+                      }`} />
+                    </button>
+                  ))}
                 </div>
-              </div>
-              <div className="mt-8 flex justify-center items-center gap-4 w-full max-w-[400px] mx-auto">
-                {features.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveIndex(index)}
-                    className="group relative h-4 flex-1 flex items-center focus:outline-none"
-                  >
-                    <div className={`h-[4px] w-full rounded-full transition-all duration-500 ${
-                      index === activeIndex ? 'bg-black' : 'bg-gray-200 group-hover:bg-gray-300'
-                    }`} />
-                  </button>
-                ))}
               </div>
             </div>
           </div>

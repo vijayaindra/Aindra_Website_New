@@ -10,8 +10,6 @@ interface Solution {
   name: string;
   description: string;
   image: string;
-  glowColor: string;
-  glowPos: { top: string; left: string };
 }
 
 export const SolutionsShowcase: React.FC = () => {
@@ -24,32 +22,24 @@ export const SolutionsShowcase: React.FC = () => {
       name: 'CervAstra',
       description: 'Geography is no longer a barrier. Slides are reviewed remotely, and Bethesda-format reports are generated instantly, bridging the gap between rural clinics and expert pathologists.',
       image: cervAstraImage,
-      glowColor: 'bg-red-500',
-      glowPos: { top: '50%', left: '45%' }
     },
     {
       id: '02',
       name: 'LungAstra',
       description: 'Advanced AI detection for pulmonary and thoracic cytology. LungAstra identifies malignant morphological features in seconds, streamlining clinical workflows.',
       image: lungAstraImage,
-      glowColor: 'bg-orange-500',
-      glowPos: { top: '55%', left: '58%' }
     },
     {
       id: '03',
       name: 'ProsAstra',
       description: 'Standardizing prostate pathology. Our AI models assist in the precise identification and grading of prostate malignancies, ensuring reproducible diagnostic results.',
       image: proAstraImage,
-      glowColor: 'bg-orange-500',
-      glowPos: { top: '52%', left: '44%' }
     },
     {
       id: '04',
       name: 'ThyroAstra',
       description: 'ThyroAstra brings deep learning to thyroid cytopathology, assisting in the evaluation of fine needle aspiration samples with unparalleled accuracy.',
       image: thyroAstraImage,
-      glowColor: 'bg-orange-500',
-      glowPos: { top: '48%', left: '58%' }
     }
   ];
 
@@ -182,21 +172,7 @@ export const SolutionsShowcase: React.FC = () => {
                     <img 
                       src={s.image} 
                       alt={s.name} 
-                      className="w-full h-full object-cover filter saturate-125 contrast-110 brightness-105"
-                    />
-                    
-                    {/* Glowing highlight specific to the solution */}
-                    <div 
-                      style={{ top: s.glowPos.top, left: s.glowPos.left }}
-                      className={`absolute w-24 h-24 ${s.glowColor} opacity-30 blur-3xl rounded-full animate-pulse transition-all duration-1000`}
-                    />
-                    <div 
-                      style={{ top: `calc(${s.glowPos.top} + 2%)`, left: `calc(${s.glowPos.left} + 2%)` }}
-                      className={`absolute w-8 h-8 bg-white/40 rounded-full border border-white/20 shadow-lg backdrop-blur-sm transition-all duration-1000`}
-                    />
-                    <div 
-                       style={{ top: `calc(${s.glowPos.top} + 2.5%)`, left: `calc(${s.glowPos.left} + 2.5%)` }}
-                       className={`absolute w-4 h-4 ${s.glowColor} rounded-full shadow-[0_0_15px_rgba(255,255,255,0.8)] border border-white/50`}
+                      className="w-full h-full object-cover"
                     />
 
                     {/* Scanning UI Element overlay */}
