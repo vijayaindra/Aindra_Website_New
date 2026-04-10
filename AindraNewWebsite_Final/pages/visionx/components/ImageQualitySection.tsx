@@ -1,4 +1,9 @@
 import React from 'react';
+import cytologyImage from '../../../assets/ProductImages/Cytology.png';
+import frozenSectionImage from '../../../assets/ProductImages/Frozen Section.png';
+import hematologyImage from '../../../assets/ProductImages/Hematology.png';
+import histologyImage from '../../../assets/ProductImages/Histology.png';
+import ihcImage from '../../../assets/ProductImages/IHC.png';
 
 const QualityRow = ({ title, description, imageUrl }: { title: string; description: string; imageUrl: string }) => (
   <div className="py-16 border-t border-gray-200 flex flex-col md:flex-row gap-12 items-start">
@@ -35,22 +40,27 @@ const ImageQualitySection: React.FC = () => {
         <QualityRow 
           title="Cytology"
           description={commonDescription}
-          imageUrl="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&q=80&w=1200"
+          imageUrl={cytologyImage}
         />
         <QualityRow 
           title="Histology"
           description={commonDescription}
-          imageUrl="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1200"
+          imageUrl={histologyImage}
         />
         <QualityRow 
           title="IHC"
           description={commonDescription}
-          imageUrl="https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=1200"
+          imageUrl={ihcImage}
+        />
+        <QualityRow 
+          title="Hematology"
+          description={commonDescription}
+          imageUrl={hematologyImage}
         />
         <QualityRow 
           title="Frozen Section"
           description={commonDescription}
-          imageUrl="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200"
+          imageUrl={frozenSectionImage}
         />
         <div className="border-t border-gray-200 w-full"></div>
       </div>
