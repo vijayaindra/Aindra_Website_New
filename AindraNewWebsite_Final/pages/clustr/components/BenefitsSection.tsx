@@ -133,35 +133,35 @@ const BenefitsSection: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const transitionStart = 0.30;
-  const transitionDuration = 0.40;
-  
-  const benefitsStage = Math.min(1, scrollProgress / transitionStart);
-  const fadeStage = Math.max(0, Math.min(1, (scrollProgress - transitionStart) / transitionDuration));
-  
-  const easedFade = fadeStage * fadeStage * (3 - 2 * fadeStage);
-
-  const benefitsTranslate = 48 - (benefitsStage * 120) - (easedFade * 120);
-  const benefitsScale = 1 - (easedFade * 0.05);
-
-  const featuresEntryTranslate = 60 * (1 - easedFade);
-  const featuresEntryScale = 0.94 + (0.06 * easedFade);
+  const transition1 = 0.5;
+  const yellowExitProgress = Math.min(1, scrollProgress / 0.1);
+  const yellowOpacity = 1 - yellowExitProgress;
+  const yellowTranslateY = -(yellowExitProgress * 150);
+  const greenEnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.05) / 0.1));
+  const greenExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.25) / 0.2));
+  const greenOpacity = greenEnterProgress * (1 - greenExitProgress);
+  const greenTranslateY = (100 * (1 - greenEnterProgress)) - (400 * greenExitProgress);
+  const stage1Opacity = Math.max(0, Math.min(1, (transition1 - scrollProgress) * 10));
+  const stage2Opacity = scrollProgress > 0.35
+    ? Math.min(1, (scrollProgress - 0.35) * 8)
+    : 0;
+  const stage2TranslateY = 80 * (1 - Math.min(1, stage2Opacity));
 
   const currentFeature = features[activeIndex];
 
   return (
     <div ref={containerRef} className="relative w-full" style={{ height: '500vh' }}>
-      <section className="sticky top-0 w-full h-screen bg-white overflow-hidden flex flex-col">
+      <section className="sticky top-20 sm:top-24 w-full h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] bg-white overflow-hidden flex flex-col">
         <div className="relative z-40 bg-white px-4 md:px-6 lg:px-8 pt-4 pb-4">
           <div className="mx-auto w-full max-w-[1400px]">
             <div className="flex flex-col md:flex-row items-start w-full">
               <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10">
                 <div className="flex flex-col items-start w-full">
                   <div className="h-4 relative w-full overflow-hidden">
-                    <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-1000 ease-in-out ${scrollProgress < (transitionStart + transitionDuration / 2) ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
+                    <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-700 ease-in-out ${scrollProgress < transition1 ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
                       BENEFITS
                     </span>
-                    <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-1000 ease-in-out ${scrollProgress >= (transitionStart + transitionDuration / 2) ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
+                    <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-700 ease-in-out ${scrollProgress >= transition1 ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
                       FEATURES
                     </span>
                   </div>
@@ -183,33 +183,36 @@ const BenefitsSection: React.FC = () => {
         <div 
           className="flex-grow relative z-10 px-4 md:px-6 lg:px-8 overflow-hidden"
           style={{ 
-            opacity: 1 - easedFade,
-            visibility: easedFade === 1 ? 'hidden' : 'visible',
-            transform: `scale(${benefitsScale})`,
-            transition: 'opacity 0.15s linear' 
+            opacity: stage1Opacity,
+            visibility: stage1Opacity < 0.01 ? 'hidden' : 'visible',
+            pointerEvents: stage1Opacity > 0.5 ? 'auto' : 'none',
           }}
         >
           <div className="mx-auto w-full max-w-[1400px] h-full">
             <div className="h-full flex flex-col md:flex-row w-full">
               <div className="hidden md:block w-[120px] md:w-[160px] mr-6 md:mr-10 shrink-0"></div>
-              <div className="flex-1 pb-10 md:pb-14">
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10 sm:gap-8 md:gap-10 h-full items-end">
-                  {benefits.map((benefit, index) => (
-                    <div
-                      key={benefit.title}
-                      className="will-change-transform"
-                      style={{
-                        transform: `translateY(${benefitsTranslate + index * 8}px)`,
-                        opacity: scrollProgress > 0.01 ? 1 : 0,
-                      }}
-                    >
-                      <FeatureCard
-                        title={benefit.title}
-                        description={benefit.description}
-                        className="max-w-none"
-                      />
-                    </div>
-                  ))}
+              <div className="flex-1 relative h-full">
+                <div
+                  className="absolute right-0 top-12 w-[340px] flex flex-col space-y-16"
+                  style={{
+                    opacity: yellowOpacity,
+                    transform: `translateY(${yellowTranslateY}px)`,
+                    visibility: yellowOpacity < 0.01 ? 'hidden' : 'visible',
+                  }}
+                >
+                  <FeatureCard title={benefits[0].title} description={benefits[0].description} />
+                  <FeatureCard title={benefits[1].title} description={benefits[1].description} />
+                </div>
+                <div
+                  className="absolute left-0 bottom-24 w-full flex flex-col md:flex-row gap-x-12"
+                  style={{
+                    opacity: greenOpacity,
+                    transform: `translateY(${greenTranslateY}px)`,
+                    visibility: greenOpacity < 0.01 ? 'hidden' : 'visible',
+                  }}
+                >
+                  <FeatureCard title={benefits[2].title} description={benefits[2].description} className="flex-1" />
+                  <FeatureCard title={benefits[3].title} description={benefits[3].description} className="flex-1" />
                 </div>
               </div>
             </div>
@@ -219,11 +222,10 @@ const BenefitsSection: React.FC = () => {
         <div 
           className="absolute inset-0 flex flex-col justify-center px-4 md:px-6 lg:px-8 pt-24 z-20 pointer-events-none"
           style={{ 
-            opacity: easedFade,
-            visibility: easedFade < 0.01 ? 'hidden' : 'visible',
-            transform: `translateY(${featuresEntryTranslate}px) scale(${featuresEntryScale})`,
-            pointerEvents: easedFade > 0.9 ? 'auto' : 'none',
-            transition: 'opacity 0.3s ease-out'
+            opacity: stage2Opacity,
+            visibility: stage2Opacity < 0.01 ? 'hidden' : 'visible',
+            transform: `translateY(${stage2TranslateY}px)`,
+            pointerEvents: stage2Opacity > 0.8 ? 'auto' : 'none',
           }}
         >
           <div className="mx-auto w-full max-w-[1400px] h-full">
