@@ -3,6 +3,7 @@ import { Navbar } from '../../components/Navbar';
 import { sectionContainer, sectionShell } from '../../components/layout';
 import Breadcrumbs from './components/Breadcrumbs';
 import Hero from './components/Hero';
+import type { VisionXVariant } from './components/Hero';
 import BenefitsSection from './components/BenefitsSection';
 import ImageQualitySection from './components/ImageQualitySection';
 import SpecificationsSection from './components/SpecificationsSection';
@@ -14,6 +15,7 @@ import AIAssistant from './components/AIAssistant';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('OVERVIEW');
+  const [activeVariant, setActiveVariant] = useState<VisionXVariant>('VX1');
 
   return (
     <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
@@ -28,6 +30,8 @@ const App: React.FC = () => {
         <Hero 
           activeTab={activeSection} 
           onTabChange={setActiveSection} 
+          activeVariant={activeVariant}
+          onVariantChange={setActiveVariant}
         />
 
         {activeSection === 'OVERVIEW' ? (
@@ -35,7 +39,7 @@ const App: React.FC = () => {
         ) : activeSection === 'IMAGE QUALITY' ? (
           <ImageQualitySection />
         ) : activeSection === 'SPECIFICATIONS' ? (
-          <SpecificationsSection />
+          <SpecificationsSection activeVariant={activeVariant} />
         ) : activeSection === 'RESOURCES' ? (
           <ResourcesSection />
         ) : (

@@ -5,6 +5,7 @@ import intellistain30Image from '../../../assets/ProductImages/IS-30.png';
 import { sectionContainerWide, sectionShell } from '../../../components/layout';
 
 export const INTELLISTAIN_VARIANT_EVENT = 'intellistain:variant-change';
+export type IntellistainVariant = 'IS15' | 'IS30';
 
 interface ProductCardProps {
   name: string;
@@ -40,20 +41,35 @@ const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc, active = fals
 interface HeroProps {
   onTabChange?: (tab: string) => void;
   activeTab?: string;
+  activeVariant?: IntellistainVariant;
+  onVariantChange?: (variant: IntellistainVariant) => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
-  const [activeVariant, setActiveVariant] = useState('IS15');
+const Hero: React.FC<HeroProps> = ({
+  onTabChange,
+  activeTab = 'OVERVIEW',
+  activeVariant,
+  onVariantChange,
+}) => {
+  const [internalActiveVariant, setInternalActiveVariant] = useState<IntellistainVariant>('IS15');
+  const selectedVariant = activeVariant ?? internalActiveVariant;
 
   const variants = [
-    { id: 'IS15', label: 'IS15', image: intellistain15Image },
-    { id: 'IS30', label: 'IS30', image: intellistain30Image }
+    { id: 'IS15' as IntellistainVariant, label: 'IS15', image: intellistain15Image },
+    { id: 'IS30' as IntellistainVariant, label: 'IS30', image: intellistain30Image }
   ];
-  const activeVariantData = variants.find((variant) => variant.id === activeVariant) ?? variants[0];
+  const activeVariantData = variants.find((variant) => variant.id === selectedVariant) ?? variants[0];
+
+  const handleVariantSelect = (variant: IntellistainVariant) => {
+    if (activeVariant === undefined) {
+      setInternalActiveVariant(variant);
+    }
+    onVariantChange?.(variant);
+  };
 
   React.useEffect(() => {
-    window.dispatchEvent(new CustomEvent(INTELLISTAIN_VARIANT_EVENT, { detail: activeVariant }));
-  }, [activeVariant]);
+    window.dispatchEvent(new CustomEvent(INTELLISTAIN_VARIANT_EVENT, { detail: selectedVariant }));
+  }, [selectedVariant]);
 
   const tabs = ['OVERVIEW', 'STAINING QUALITY', 'SPECIFICATIONS', 'RESOURCES'];
 
@@ -68,8 +84,8 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
               key={variant.id}
               name={variant.label} 
               imageSrc={variant.image}
-              active={activeVariant === variant.id}
-              onClick={() => setActiveVariant(variant.id)}
+              active={selectedVariant === variant.id}
+              onClick={() => handleVariantSelect(variant.id)}
             />
           ))}
         </div>
@@ -80,7 +96,7 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
         {/* Left Content */}
         <div className="w-full md:w-1/2 z-10 pr-0 md:pr-14 lg:pr-20">
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-6 md:mb-8 leading-tight">
-            Intellistain {activeVariant === 'IS15' ? '15 slide' : '30 slide'}
+            Intellistain {selectedVariant === 'IS15' ? '15 slide' : '30 slide'}
           </h1>
           <div className="w-24 h-[1px] bg-gray-200 mb-8"></div>
           <p className="text-lg md:text-xl text-gray-500 font-normal leading-relaxed max-w-[540px]">
@@ -101,9 +117,9 @@ const Hero: React.FC<HeroProps> = ({ onTabChange, activeTab = 'OVERVIEW' }) => {
           
           <div className="relative z-10 w-[260px] sm:w-[340px] md:w-[450px] drop-shadow-2xl transition-all duration-700 ease-in-out transform">
             <img
-              key={activeVariant}
+              key={selectedVariant}
               src={activeVariantData.image}
-              alt={`Intellistain ${activeVariant} Device`}
+              alt={`Intellistain ${selectedVariant} Device`}
               className="w-full h-auto object-contain animate-in fade-in duration-700"
             />
           </div>

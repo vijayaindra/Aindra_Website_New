@@ -1,4 +1,8 @@
 import React from 'react';
+import visionX1Image from '../../../assets/ProductImages/VisionX2 (1).png';
+import visionX6Image from '../../../assets/ProductImages/VX6.png';
+import visionXFImage from '../../../assets/ProductImages/FWSI.jpg';
+import type { VisionXVariant } from './Hero';
 
 interface SpecRowProps {
   label: string;
@@ -24,7 +28,20 @@ const SectionHeader: React.FC<{ title: string }> = ({ title }) => (
   </div>
 );
 
-const SpecificationsSection: React.FC = () => {
+interface SpecificationsSectionProps {
+  activeVariant?: VisionXVariant;
+}
+
+const variantImageMap: Record<VisionXVariant, { src: string; softenBackground: boolean }> = {
+  VX1: { src: visionX1Image, softenBackground: false },
+  VX6: { src: visionX6Image, softenBackground: false },
+  'VX mini': { src: visionX1Image, softenBackground: false },
+  VXF: { src: visionXFImage, softenBackground: true },
+};
+
+const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVariant = 'VX1' }) => {
+  const imageConfig = variantImageMap[activeVariant] ?? variantImageMap.VX1;
+
   return (
     <section className="w-full bg-white px-4 md:px-6 lg:px-8 py-20 max-w-[1400px] mx-auto animate-in fade-in duration-700">
       {/* Top Heading */}
@@ -42,9 +59,9 @@ const SpecificationsSection: React.FC = () => {
           <div className="relative w-full max-w-[500px] mb-12 flex justify-center">
             <div className="relative border border-gray-200 rounded-lg p-10 bg-gray-50/30">
                <img 
-                src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&q=80&w=600" 
-                alt="VisionX Device Diagram" 
-                className="w-full h-auto mix-blend-multiply opacity-80"
+                src={imageConfig.src}
+                alt={`VisionX ${activeVariant} Device Diagram`}
+                className={`w-full h-auto object-contain opacity-90 ${imageConfig.softenBackground ? 'mix-blend-multiply' : ''}`}
               />
               {/* Dimension indicators */}
               <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 flex flex-col items-center">
