@@ -152,8 +152,7 @@ const BenefitsSection: React.FC = () => {
   return (
     <div ref={containerRef} className="relative w-full" style={{ height: '500vh' }}>
       <section className="sticky top-20 sm:top-24 w-full h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] bg-white overflow-hidden flex flex-col">
-        <div className="relative z-40 bg-white px-4 md:px-6 lg:px-8 pt-4 pb-4">
-          <div className="mx-auto w-full max-w-[1400px]">
+        <div className="relative z-50 bg-white px-4 md:px-8 pt-6 pb-4">
             <div className="flex flex-col md:flex-row items-start w-full">
               <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10">
                 <div className="flex flex-col items-start w-full">
@@ -177,18 +176,16 @@ const BenefitsSection: React.FC = () => {
                 </h2>
               </div>
             </div>
-          </div>
         </div>
 
         <div 
-          className="flex-grow relative z-10 px-4 md:px-6 lg:px-8 overflow-hidden"
+          className="flex-grow relative z-10 px-4 md:px-8 overflow-hidden"
           style={{ 
             opacity: stage1Opacity,
             visibility: stage1Opacity < 0.01 ? 'hidden' : 'visible',
             pointerEvents: stage1Opacity > 0.5 ? 'auto' : 'none',
           }}
         >
-          <div className="mx-auto w-full max-w-[1400px] h-full">
             <div className="h-full flex flex-col md:flex-row w-full">
               <div className="hidden md:block w-[120px] md:w-[160px] mr-6 md:mr-10 shrink-0"></div>
               <div className="flex-1 relative h-full">
@@ -216,11 +213,10 @@ const BenefitsSection: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
         </div>
 
         <div 
-          className="absolute inset-0 flex flex-col justify-center px-4 md:px-6 lg:px-8 pt-24 z-20 pointer-events-none"
+          className="absolute inset-0 flex flex-col justify-center px-4 md:px-8 pt-24 z-20"
           style={{ 
             opacity: stage2Opacity,
             visibility: stage2Opacity < 0.01 ? 'hidden' : 'visible',
@@ -228,12 +224,11 @@ const BenefitsSection: React.FC = () => {
             pointerEvents: stage2Opacity > 0.8 ? 'auto' : 'none',
           }}
         >
-          <div className="mx-auto w-full max-w-[1400px] h-full">
             <div className="w-full h-full flex flex-col md:flex-row">
               <div className="hidden md:block w-[120px] md:w-[160px] mr-6 md:mr-10 shrink-0"></div>
               <div className="flex-1 flex flex-col justify-center">
-                <div className="bg-[#f8fafb] rounded-[48px] p-8 md:p-14 flex flex-col md:flex-row items-center gap-10 min-h-[440px] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100">
-                  <div className="w-full md:w-[58%] overflow-hidden">
+                <div className="bg-[#f8fafb] rounded-[48px] p-8 md:p-14 flex flex-col md:flex-row items-center gap-10 min-h-[460px] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100">
+                  <div className="w-full md:w-[55%] overflow-hidden">
                     <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[16/10] bg-white group">
                       <img 
                         key={currentFeature.image}
@@ -244,7 +239,7 @@ const BenefitsSection: React.FC = () => {
                       <div className="absolute inset-0 bg-blue-500/5 mix-blend-screen pointer-events-none"></div>
                     </div>
                   </div>
-                  <div className="w-full md:w-[42%] flex flex-col justify-center">
+                  <div className="w-full md:w-[45%] flex flex-col justify-center">
                     <div className="mb-4 inline-flex items-center space-x-3">
                       <span className="text-[11px] font-extrabold text-blue-500 uppercase tracking-[0.2em]">INNOVATION {activeIndex + 1}</span>
                       <div className="h-[2px] w-8 bg-blue-100"></div>
@@ -280,7 +275,6 @@ const BenefitsSection: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none z-30"></div>
       </section>
