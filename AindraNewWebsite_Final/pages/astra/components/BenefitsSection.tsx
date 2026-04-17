@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
+import beforeImage from '../../../assets/ProductImages/Before.png';
+import afterImage from '../../../assets/ProductImages/After.png';
+import { BeforeAfterComparison } from '../../../components/BeforeAfterComparison';
 
 interface Feature {
   id: number;
@@ -107,11 +110,8 @@ const FeatureCard = ({
 
 const BenefitsSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const sliderRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [sliderPos, setSliderPos] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -133,37 +133,6 @@ const BenefitsSection: React.FC = () => {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleSliderMove = (e: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
-    if (!sliderRef.current) return;
-    const rect = sliderRef.current.getBoundingClientRect();
-    const x = 'touches' in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
-    const position = ((x - rect.left) / rect.width) * 100;
-    setSliderPos(Math.max(0, Math.min(100, position)));
-  };
-
-  const handleMouseDown = () => setIsDragging(true);
-  const handleMouseUp = () => setIsDragging(false);
-
-  useEffect(() => {
-    if (isDragging) {
-      window.addEventListener('mousemove', handleSliderMove);
-      window.addEventListener('mouseup', handleMouseUp);
-      window.addEventListener('touchmove', handleSliderMove);
-      window.addEventListener('touchend', handleMouseUp);
-    } else {
-      window.removeEventListener('mousemove', handleSliderMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-      window.removeEventListener('touchmove', handleSliderMove);
-      window.removeEventListener('touchend', handleMouseUp);
-    }
-    return () => {
-      window.removeEventListener('mousemove', handleSliderMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-      window.removeEventListener('touchmove', handleSliderMove);
-      window.removeEventListener('touchend', handleMouseUp);
-    };
-  }, [isDragging]);
 
   // Stage breaks
   const transition1 = 0.4;  // End of Benefits phase
@@ -348,47 +317,14 @@ const BenefitsSection: React.FC = () => {
           <div className="w-full h-full flex flex-col md:flex-row">
             <div className="hidden md:block w-[120px] md:w-[160px] mr-6 md:mr-10 shrink-0"></div>
             <div className="flex-1 flex flex-col justify-center items-center h-full pb-10">
-              <div 
-                ref={sliderRef}
-                className="relative w-full max-w-[1080px] aspect-[21/10] rounded-sm overflow-hidden select-none cursor-ew-resize shadow-2xl border border-gray-100"
-                onMouseDown={handleMouseDown}
-                onTouchStart={handleMouseDown}
-              >
-                <div className="absolute inset-0">
-                  <img 
-                    src="https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=1600"
-                    alt="After Analysis"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-8 right-8 text-white font-bold text-xl drop-shadow-lg z-10 px-4 py-1 bg-black/20 backdrop-blur-sm rounded">After</div>
-                </div>
-
-                <div 
-                  className="absolute inset-0 border-r-[3px] border-white/70 overflow-hidden"
-                  style={{ width: `${sliderPos}%` }}
-                >
-                  <img 
-                    src="https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=1600"
-                    alt="Before Analysis"
-                    className="absolute top-0 left-0 h-full object-cover"
-                    style={{ width: sliderRef.current?.offsetWidth || '1080px', maxWidth: 'none' }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 via-yellow-400/40 to-red-600/50 mix-blend-overlay"></div>
-                  <div className="absolute top-8 left-8 text-white font-bold text-xl drop-shadow-lg z-10 px-4 py-1 bg-black/20 backdrop-blur-sm rounded">Before</div>
-                </div>
-
-                <div 
-                  className="absolute top-0 bottom-0 w-[4px] bg-white cursor-ew-resize z-20 flex items-center justify-center pointer-events-none"
-                  style={{ left: `${sliderPos}%` }}
-                >
-                  <div className="w-12 h-12 rounded-full border-[3px] border-white bg-white/10 backdrop-blur-md flex items-center justify-center shadow-2xl">
-                    <div className="flex space-x-1.5">
-                       <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-                       <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <BeforeAfterComparison
+                className="max-w-[1080px] aspect-[1417/736] cursor-ew-resize"
+                beforeImage={beforeImage}
+                afterImage={afterImage}
+                beforeLabel="Before"
+                afterLabel="After"
+                initialPosition={50}
+              />
             </div>
           </div>
         </div>
