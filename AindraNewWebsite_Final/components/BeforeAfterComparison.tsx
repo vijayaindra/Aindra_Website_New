@@ -90,11 +90,15 @@ const BeforeAfterComparisonComponent: React.FC<BeforeAfterComparisonProps> = ({
         {afterLabel}
       </div>
 
-      <div className="absolute inset-y-0 z-20 w-[3px] -translate-x-1/2 bg-white" style={{ left: `${position}%` }}>
-        <div className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white bg-white/10 shadow-2xl backdrop-blur-md md:h-12 md:w-12">
+      <div className="absolute inset-y-0 z-20 w-[4px] -translate-x-1/2 bg-white" style={{ left: `${position}%` }}>
+        <div className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-[4px] border-white bg-white/10 shadow-2xl backdrop-blur-md md:h-12 md:w-12">
           <div className="flex h-full w-full items-center justify-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-white" />
-            <span className="h-1.5 w-1.5 rounded-full bg-white" />
+            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-white md:h-4 md:w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M14 6l-6 6 6 6" />
+            </svg>
+            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-white md:h-4 md:w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M10 6l6 6-6 6" />
+            </svg>
           </div>
         </div>
       </div>
