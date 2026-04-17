@@ -108,7 +108,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1631553127988-3475968f583f?q=80&w=2400&auto=format&fit=crop" 
-            alt="Continuous Workflow Background" 
+            alt="" aria-hidden="true" 
             className="w-full h-full object-cover filter saturate-[0.8] contrast-[1.02] brightness-[0.97] opacity-[0.06]"
           />
         </div>
