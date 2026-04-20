@@ -8,7 +8,7 @@ import impaLogo from '../../../assets/TrustedByLogo/logo-21.webp';
 
 interface TeamMember {
   name: string;
-  role: string;
+  role?: string;
   image: string;
   isLogo?: boolean;
 }
@@ -21,32 +21,27 @@ const teamMembers: TeamMember[] = Array(6).fill({
 
 const medicalPartners: TeamMember[] = [
   {
-    name: 'IMPA',
-    role: 'Medical Partner',
+    name: 'Indian Association of Pathologists and Microbiologists',
     image: impaLogo,
     isLogo: true
   },
   {
     name: 'RV Metropolis',
-    role: 'Medical Partner',
     image: rvMetropolisLogo,
     isLogo: true
   },
   {
     name: 'KMC Manipal',
-    role: 'Medical Partner',
     image: kmcManipalLogo,
     isLogo: true
   },
   {
     name: 'Rajarajeswari Medical College',
-    role: 'Medical Partner',
     image: rajarajeswariLogo,
     isLogo: true
   },
   {
     name: 'KIDWAI Memorial Institute of Oncology',
-    role: 'Medical Partner',
     image: kidwaiLogo,
     isLogo: true
   }
@@ -62,9 +57,10 @@ const categories = [
 
 const TeamSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("Aindra Team");
+  const isMedicalPartnersView = activeCategory === 'Medical Partners';
   const visibleMembers = useMemo(
-    () => (activeCategory === 'Medical Partners' ? medicalPartners : teamMembers),
-    [activeCategory]
+    () => (isMedicalPartnersView ? medicalPartners : teamMembers),
+    [isMedicalPartnersView]
   );
 
   return (
@@ -126,25 +122,27 @@ const TeamSection: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
               {visibleMembers.map((member, index) => (
                 <div key={index} className="flex flex-col group">
-                  <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-white shadow-sm border border-gray-100 transition-all duration-500 group-hover:shadow-xl group-hover:border-blue-100">
+                  <div className="rounded-xl overflow-hidden bg-white shadow-sm border border-gray-100 transition-all duration-500 group-hover:shadow-xl group-hover:border-blue-100">
+                    <div className="h-[270px] sm:h-[300px] bg-white flex items-center justify-center">
                     <img 
                       src={member.image} 
                       alt={member.name} 
                       className={`w-full h-full transition-all duration-700 ${
                         member.isLogo
-                          ? 'object-contain p-8 grayscale-0'
+                          ? 'object-contain p-6 sm:p-8 grayscale-0'
                           : 'object-cover grayscale group-hover:grayscale-0'
                       }`}
                     />
-                    
-                    {/* Info Box - matching the blue overlay at bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 p-5 bg-[#EBF5FB]/95 backdrop-blur-sm border-t border-blue-100">
-                      <h4 className="text-[17px] font-bold text-[#00AEEF] mb-0.5">
+                    </div>
+                    <div className="p-5 bg-[#EBF5FB]/95 border-t border-blue-100 min-h-[90px]">
+                      <h4 className="text-[17px] font-bold text-[#00AEEF] leading-snug mb-0.5">
                         {member.name}
                       </h4>
-                      <p className="text-[13px] font-medium text-gray-900">
-                        {member.role}
-                      </p>
+                      {!isMedicalPartnersView && member.role ? (
+                        <p className="text-[13px] font-medium text-gray-900">
+                          {member.role}
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                 </div>

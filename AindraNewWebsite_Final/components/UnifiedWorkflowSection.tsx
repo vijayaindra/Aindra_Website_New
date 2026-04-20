@@ -1,11 +1,15 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import samplePreparationImage from '../assets/ProductImages/Sample Preparation.png';
+import digitizationSlideImage from '../assets/ProductImages/Digitization of Slide.png';
+import aiImageAnalysisImage from '../assets/ProductImages/AI Based Image Analysis.png';
+import reviewReportingImage from '../assets/ProductImages/Review and Reporting.png';
 
 interface WorkflowStep {
   id: string;
   title: string;
   caption: string;
-  illustration: React.ReactNode;
+  imageSrc: string;
 }
 
 export const UnifiedWorkflowSection: React.FC = () => {
@@ -17,67 +21,25 @@ export const UnifiedWorkflowSection: React.FC = () => {
       id: '01',
       title: 'Sample Preparation',
       caption: 'It has survived not only five centuries, but also the leap into electronic typesetting.',
-      illustration: (
-        <svg viewBox="0 0 1000 300" className="w-full h-full text-[#00a3ff]" fill="none" stroke="currentColor" strokeWidth="1">
-          <path d="M350 250 L500 250 L540 210 L390 210 Z" className="fill-blue-50/20" />
-          <path d="M420 230 L570 230 L610 190 L460 190 Z" className="fill-blue-50/20" />
-          <path d="M490 210 L640 210 L680 170 L530 170 Z" className="fill-blue-50/20" />
-          <path d="M560 190 L710 190 L750 150 L600 150 Z" className="fill-blue-50/20" />
-          <path d="M440 80 Q450 120 440 150" strokeDasharray="3 3" />
-          <path d="M440 40 Q455 50 440 65 Q425 50 440 40" />
-          <path d="M510 60 Q520 100 510 130" strokeDasharray="3 3" />
-          <path d="M510 20 Q525 30 510 45 Q495 30 510 20" />
-          <path d="M120 180 Q150 140 180 180 T240 170" strokeWidth="0.5" />
-          <circle cx="150" cy="190" r="25" className="opacity-10" />
-        </svg>
-      ),
+      imageSrc: samplePreparationImage,
     },
     {
       id: '02',
       title: 'Digitization of Slide',
       caption: 'It has survived not only five centuries, but also the leap into electronic typesetting.',
-      illustration: (
-        <svg viewBox="0 0 1000 300" className="w-full h-full text-[#00a3ff]" fill="none" stroke="currentColor" strokeWidth="1">
-          <path d="M350 100 H750" strokeWidth="2" />
-          <path d="M390 100 V160" strokeWidth="2" />
-          <rect x="580" y="120" width="12" height="12" className="fill-current" />
-          <rect x="600" y="130" width="10" height="10" className="fill-current opacity-70" />
-          <path d="M150 220 L330 220 L370 180 L190 180 Z" className="fill-blue-50/20" />
-          <path d="M280 220 L460 220 L500 180 L320 180 Z" className="fill-blue-50/20" />
-          <path d="M410 220 L590 220 L630 180 L450 180 Z" className="fill-blue-50/20" />
-        </svg>
-      ),
+      imageSrc: digitizationSlideImage,
     },
     {
       id: '03',
       title: 'AI Based Image Analysis',
       caption: 'It has survived not only five centuries, but also the leap into electronic typesetting.',
-      illustration: (
-        <svg viewBox="0 0 1000 300" className="w-full h-full text-[#00a3ff]" fill="none" stroke="currentColor" strokeWidth="1">
-          <circle cx="450" cy="130" r="30" className="fill-blue-50/20" />
-          <path d="M450 130 L580 70" />
-          <path d="M450 130 L580 190" />
-          <rect x="580" y="40" width="200" height="100" rx="4" />
-          <rect x="580" y="160" width="200" height="100" rx="4" />
-          <path d="M180 200 L280 200 L310 180 L210 180 Z" className="opacity-30" />
-        </svg>
-      ),
+      imageSrc: aiImageAnalysisImage,
     },
     {
       id: '04',
       title: 'Review and Reporting',
       caption: 'It has survived not only five centuries, but also the leap into electronic typesetting.',
-      illustration: (
-        <svg viewBox="0 0 1000 300" className="w-full h-full text-[#00a3ff]" fill="none" stroke="currentColor" strokeWidth="1">
-          <rect x="350" y="100" width="220" height="120" rx="2" />
-          <path d="M360 120 H560" strokeWidth="0.5" />
-          <g transform="translate(280, 200)"><circle cx="0" cy="0" r="30" /><path d="M-15 10 Q0 0 15 10" /></g>
-          <g transform="translate(580, 100)"><circle cx="0" cy="0" r="30" /><path d="M-15 10 Q0 0 15 10" /></g>
-          <g transform="translate(620, 240)"><circle cx="0" cy="0" r="30" /><path d="M-15 10 Q0 0 15 10" /></g>
-          <path d="M350 160 L315 200" strokeDasharray="3 3" />
-          <path d="M570 130 L580 100" strokeDasharray="3 3" />
-        </svg>
-      ),
+      imageSrc: reviewReportingImage,
     },
   ];
 
@@ -201,10 +163,13 @@ export const UnifiedWorkflowSection: React.FC = () => {
                       {step.title}
                     </h3>
 
-                    <div className="relative w-full max-w-4xl aspect-[2/1] md:aspect-[2.8/1] max-h-[30vh] md:max-h-[35vh] border border-slate-200 bg-white/60 backdrop-blur-sm shadow-sm overflow-hidden flex items-center justify-center">
-                      <div className="w-full h-full flex items-center justify-center p-4">
-                        {step.illustration}
-                      </div>
+                    <div className="relative w-full max-w-4xl aspect-[21/8] bg-white overflow-hidden flex items-center justify-center">
+                      <img
+                        src={step.imageSrc}
+                        alt={step.title}
+                        className="w-full h-full object-contain object-center bg-white"
+                        loading="lazy"
+                      />
                       <div className="absolute right-0 top-1/2 w-screen h-[1px] bg-slate-100 translate-x-full"></div>
                     </div>
 
