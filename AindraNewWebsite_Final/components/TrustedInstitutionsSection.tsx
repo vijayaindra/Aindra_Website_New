@@ -1,24 +1,14 @@
 
 import React from 'react';
-import kidwaiLogo from '../assets/TrustedByLogo/KIDWAI Memorial Institute of Oncology.png';
-import rvMetropolisLogo from '../assets/TrustedByLogo/RV Metropolis.png';
 import sakraLogo from '../assets/TrustedByLogo/sakra.png';
-import logo21 from '../assets/TrustedByLogo/logo-21.webp';
-import kmcManipalLogo from '../assets/TrustedByLogo/KMC Manipal.png';
 import imagesJpegLogo from '../assets/TrustedByLogo/images.jpeg';
-import rajarajeswariLogo from '../assets/TrustedByLogo/Rajarajeswari Medical College.jpeg';
 import drMuftiLogo from '../assets/TrustedByLogo/dr-mufti.png';
 import { sectionContainer, sectionShell } from './layout';
 
 export const TrustedInstitutionsSection: React.FC = () => {
   const partnerLogos = [
-    { name: 'Kidwai Memorial Institute of Oncology', src: kidwaiLogo },
-    { name: 'RV Metropolis', src: rvMetropolisLogo },
     { name: 'Sakra', src: sakraLogo },
-    { name: 'Partner Logo 21', src: logo21 },
-    { name: 'KMC Manipal', src: kmcManipalLogo },
     { name: 'Partner Logo', src: imagesJpegLogo },
-    { name: 'Rajarajeswari Medical College', src: rajarajeswariLogo },
     { name: 'Dr Mufti', src: drMuftiLogo }
   ];
 

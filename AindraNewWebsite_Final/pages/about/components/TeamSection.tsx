@@ -1,10 +1,16 @@
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import kidwaiLogo from '../../../assets/TrustedByLogo/KIDWAI Memorial Institute of Oncology.png';
+import rvMetropolisLogo from '../../../assets/TrustedByLogo/RV Metropolis.png';
+import kmcManipalLogo from '../../../assets/TrustedByLogo/KMC Manipal.png';
+import rajarajeswariLogo from '../../../assets/TrustedByLogo/Rajarajeswari Medical College.jpeg';
+import impaLogo from '../../../assets/TrustedByLogo/logo-21.webp';
 
 interface TeamMember {
   name: string;
   role: string;
   image: string;
+  isLogo?: boolean;
 }
 
 const teamMembers: TeamMember[] = Array(6).fill({
@@ -12,6 +18,39 @@ const teamMembers: TeamMember[] = Array(6).fill({
   role: "Founder",
   image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
 });
+
+const medicalPartners: TeamMember[] = [
+  {
+    name: 'IMPA',
+    role: 'Medical Partner',
+    image: impaLogo,
+    isLogo: true
+  },
+  {
+    name: 'RV Metropolis',
+    role: 'Medical Partner',
+    image: rvMetropolisLogo,
+    isLogo: true
+  },
+  {
+    name: 'KMC Manipal',
+    role: 'Medical Partner',
+    image: kmcManipalLogo,
+    isLogo: true
+  },
+  {
+    name: 'Rajarajeswari Medical College',
+    role: 'Medical Partner',
+    image: rajarajeswariLogo,
+    isLogo: true
+  },
+  {
+    name: 'KIDWAI Memorial Institute of Oncology',
+    role: 'Medical Partner',
+    image: kidwaiLogo,
+    isLogo: true
+  }
+];
 
 const categories = [
   "Aindra Team",
@@ -23,6 +62,10 @@ const categories = [
 
 const TeamSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("Aindra Team");
+  const visibleMembers = useMemo(
+    () => (activeCategory === 'Medical Partners' ? medicalPartners : teamMembers),
+    [activeCategory]
+  );
 
   return (
     <section className="w-full bg-[#f0f7ff] py-24 overflow-hidden">
@@ -81,13 +124,17 @@ const TeamSection: React.FC = () => {
           {/* Team Grid: Optimized column counts for different viewports */}
           <div className="flex-1 md:pl-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-              {teamMembers.map((member, index) => (
+              {visibleMembers.map((member, index) => (
                 <div key={index} className="flex flex-col group">
                   <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-white shadow-sm border border-gray-100 transition-all duration-500 group-hover:shadow-xl group-hover:border-blue-100">
                     <img 
                       src={member.image} 
                       alt={member.name} 
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                      className={`w-full h-full transition-all duration-700 ${
+                        member.isLogo
+                          ? 'object-contain p-8 grayscale-0'
+                          : 'object-cover grayscale group-hover:grayscale-0'
+                      }`}
                     />
                     
                     {/* Info Box - matching the blue overlay at bottom */}
