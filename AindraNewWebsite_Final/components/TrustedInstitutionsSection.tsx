@@ -7,9 +7,9 @@ import { sectionContainer, sectionShell } from './layout';
 
 export const TrustedInstitutionsSection: React.FC = () => {
   const partnerLogos = [
-    { name: 'Sakra', src: sakraLogo },
-    { name: 'Partner Logo', src: imagesJpegLogo },
-    { name: 'Dr Mufti', src: drMuftiLogo }
+    { name: 'Sakra', src: sakraLogo, imgClass: 'max-h-[90%] scale-[1.22]' },
+    { name: 'ACTREC', src: imagesJpegLogo, imgClass: 'max-h-[74%] scale-[1.45]' },
+    { name: 'Dr Mufti', src: drMuftiLogo, imgClass: 'max-h-[78%] scale-[1.32]' }
   ];
 
   return (
@@ -30,20 +30,16 @@ export const TrustedInstitutionsSection: React.FC = () => {
         </div>
 
         {/* Institutions Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-y-8 sm:gap-y-0 sm:gap-x-16 md:gap-x-24 lg:gap-x-32 max-w-6xl">
           {partnerLogos.map((item, i) => (
             <div 
               key={i} 
-              className="h-20 sm:h-24 md:h-28 lg:h-32 flex items-center justify-center p-2"
+              className="h-28 sm:h-32 md:h-36 lg:h-40 flex items-center justify-center px-2"
             >
               <img
                 src={item.src}
                 alt={item.name}
-                className={`w-auto object-contain ${
-                  item.name === 'Dr Mufti'
-                    ? 'max-h-24 sm:max-h-24 md:max-h-32 lg:max-h-36'
-                    : 'max-h-14 sm:max-h-16 md:max-h-20 lg:max-h-24'
-                }`}
+                className={`w-auto h-auto object-contain transition-transform duration-300 ${item.imgClass}`}
                 loading="lazy"
               />
             </div>

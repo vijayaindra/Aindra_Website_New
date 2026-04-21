@@ -5,6 +5,13 @@ import rvMetropolisLogo from '../../../assets/TrustedByLogo/RV Metropolis.png';
 import kmcManipalLogo from '../../../assets/TrustedByLogo/KMC Manipal.png';
 import rajarajeswariLogo from '../../../assets/TrustedByLogo/Rajarajeswari Medical College.jpeg';
 import impaLogo from '../../../assets/TrustedByLogo/logo-21.webp';
+import anilImage from '../../../assets/Anil.jpg';
+import arunImage from '../../../assets/Arun-Venkatesh.png';
+import drShantiImage from '../../../assets/Dr_shanti.jpeg';
+import rajanImage from '../../../assets/Rajan.jpg';
+import vijaysimhaImage from '../../../assets/Vijaysimha.jpg';
+import adityaAjmeraImage from '../../../assets/aditya-ajmera.jpg';
+import bhushanImage from '../../../assets/bhushan.jpg';
 
 interface TeamMember {
   name: string;
@@ -18,6 +25,44 @@ const teamMembers: TeamMember[] = Array(6).fill({
   role: "Founder",
   image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
 });
+
+const advisors: TeamMember[] = [
+  {
+    name: 'Aditya Ajmera',
+    role: 'CEO, Chimco Bio Medical Engineering Co.',
+    image: adityaAjmeraImage
+  },
+  {
+    name: 'Dr. Shanti Bhattacharya',
+    role: 'Faculty, IIT Madras',
+    image: drShantiImage
+  },
+  {
+    name: 'Dr. Anil Kumar Sao',
+    role: 'Chairperson, SCEE IIT Mandi | Computer Vision Expert',
+    image: anilImage
+  },
+  {
+    name: 'ThiyagaRajan M',
+    role: 'Innovation Leader, Intuit | Serial Entrepreneur',
+    image: rajanImage
+  },
+  {
+    name: 'Arun Venkatesh',
+    role: 'CTO at Vilgro',
+    image: arunImage
+  },
+  {
+    name: 'Vijay Simha',
+    role: 'CEO, OneBreath Inc. | Business Thinker & Strategy Guru',
+    image: vijaysimhaImage
+  },
+  {
+    name: 'Bhushan KC',
+    role: 'CEO, BinBag',
+    image: bhushanImage
+  }
+];
 
 const medicalPartners: TeamMember[] = [
   {
@@ -59,8 +104,12 @@ const TeamSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("Aindra Team");
   const isMedicalPartnersView = activeCategory === 'Medical Partners';
   const visibleMembers = useMemo(
-    () => (isMedicalPartnersView ? medicalPartners : teamMembers),
-    [isMedicalPartnersView]
+    () => {
+      if (activeCategory === 'Advisors') return advisors;
+      if (isMedicalPartnersView) return medicalPartners;
+      return teamMembers;
+    },
+    [activeCategory, isMedicalPartnersView]
   );
 
   return (
