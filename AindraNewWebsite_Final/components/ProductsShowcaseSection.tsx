@@ -13,6 +13,7 @@ interface ProductData {
   image: string;
   href: string;
   isCustomUI?: boolean;
+  imageClass?: string;
 }
 
 export const ProductsShowcaseSection: React.FC = () => {
@@ -27,6 +28,7 @@ export const ProductsShowcaseSection: React.FC = () => {
       description: 'Automates the staining process with 100% consistency, reducing manual lab labor by 40% and ensuring high-quality slides for digital analysis.',
       image: intellistainImage,
       href: '#/intellistain',
+      imageClass: 'scale-[1.24]',
     },
     {
       id: '02',
@@ -35,6 +37,7 @@ export const ProductsShowcaseSection: React.FC = () => {
       description: 'High-resolution Brightfield whole slide scanner. Captures digital slides in under 60 seconds with sub-micron precision for seamless remote diagnostics.',
       image: visionXImage,
       href: '#/visionx',
+      imageClass: 'scale-[1.18]',
     },
     {
       id: '03',
@@ -43,6 +46,7 @@ export const ProductsShowcaseSection: React.FC = () => {
       description: 'Deep learning engine that automatically screens and flags suspicious morphological features, reducing primary screening time by 70% with 99% accuracy.',
       image: astraImage,
       href: '#/astra',
+      imageClass: 'scale-[1.08]',
     },
     {
       id: '04',
@@ -51,6 +55,7 @@ export const ProductsShowcaseSection: React.FC = () => {
       description: 'Centralized collaboration and reporting platform. Enables instant Bethesda & CAP guidelines standardized reports and remote case review from anywhere in the world.',
       image: clustrImage,
       href: '#/clustr',
+      imageClass: 'scale-[1.1]',
     },
   ];
 
@@ -227,12 +232,12 @@ export const ProductsShowcaseSection: React.FC = () => {
                         </div>
                       </div>
                     ) : (
-                      <div className="relative w-full max-w-sm">
+                      <div className="relative w-full max-w-[520px] lg:max-w-[620px] px-2">
                         <div className="absolute inset-0 bg-blue-50 blur-[100px] rounded-full opacity-60"></div>
                         <img 
                           src={p.image} 
                           alt={p.name} 
-                          className="relative z-10 w-full h-auto max-h-[40vh] lg:max-h-[45vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)]"
+                          className={`relative z-10 w-full h-auto max-h-[52vh] lg:max-h-[60vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
                           onError={(e) => {
                             e.currentTarget.src = "https://images.unsplash.com/photo-1579165466541-71835479444a?q=80&w=800&auto=format&fit=crop";
                           }}

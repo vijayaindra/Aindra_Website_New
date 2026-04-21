@@ -53,29 +53,13 @@ const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVar
       <div className="flex flex-col md:flex-row mb-24 gap-8">
         <SectionHeader title="Physical & Environmental" />
         <div className="flex-1 flex flex-col items-center">
-          {/* Device Diagram Placeholder */}
           <div className="relative w-full max-w-[500px] mb-12 flex justify-center">
-            <div className="relative border border-gray-200 rounded-lg p-10 bg-gray-50/30">
-               <img 
+            <div className="relative w-full aspect-square border border-gray-200 rounded-lg bg-gray-50/30 overflow-hidden">
+              <img
                 src={specificationImage}
                 alt={`Intellistain ${activeVariant} Device Diagram`}
-                className="w-full h-auto object-contain opacity-90"
+                className="w-full h-full object-contain"
               />
-              {/* Dimension indicators matching brochure Page 4 */}
-              <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 flex flex-col items-center">
-                <div className="h-32 w-[1px] bg-gray-400 relative">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-[1px] bg-gray-400"></div>
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-[1px] bg-gray-400"></div>
-                </div>
-                <span className="text-[12px] text-gray-400 mt-2 rotate-90">1.5 ft</span>
-              </div>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 flex flex-row items-center">
-                 <div className="w-32 h-[1px] bg-gray-400 relative">
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 h-2 w-[1px] bg-gray-400"></div>
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 h-2 w-[1px] bg-gray-400"></div>
-                </div>
-                <span className="text-[12px] text-gray-400 ml-2">1.5 ft</span>
-              </div>
             </div>
           </div>
 
