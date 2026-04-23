@@ -4,6 +4,7 @@ import samplePreparationImage from '../assets/ProductImages/Sample Preparation.p
 import digitizationSlideImage from '../assets/ProductImages/Digitization of Slide.png';
 import aiImageAnalysisImage from '../assets/ProductImages/AI Based Image Analysis.png';
 import reviewReportingImage from '../assets/ProductImages/Review and Reporting.png';
+import backgroundImage from '../assets/ProductImages/Background Image.png';
 
 interface WorkflowStep {
   id: string;
@@ -84,13 +85,20 @@ export const UnifiedWorkflowSection: React.FC = () => {
     <div ref={containerRef} className="relative hidden lg:block h-[900vh] bg-white">
       <section className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         
-        {/* Persistent Background */}
-        <div className="absolute inset-0 z-0">
+        {/* Intro-only Background (hidden for step slides) */}
+        <div
+          className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-300"
+          style={{
+            opacity: Math.max(0, Math.min(1, introOpacity)),
+            visibility: introOpacity > 0.02 ? 'visible' : 'hidden',
+          }}
+        >
           <img 
-            src="https://images.unsplash.com/photo-1631553127988-3475968f583f?q=80&w=2400&auto=format&fit=crop" 
+            src={backgroundImage}
             alt="" aria-hidden="true" 
-            className="w-full h-full object-cover filter saturate-[0.8] contrast-[1.02] brightness-[0.97] opacity-[0.06]"
+            className="w-full h-full object-cover opacity-[0.52]"
           />
+          <div className="absolute inset-0 bg-white/18"></div>
         </div>
 
         {/* Narrative Intro Content - Now a Sliding Page */}

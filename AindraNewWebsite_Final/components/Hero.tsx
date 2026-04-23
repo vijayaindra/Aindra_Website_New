@@ -1,5 +1,6 @@
 
 import React from 'react';
+import backgroundImage from '../assets/ProductImages/Background Image.png';
 
 export const Hero: React.FC = () => {
   return (
@@ -34,7 +35,7 @@ export const Hero: React.FC = () => {
           {/* Main Hero Image in a large circular frame */}
           <div className="absolute inset-0 rounded-full overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] ring-1 ring-[#e9edf3] z-10 bg-[#f7f9fc]">
             <img 
-              src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1600&auto=format&fit=crop" 
+              src={backgroundImage}
               alt="Cytology Pathology Slide" 
               className="w-full h-full object-cover filter saturate-[1.1] contrast-[1.02] scale-110"
             />
