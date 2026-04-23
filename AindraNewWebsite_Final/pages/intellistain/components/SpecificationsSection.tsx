@@ -149,18 +149,22 @@ const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVar
               />
             </div>
             <div className="pointer-events-none absolute -right-12 top-1/2 hidden -translate-y-1/2 md:flex flex-col items-center">
-              <div className="relative h-28 w-px bg-gray-300">
-                <span className="absolute -left-[3px] top-0 h-px w-[7px] bg-gray-300" />
-                <span className="absolute -left-[3px] bottom-0 h-px w-[7px] bg-gray-300" />
+              <div className="relative h-44 w-3 md:h-52">
+                <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gray-400" />
+                <div className="absolute -top-[1px] left-1/2 h-0 w-0 -translate-x-1/2 border-x-[3px] border-b-[6px] border-x-transparent border-b-gray-400" />
+                <div className="absolute -bottom-[1px] left-1/2 h-0 w-0 -translate-x-1/2 border-x-[3px] border-t-[6px] border-x-transparent border-t-gray-400" />
               </div>
-              <span className="mt-2 rotate-90 text-[12px] font-medium tracking-wide text-gray-500">1.5 ft</span>
+              <span className="mt-2 inline-block whitespace-nowrap text-[12px] leading-none text-gray-400 [writing-mode:vertical-rl]">
+                1.5ft
+              </span>
             </div>
             <div className="pointer-events-none absolute -bottom-9 left-1/2 hidden -translate-x-1/2 md:flex items-center">
-              <div className="relative h-px w-28 bg-gray-300">
-                <span className="absolute left-0 -top-[3px] h-[7px] w-px bg-gray-300" />
-                <span className="absolute right-0 -top-[3px] h-[7px] w-px bg-gray-300" />
+              <div className="relative h-3 w-44 md:w-52">
+                <div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-gray-400" />
+                <div className="absolute left-0 top-1/2 h-0 w-0 -translate-y-1/2 border-y-[3px] border-r-[6px] border-y-transparent border-r-gray-400" />
+                <div className="absolute right-0 top-1/2 h-0 w-0 -translate-y-1/2 border-y-[3px] border-l-[6px] border-y-transparent border-l-gray-400" />
               </div>
-              <span className="ml-2 text-[12px] font-medium tracking-wide text-gray-500">1.5 ft</span>
+              <span className="ml-2 whitespace-nowrap text-[12px] text-gray-400">1.5ft</span>
             </div>
           </div>
 

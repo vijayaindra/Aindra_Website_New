@@ -39,8 +39,211 @@ const variantImageMap: Record<VisionXVariant, { src: string; softenBackground: b
   VXF: { src: visionXFImage, softenBackground: true },
 };
 
+interface SpecCategory {
+  title: string;
+  rows: Array<{ label: string; value: string }>;
+}
+
+const specificationsByVariant: Record<VisionXVariant, SpecCategory[]> = {
+  VX1: [
+    {
+      title: 'Physical & Environmental',
+      rows: [
+        { label: 'Footprint', value: '42 x 37 x 41 cm' },
+        { label: 'Working Space', value: 'Compact benchtop footprint for laboratory settings' },
+        { label: 'Weight', value: '22 kg' },
+        { label: 'Power Supply', value: 'Standard AC input' },
+        { label: 'Durability', value: 'Sealed optics designed to withstand dust and humidity' },
+      ],
+    },
+    {
+      title: 'Optical & Imaging Performance',
+      rows: [
+        { label: 'Resolution', value: '0.26 µm/pixel' },
+        { label: 'Magnification', value: '60X equivalent' },
+        { label: 'Scanning Mode', value: 'Whole Slide Imaging with high-precision autofocus' },
+        { label: 'Objective Lens', value: 'Plan Apochromat optics for clear pathology imaging' },
+        { label: 'Image Type', value: 'Brightfield' },
+        { label: 'Scanning Time', value: '~150 seconds for 15 x 15 mm standard mode' },
+        { label: 'Z-Stacking', value: 'Automated Z-stacking, 25 layers' },
+      ],
+    },
+    {
+      title: 'Speed & Throughput',
+      rows: [
+        { label: 'Slide Capacity', value: 'Single slide feed' },
+        { label: 'Operation', value: 'Fully automated' },
+        { label: 'Duty Cycle', value: 'Designed for continuous 24/7 operation in remote settings' },
+      ],
+    },
+    {
+      title: 'Software & Connectivity',
+      rows: [
+        {
+          label: 'Software',
+          value: 'Proprietary scanning software, WSI download software, remote support software',
+        },
+        { label: 'Connectivity', value: 'LAN, Wi-Fi, USB 3.0' },
+        {
+          label: 'Storage',
+          value: 'On-device storage for up to 7,500 scans; cloud storage support available',
+        },
+        { label: 'Security', value: 'Cloud-backed security with enterprise-grade certifications' },
+        { label: 'HMI', value: '10-inch touch screen' },
+      ],
+    },
+  ],
+  VX6: [
+    {
+      title: 'Physical & Environmental',
+      rows: [
+        { label: 'Footprint', value: '62 x 36 x 38 cm' },
+        { label: 'Working Space', value: 'Compact benchtop footprint for laboratory settings' },
+        { label: 'Weight', value: '28 kg' },
+        { label: 'Power Supply', value: 'Standard AC input' },
+        { label: 'Durability', value: 'Sealed optics designed to withstand dust and humidity' },
+      ],
+    },
+    {
+      title: 'Optical & Imaging Performance',
+      rows: [
+        { label: 'Resolution', value: '0.17 µm/pixel' },
+        { label: 'Magnification', value: '60X equivalent' },
+        { label: 'Scanning Mode', value: 'Whole Slide Imaging with high-precision autofocus' },
+        { label: 'Objective Lens', value: 'Plan Apochromat optics for clear pathology imaging' },
+        { label: 'Image Type', value: 'Brightfield' },
+        { label: 'Scanning Time', value: '~150 seconds for 15 x 15 mm standard mode' },
+        { label: 'Z-Stacking', value: 'Automated Z-stacking, 25 layers' },
+      ],
+    },
+    {
+      title: 'Speed & Throughput',
+      rows: [
+        { label: 'Slide Capacity', value: '6-slide tray' },
+        { label: 'Operation', value: 'Fully automated' },
+        { label: 'Duty Cycle', value: 'Designed for continuous 24/7 operation in remote settings' },
+      ],
+    },
+    {
+      title: 'Software & Connectivity',
+      rows: [
+        {
+          label: 'Software',
+          value: 'Proprietary scanning software, WSI download software, remote support software',
+        },
+        { label: 'Connectivity', value: 'LAN, Wi-Fi, USB 3.0' },
+        {
+          label: 'Storage',
+          value: 'On-device storage for up to 7,500 scans; cloud storage support available',
+        },
+        { label: 'Security', value: 'Cloud-backed security with enterprise-grade certifications' },
+        { label: 'HMI', value: '13.3-inch touch screen' },
+      ],
+    },
+  ],
+  'VX mini': [
+    {
+      title: 'Physical & Environmental',
+      rows: [
+        { label: 'Footprint', value: '42 x 37 x 41 cm' },
+        { label: 'Working Space', value: 'Compact benchtop footprint for laboratory settings' },
+        { label: 'Weight', value: '22 kg' },
+        { label: 'Power Supply', value: 'Standard AC input' },
+        { label: 'Durability', value: 'Sealed optics designed to withstand dust and humidity' },
+      ],
+    },
+    {
+      title: 'Optical & Imaging Performance',
+      rows: [
+        { label: 'Resolution', value: '0.26 µm/pixel' },
+        { label: 'Magnification', value: '60X equivalent' },
+        { label: 'Scanning Mode', value: 'Whole Slide Imaging with high-precision autofocus' },
+        { label: 'Objective Lens', value: 'Plan Apochromat optics for clear pathology imaging' },
+        { label: 'Image Type', value: 'Brightfield' },
+        { label: 'Scanning Time', value: '~150 seconds for 15 x 15 mm standard mode' },
+        { label: 'Z-Stacking', value: 'Automated Z-stacking, 25 layers' },
+      ],
+    },
+    {
+      title: 'Speed & Throughput',
+      rows: [
+        { label: 'Slide Capacity', value: 'Single slide feed' },
+        { label: 'Operation', value: 'Fully automated' },
+        { label: 'Duty Cycle', value: 'Designed for continuous 24/7 operation in remote settings' },
+      ],
+    },
+    {
+      title: 'Software & Connectivity',
+      rows: [
+        {
+          label: 'Software',
+          value: 'Proprietary scanning software, WSI download software, remote support software',
+        },
+        { label: 'Connectivity', value: 'LAN, Wi-Fi, USB 3.0' },
+        {
+          label: 'Storage',
+          value: 'On-device storage for up to 7,500 scans; cloud storage support available',
+        },
+        { label: 'Security', value: 'Cloud-backed security with enterprise-grade certifications' },
+        { label: 'HMI', value: '10-inch touch screen' },
+      ],
+    },
+  ],
+  VXF: [
+    {
+      title: 'Physical & Environmental',
+      rows: [
+        { label: 'Footprint', value: '440 x 567 x 460 mm' },
+        { label: 'Working Space', value: 'Compact benchtop footprint for laboratory use' },
+        { label: 'Weight', value: '25 kg' },
+        { label: 'System Type', value: 'Single-slide fluorescent scanner' },
+      ],
+    },
+    {
+      title: 'Fluorescent Imaging Performance',
+      rows: [
+        { label: 'Imaging Channels', value: '3 channels: DAPI, FITC, TRITC' },
+        { label: 'Objective', value: 'CFI Plan Fluor 20X / Nikon' },
+        { label: 'Scanning Mode', value: 'Field of view scanning, not whole-slide imaging' },
+        { label: 'Field of View', value: 'Configurable based on application requirements' },
+        { label: 'Scan Time', value: 'Varies depending on configured field of view' },
+      ],
+    },
+    {
+      title: 'Software & Connectivity',
+      rows: [
+        {
+          label: 'Software',
+          value: 'Proprietary scanning software, WSI download software, remote support software',
+        },
+        { label: 'Connectivity', value: 'LAN, Wi‑Fi, USB 3.0' },
+        {
+          label: 'Storage',
+          value: 'On-device storage for up to 7,500 scans; cloud storage support available',
+        },
+        { label: 'Security', value: 'Cloud-backed security with enterprise-grade certifications' },
+      ],
+    },
+    {
+      title: 'Speed & Throughput',
+      rows: [
+        { label: 'Slide Capacity', value: 'Single-slide feed' },
+        { label: 'Scan Mode', value: 'Field of view scanning' },
+        { label: 'Field of View', value: 'Configurable based on application' },
+        { label: 'Scan Time', value: 'Varies depending on configured field of view' },
+        { label: 'Operation', value: 'Fully automated' },
+        { label: 'Workflow', value: 'Designed for rapid fluorescent imaging of targeted regions' },
+        { label: 'Use Case', value: 'Single-slide, multi-channel fluorescence scanning' },
+      ],
+    },
+  ],
+};
+
 const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVariant = 'VX1' }) => {
   const imageConfig = variantImageMap[activeVariant] ?? variantImageMap.VX1;
+  const variantSpecs = specificationsByVariant[activeVariant] ?? specificationsByVariant.VX1;
+  const firstCategory = variantSpecs[0];
+  const remainingCategories = variantSpecs.slice(1);
 
   return (
     <section className="w-full bg-white px-4 md:px-6 lg:px-8 py-20 max-w-[1400px] mx-auto animate-in fade-in duration-700">
@@ -51,70 +254,63 @@ const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVar
         </h2>
       </div>
 
-      {/* Physical & Environmental */}
+      {/* Primary Category with Image */}
       <div className="flex flex-col md:flex-row mb-24 gap-8">
-        <SectionHeader title="Physical & Environmental" />
+        <SectionHeader title={firstCategory.title} />
         <div className="flex-1 flex flex-col items-center">
           {/* Device Diagram Placeholder */}
-          <div className="relative w-full max-w-[500px] mb-12 flex justify-center">
-            <div className="relative border border-gray-200 rounded-lg p-10 bg-gray-50/30">
+          <div className="relative mb-12 flex justify-center">
+            <div className="relative inline-flex border border-gray-200 rounded-lg p-4 md:p-5 bg-gray-50/30">
                <img 
                 src={imageConfig.src}
                 alt={`VisionX ${activeVariant} Device Diagram`}
-                className={`w-full h-auto object-contain opacity-90 ${imageConfig.softenBackground ? 'mix-blend-multiply' : ''}`}
+                className={`block h-auto w-auto max-w-[280px] sm:max-w-[360px] md:max-w-[420px] lg:max-w-[460px] opacity-90 ${imageConfig.softenBackground ? 'mix-blend-multiply' : ''}`}
               />
               {/* Dimension indicators */}
               <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 flex flex-col items-center">
-                <div className="h-32 w-[1px] bg-gray-400 relative">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-[1px] bg-gray-400"></div>
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-[1px] bg-gray-400"></div>
+                <div className="relative h-44 w-3 md:h-52">
+                  <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gray-400" />
+                  <div className="absolute -top-[1px] left-1/2 h-0 w-0 -translate-x-1/2 border-x-[3px] border-b-[6px] border-x-transparent border-b-gray-400" />
+                  <div className="absolute -bottom-[1px] left-1/2 h-0 w-0 -translate-x-1/2 border-x-[3px] border-t-[6px] border-x-transparent border-t-gray-400" />
                 </div>
-                <span className="text-[12px] text-gray-400 mt-2 rotate-90">50 cm</span>
+                <span className="mt-2 inline-block whitespace-nowrap text-[12px] leading-none text-gray-400 [writing-mode:vertical-rl]">
+                  1.5ft
+                </span>
               </div>
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 flex flex-row items-center">
-                 <div className="w-32 h-[1px] bg-gray-400 relative">
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 h-2 w-[1px] bg-gray-400"></div>
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 h-2 w-[1px] bg-gray-400"></div>
+                 <div className="relative h-3 w-44 md:w-52">
+                  <div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-gray-400" />
+                  <div className="absolute left-0 top-1/2 h-0 w-0 -translate-y-1/2 border-y-[3px] border-r-[6px] border-y-transparent border-r-gray-400" />
+                  <div className="absolute right-0 top-1/2 h-0 w-0 -translate-y-1/2 border-y-[3px] border-l-[6px] border-y-transparent border-l-gray-400" />
                 </div>
-                <span className="text-[12px] text-gray-400 ml-2">50 cm</span>
+                <span className="text-[12px] text-gray-400 ml-2 whitespace-nowrap">1.5ft</span>
               </div>
             </div>
           </div>
 
           <div className="w-full">
-            <SpecRow label="Footprint" value="42cm × 37cm × 41cm" />
-            <SpecRow label="Weight" value="19 Kg" />
-            <SpecRow label="Power Supply" value="Standard AC input" />
-            <SpecRow label="Durability" value="Sealed optics to withstand dust and humidity" />
+            {firstCategory.rows.map((row) => (
+              <SpecRow key={row.label} label={row.label} value={row.value} />
+            ))}
             <div className="border-t border-gray-200"></div>
           </div>
         </div>
       </div>
 
-      {/* Optical & Imaging Performance */}
-      <div className="flex flex-col md:flex-row mb-24 gap-8">
-        <SectionHeader title="Optical & Imaging Performance" />
-        <div className="flex-1">
-          <SpecRow label="Resolution" value="0.5 µm/pixel" />
-          <SpecRow label="Magnification" value="20x / 40x Digital Zoom equivalent." />
-          <SpecRow label="Scanning Mode" value="Whole Slide Imaging (WSI) with auto-focus." />
-          <SpecRow label="Objective Lens" value="High-numerical aperture optics for crystal-clear cytology & histology clarity." />
-          <SpecRow label="Image Type" value="Brightfield." />
-          <div className="border-t border-gray-200"></div>
+      {remainingCategories.map((category, index) => (
+        <div
+          key={category.title}
+          className={`flex flex-col md:flex-row gap-8 ${index === remainingCategories.length - 1 ? '' : 'mb-24'}`}
+        >
+          <SectionHeader title={category.title} />
+          <div className="flex-1">
+            {category.rows.map((row) => (
+              <SpecRow key={row.label} label={row.label} value={row.value} />
+            ))}
+            <div className="border-t border-gray-200"></div>
+          </div>
         </div>
-      </div>
-
-      {/* Speed & Throughput */}
-      <div className="flex flex-col md:flex-row gap-8">
-        <SectionHeader title="Speed & Throughput" />
-        <div className="flex-1">
-          <SpecRow label="Scan Time" value="~15 Minutes" />
-          <SpecRow label="Slide Capacity" value="Single Slide Feed" />
-          <SpecRow label="Operation" value="Fully Automated" />
-          <SpecRow label="Duty Cycle" value="Designed for continuous 24/7 operation in remote settings." />
-          <div className="border-t border-gray-200"></div>
-        </div>
-      </div>
+      ))}
     </section>
   );
 };
