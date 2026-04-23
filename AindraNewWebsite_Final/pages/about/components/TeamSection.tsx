@@ -21,7 +21,7 @@ import vijayTeamImage from '../../../assets/Aindra_team/Vijay.jpg';
 import charanTeamImage from '../../../assets/Aindra_team/Charan.jpg';
 import abhyanandTeamImage from '../../../assets/Aindra_team/Abhyanand.jpg';
 import farhanTeamImage from '../../../assets/Aindra_team/Farhan.jpeg';
-import harshithaTeamImage from '../../../assets/Aindra_team/Harshitha.jpg';
+import harshithaTeamImage from '../../../assets/Aindra_team/Harshitha.png';
 import anilImage from '../../../assets/Anil.jpg';
 import arunImage from '../../../assets/Arun-Venkatesh.png';
 import drShantiImage from '../../../assets/Dr_shanti.jpeg';
