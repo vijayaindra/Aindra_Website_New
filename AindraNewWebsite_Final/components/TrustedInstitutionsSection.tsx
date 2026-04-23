@@ -12,21 +12,22 @@ import { SectionEyebrow } from './SectionEyebrow';
 
 export const TrustedInstitutionsSection: React.FC = () => {
   const partnerLogos = [
-    { name: 'Sakra', src: sakraLogo, imgClass: 'max-h-[90%] scale-[1.22]' },
-    { name: 'ACTREC', src: imagesJpegLogo, imgClass: 'max-h-[74%] scale-[1.45]' },
-    { name: 'Dr Mufti', src: drMuftiLogo, imgClass: 'max-h-[78%] scale-[1.32]' },
-    { name: 'Homi Bhabha', src: homiBabaLogo, imgClass: 'max-h-[82%] scale-[1.18]' },
-    { name: 'KLE', src: kleLogo, imgClass: 'max-h-[82%] scale-[1.18]' },
-    { name: 'NCI Jhajjar', src: nciJhajjharLogo, imgClass: 'max-h-[82%] scale-[1.16]' },
-    { name: 'MSMF', src: msmfLogo, imgClass: 'max-h-[82%] scale-[1.16]' }
+    { name: 'Sakra', src: sakraLogo },
+    { name: 'ACTREC', src: imagesJpegLogo },
+    { name: 'Dr Mufti', src: drMuftiLogo },
+    { name: 'Homi Bhabha', src: homiBabaLogo },
+    { name: 'KLE', src: kleLogo },
+    { name: 'NCI Jhajjar', src: nciJhajjharLogo },
+    { name: 'MSMF', src: msmfLogo }
   ];
+  const desktopRemainder = partnerLogos.length % 3;
 
   return (
-    <section className={`relative pt-12 pb-20 md:pb-24 ${sectionShell} bg-white overflow-hidden`}>
+    <section className={`relative py-14 md:py-20 ${sectionShell} bg-white overflow-hidden`}>
       <div className={sectionContainer}>
         
         {/* Header Area */}
-        <div className="grid grid-cols-12 gap-4 md:gap-8 items-start mb-10 md:mb-12">
+        <div className="grid grid-cols-12 gap-4 md:gap-8 items-start mb-10 md:mb-14">
           <div className="col-span-12 lg:col-span-3 pt-1">
             <SectionEyebrow label="Partners" />
           </div>
@@ -38,16 +39,18 @@ export const TrustedInstitutionsSection: React.FC = () => {
         </div>
 
         {/* Institutions Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-8 md:gap-x-12 gap-y-8 max-w-6xl">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 max-w-[1120px] mx-auto">
           {partnerLogos.map((item, i) => (
             <div 
               key={i} 
-              className="h-28 sm:h-32 md:h-36 lg:h-40 flex items-center justify-center px-2"
+              className={`h-32 sm:h-36 md:h-40 lg:h-44 p-1 sm:p-2 md:p-2 flex items-center justify-center overflow-hidden ${
+                desktopRemainder === 1 && i === partnerLogos.length - 1 ? 'lg:col-start-2' : ''
+              }`}
             >
               <img
                 src={item.src}
                 alt={item.name}
-                className={`w-auto h-auto object-contain transition-transform duration-300 ${item.imgClass}`}
+                className="w-[94%] h-[94%] object-contain object-center scale-[1.22]"
                 loading="lazy"
               />
             </div>
