@@ -5,6 +5,23 @@ import rvMetropolisLogo from '../../../assets/TrustedByLogo/RV Metropolis.png';
 import kmcManipalLogo from '../../../assets/TrustedByLogo/KMC Manipal.png';
 import rajarajeswariLogo from '../../../assets/TrustedByLogo/Rajarajeswari Medical College.jpeg';
 import impaLogo from '../../../assets/TrustedByLogo/logo-21.webp';
+import biracLogo from '../../../assets/Investors/investor1.png';
+import iusstfLogo from '../../../assets/Investors/investor2.png';
+import villgroLogo from '../../../assets/Investors/investor3.png';
+import millenniumAllianceLogo from '../../../assets/Investors/investor4.png';
+import ikpLogo from '../../../assets/Investors/investor5.png';
+import forgeLogo from '../../../assets/Investors/investor6.png';
+import iitMadrasLogo from '../../../assets/Research_Partner/research-partners1.png';
+import iitMandiLogo from '../../../assets/Research_Partner/research-partners2.png';
+import iiscLogo from '../../../assets/Research_Partner/research-partners3.png';
+import adarshTeamImage from '../../../assets/Aindra_team/Adarsh.jpg';
+import atulTeamImage from '../../../assets/Aindra_team/Atul.jpg';
+import sudhirTeamImage from '../../../assets/Aindra_team/Sudhir.jpeg';
+import vijayTeamImage from '../../../assets/Aindra_team/Vijay.jpg';
+import charanTeamImage from '../../../assets/Aindra_team/Charan.jpg';
+import abhyanandTeamImage from '../../../assets/Aindra_team/Abhyanand.jpg';
+import farhanTeamImage from '../../../assets/Aindra_team/Farhan.jpeg';
+import harshithaTeamImage from '../../../assets/Aindra_team/Harshitha.jpg';
 import anilImage from '../../../assets/Anil.jpg';
 import arunImage from '../../../assets/Arun-Venkatesh.png';
 import drShantiImage from '../../../assets/Dr_shanti.jpeg';
@@ -20,11 +37,48 @@ interface TeamMember {
   isLogo?: boolean;
 }
 
-const teamMembers: TeamMember[] = Array(6).fill({
-  name: "Adarsh Natrajan",
-  role: "Founder",
-  image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
-});
+const teamMembers: TeamMember[] = [
+  {
+    name: 'Adarsh Natarajan',
+    role: 'CEO',
+    image: adarshTeamImage
+  },
+  {
+    name: 'Atul Bisht',
+    role: 'Product Manager',
+    image: atulTeamImage
+  },
+  {
+    name: 'Sudhir Kumar',
+    role: 'Electronics & Embedded Engineer',
+    image: sudhirTeamImage
+  },
+  {
+    name: 'Vijay Kumar',
+    role: 'Team Lead',
+    image: vijayTeamImage
+  },
+  {
+    name: 'Charan Nagasayana',
+    role: 'QA Associate',
+    image: charanTeamImage
+  },
+  {
+    name: 'Abhyanand Jha',
+    role: 'Software Engineer',
+    image: abhyanandTeamImage
+  },
+  {
+    name: 'Farhan Sidhik',
+    role: 'Product Designer',
+    image: farhanTeamImage
+  },
+  {
+    name: 'Harshitha Samudrala',
+    role: 'Software Engineer',
+    image: harshithaTeamImage
+  }
+];
 
 const advisors: TeamMember[] = [
   {
@@ -92,6 +146,57 @@ const medicalPartners: TeamMember[] = [
   }
 ];
 
+const investors: TeamMember[] = [
+  {
+    name: 'BIRAC',
+    image: biracLogo,
+    isLogo: true
+  },
+  {
+    name: 'IUSSTF',
+    image: iusstfLogo,
+    isLogo: true
+  },
+  {
+    name: 'Villgro',
+    image: villgroLogo,
+    isLogo: true
+  },
+  {
+    name: 'Millennium Alliance',
+    image: millenniumAllianceLogo,
+    isLogo: true
+  },
+  {
+    name: 'IKP Knowledge Park',
+    image: ikpLogo,
+    isLogo: true
+  },
+  {
+    name: 'Forge',
+    image: forgeLogo,
+    isLogo: true
+  }
+];
+
+const researchPartners: TeamMember[] = [
+  {
+    name: 'Indian Institute of Technology Madras',
+    image: iitMadrasLogo,
+    isLogo: true
+  },
+  {
+    name: 'Indian Institute of Technology Mandi',
+    image: iitMandiLogo,
+    isLogo: true
+  },
+  {
+    name: 'Indian Institute of Science',
+    image: iiscLogo,
+    isLogo: true
+  }
+];
+
 const categories = [
   "Aindra Team",
   "Advisors",
@@ -106,6 +211,8 @@ const TeamSection: React.FC = () => {
   const visibleMembers = useMemo(
     () => {
       if (activeCategory === 'Advisors') return advisors;
+      if (activeCategory === 'Investors') return investors;
+      if (activeCategory === 'Research Partners') return researchPartners;
       if (isMedicalPartnersView) return medicalPartners;
       return teamMembers;
     },
@@ -188,7 +295,7 @@ const TeamSection: React.FC = () => {
                         {member.name}
                       </h4>
                       {!isMedicalPartnersView && member.role ? (
-                        <p className="text-[13px] font-medium text-gray-900">
+                        <p className="text-[15px] font-bold text-gray-900">
                           {member.role}
                         </p>
                       ) : null}
