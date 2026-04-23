@@ -37,8 +37,95 @@ const variantImageMap: Record<IntellistainVariant, string> = {
   IS30: intellistain30Image,
 };
 
+interface SpecItem {
+  label: string;
+  value: string;
+}
+
+interface CategorySpecs {
+  title: 'Physical & Environmental' | 'Staining Performance & Cost' | 'Versatility & Features';
+  rows: SpecItem[];
+}
+
+const specificationData: Record<IntellistainVariant, CategorySpecs[]> = {
+  IS15: [
+    {
+      title: 'Physical & Environmental',
+      rows: [
+        { label: 'Footprint', value: '44 x 50 cm' },
+        { label: 'Working Space', value: 'Compact tabletop footprint designed to save laboratory space' },
+        { label: 'Weight', value: 'Approx. 12.5 kg' },
+        { label: 'System Type', value: 'Open system automated stainer' },
+        { label: 'Operating Temperature', value: '5°C to 45°C' },
+        { label: 'Relative Humidity', value: 'Max. 80%, non-condensing' },
+        { label: 'Power Requirement', value: '100–240 V AC, 50–60 Hz, 250 VA' },
+      ],
+    },
+    {
+      title: 'Staining Performance & Cost',
+      rows: [
+        { label: 'Quality', value: 'High-quality staining with state-of-the-art mechatronics and software' },
+        { label: 'Reagent Usage', value: 'Optimized reagent usage for lower consumption' },
+        { label: 'Operational Costs', value: 'Designed to reduce reagent waste through optimal usage' },
+        { label: 'Staining Consistency', value: 'Consistent and reliable staining for diagnostic laboratory workflows' },
+      ],
+    },
+    {
+      title: 'Versatility & Features',
+      rows: [
+        { label: 'Slide Compatibility', value: 'Stains biological samples mounted on glass slides' },
+        { label: 'Software Control', value: 'Touch screen HMI with up to 100 programs' },
+        { label: 'Design Type', value: 'Compact tabletop autostainer built for minimal lab space' },
+        { label: 'Capacity', value: '15 slides' },
+        { label: 'Stations', value: '20 total stations' },
+        { label: 'Load/Unload Stations', value: '1' },
+        { label: 'Reagent Cuvette Volume', value: '180 ml (80 + 100 ml)' },
+      ],
+    },
+  ],
+  IS30: [
+    {
+      title: 'Physical & Environmental',
+      rows: [
+        { label: 'Footprint', value: '55 x 59 cm' },
+        { label: 'Working Space', value: 'Compact tabletop footprint designed to save laboratory space' },
+        { label: 'Weight', value: 'Approx. 16 kg' },
+        { label: 'System Type', value: 'Open system automated stainer' },
+        { label: 'Operating Temperature', value: '5°C to 45°C' },
+        { label: 'Relative Humidity', value: 'Max. 80%, non-condensing' },
+        { label: 'Power Requirement', value: '100–240 V AC, 50–60 Hz, 250 VA' },
+      ],
+    },
+    {
+      title: 'Staining Performance & Cost',
+      rows: [
+        { label: 'Quality', value: 'High-quality staining with state-of-the-art mechatronics and software' },
+        { label: 'Reagent Usage', value: 'Optimized reagent usage for lower consumption' },
+        { label: 'Operational Costs', value: 'Designed to reduce reagent waste through optimal usage' },
+        { label: 'Staining Consistency', value: 'Consistent and reliable staining for diagnostic laboratory workflows' },
+      ],
+    },
+    {
+      title: 'Versatility & Features',
+      rows: [
+        { label: 'Slide Compatibility', value: 'Stains biological samples mounted on glass slides' },
+        { label: 'Software Control', value: 'Touch screen HMI with up to 100 programs' },
+        { label: 'Design Type', value: 'Compact tabletop autostainer built for minimal lab space' },
+        { label: 'Capacity', value: '30 slides' },
+        { label: 'Stations', value: '20 total stations' },
+        { label: 'Load/Unload Stations', value: '1' },
+        { label: 'Reagent Cuvette Volume', value: '320 ml (140 + 180 ml)' },
+      ],
+    },
+  ],
+};
+
 const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVariant = 'IS15' }) => {
   const specificationImage = variantImageMap[activeVariant] ?? variantImageMap.IS15;
+  const specs = specificationData[activeVariant] ?? specificationData.IS15;
+  const physicalEnvironmental = specs[0];
+  const stainingPerformance = specs[1];
+  const versatilityFeatures = specs[2];
 
   return (
     <section className="w-full bg-white px-4 md:px-6 lg:px-8 py-20 max-w-[1400px] mx-auto animate-in fade-in duration-700">
@@ -51,7 +138,7 @@ const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVar
 
       {/* Physical & Environmental */}
       <div className="flex flex-col md:flex-row mb-24 gap-8">
-        <SectionHeader title="Physical & Environmental" />
+        <SectionHeader title={physicalEnvironmental.title} />
         <div className="flex-1 flex flex-col items-center">
           <div className="relative w-full max-w-[500px] mb-12 flex justify-center">
             <div className="relative w-full aspect-square border border-gray-200 rounded-lg bg-gray-50/30 overflow-hidden">
@@ -61,13 +148,26 @@ const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVar
                 className="w-full h-full object-contain"
               />
             </div>
+            <div className="pointer-events-none absolute -right-12 top-1/2 hidden -translate-y-1/2 md:flex flex-col items-center">
+              <div className="relative h-28 w-px bg-gray-300">
+                <span className="absolute -left-[3px] top-0 h-px w-[7px] bg-gray-300" />
+                <span className="absolute -left-[3px] bottom-0 h-px w-[7px] bg-gray-300" />
+              </div>
+              <span className="mt-2 rotate-90 text-[12px] font-medium tracking-wide text-gray-500">1.5 ft</span>
+            </div>
+            <div className="pointer-events-none absolute -bottom-9 left-1/2 hidden -translate-x-1/2 md:flex items-center">
+              <div className="relative h-px w-28 bg-gray-300">
+                <span className="absolute left-0 -top-[3px] h-[7px] w-px bg-gray-300" />
+                <span className="absolute right-0 -top-[3px] h-[7px] w-px bg-gray-300" />
+              </div>
+              <span className="ml-2 text-[12px] font-medium tracking-wide text-gray-500">1.5 ft</span>
+            </div>
           </div>
 
           <div className="w-full">
-            <SpecRow label="Footprint" value="18 inches × 18 inches" />
-            <SpecRow label="Working Space" value="1.5ft × 1.5ft average" />
-            <SpecRow label="Weight" value="10 - 14 kg" />
-            <SpecRow label="System Type" value="Open System" />
+            {physicalEnvironmental.rows.map((item) => (
+              <SpecRow key={item.label} label={item.label} value={item.value} />
+            ))}
             <div className="border-t border-gray-200"></div>
           </div>
         </div>
@@ -75,25 +175,22 @@ const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVar
 
       {/* Staining Performance & Cost */}
       <div className="flex flex-col md:flex-row mb-24 gap-8">
-        <SectionHeader title="Staining Performance & Cost" />
+        <SectionHeader title={stainingPerformance.title} />
         <div className="flex-1">
-          <SpecRow label="Quality" value="Good (Diagnostic Grade)" />
-          <SpecRow label="Reagent Usage" value="180 - 240 ml (Optimized Efficiency)" />
-          <SpecRow label="Muck free Staining" value="No" />
-          <SpecRow label="Operational Costs" value="Optimized through intelligent trough design; troughs can be filled to half capacity for smaller slide loads." />
-          <SpecRow label="Slide Agitation" value="Special mechatronics enable periodic agitation of slides in reagents for unparalleled staining clarity." />
+          {stainingPerformance.rows.map((item) => (
+            <SpecRow key={item.label} label={item.label} value={item.value} />
+          ))}
           <div className="border-t border-gray-200"></div>
         </div>
       </div>
 
       {/* Versatility & Features */}
       <div className="flex flex-col md:flex-row gap-8">
-        <SectionHeader title="Versatility & Features" />
+        <SectionHeader title={versatilityFeatures.title} />
         <div className="flex-1">
-          <SpecRow label="Slide Compatibility" value="Stains all Histology and Cytology slides." />
-          <SpecRow label="Software Control" value="User-friendly software via touch screen; allows creating any number of custom staining programs." />
-          <SpecRow label="Design Type" value="Small tabletop autostainer designed to occupy minimal lab space compared to bulky incumbent systems." />
-          <SpecRow label="Pricing" value="Affordable and flexible pricing packages to support the Digital Pathology revolution." />
+          {versatilityFeatures.rows.map((item) => (
+            <SpecRow key={item.label} label={item.label} value={item.value} />
+          ))}
           <div className="border-t border-gray-200"></div>
         </div>
       </div>
