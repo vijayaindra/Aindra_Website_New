@@ -1,23 +1,21 @@
 
 import React, { useState } from 'react';
 import imageDesign from '../assets/image_design.png';
+import { SectionEyebrow } from './SectionEyebrow';
+import { sectionContainer, sectionShell } from './layout';
 
 export const WhyChooseUsSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Hospitals');
   const tabs = ['Hospitals', 'Diagnostic Labs', 'Clinics', 'MedEd'];
 
   return (
-    <section className="relative py-16 md:py-24 lg:py-28 px-4 sm:px-5 md:px-6 lg:px-6 xl:px-8 bg-white overflow-hidden">
-      <div className="max-w-[1400px] mx-auto">
+    <section className={`relative py-16 md:py-24 lg:py-28 ${sectionShell} bg-white overflow-hidden`}>
+      <div className={sectionContainer}>
         
         {/* Top Header Row */}
         <div className="grid grid-cols-12 gap-6 md:gap-8 items-start mb-12 md:mb-24">
           <div className="col-span-12 lg:col-span-3 pt-2">
-            <div className="flex items-center space-x-2">
-               <div className="w-8 h-px bg-slate-200"></div>
-               <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Why choose us</span>
-               <div className="w-2 h-2 rounded-full border border-slate-200"></div>
-            </div>
+            <SectionEyebrow label="Why Choose Us" />
           </div>
           <div className="col-span-12 lg:col-span-9">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium text-slate-900 leading-[1.15] md:leading-[1.1] max-w-4xl tracking-tight text-balance">

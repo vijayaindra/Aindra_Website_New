@@ -4,6 +4,8 @@ import intellistainImage from '../assets/ProductImages/IS-15.png';
 import visionXImage from '../assets/ProductImages/VisionX2 (1).png';
 import astraImage from '../assets/ProductImages/Astra.png';
 import clustrImage from '../assets/ProductImages/ClustrHomePage.png';
+import { SectionEyebrow } from './SectionEyebrow';
+import { sectionContainer, sectionShell } from './layout';
 
 interface ProductData {
   id: string;
@@ -80,10 +82,10 @@ export const ProductsShowcaseSection: React.FC = () => {
 
   return (
     <>
-    <section className="lg:hidden w-full px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16 bg-white">
-      <div className="mx-auto w-full max-w-[1400px]">
+    <section className={`lg:hidden w-full ${sectionShell} py-12 sm:py-14 md:py-16 bg-white`}>
+      <div className={sectionContainer}>
         <div className="mb-8">
-          <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Our Products</span>
+          <SectionEyebrow label="Our Products" />
           <h2 className="mt-3 text-2xl sm:text-3xl font-medium text-slate-900 leading-[1.15] max-w-3xl">
             A Unified Ecosystem for Computational Pathology.
           </h2>
@@ -121,18 +123,13 @@ export const ProductsShowcaseSection: React.FC = () => {
 
     <div ref={containerRef} className="relative hidden lg:block h-[600vh] bg-white">
       {/* Sticky Content Frame */}
-      <section className="sticky top-0 h-screen w-full overflow-hidden flex flex-col pt-32 pb-24 px-6 md:px-12 lg:px-24">
+      <section className={`sticky top-0 h-screen w-full overflow-hidden flex flex-col pt-32 pb-24 ${sectionShell}`}>
+        <div className={sectionContainer}>
         
         {/* PERSISTENT HEADER */}
         <div className="relative z-20 grid grid-cols-12 gap-8 mb-8 lg:mb-12">
           <div className="col-span-12 lg:col-span-3">
-            <div className="flex items-center space-x-2">
-               <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Our Products</span>
-               <div className="flex items-center">
-                  <div className="w-16 h-px bg-[#00a3ff]/30"></div>
-                  <div className="w-1.5 h-1.5 rounded-full border border-[#00a3ff]/50"></div>
-               </div>
-            </div>
+            <SectionEyebrow label="Our Products" />
           </div>
           <div className="col-span-12 lg:col-span-9">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium text-slate-900 leading-[1.1] max-w-4xl">
@@ -304,6 +301,7 @@ export const ProductsShowcaseSection: React.FC = () => {
             })}
           </div>
 
+        </div>
         </div>
       </section>
     </div>

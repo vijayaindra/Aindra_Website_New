@@ -5,6 +5,7 @@ import economicTimesLogo from '../assets/media/economic-times.png';
 import techcircleLogo from '../assets/media/techcircle.png';
 import geektimeLogo from '../assets/media/geektime.png';
 import venturebeatLogo from '../assets/media/venturebeat.png';
+import { SectionEyebrow } from './SectionEyebrow';
 
 const mediaLogos = [
   { name: 'Medgenera', src: medgeneraLogo },
@@ -64,7 +65,7 @@ export const TrustAndMarketingSection: React.FC = () => {
 
       <div className="w-full md:w-[40%] bg-white flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-14 xl:p-16 border-t md:border-t-0 md:border-l border-slate-100">
         <div className="space-y-8">
-          <div className="text-xs font-bold tracking-[0.2em] text-[#00a3ff] uppercase">In the Media</div>
+          <SectionEyebrow label="In the Media" />
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-slate-900 tracking-tight leading-tight">
             Recognized for Innovation in MedTech
           </h2>

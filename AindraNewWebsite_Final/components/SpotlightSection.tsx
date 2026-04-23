@@ -4,6 +4,7 @@ import hpvBlogImage from '../assets/spotlight/blog-hpv-cervical-cancer.png';
 import aiPathologyBlogImage from '../assets/spotlight/blog-ai-digital-pathology.png';
 import telemedicineBlogImage from '../assets/spotlight/blog-telemedicine.png';
 import { sectionContainer, sectionShell } from './layout';
+import { SectionEyebrow } from './SectionEyebrow';
 
 interface NewsItem {
   image: string;
@@ -43,16 +44,15 @@ export const SpotlightSection: React.FC = () => {
       <div className={sectionContainer}>
         
         {/* Header Area */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-16">
-          <div className="flex items-center space-x-2">
-             <div className="w-8 h-px bg-slate-200"></div>
-             <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase whitespace-nowrap">Media Mentions</span>
-             <div className="w-2 h-2 rounded-full border border-slate-200"></div>
+        <div className="grid grid-cols-12 gap-4 md:gap-8 items-start mb-12 md:mb-16">
+          <div className="col-span-12 lg:col-span-3 pt-1">
+            <SectionEyebrow label="Media Mentions" />
           </div>
-          
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-slate-900 tracking-tight flex-1 md:ml-12">
+          <div className="col-span-12 lg:col-span-9">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-slate-900 tracking-tight">
             Aindra in the Spotlight
-          </h2>
+            </h2>
+          </div>
 
           <div className="hidden items-center space-x-3 mt-4 md:mt-0">
             <button className="w-10 h-10 rounded-full border border-[#00a3ff] flex items-center justify-center text-[#00a3ff] hover:bg-[#00a3ff] hover:text-white transition-all">

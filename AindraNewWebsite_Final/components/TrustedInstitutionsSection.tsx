@@ -8,6 +8,7 @@ import kleLogo from '../assets/TrustedByLogo/KLE.jpg';
 import nciJhajjharLogo from '../assets/TrustedByLogo/NCI Jhajjhar.jpeg';
 import msmfLogo from '../assets/TrustedByLogo/msmf.jpg';
 import { sectionContainer, sectionShell } from './layout';
+import { SectionEyebrow } from './SectionEyebrow';
 
 export const TrustedInstitutionsSection: React.FC = () => {
   const partnerLogos = [
@@ -24,17 +25,16 @@ export const TrustedInstitutionsSection: React.FC = () => {
     <section className={`relative pt-12 pb-20 md:pb-24 ${sectionShell} bg-white overflow-hidden`}>
       <div className={sectionContainer}>
         
-        {/* Header Area - Reduced margin and height */}
-        <div className="flex flex-col md:flex-row md:items-center space-y-3 md:space-y-0 md:space-x-12 mb-10">
-          <div className="flex items-center space-x-2">
-             <div className="w-8 h-px bg-slate-200"></div>
-             <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase whitespace-nowrap">Partners</span>
-             <div className="w-2 h-2 rounded-full border border-slate-200"></div>
+        {/* Header Area */}
+        <div className="grid grid-cols-12 gap-4 md:gap-8 items-start mb-10 md:mb-12">
+          <div className="col-span-12 lg:col-span-3 pt-1">
+            <SectionEyebrow label="Partners" />
           </div>
-          
-          <h2 className="text-2xl md:text-4xl font-medium text-slate-900 tracking-tight">
+          <div className="col-span-12 lg:col-span-9">
+            <h2 className="text-2xl md:text-4xl font-medium text-slate-900 tracking-tight">
             Trusted by leading healthcare institutions
-          </h2>
+            </h2>
+          </div>
         </div>
 
         {/* Institutions Grid */}

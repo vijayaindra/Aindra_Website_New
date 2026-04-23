@@ -4,6 +4,7 @@ import drVaniRavikumarImage from '../assets/testimonials/dr-vani.jpg';
 import drKristianOlsonImage from '../assets/testimonials/Dr.Kristian-Olson.png';
 import drMalathiMImage from '../assets/testimonials/Dr.Malathi M.jpg';
 import { sectionContainer, sectionShell } from './layout';
+import { SectionEyebrow } from './SectionEyebrow';
 
 interface Testimonial {
   name: string;
@@ -75,18 +76,18 @@ export const TestimonialsSection: React.FC = () => {
       <div className={sectionContainer}>
         
         {/* Header Area */}
-        <div className="relative mb-10 md:mb-12 md:min-h-[64px]">
-          <div className="mb-4 flex items-center justify-center space-x-2 md:absolute md:left-0 md:top-1/2 md:mb-0 md:-translate-y-1/2 md:justify-start">
-            <div className="w-8 h-px bg-slate-200"></div>
-            <span className="text-[10px] font-bold tracking-[0.2em] text-[#00a3ff] uppercase">Testimonials</span>
-            <div className="w-2 h-2 rounded-full border border-slate-200"></div>
+        <div className="mb-10 md:mb-12 grid grid-cols-12 items-center gap-4 md:gap-8">
+          <div className="col-span-12 lg:col-span-3 pt-1">
+            <SectionEyebrow label="Testimonials" />
           </div>
 
-          <h2 className="px-3 text-center text-2xl sm:text-3xl md:text-[46px] lg:text-[52px] font-medium text-slate-900 leading-[1.1] tracking-tight md:mx-auto md:max-w-none md:px-24 lg:px-28 md:whitespace-nowrap">
-            Hear what others have to say
-          </h2>
+          <div className="col-span-12 lg:col-span-6">
+            <h2 className="px-3 text-center lg:px-0 text-2xl sm:text-3xl md:text-[46px] lg:text-[52px] font-medium text-slate-900 leading-[1.1] tracking-tight md:whitespace-nowrap">
+              Hear what others have to say
+            </h2>
+          </div>
 
-          <div className="mt-4 flex items-center justify-center space-x-3 md:absolute md:right-0 md:top-1/2 md:mt-0 md:-translate-y-1/2">
+          <div className="col-span-12 lg:col-span-3 mt-4 lg:mt-0 flex items-center justify-center lg:justify-end space-x-3">
             <button
               onClick={handlePrev}
               className="w-10 h-10 rounded-full border border-[#00a3ff] flex items-center justify-center text-[#00a3ff] hover:bg-[#00a3ff]/10 active:bg-[#00a3ff] active:text-white transition-all active:scale-95"
