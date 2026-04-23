@@ -20,7 +20,6 @@ export const TrustedInstitutionsSection: React.FC = () => {
     { name: 'NCI Jhajjar', src: nciJhajjharLogo },
     { name: 'MSMF', src: msmfLogo }
   ];
-  const desktopRemainder = partnerLogos.length % 3;
 
   return (
     <section className={`relative py-14 md:py-20 ${sectionShell} bg-white overflow-hidden`}>
@@ -39,13 +38,11 @@ export const TrustedInstitutionsSection: React.FC = () => {
         </div>
 
         {/* Institutions Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 max-w-[1120px] mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 max-w-[1280px] mx-auto">
           {partnerLogos.map((item, i) => (
             <div 
               key={i} 
-              className={`h-32 sm:h-36 md:h-40 lg:h-44 p-1 sm:p-2 md:p-2 flex items-center justify-center overflow-hidden ${
-                desktopRemainder === 1 && i === partnerLogos.length - 1 ? 'lg:col-start-2' : ''
-              }`}
+              className="h-32 sm:h-36 md:h-40 lg:h-44 p-1 sm:p-2 md:p-2 flex items-center justify-center overflow-hidden"
             >
               <img
                 src={item.src}
