@@ -250,7 +250,7 @@ const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVar
       {/* Top Heading */}
       <div className="mb-20">
         <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
+          VisionX whole slide scanners deliver fast, high-quality digital pathology imaging with onboard AI.
         </h2>
       </div>
 
