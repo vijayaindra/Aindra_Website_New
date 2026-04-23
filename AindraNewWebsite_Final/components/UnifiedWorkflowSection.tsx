@@ -85,20 +85,19 @@ export const UnifiedWorkflowSection: React.FC = () => {
     <div ref={containerRef} className="relative hidden lg:block h-[900vh] bg-white">
       <section className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         
-        {/* Intro-only Background (hidden for step slides) */}
+        {/* Persistent Background */}
         <div
           className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-300"
           style={{
-            opacity: Math.max(0, Math.min(1, introOpacity)),
-            visibility: introOpacity > 0.02 ? 'visible' : 'hidden',
+            opacity: Math.max(0.16, Math.min(0.58, introOpacity * 0.58)),
           }}
         >
           <img 
             src={backgroundImage}
             alt="" aria-hidden="true" 
-            className="w-full h-full object-cover opacity-[0.52]"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-white/18"></div>
+          <div className="absolute inset-0 bg-white/24"></div>
         </div>
 
         {/* Narrative Intro Content - Now a Sliding Page */}
