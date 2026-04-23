@@ -30,7 +30,7 @@ const ImageQualitySection: React.FC = () => {
     <section className="w-full bg-white px-4 md:px-6 lg:px-8 py-20 max-w-[1400px] mx-auto animate-in fade-in duration-700">
       <div className="mb-20">
         <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
+          IntelliStain automated slide stainers deliver consistent, high-quality results using dip mechanics.
         </h2>
       </div>
 
