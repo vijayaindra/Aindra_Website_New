@@ -79,7 +79,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
                 <img
                   src={step.imageSrc}
                   alt={step.title}
-                  className="h-44 w-full object-cover object-center"
+                  className="w-full aspect-[1590/559] object-contain object-center"
                   loading="lazy"
                 />
               </div>
@@ -178,11 +178,11 @@ export const UnifiedWorkflowSection: React.FC = () => {
                       {step.title}
                     </h3>
 
-                    <div className="relative w-full max-w-4xl aspect-[21/8] overflow-hidden flex items-center justify-center">
+                    <div className="relative w-full max-w-5xl aspect-[1590/559] overflow-hidden flex items-center justify-center">
                       <img
                         src={step.imageSrc}
                         alt={step.title}
-                        className="w-full h-full object-cover object-center"
+                        className="w-full h-full object-contain object-center"
                         loading="lazy"
                       />
                       <div className="absolute right-0 top-1/2 w-screen h-[1px] bg-slate-100 translate-x-full"></div>

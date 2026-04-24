@@ -22,13 +22,13 @@ import charanTeamImage from '../../../assets/Aindra_team/Charan.jpg';
 import abhyanandTeamImage from '../../../assets/Aindra_team/Abhyanand.jpg';
 import farhanTeamImage from '../../../assets/Aindra_team/Farhan.jpeg';
 import harshithaTeamImage from '../../../assets/Aindra_team/Harshitha.png';
-import anilImage from '../../../assets/Anil.jpg';
-import arunImage from '../../../assets/Arun-Venkatesh.png';
-import drShantiImage from '../../../assets/Dr_shanti.jpeg';
-import rajanImage from '../../../assets/Rajan.jpg';
-import vijaysimhaImage from '../../../assets/Vijaysimha.jpg';
-import adityaAjmeraImage from '../../../assets/aditya-ajmera.jpg';
-import bhushanImage from '../../../assets/bhushan.jpg';
+import anilImage from '../../../assets/Advisors/Anil.jpg';
+import arunImage from '../../../assets/Advisors/Arun-Venkatesh.png';
+import drShantiImage from '../../../assets/Advisors/Dr_shanti.jpeg';
+import rajanImage from '../../../assets/Advisors/Rajan.jpg';
+import vijaysimhaImage from '../../../assets/Advisors/Vijaysimha.jpg';
+import adityaAjmeraImage from '../../../assets/Advisors/aditya-ajmera.jpg';
+import bhushanImage from '../../../assets/Advisors/bhushan.jpg';
 
 interface TeamMember {
   name: string;
