@@ -125,10 +125,10 @@ export const TestimonialsSection: React.FC = () => {
           <div className="relative z-10 w-full lg:max-w-4xl bg-white border border-slate-900 rounded-[32px] sm:rounded-[48px] md:rounded-[64px] lg:rounded-[96px] py-8 sm:py-10 md:py-12 px-5 sm:px-8 md:px-12 lg:pl-28 lg:pr-14 shadow-sm min-h-[360px] sm:min-h-[400px] md:h-[420px] flex flex-col justify-center mt-[-40px] sm:mt-[-56px] lg:mt-0 overflow-visible md:overflow-hidden">
             
             <div className="relative">
-              <div className="relative">
+              <div className="relative pl-0 sm:pl-0 pr-0 sm:pr-0">
                 {/* Opening Quotes Icon */}
-                <div className="absolute -left-2 sm:-left-4 md:-left-8 -top-2 text-[#005bc4]">
-                  <svg width="30" height="22" viewBox="0 0 40 30" fill="currentColor">
+                <div className="hidden md:block absolute md:-left-8 md:-top-2 text-[#005bc4]">
+                  <svg className="w-6 h-5 sm:w-8 sm:h-6" viewBox="0 0 40 30" fill="currentColor">
                     <path d="M0 30V15C0 6.7 6.7 0 15 0H18V6H15C10 6 6 10 6 15V18H12V30H0ZM22 30V15C22 6.7 28.7 0 37 0H40V6H37C32 6 28 10 28 15V18H34V30H22Z" />
                   </svg>
                 </div>
@@ -140,8 +140,8 @@ export const TestimonialsSection: React.FC = () => {
                 </div>
 
                 {/* Closing Quotes Icon */}
-                <div className="absolute -right-2 sm:-right-3 -bottom-2 text-[#005bc4]">
-                  <svg width="30" height="22" viewBox="0 0 40 30" fill="currentColor" className="rotate-180">
+                <div className="hidden md:block absolute md:-right-3 -bottom-2 text-[#005bc4]">
+                  <svg className="w-6 h-5 sm:w-8 sm:h-6 rotate-180" viewBox="0 0 40 30" fill="currentColor">
                     <path d="M0 30V15C0 6.7 6.7 0 15 0H18V6H15C10 6 6 10 6 15V18H12V30H0ZM22 30V15C22 6.7 28.7 0 37 0H40V6H37C32 6 28 10 28 15V18H34V30H22Z" />
                   </svg>
                 </div>

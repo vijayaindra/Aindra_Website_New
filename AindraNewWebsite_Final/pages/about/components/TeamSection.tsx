@@ -279,14 +279,14 @@ const TeamSection: React.FC = () => {
               {visibleMembers.map((member, index) => (
                 <div key={index} className="flex flex-col group">
                   <div className="rounded-xl overflow-hidden bg-white shadow-sm border border-gray-100 transition-all duration-500 group-hover:shadow-xl group-hover:border-blue-100">
-                    <div className="h-[270px] sm:h-[300px] bg-white flex items-center justify-center">
+                    <div className={`${member.isLogo ? 'h-[250px] sm:h-[300px]' : 'aspect-square sm:aspect-auto sm:h-[300px]'} bg-white flex items-center justify-center`}>
                     <img 
                       src={member.image} 
                       alt={member.name} 
                       className={`w-full h-full transition-all duration-700 ${
                         member.isLogo
                           ? 'object-contain p-6 sm:p-8 grayscale-0'
-                          : 'object-cover grayscale group-hover:grayscale-0'
+                          : 'object-cover object-center grayscale group-hover:grayscale-0'
                       }`}
                     />
                     </div>
