@@ -8,12 +8,12 @@ import venturebeatLogo from '../assets/media/venturebeat.png';
 import { SectionEyebrow } from './SectionEyebrow';
 
 const mediaLogos = [
-  { name: 'Medgenera', src: medgeneraLogo },
-  { name: 'YourStory', src: yourstoryLogo },
-  { name: 'The Economic Times', src: economicTimesLogo },
-  { name: 'Techcircle', src: techcircleLogo },
-  { name: 'Geektime', src: geektimeLogo },
-  { name: 'VentureBeat', src: venturebeatLogo }
+  { name: 'Medgenera', src: medgeneraLogo, scale: 'scale-[1.45]' },
+  { name: 'YourStory', src: yourstoryLogo, scale: 'scale-[1.35]' },
+  { name: 'The Economic Times', src: economicTimesLogo, scale: 'scale-[1.3]' },
+  { name: 'Techcircle', src: techcircleLogo, scale: 'scale-[1.35]' },
+  { name: 'Geektime', src: geektimeLogo, scale: 'scale-[1.35]' },
+  { name: 'VentureBeat', src: venturebeatLogo, scale: 'scale-[1.35]' }
 ];
 
 export const TrustAndMarketingSection: React.FC = () => {
@@ -63,23 +63,23 @@ export const TrustAndMarketingSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full md:w-[40%] bg-white flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-14 xl:p-16 border-t md:border-t-0 md:border-l border-slate-100">
-        <div className="space-y-8">
+      <div className="w-full md:w-[40%] bg-white flex flex-col justify-start p-6 sm:p-8 md:p-10 lg:p-14 xl:p-16 border-t md:border-t-0 md:border-l border-slate-100">
+        <div className="space-y-6 md:space-y-7">
           <SectionEyebrow label="In the Media" />
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-slate-900 tracking-tight leading-tight">
             Recognized for Innovation in MedTech
           </h2>
 
-          <div className="grid grid-cols-2 gap-5 sm:gap-6 md:gap-8">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5">
             {mediaLogos.map((logo) => (
               <div
                 key={logo.name}
-                className="h-24 sm:h-28 md:h-32 lg:h-36 flex items-center justify-center px-1"
+                className="h-32 sm:h-36 md:h-40 lg:h-44 flex items-center justify-center px-0.5"
               >
                 <img
                   src={logo.src}
                   alt={logo.name}
-                  className="max-h-20 sm:max-h-24 md:max-h-28 lg:max-h-32 w-auto object-contain"
+                  className={`max-h-28 sm:max-h-32 md:max-h-36 lg:max-h-40 w-auto object-contain ${logo.scale}`}
                   loading="lazy"
                 />
               </div>
