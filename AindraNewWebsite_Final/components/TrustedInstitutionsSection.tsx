@@ -12,14 +12,16 @@ import { SectionEyebrow } from './SectionEyebrow';
 
 export const TrustedInstitutionsSection: React.FC = () => {
   const partnerLogos = [
-    { name: 'Sakra', src: sakraLogo },
-    { name: 'ACTREC', src: imagesJpegLogo },
-    { name: 'Dr Mufti', src: drMuftiLogo },
-    { name: 'Homi Bhabha', src: homiBabaLogo },
-    { name: 'KLE', src: kleLogo },
-    { name: 'NCI Jhajjar', src: nciJhajjharLogo },
-    { name: 'MSMF', src: msmfLogo }
+    { name: 'Sakra', src: sakraLogo, fit: 'standard' },
+    { name: 'ACTREC', src: imagesJpegLogo, fit: 'wide' },
+    { name: 'Dr Mufti', src: drMuftiLogo, fit: 'wide' },
+    { name: 'Homi Bhabha', src: homiBabaLogo, fit: 'round' },
+    { name: 'KLE', src: kleLogo, fit: 'tall' },
+    { name: 'NCI Jhajjar', src: nciJhajjharLogo, fit: 'wide' },
+    { name: 'MSMF', src: msmfLogo, fit: 'wide' }
   ];
+  const firstRow = partnerLogos.slice(0, 4);
+  const secondRow = partnerLogos.slice(4);
 
   return (
     <section className={`relative py-14 md:py-20 ${sectionShell} bg-white overflow-hidden`}>
@@ -37,21 +39,67 @@ export const TrustedInstitutionsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Institutions Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 max-w-[1280px] mx-auto">
+        {/* Mobile/Tablet Grid */}
+        <div className="grid grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-[1280px] mx-auto lg:hidden">
           {partnerLogos.map((item, i) => (
-            <div 
-              key={i} 
-              className="h-32 sm:h-36 md:h-40 lg:h-44 p-1 sm:p-2 md:p-2 flex items-center justify-center overflow-hidden"
-            >
+            <div key={i} className="h-32 sm:h-36 md:h-40 p-2 flex items-center justify-center overflow-hidden">
               <img
                 src={item.src}
                 alt={item.name}
-                className="w-[94%] h-[94%] object-contain object-center scale-[1.22]"
+                className={`w-full h-full object-contain object-center ${
+                  item.fit === 'tall'
+                    ? 'max-h-[96%] max-w-[68%]'
+                    : item.fit === 'round'
+                      ? 'max-h-[90%] max-w-[86%]'
+                      : item.fit === 'wide'
+                        ? 'max-h-[74%] max-w-[96%]'
+                        : 'max-h-[82%] max-w-[86%]'
+                }`}
                 loading="lazy"
               />
             </div>
           ))}
+        </div>
+
+        {/* Desktop: 4 + 3 rows with aligned gap */}
+        <div className="hidden lg:block max-w-[1280px] mx-auto">
+          <div className="grid grid-cols-4 gap-6 xl:gap-8">
+            {firstRow.map((item) => (
+              <div key={item.name} className="h-44 p-2 flex items-center justify-center overflow-hidden">
+                <img
+                  src={item.src}
+                  alt={item.name}
+                  className={`w-full h-full object-contain object-center ${
+                    item.fit === 'round'
+                      ? 'max-h-[90%] max-w-[88%]'
+                      : item.fit === 'wide'
+                        ? 'max-h-[74%] max-w-[96%]'
+                        : 'max-h-[82%] max-w-[86%]'
+                  }`}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 grid grid-cols-3 gap-6 xl:gap-8 w-3/4 mx-auto">
+            {secondRow.map((item) => (
+              <div key={item.name} className="h-44 p-2 flex items-center justify-center overflow-hidden">
+                <img
+                  src={item.src}
+                  alt={item.name}
+                  className={`w-full h-full object-contain object-center ${
+                    item.fit === 'tall'
+                      ? 'max-h-[96%] max-w-[68%]'
+                      : item.fit === 'wide'
+                        ? 'max-h-[74%] max-w-[96%]'
+                        : 'max-h-[82%] max-w-[86%]'
+                  }`}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
