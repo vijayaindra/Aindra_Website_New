@@ -82,7 +82,7 @@ export const TestimonialsSection: React.FC = () => {
           </div>
 
           <div className="col-span-12 lg:col-span-6">
-            <h2 className="px-3 text-center lg:px-0 text-2xl sm:text-3xl md:text-[46px] lg:text-[52px] font-medium text-slate-900 leading-[1.1] tracking-tight md:whitespace-nowrap">
+            <h2 className="px-3 text-center lg:px-0 text-2xl sm:text-3xl md:text-[46px] lg:text-[52px] font-medium text-slate-900 leading-[1.1] tracking-tight">
               Hear what others have to say
             </h2>
           </div>
@@ -122,7 +122,7 @@ export const TestimonialsSection: React.FC = () => {
           </div>
 
           {/* Quote Container: More compact pill shape */}
-          <div className="relative z-10 w-full lg:max-w-4xl bg-white border border-slate-900 rounded-[32px] sm:rounded-[48px] md:rounded-[64px] lg:rounded-[96px] py-10 sm:py-12 px-5 sm:px-8 md:px-12 lg:pl-28 lg:pr-14 shadow-sm h-[360px] md:h-[420px] flex flex-col justify-center mt-[-40px] sm:mt-[-56px] lg:mt-0 overflow-hidden">
+          <div className="relative z-10 w-full lg:max-w-4xl bg-white border border-slate-900 rounded-[32px] sm:rounded-[48px] md:rounded-[64px] lg:rounded-[96px] py-8 sm:py-10 md:py-12 px-5 sm:px-8 md:px-12 lg:pl-28 lg:pr-14 shadow-sm min-h-[360px] sm:min-h-[400px] md:h-[420px] flex flex-col justify-center mt-[-40px] sm:mt-[-56px] lg:mt-0 overflow-visible md:overflow-hidden">
             
             <div className="relative">
               <div className="relative">
@@ -133,7 +133,7 @@ export const TestimonialsSection: React.FC = () => {
                   </svg>
                 </div>
 
-                <div className="max-h-[170px] sm:max-h-[190px] md:max-h-[230px] overflow-y-auto pr-2">
+                <div className="max-h-none md:max-h-[230px] overflow-visible md:overflow-y-auto pr-2">
                   <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed font-normal">
                     {activeTestimonial.quote}
                   </p>
@@ -159,7 +159,7 @@ export const TestimonialsSection: React.FC = () => {
             </div>
             
             {/* Pagination Dots */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center space-x-2">
+            <div className="mt-6 md:mt-0 flex items-center justify-center space-x-2 md:absolute md:bottom-6 md:left-1/2 md:-translate-x-1/2">
               {testimonials.map((_, idx) => (
                 <button
                   key={idx}

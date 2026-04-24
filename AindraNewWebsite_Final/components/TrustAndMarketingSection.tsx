@@ -8,12 +8,12 @@ import venturebeatLogo from '../assets/media/venturebeat.png';
 import { SectionEyebrow } from './SectionEyebrow';
 
 const mediaLogos = [
-  { name: 'Medgenera', src: medgeneraLogo, scale: 'scale-[1.45]' },
-  { name: 'YourStory', src: yourstoryLogo, scale: 'scale-[1.35]' },
-  { name: 'The Economic Times', src: economicTimesLogo, scale: 'scale-[1.3]' },
-  { name: 'Techcircle', src: techcircleLogo, scale: 'scale-[1.35]' },
-  { name: 'Geektime', src: geektimeLogo, scale: 'scale-[1.35]' },
-  { name: 'VentureBeat', src: venturebeatLogo, scale: 'scale-[1.35]' }
+  { name: 'Medgenera', src: medgeneraLogo, scale: 'scale-[1.2] md:scale-[1.45]' },
+  { name: 'YourStory', src: yourstoryLogo, scale: 'scale-[1.15] md:scale-[1.35]' },
+  { name: 'The Economic Times', src: economicTimesLogo, scale: 'scale-[1.15] md:scale-[1.3]' },
+  { name: 'Techcircle', src: techcircleLogo, scale: 'scale-[1.15] md:scale-[1.35]' },
+  { name: 'Geektime', src: geektimeLogo, scale: 'scale-[1.15] md:scale-[1.35]' },
+  { name: 'VentureBeat', src: venturebeatLogo, scale: 'scale-[1.15] md:scale-[1.35]' }
 ];
 
 export const TrustAndMarketingSection: React.FC = () => {

@@ -75,6 +75,14 @@ export const UnifiedWorkflowSection: React.FC = () => {
             <article key={step.id} className="rounded-2xl border border-slate-200 p-4">
               <div className="text-3xl font-bold text-[#00a3ff]">{step.id}</div>
               <h3 className="mt-1 text-xl font-semibold text-slate-900">{step.title}</h3>
+              <div className="mt-3 overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+                <img
+                  src={step.imageSrc}
+                  alt={step.title}
+                  className="h-44 w-full object-cover object-center"
+                  loading="lazy"
+                />
+              </div>
               <p className="mt-2 text-sm text-slate-600">{step.caption}</p>
             </article>
           ))}
