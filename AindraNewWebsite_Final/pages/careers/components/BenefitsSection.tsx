@@ -402,7 +402,7 @@ const BenefitsSection: React.FC = () => {
 
   return (
     <div ref={containerRef} className={`${sectionShell} relative w-full`} style={{ height: '460vh' }}>
-      <section className="sticky top-0 w-full min-h-screen bg-white flex flex-col">
+      <section className="sticky top-20 sm:top-24 w-full h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] bg-white flex flex-col overflow-hidden">
         
         <div className="relative z-50 bg-white pt-6 pb-4">
           <div className={`${sectionContainer} flex flex-col md:flex-row items-start w-full`}>
