@@ -4,6 +4,7 @@ import intellistainImage from '../assets/ProductImages/IS-15.png';
 import visionXImage from '../assets/ProductImages/VisionX2 (1).png';
 import astraImage from '../assets/ProductImages/AstraThumbnail.png';
 import clustrImage from '../assets/ProductImages/ClustrHomePage.png';
+import { sectionContainerWide, sectionShell } from './layout';
 
 interface NavMenuProps {
   isOpen: boolean;
@@ -71,12 +72,13 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
           ${isOpen ? 'translate-y-0' : '-translate-y-full'}
           min-h-[55dvh] max-h-[85dvh] md:max-h-[70dvh] flex flex-col overflow-y-auto`}
       >
-        <div className="flex-1 flex flex-col md:flex-row w-full h-full relative">
+        <div className={`${sectionShell} flex-1 w-full h-full relative`}>
+          <div className={`${sectionContainerWide} flex flex-col md:flex-row w-full h-full relative`}>
           
           {/* Close Button - Top Right */}
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 md:top-6 md:right-8 z-[110] w-8 h-8 md:w-9 md:h-9 bg-white rounded-full shadow-sm flex items-center justify-center text-[#00a3ff] hover:scale-110 transition-transform active:scale-95 border border-slate-100"
+            className="absolute top-4 right-0 md:top-6 z-[110] w-8 h-8 md:w-9 md:h-9 bg-white rounded-full shadow-sm flex items-center justify-center text-[#00a3ff] hover:scale-110 transition-transform active:scale-95 border border-slate-100"
             aria-label="Close menu"
           >
             <svg className="w-5 h-5 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,7 +87,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
           </button>
 
           {/* Left Column: Primary Navigation Links */}
-          <div className="w-full md:w-[30%] lg:w-[25%] flex flex-col justify-center px-6 sm:px-8 md:px-10 lg:px-14 py-8 md:py-8 border-b md:border-b-0 md:border-r border-slate-300">
+          <div className="w-full md:w-[30%] lg:w-[25%] flex flex-col justify-center px-4 sm:px-5 md:px-6 lg:px-8 py-8 md:py-8 border-b md:border-b-0 md:border-r border-slate-300">
             <div className="space-y-3 md:space-y-4 lg:space-y-5">
               {navLinks.map((link, idx) => (
                 <a 
@@ -101,8 +103,8 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
           </div>
 
           {/* Right Column: Products Section */}
-          <div className="flex-1 flex flex-col justify-center px-6 sm:px-8 md:px-10 lg:px-16 py-6 md:py-8">
-            <div className="w-full max-w-3xl">
+          <div className="flex-1 flex flex-col justify-center px-4 sm:px-5 md:px-7 lg:px-10 py-6 md:py-8">
+            <div className="w-full max-w-4xl">
               <h2 className="text-lg md:text-xl font-bold text-[#00a3ff] mb-6 md:mb-8">
                 Our Products
               </h2>
@@ -113,8 +115,8 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
                     key={idx}
                     href={product.href}
                     onClick={onClose}
-                    className={`group flex items-center py-3 md:py-4 border-t ${idx === products.length - 1 ? 'border-b' : ''} border-slate-400/30 transition-all cursor-pointer hover:bg-slate-200/20 px-3 -mx-3 rounded-sm`}
-                  >
+                  className={`group flex items-center py-3 md:py-4 border-t ${idx === products.length - 1 ? 'border-b' : ''} border-slate-400/30 transition-all cursor-pointer hover:bg-slate-200/20`}
+                >
                     {/* Product Thumbnail */}
                     <div className="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 mr-4 md:mr-8 rounded-sm overflow-hidden shadow-sm">
                       <img
@@ -140,6 +142,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
                 ))}
               </div>
             </div>
+          </div>
           </div>
         </div>
 
