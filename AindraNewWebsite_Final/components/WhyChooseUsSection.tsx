@@ -2,14 +2,14 @@
 import React, { useState } from 'react';
 import imageDesign from '../assets/image_design.png';
 import { SectionEyebrow } from './SectionEyebrow';
-import { sectionContainer, sectionShell } from './layout';
+import { sectionContainer, sectionShell, sectionY } from './layout';
 
 export const WhyChooseUsSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Hospitals');
   const tabs = ['Hospitals', 'Diagnostic Labs', 'Clinics', 'MedEd'];
 
   return (
-    <section className={`relative py-16 md:py-24 lg:py-28 ${sectionShell} bg-white overflow-hidden`}>
+    <section className={`relative ${sectionY} ${sectionShell} bg-white overflow-hidden`}>
       <div className={sectionContainer}>
         
         {/* Top Header Row */}

@@ -3,7 +3,7 @@ import React from 'react';
 import hpvBlogImage from '../assets/spotlight/blog-hpv-cervical-cancer.png';
 import aiPathologyBlogImage from '../assets/spotlight/blog-ai-digital-pathology.png';
 import telemedicineBlogImage from '../assets/spotlight/blog-telemedicine.png';
-import { sectionContainer, sectionShell } from './layout';
+import { sectionContainer, sectionShell, sectionY } from './layout';
 import { SectionEyebrow } from './SectionEyebrow';
 
 interface NewsItem {
@@ -40,7 +40,7 @@ export const SpotlightSection: React.FC = () => {
   ];
 
   return (
-    <section className={`relative py-16 md:py-20 lg:py-24 ${sectionShell} bg-white overflow-hidden`}>
+    <section className={`relative ${sectionY} ${sectionShell} bg-white overflow-hidden`}>
       <div className={sectionContainer}>
         
         {/* Header Area */}

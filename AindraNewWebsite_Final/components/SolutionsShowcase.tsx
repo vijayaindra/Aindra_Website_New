@@ -5,7 +5,7 @@ import lungAstraImage from '../assets/ProductImages/LungAstra.png';
 import proAstraImage from '../assets/ProductImages/ProAstra.png';
 import thyroAstraImage from '../assets/ProductImages/ThyroAstra.png';
 import { SectionEyebrow } from './SectionEyebrow';
-import { sectionContainer, sectionShell } from './layout';
+import { sectionContainer, sectionShell, sectionY } from './layout';
 
 interface Solution {
   id: string;
@@ -74,7 +74,7 @@ export const SolutionsShowcase: React.FC = () => {
 
   return (
     <>
-    <section className={`lg:hidden w-full bg-[#f8fbff] ${sectionShell} py-12 sm:py-14 md:py-16`}>
+    <section className={`lg:hidden w-full bg-[#f8fbff] ${sectionShell} ${sectionY}`}>
       <div className={sectionContainer}>
         <SectionEyebrow label="Our Solutions" />
         <h2 className="mt-3 text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight max-w-3xl">
@@ -99,7 +99,7 @@ export const SolutionsShowcase: React.FC = () => {
 
     <div ref={containerRef} className="relative hidden lg:block h-[400vh] bg-[#f8fbff]">
       {/* Sticky Frame */}
-      <section className={`sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden ${sectionShell}`}>
+      <section className={`sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden ${sectionShell} ${sectionY}`}>
         
         <div className={sectionContainer}>
           {/* Section Header */}

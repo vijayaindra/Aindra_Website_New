@@ -54,7 +54,7 @@ const ImpactSection: React.FC = () => {
 
         {/* Map Visualization */}
         <div className="w-full mb-24">
-          <div className="relative w-full max-w-[1400px] mx-auto group">
+          <div className="relative mx-auto w-full max-w-[1520px] group">
             <img 
               src="https://images.unsplash.com/photo-1589519160732-57fc498494f8?auto=format&fit=crop&q=80&w=2000" 
               alt="Global impact map" 
@@ -72,7 +72,7 @@ const ImpactSection: React.FC = () => {
 
         {/* Stats Grid */}
         <div className="w-full border-t border-gray-100">
-          <div className="max-w-[1400px] mx-auto py-16">
+          <div className="mx-auto w-full max-w-[1520px] py-16">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
               {stats.map((stat, index) => (
                 <div key={index} className="flex flex-col items-start relative">

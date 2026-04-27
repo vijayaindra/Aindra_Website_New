@@ -152,7 +152,7 @@ const BenefitsSection: React.FC = () => {
   return (
     <div ref={containerRef} className="relative w-full" style={{ height: '500vh' }}>
       <section className="sticky top-20 sm:top-24 w-full h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] bg-white overflow-hidden flex flex-col">
-        <div className="relative z-50 bg-white px-4 md:px-8 pt-6 pb-4">
+        <div className="relative z-50 bg-white px-4 md:px-6 pt-6 pb-4">
             <div className="flex flex-col md:flex-row items-start w-full">
               <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10">
                 <div className="flex flex-col items-start w-full">
@@ -179,7 +179,7 @@ const BenefitsSection: React.FC = () => {
         </div>
 
         <div 
-          className="flex-grow relative z-10 px-4 md:px-8 overflow-hidden"
+          className="flex-grow relative z-10 px-4 md:px-6 overflow-hidden"
           style={{ 
             opacity: stage1Opacity,
             visibility: stage1Opacity < 0.01 ? 'hidden' : 'visible',
@@ -216,7 +216,7 @@ const BenefitsSection: React.FC = () => {
         </div>
 
         <div 
-          className="absolute inset-0 flex flex-col justify-center px-4 md:px-8 pt-24 z-20"
+          className="absolute inset-0 flex flex-col justify-center px-4 md:px-6 pt-24 z-20"
           style={{ 
             opacity: stage2Opacity,
             visibility: stage2Opacity < 0.01 ? 'hidden' : 'visible',

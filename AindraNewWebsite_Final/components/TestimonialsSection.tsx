@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import drVaniRavikumarImage from '../assets/testimonials/dr-vani.jpg';
 import drKristianOlsonImage from '../assets/testimonials/Dr.Kristian-Olson.png';
 import drMalathiMImage from '../assets/testimonials/Dr.Malathi M.jpg';
-import { sectionContainer, sectionShell } from './layout';
+import { sectionContainer, sectionShell, sectionY } from './layout';
 import { SectionEyebrow } from './SectionEyebrow';
 
 interface Testimonial {
@@ -72,7 +72,7 @@ export const TestimonialsSection: React.FC = () => {
   }, []);
 
   return (
-    <section className={`relative pt-16 md:pt-20 lg:pt-24 pb-12 ${sectionShell} bg-white overflow-hidden`}>
+    <section className={`relative ${sectionY} ${sectionShell} bg-white overflow-hidden`}>
       <div className={sectionContainer}>
         
         {/* Header Area */}
@@ -82,7 +82,7 @@ export const TestimonialsSection: React.FC = () => {
           </div>
 
           <div className="col-span-12 lg:col-span-6">
-            <h2 className="px-3 text-center lg:px-0 text-2xl sm:text-3xl md:text-[46px] lg:text-[52px] font-medium text-slate-900 leading-[1.1] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-[46px] lg:text-[52px] font-medium text-slate-900 leading-[1.1] tracking-tight">
               Hear what others have to say
             </h2>
           </div>

@@ -5,6 +5,7 @@ import digitizationSlideImage from '../assets/ProductImages/Digitization of Slid
 import aiImageAnalysisImage from '../assets/ProductImages/AI Based Image Analysis.png';
 import reviewReportingImage from '../assets/ProductImages/Review and Reporting.png';
 import backgroundImage from '../assets/ProductImages/Background Image.png';
+import { sectionContainer } from './layout';
 
 interface WorkflowStep {
   id: string;
@@ -65,8 +66,8 @@ export const UnifiedWorkflowSection: React.FC = () => {
 
   return (
     <>
-    <section className="lg:hidden w-full bg-white px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16">
-      <div className="mx-auto w-full max-w-[1400px]">
+    <section className="lg:hidden w-full bg-white px-4 sm:px-4 md:px-6 py-16 md:py-20">
+      <div className={sectionContainer}>
         <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
           We’ve condensed the pathology workflow from staining to screening into four steps.
         </p>

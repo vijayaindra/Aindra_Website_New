@@ -159,7 +159,7 @@ const BenefitsSection: React.FC = () => {
       <section className="sticky top-0 w-full h-screen bg-white overflow-hidden flex flex-col">
         
         {/* Persistent Sticky Header (Headline remains constant) */}
-        <div className="relative z-50 bg-white px-4 md:px-8 pt-6 pb-4">
+        <div className="relative z-50 bg-white px-4 md:px-6 pt-6 pb-4">
           <div className="flex flex-col md:flex-row items-start w-full">
             <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10">
               <div className="flex flex-col items-start w-full">
@@ -190,7 +190,7 @@ const BenefitsSection: React.FC = () => {
 
         {/* STAGE 1: Benefits Elements Animation */}
         <div 
-          className="flex-grow relative z-10 px-4 md:px-8 overflow-hidden"
+          className="flex-grow relative z-10 px-4 md:px-6 overflow-hidden"
           style={{ 
             opacity: stage1Opacity,
             visibility: stage1Opacity < 0.01 ? 'hidden' : 'visible',
@@ -232,7 +232,7 @@ const BenefitsSection: React.FC = () => {
 
         {/* STAGE 2: Features Carousel (Enters after Benefits row moves UP) */}
         <div 
-          className="absolute inset-0 flex flex-col justify-center px-4 md:px-8 pt-24 z-20"
+          className="absolute inset-0 flex flex-col justify-center px-4 md:px-6 pt-24 z-20"
           style={{ 
             opacity: stage2Opacity,
             visibility: stage2Opacity < 0.01 ? 'hidden' : 'visible',
@@ -280,7 +280,7 @@ const BenefitsSection: React.FC = () => {
 
         {/* STAGE 3: Image Comparison (Before/After) */}
         <div 
-          className="absolute inset-0 flex flex-col justify-center px-4 md:px-8 pt-24 z-30"
+          className="absolute inset-0 flex flex-col justify-center px-4 md:px-6 pt-24 z-30"
           style={{ 
             opacity: stage3Opacity,
             visibility: stage3Opacity < 0.01 ? 'hidden' : 'visible',

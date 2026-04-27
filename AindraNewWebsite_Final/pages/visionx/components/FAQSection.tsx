@@ -58,8 +58,8 @@ const FAQSection: React.FC = () => {
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <section className="w-full bg-white py-14 md:py-20 lg:py-24 px-4 md:px-6 lg:px-8">
-      <div className="flex flex-col md:flex-row w-full max-w-[1400px] mx-auto">
+    <section className="w-full bg-white py-16 md:py-20 lg:py-24 px-4 md:px-6">
+      <div className="flex flex-col md:flex-row mx-auto w-full max-w-[1520px]">
         <div className="w-full md:w-[120px] lg:w-[160px] shrink-0 pt-2 mr-0 md:mr-6 lg:mr-10 mb-6 md:mb-0">
           <div className="flex flex-col items-start w-full">
             <span className="text-[12px] font-bold tracking-[0.08em] uppercase mb-1.5 ml-0.5 text-[#00AEEF]">

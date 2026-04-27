@@ -7,7 +7,7 @@ import homiBabaLogo from '../assets/TrustedByLogo/Homi Baba.png';
 import kleLogo from '../assets/TrustedByLogo/KLE.jpg';
 import nciJhajjharLogo from '../assets/TrustedByLogo/NCI Jhajjhar.jpeg';
 import msmfLogo from '../assets/TrustedByLogo/msmf.jpg';
-import { sectionContainer, sectionShell } from './layout';
+import { sectionContainer, sectionShell, sectionY } from './layout';
 import { SectionEyebrow } from './SectionEyebrow';
 
 export const TrustedInstitutionsSection: React.FC = () => {
@@ -24,7 +24,7 @@ export const TrustedInstitutionsSection: React.FC = () => {
   const secondRow = partnerLogos.slice(4);
 
   return (
-    <section className={`relative py-14 md:py-20 ${sectionShell} bg-white overflow-hidden`}>
+    <section className={`relative ${sectionY} ${sectionShell} bg-white overflow-hidden`}>
       <div className={sectionContainer}>
         
         {/* Header Area */}
@@ -40,7 +40,7 @@ export const TrustedInstitutionsSection: React.FC = () => {
         </div>
 
         {/* Mobile/Tablet Grid */}
-        <div className="grid grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-[1280px] mx-auto lg:hidden">
+        <div className="grid grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-[1520px] mx-auto lg:hidden">
           {partnerLogos.map((item, i) => (
             <div key={i} className="h-32 sm:h-36 md:h-40 p-2 flex items-center justify-center overflow-hidden">
               <img
@@ -62,7 +62,7 @@ export const TrustedInstitutionsSection: React.FC = () => {
         </div>
 
         {/* Desktop: 4 + 3 rows with aligned gap */}
-        <div className="hidden lg:block max-w-[1280px] mx-auto">
+        <div className="hidden lg:block max-w-[1520px] mx-auto">
           <div className="grid grid-cols-4 gap-6 xl:gap-8">
             {firstRow.map((item) => (
               <div key={item.name} className="h-44 p-2 flex items-center justify-center overflow-hidden">

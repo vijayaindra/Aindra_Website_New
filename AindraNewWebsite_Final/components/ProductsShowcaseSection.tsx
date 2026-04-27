@@ -5,7 +5,7 @@ import visionXImage from '../assets/ProductImages/VisionX2 (1).png';
 import astraImage from '../assets/ProductImages/Astra.png';
 import clustrImage from '../assets/ProductImages/ClustrHomePage.png';
 import { SectionEyebrow } from './SectionEyebrow';
-import { sectionContainer, sectionShell } from './layout';
+import { sectionContainer, sectionShell, sectionY } from './layout';
 
 interface ProductData {
   id: string;
@@ -82,7 +82,7 @@ export const ProductsShowcaseSection: React.FC = () => {
 
   return (
     <>
-    <section className={`lg:hidden w-full ${sectionShell} py-12 sm:py-14 md:py-16 bg-white`}>
+    <section className={`lg:hidden w-full ${sectionShell} ${sectionY} bg-white`}>
       <div className={sectionContainer}>
         <div className="mb-8">
           <SectionEyebrow label="Our Products" />
@@ -123,7 +123,7 @@ export const ProductsShowcaseSection: React.FC = () => {
 
     <div ref={containerRef} className="relative hidden lg:block h-[600vh] bg-white">
       {/* Sticky Content Frame */}
-      <section className={`sticky top-0 h-screen w-full overflow-hidden flex flex-col pt-32 pb-24 ${sectionShell}`}>
+      <section className={`sticky top-0 h-screen w-full overflow-hidden flex flex-col ${sectionY} ${sectionShell}`}>
         <div className={sectionContainer}>
         
         {/* PERSISTENT HEADER */}

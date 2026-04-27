@@ -3,8 +3,8 @@ import React from 'react';
 
 const WhoWeAre: React.FC = () => {
   return (
-    <section className="w-full bg-white py-16 md:py-24 px-6 md:px-8">
-      <div className="flex flex-col md:flex-row w-full max-w-[1400px] mx-auto">
+    <section className="w-full bg-white py-16 md:py-24 px-4 md:px-6">
+      <div className="flex flex-col md:flex-row mx-auto w-full max-w-[1520px]">
         {/* Side Label matching the site pattern */}
         <div className="w-[120px] md:w-[160px] shrink-0 pt-2 mr-6 md:mr-10 mb-8 md:mb-0">
           <div className="flex flex-col items-start w-full">

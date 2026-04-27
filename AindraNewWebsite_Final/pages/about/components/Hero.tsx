@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
         </div>
 
         <div className="w-full text-center px-0 md:px-2 mb-16 md:mb-20">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="mx-auto w-full max-w-[1520px]">
             <h2 className="text-[22px] md:text-[30px] lg:text-[38px] font-bold text-[#00AEEF] leading-[1.3] mb-12 tracking-tight">
               "Our mission is to democratize healthcare by making medical imaging accessible to everyone around the world."
             </h2>
