@@ -287,12 +287,10 @@ const TeamSection: React.FC = () => {
                 <div key={index} className="flex flex-col group">
                   <div className="rounded-xl overflow-hidden bg-white shadow-sm border border-gray-100 transition-all duration-500 group-hover:shadow-xl group-hover:border-blue-100">
                     <div className={`${member.isLogo ? 'h-[250px] sm:h-[300px]' : 'aspect-square sm:aspect-auto sm:h-[300px]'} bg-[#f7fbff] flex items-center justify-center relative overflow-hidden`}>
-                    {!member.isLogo && (
-                      <div
-                        className="absolute inset-0 scale-110 bg-center bg-cover blur-md opacity-45 transition-all duration-700 group-hover:opacity-60"
-                        style={{ backgroundImage: `url(${member.image})` }}
-                      />
-                    )}
+                    <div
+                      className="absolute inset-0 scale-110 bg-center bg-cover blur-md opacity-45 transition-all duration-700 group-hover:opacity-60"
+                      style={{ backgroundImage: `url(${member.image})` }}
+                    />
                     <img
                       src={member.image}
                       alt={member.name}
