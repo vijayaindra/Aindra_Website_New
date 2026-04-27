@@ -127,7 +127,7 @@ export const ProductsShowcaseSection: React.FC = () => {
         <div className={sectionContainer}>
         
         {/* PERSISTENT HEADER */}
-        <div className="relative z-20 grid grid-cols-12 gap-8 mb-8 lg:mb-12">
+        <div className="relative z-20 grid grid-cols-12 gap-8 mb-10 lg:mb-14">
           <div className="col-span-12 lg:col-span-3">
             <SectionEyebrow label="Our Products" />
           </div>
@@ -139,10 +139,10 @@ export const ProductsShowcaseSection: React.FC = () => {
         </div>
 
         {/* DYNAMIC CONTENT AREA */}
-        <div className="relative z-10 grid grid-cols-12 gap-8 flex-1 items-center h-full">
+        <div className="relative z-10 grid grid-cols-12 gap-10 flex-1 items-center h-full">
           
           {/* Left Side: Vertical Stepper - Refined for Perfect Alignment */}
-          <div className="col-span-12 lg:col-span-3 h-full flex items-center pr-4">
+          <div className="col-span-12 lg:col-span-3 h-full flex items-center pr-2">
             <div className="relative w-full" style={{ height: `${products.length * STEPPER_ITEM_HEIGHT}px` }}>
               
               {/* Vertical Scroll Bar (Indicator) */}
@@ -172,7 +172,7 @@ export const ProductsShowcaseSection: React.FC = () => {
           </div>
 
           {/* Center: Dynamic Image Transition Area */}
-          <div className="col-span-12 lg:col-span-5 flex justify-center h-full items-center relative">
+          <div className="col-span-12 lg:col-span-6 flex justify-center h-full items-center relative">
              {products.map((p, idx) => {
                const start = idx * progressPerItem;
                const end = (idx + 1) * progressPerItem;
@@ -229,12 +229,12 @@ export const ProductsShowcaseSection: React.FC = () => {
                         </div>
                       </div>
                     ) : (
-                      <div className="relative w-full max-w-[520px] lg:max-w-[620px] px-2">
+                      <div className="relative w-full max-w-[760px] lg:max-w-[860px]">
                         <div className="absolute inset-0 bg-blue-50 blur-[100px] rounded-full opacity-60"></div>
                         <img 
                           src={p.image} 
                           alt={p.name} 
-                          className={`relative z-10 w-full h-auto max-h-[52vh] lg:max-h-[60vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
+                          className={`relative z-10 w-full h-auto max-h-[62vh] lg:max-h-[70vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
                           onError={(e) => {
                             e.currentTarget.src = "https://images.unsplash.com/photo-1579165466541-71835479444a?q=80&w=800&auto=format&fit=crop";
                           }}
@@ -247,7 +247,7 @@ export const ProductsShowcaseSection: React.FC = () => {
           </div>
 
           {/* Right Side: Product Details */}
-          <div className="col-span-12 lg:col-span-4 pl-0 lg:pl-16 h-full flex items-center relative">
+          <div className="col-span-12 lg:col-span-3 pl-0 lg:pl-6 h-full flex items-center relative">
             {products.map((p, idx) => {
                const start = idx * progressPerItem;
                const end = (idx + 1) * progressPerItem;
@@ -267,29 +267,29 @@ export const ProductsShowcaseSection: React.FC = () => {
                return (
                  <div 
                   key={p.id}
-                  className="absolute inset-x-0 lg:left-16 space-y-6 lg:space-y-8 transition-all duration-300 ease-out"
+                  className="absolute inset-x-0 lg:left-8 space-y-7 lg:space-y-9 transition-all duration-300 ease-out"
                   style={{ 
                     opacity: Math.max(0, resolvedOpacity),
                     transform: `translateY(${translateY}px)`,
                     visibility: isActive || resolvedOpacity > 0.02 ? 'visible' : 'hidden',
                   }}
                  >
-                   <div className="space-y-4 lg:space-y-6">
+                   <div className="space-y-5 lg:space-y-7">
                     <div className="flex items-center space-x-4">
                       <div className="w-8 h-8 lg:w-10 lg:h-10 bg-[#00a3ff] rounded-md flex items-center justify-center text-sm font-black text-white shadow-xl shadow-blue-200">
                         {p.id}
                       </div>
-                      <h3 className="text-4xl lg:text-6xl font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-2 lg:pb-3">
+                      <h3 className="text-5xl lg:text-6xl font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-2 lg:pb-3">
                         {p.name}
                       </h3>
                     </div>
-                    <p className="text-base lg:text-lg text-slate-500 leading-relaxed font-light max-w-sm">
+                    <p className="text-lg lg:text-xl text-slate-500 leading-relaxed font-light max-w-md">
                       {p.description}
                     </p>
                   </div>
                   
                   <div className="pt-2 lg:pt-4">
-                    <a href={p.href} className="group inline-flex items-center space-x-4 px-8 lg:px-10 py-3 lg:py-4 bg-slate-900 text-white rounded-full font-bold text-[11px] lg:text-[12px] tracking-widest uppercase hover:bg-[#00a3ff] transition-all shadow-xl shadow-slate-200 active:scale-95">
+                    <a href={p.href} className="group inline-flex items-center space-x-4 px-10 lg:px-12 py-4 bg-slate-900 text-white rounded-full font-bold text-[12px] lg:text-[13px] tracking-widest uppercase hover:bg-[#00a3ff] transition-all shadow-xl shadow-slate-200 active:scale-95">
                       <span>Explore {p.name}</span>
                       <svg className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

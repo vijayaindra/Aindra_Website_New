@@ -103,14 +103,21 @@ export const SolutionsShowcase: React.FC = () => {
         
         <div className={sectionContainer}>
           {/* Section Header */}
-          <div className="mb-10 lg:mb-14">
-            <SectionEyebrow label="Our Solutions" />
+          <div className="relative z-20 grid grid-cols-12 gap-8 mb-10 lg:mb-14">
+            <div className="col-span-12 lg:col-span-3">
+              <SectionEyebrow label="Our Solutions" />
+            </div>
+            <div className="col-span-12 lg:col-span-9">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium text-slate-900 leading-[1.1] max-w-4xl">
+                AI modules for every stage of clinical pathology.
+              </h2>
+            </div>
           </div>
 
-          <div className="grid grid-cols-12 gap-12 lg:gap-24 items-center">
+          <div className="grid grid-cols-12 gap-10 items-center">
             
             {/* Left side: Timeline Nav + Description */}
-            <div className="col-span-12 lg:col-span-5 relative flex flex-col justify-center order-2 lg:order-1 h-[450px]">
+            <div className="col-span-12 lg:col-span-3 relative flex flex-col justify-center order-2 lg:order-1 h-[500px]">
               
               {/* The Connecting Line & Names */}
               <div className="relative mb-12">
@@ -127,7 +134,7 @@ export const SolutionsShowcase: React.FC = () => {
                   }}
                 ></div>
 
-                <div className="flex flex-col space-y-6">
+                <div className="flex flex-col space-y-7">
                   {solutions.map((s, idx) => (
                     <button 
                       key={s.id}
@@ -137,7 +144,7 @@ export const SolutionsShowcase: React.FC = () => {
                       <div className={`relative w-2 h-2 rounded-full border-2 transition-all duration-500 z-10
                         ${idx === activeIndex ? 'bg-cyan-500 border-cyan-500 scale-125' : 'bg-white border-slate-200 group-hover:border-slate-400'}`}
                       />
-                      <span className={`text-xl lg:text-2xl font-bold tracking-tight transition-all duration-500
+                      <span className={`text-2xl lg:text-3xl font-bold tracking-tight transition-all duration-500
                         ${idx === activeIndex ? 'text-slate-900 translate-x-1' : 'text-slate-300 group-hover:text-slate-500'}`}>
                         {s.name}
                       </span>
@@ -147,14 +154,14 @@ export const SolutionsShowcase: React.FC = () => {
               </div>
 
               {/* Description swapping */}
-              <div className="relative h-32">
+              <div className="relative h-44">
                 {solutions.map((s, idx) => (
                   <div 
                     key={s.id}
                     className={`absolute inset-0 transition-all duration-700 ease-in-out
                       ${idx === activeIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
                   >
-                    <p className="text-xl text-slate-500 leading-relaxed font-light max-w-md">
+                    <p className="text-xl lg:text-2xl text-slate-500 leading-relaxed font-light max-w-md">
                       {s.description}
                     </p>
                   </div>
@@ -163,7 +170,7 @@ export const SolutionsShowcase: React.FC = () => {
             </div>
 
             {/* Right side: Medical Illustration swapping with glows */}
-            <div className="col-span-12 lg:col-span-7 relative aspect-[4/3] lg:aspect-auto h-[400px] lg:h-[550px] order-1 lg:order-2">
+            <div className="col-span-12 lg:col-span-9 relative aspect-[11/6] order-1 lg:order-2">
               {solutions.map((s, idx) => (
                 <div 
                   key={idx}
@@ -174,7 +181,7 @@ export const SolutionsShowcase: React.FC = () => {
                     <img 
                       src={s.image} 
                       alt={s.name} 
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
 
                     {/* Scanning UI Element overlay */}
