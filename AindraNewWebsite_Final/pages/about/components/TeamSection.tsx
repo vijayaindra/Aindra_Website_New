@@ -1,5 +1,6 @@
 
 import React, { useMemo, useState } from 'react';
+import { sectionContainer, sectionShell } from '../../../components/layout';
 import kidwaiLogo from '../../../assets/TrustedByLogo/KIDWAI Memorial Institute of Oncology.png';
 import rvMetropolisLogo from '../../../assets/TrustedByLogo/RV Metropolis.png';
 import kmcManipalLogo from '../../../assets/TrustedByLogo/KMC Manipal.png';
@@ -16,6 +17,7 @@ import iitMandiLogo from '../../../assets/Research_Partner/research-partners2.pn
 import iiscLogo from '../../../assets/Research_Partner/research-partners3.png';
 import adarshTeamImage from '../../../assets/Aindra_team/Adarsh.jpg';
 import atulTeamImage from '../../../assets/Aindra_team/Atul.jpg';
+import shakeelTeamImage from '../../../assets/Aindra_team/Shakeel.png';
 import sudhirTeamImage from '../../../assets/Aindra_team/Sudhir.jpeg';
 import vijayTeamImage from '../../../assets/Aindra_team/Vijay.jpg';
 import charanTeamImage from '../../../assets/Aindra_team/Charan.jpg';
@@ -47,6 +49,11 @@ const teamMembers: TeamMember[] = [
     name: 'Atul Bisht',
     role: 'Product Manager',
     image: atulTeamImage
+  },
+  {
+    name: 'Shakeel Ahmed Desai',
+    role: 'Regional Sales Head',
+    image: shakeelTeamImage
   },
   {
     name: 'Sudhir Kumar',
@@ -220,12 +227,12 @@ const TeamSection: React.FC = () => {
   );
 
   return (
-    <section className="w-full bg-[#f0f7ff] py-24 overflow-hidden">
-      <div className="mx-auto w-full max-w-[1520px]">
+    <section className={`${sectionShell} w-full bg-[#f0f7ff] py-16 md:py-20 lg:py-24 overflow-hidden`}>
+      <div className={sectionContainer}>
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row items-start mb-20 w-full px-6 md:px-10">
+        <div className="flex flex-col md:flex-row items-start mb-20 w-full">
           {/* Section Label: Standardized width and padding */}
-          <div className="w-full md:w-[25%] lg:w-[20%] shrink-0 mb-6 md:mb-0">
+          <div className="w-full md:w-[20%] shrink-0 mb-6 md:mb-0">
             <div className="flex flex-col w-full">
               <span className="text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase mb-2">
                 TEAM
@@ -238,7 +245,7 @@ const TeamSection: React.FC = () => {
           </div>
           
           {/* Headline: Aligned with the grid */}
-          <div className="flex-1 md:pl-12 lg:pr-24">
+          <div className="flex-1 md:pl-10">
             <h2 className="text-[24px] md:text-[34px] lg:text-[42px] font-bold text-[#111827] leading-[1.2] tracking-tight max-w-[800px]">
               We are a team dedicated to innovating traditional healthcare
             </h2>
@@ -246,9 +253,9 @@ const TeamSection: React.FC = () => {
         </div>
 
         {/* Content Area: Sidebar and Grid */}
-        <div className="flex flex-col md:flex-row w-full px-6 md:px-10">
+        <div className="flex flex-col md:flex-row w-full">
           {/* Sidebar Categories: Standardized width */}
-          <div className="w-full md:w-[25%] lg:w-[20%] shrink-0 md:pr-10 mb-12 md:mb-0">
+          <div className="w-full md:w-[20%] shrink-0 md:pr-8 mb-12 md:mb-0">
             <div className="flex flex-col border-t border-gray-200">
               {categories.map((cat) => (
                 <button
@@ -274,19 +281,25 @@ const TeamSection: React.FC = () => {
           </div>
 
           {/* Team Grid: Optimized column counts for different viewports */}
-          <div className="flex-1 md:pl-12">
+          <div className="flex-1 md:pl-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
               {visibleMembers.map((member, index) => (
                 <div key={index} className="flex flex-col group">
                   <div className="rounded-xl overflow-hidden bg-white shadow-sm border border-gray-100 transition-all duration-500 group-hover:shadow-xl group-hover:border-blue-100">
-                    <div className={`${member.isLogo ? 'h-[250px] sm:h-[300px]' : 'aspect-square sm:aspect-auto sm:h-[300px]'} bg-white flex items-center justify-center`}>
-                    <img 
-                      src={member.image} 
-                      alt={member.name} 
-                      className={`w-full h-full transition-all duration-700 ${
+                    <div className={`${member.isLogo ? 'h-[250px] sm:h-[300px]' : 'aspect-square sm:aspect-auto sm:h-[300px]'} bg-[#f7fbff] flex items-center justify-center relative overflow-hidden`}>
+                    {!member.isLogo && (
+                      <div
+                        className="absolute inset-0 scale-110 bg-center bg-cover blur-md opacity-45 transition-all duration-700 group-hover:opacity-60"
+                        style={{ backgroundImage: `url(${member.image})` }}
+                      />
+                    )}
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className={`relative z-10 w-full h-full transition-all duration-700 ${
                         member.isLogo
                           ? 'object-contain p-6 sm:p-8 grayscale-0'
-                          : 'object-cover object-center grayscale group-hover:grayscale-0'
+                          : 'object-contain grayscale group-hover:grayscale-0'
                       }`}
                     />
                     </div>

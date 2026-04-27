@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { sectionContainer, sectionShell } from '../../../components/layout';
 
 const credibilityItems = [
   { title: "CERTIFICATIONS", description: "Our processes meet rigorous international healthcare standards including ISO 13485.", size: "large" },
@@ -11,12 +12,12 @@ const credibilityItems = [
 
 const CredibilitySection: React.FC = () => {
   return (
-    <section className="w-full bg-[#f0f7ff] pb-24 overflow-hidden">
-      <div className="mx-auto w-full max-w-[1520px]">
+    <section className={`${sectionShell} w-full bg-[#f0f7ff] pb-16 md:pb-20 lg:pb-24 overflow-hidden`}>
+      <div className={sectionContainer}>
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row items-start mb-16 w-full px-6 md:px-10">
+        <div className="flex flex-col md:flex-row items-start mb-16 w-full">
           {/* Section Label */}
-          <div className="w-full md:w-[25%] lg:w-[20%] shrink-0 mb-6 md:mb-0">
+          <div className="w-full md:w-[20%] shrink-0 mb-6 md:mb-0">
             <div className="flex flex-col w-full">
               <span className="text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase mb-2">
                 CREDIBILITY
@@ -29,7 +30,7 @@ const CredibilitySection: React.FC = () => {
           </div>
           
           {/* Headline */}
-          <div className="flex-1 md:pl-12 lg:pr-24">
+          <div className="flex-1 md:pl-10">
             <h2 className="text-[24px] md:text-[34px] lg:text-[42px] font-bold text-[#111827] leading-[1.2] tracking-tight">
               Our Foundation of Trust.
             </h2>
@@ -37,7 +38,7 @@ const CredibilitySection: React.FC = () => {
         </div>
 
         {/* Grid Area */}
-        <div className="px-6 md:px-10">
+        <div>
           <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
             {/* Top Row: 2 Large Cards */}
             {credibilityItems.filter(item => item.size === 'large').map((item, idx) => (

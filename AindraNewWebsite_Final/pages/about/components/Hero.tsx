@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { sectionContainerWide, sectionShell } from '../../../components/layout';
+import imageDesign from '../../../assets/image_design.png';
 
 const Hero: React.FC = () => {
   return (
@@ -14,7 +15,7 @@ const Hero: React.FC = () => {
         
         <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm shadow-lg mt-8 mb-24">
           <img 
-            src="https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=1600" 
+            src={imageDesign}
             alt="Scientific research team in lab" 
             className="w-full h-full object-cover"
           />

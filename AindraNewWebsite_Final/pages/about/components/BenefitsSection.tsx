@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { sectionContainer, sectionShell } from '../../../components/layout';
 
 const values = [
   {
@@ -21,14 +22,14 @@ const values = [
 
 const BenefitsSection: React.FC = () => {
   return (
-    <section className="w-full bg-white py-24">
-      <div className="w-full">
+    <section className={`${sectionShell} w-full bg-white py-16 md:py-20 lg:py-24`}>
+      <div className={sectionContainer}>
         {/* Header Section */}
         <div className="flex flex-col md:flex-row items-start mb-20 w-full">
           {/* Section Label: "OUR VALUES" positioned to the absolute left */}
-          <div className="w-full md:w-[25%] lg:w-[20%] shrink-0 mb-8 md:mb-0">
+          <div className="w-full md:w-[20%] shrink-0 mb-8 md:mb-0">
             <div className="flex flex-col w-full">
-              <span className="text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase mb-2 pl-6 md:pl-10">
+                <span className="text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase mb-2">
                 OUR VALUES
               </span>
               <div className="flex items-center w-full">
@@ -39,7 +40,7 @@ const BenefitsSection: React.FC = () => {
           </div>
           
           {/* Headline */}
-          <div className="flex-1 px-6 md:px-12 lg:pr-24 md:pl-8">
+          <div className="flex-1 md:pl-10">
             <h2 className="text-[22px] md:text-[30px] lg:text-[38px] font-bold text-[#111827] leading-[1.2] tracking-tight max-w-[900px]">
               By partnering with great companies and brands, we create beautiful products
             </h2>
@@ -54,14 +55,14 @@ const BenefitsSection: React.FC = () => {
               className="flex flex-col md:flex-row border-b border-gray-200 group hover:bg-gray-50/50 transition-colors"
             >
               {/* ID Column - Aligning with the "OUR VALUES" column */}
-              <div className="w-full md:w-[25%] lg:w-[20%] shrink-0 py-10 md:py-14 pl-6 md:pl-10 border-r border-gray-100/50">
+              <div className="w-full md:w-[20%] shrink-0 py-10 md:py-14 border-r border-gray-100/50">
                 <span className="text-[16px] md:text-[20px] font-semibold text-gray-900">
                   {value.id}
                 </span>
               </div>
 
               {/* Content Column */}
-              <div className="flex-1 py-10 md:py-14 px-6 md:px-12 lg:pr-24 md:pl-8">
+              <div className="flex-1 py-10 md:py-14 md:pl-10">
                 <h3 className="text-[20px] md:text-[24px] font-bold text-gray-900 mb-5 tracking-tight">
                   {value.title}
                 </h3>

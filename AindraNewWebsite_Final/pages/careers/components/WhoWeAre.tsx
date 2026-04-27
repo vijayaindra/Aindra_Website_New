@@ -1,12 +1,13 @@
 
 import React from 'react';
+import { sectionContainer, sectionShell } from '../../../components/layout';
 
 const WhoWeAre: React.FC = () => {
   return (
-    <section className="w-full bg-white py-16 md:py-24 px-4 md:px-6">
-      <div className="flex flex-col md:flex-row mx-auto w-full max-w-[1520px]">
+    <section className={`${sectionShell} w-full bg-white py-16 md:py-20 lg:py-24`}>
+      <div className={`flex flex-col md:flex-row ${sectionContainer}`}>
         {/* Side Label matching the site pattern */}
-        <div className="w-[120px] md:w-[160px] shrink-0 pt-2 mr-6 md:mr-10 mb-8 md:mb-0">
+        <div className="w-full md:w-[20%] shrink-0 pt-2 mr-0 md:mr-8 mb-8 md:mb-0">
           <div className="flex flex-col items-start w-full">
             <span className="text-[12px] font-bold tracking-[0.08em] uppercase mb-1.5 ml-0.5 text-[#00AEEF]">
               WHO WE ARE
@@ -19,7 +20,7 @@ const WhoWeAre: React.FC = () => {
         </div>
 
         {/* Main Content Area */}
-        <div className="flex-1">
+        <div className="flex-1 md:pl-2">
           <h2 className="text-[32px] md:text-[44px] lg:text-[52px] font-extrabold leading-[1.1] text-gray-900 tracking-tight mb-12 max-w-5xl">
             Let's build the future together
           </h2>

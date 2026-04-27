@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { sectionContainer, sectionShell } from '../../../components/layout';
+import imageDesign from '../../../assets/image_design.png';
 
 const stats = [
   {
@@ -27,8 +28,8 @@ const stats = [
 
 const ImpactSection: React.FC = () => {
   return (
-    <section className="w-full bg-white py-24 overflow-hidden">
-      <div className={`${sectionContainer} ${sectionShell}`}>
+    <section className={`${sectionShell} w-full bg-white py-16 md:py-20 lg:py-24 overflow-hidden`}>
+      <div className={sectionContainer}>
         {/* Header Section */}
         <div className="flex flex-col md:flex-row items-start mb-16 w-full">
           {/* Section Label */}
@@ -55,9 +56,9 @@ const ImpactSection: React.FC = () => {
         {/* Map Visualization */}
         <div className="w-full mb-24">
           <div className="relative mx-auto w-full max-w-[1520px] group">
-            <img 
-              src="https://images.unsplash.com/photo-1589519160732-57fc498494f8?auto=format&fit=crop&q=80&w=2000" 
-              alt="Global impact map" 
+            <img
+              src={imageDesign}
+              alt="Global impact map"
               className="w-full h-auto opacity-20 grayscale transition-opacity duration-700 group-hover:opacity-30"
             />
             {/* Custom SVG Overlay for the highlighted effect from the image */}

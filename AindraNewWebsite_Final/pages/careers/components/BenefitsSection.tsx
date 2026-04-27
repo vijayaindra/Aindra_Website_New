@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { submitCareerApplication } from '../../../services/careerApplicationService';
 import { sendCareerApplicationEmail } from '../../../services/emailService';
 import type { CareerApplicationPayload } from '../../../types/careerApplication';
+import { sectionContainer, sectionShell } from '../../../components/layout';
 
 interface JobOpening {
   id: number;
@@ -18,7 +19,7 @@ const jobs: JobOpening[] = [
 
 const BenefitItem = ({ title, description, circleOnLeft = true }: { title: string, description: string, circleOnLeft?: boolean }) => (
   <div className={`flex items-center gap-8 ${circleOnLeft ? 'flex-row' : 'flex-row-reverse'}`}>
-    <div className="w-48 h-48 md:w-64 md:h-64 rounded-full bg-[#EBF0F3] shrink-0" />
+    <div className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-[#EBF0F3] shrink-0" />
     <div className="max-w-md">
       <h3 className="text-[24px] font-semibold text-gray-900 mb-4 tracking-tight">{title}</h3>
       <p className="text-[17px] leading-relaxed text-gray-600 font-normal">
@@ -400,12 +401,12 @@ const BenefitsSection: React.FC = () => {
   const stage1Opacity = Math.max(0, Math.min(1, (transitionPoint - scrollProgress) * 12));
 
   return (
-    <div ref={containerRef} className="relative w-full" style={{ height: '600vh' }}>
+    <div ref={containerRef} className={`${sectionShell} relative w-full`} style={{ height: '460vh' }}>
       <section className="sticky top-0 w-full min-h-screen bg-white flex flex-col">
         
-        <div className="relative z-50 bg-white px-4 md:px-6 pt-6 pb-4">
-          <div className="flex flex-col md:flex-row items-start w-full">
-            <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10">
+        <div className="relative z-50 bg-white pt-6 pb-4">
+          <div className={`${sectionContainer} flex flex-col md:flex-row items-start w-full`}>
+            <div className="w-full md:w-[20%] shrink-0 pt-1 mb-6 md:mb-0">
               <div className="flex flex-col items-start w-full">
                 <div className="h-4 relative w-full overflow-hidden">
                    <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-700 ease-in-out ${scrollProgress < transitionPoint ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
@@ -421,7 +422,7 @@ const BenefitsSection: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="flex-1 mt-0 relative overflow-hidden h-24 md:h-32">
+            <div className="flex-1 mt-0 relative overflow-hidden min-h-[136px] md:min-h-[172px] md:pl-10">
               <h2 className={`absolute inset-0 text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px] transition-all duration-700 ${scrollProgress < transitionPoint ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
                 Our team values focus, dedication, innovation and the power of what can happen when they converge.
               </h2>
@@ -440,8 +441,8 @@ const BenefitsSection: React.FC = () => {
             pointerEvents: stage1Opacity > 0.5 ? 'auto' : 'none'
           }}
         >
-          <div className="h-full flex flex-col mx-auto w-full max-w-[1520px] px-4 md:px-6 pt-12 relative">
-            <div className="absolute inset-0 flex flex-col pt-12 gap-24 md:pl-[200px] pointer-events-none">
+          <div className={`h-full flex flex-col ${sectionContainer} pt-12 relative`}>
+            <div className="absolute inset-0 flex flex-col pt-10 gap-16 md:pl-[180px] pointer-events-none">
               <div 
                 style={{ 
                   opacity: item1Opacity,
@@ -474,7 +475,7 @@ const BenefitsSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="absolute inset-0 flex flex-col pt-12 gap-24 md:pl-[200px] pointer-events-none">
+            <div className="absolute inset-0 flex flex-col pt-10 gap-16 md:pl-[180px] pointer-events-none">
               <div 
                 style={{ 
                   opacity: item3Opacity,
@@ -497,7 +498,7 @@ const BenefitsSection: React.FC = () => {
                   alignSelf: 'flex-end',
                   visibility: item4Opacity < 0.01 ? 'hidden' : 'visible'
                 }}
-                className="transition-all duration-300 ease-out md:pr-24 pointer-events-auto"
+                className="transition-all duration-300 ease-out md:pr-16 pointer-events-auto"
               >
                 <BenefitItem 
                   title="Educational assistance" 
@@ -511,7 +512,7 @@ const BenefitsSection: React.FC = () => {
 
         {/* Positions Container (Fades in and scrolls naturally) */}
         <div 
-          className="mx-auto w-full max-w-[1520px] px-4 md:px-6 pb-32 relative z-20"
+          className={`${sectionContainer} pb-32 relative z-20`}
           style={{ 
             opacity: positionsOpacity,
             visibility: positionsOpacity < 0.01 ? 'hidden' : 'visible',
