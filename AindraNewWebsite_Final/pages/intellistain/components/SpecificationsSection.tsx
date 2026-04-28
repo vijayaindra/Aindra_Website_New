@@ -37,6 +37,11 @@ const variantImageMap: Record<IntellistainVariant, string> = {
   IS30: intellistain30Image,
 };
 
+const variantFeetDimensions: Record<IntellistainVariant, { width: string; height: string }> = {
+  IS15: { width: '1.44 ft', height: '1.64 ft' },
+  IS30: { width: '1.80 ft', height: '1.94 ft' },
+};
+
 interface SpecItem {
   label: string;
   value: string;
@@ -122,6 +127,7 @@ const specificationData: Record<IntellistainVariant, CategorySpecs[]> = {
 
 const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVariant = 'IS15' }) => {
   const specificationImage = variantImageMap[activeVariant] ?? variantImageMap.IS15;
+  const dimensions = variantFeetDimensions[activeVariant] ?? variantFeetDimensions.IS15;
   const specs = specificationData[activeVariant] ?? specificationData.IS15;
   const physicalEnvironmental = specs[0];
   const stainingPerformance = specs[1];
@@ -155,7 +161,7 @@ const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVar
                 <div className="absolute -bottom-[1px] left-1/2 h-0 w-0 -translate-x-1/2 border-x-[3px] border-t-[6px] border-x-transparent border-t-gray-400" />
               </div>
               <span className="mt-2 inline-block whitespace-nowrap text-[12px] leading-none text-gray-400 [writing-mode:vertical-rl]">
-                1.5ft
+                {dimensions.height}
               </span>
             </div>
             <div className="pointer-events-none absolute -bottom-9 left-1/2 hidden -translate-x-1/2 md:flex items-center">
@@ -164,7 +170,7 @@ const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVar
                 <div className="absolute left-0 top-1/2 h-0 w-0 -translate-y-1/2 border-y-[3px] border-r-[6px] border-y-transparent border-r-gray-400" />
                 <div className="absolute right-0 top-1/2 h-0 w-0 -translate-y-1/2 border-y-[3px] border-l-[6px] border-y-transparent border-l-gray-400" />
               </div>
-              <span className="ml-2 whitespace-nowrap text-[12px] text-gray-400">1.5ft</span>
+              <span className="ml-2 whitespace-nowrap text-[12px] text-gray-400">{dimensions.width}</span>
             </div>
           </div>
 

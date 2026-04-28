@@ -39,6 +39,13 @@ const variantImageMap: Record<VisionXVariant, { src: string; softenBackground: b
   VXF: { src: visionXFImage, softenBackground: true },
 };
 
+const variantFeetDimensions: Record<VisionXVariant, { width: string; height: string }> = {
+  VX1: { width: '1.38 ft', height: '1.21 ft' },
+  VX6: { width: '2.03 ft', height: '1.18 ft' },
+  'VX mini': { width: '1.38 ft', height: '1.21 ft' },
+  VXF: { width: '1.44 ft', height: '1.64 ft' },
+};
+
 interface SpecCategory {
   title: string;
   rows: Array<{ label: string; value: string }>;
@@ -241,6 +248,7 @@ const specificationsByVariant: Record<VisionXVariant, SpecCategory[]> = {
 
 const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVariant = 'VX1' }) => {
   const imageConfig = variantImageMap[activeVariant] ?? variantImageMap.VX1;
+  const dimensions = variantFeetDimensions[activeVariant] ?? variantFeetDimensions.VX1;
   const variantSpecs = specificationsByVariant[activeVariant] ?? specificationsByVariant.VX1;
   const firstCategory = variantSpecs[0];
   const remainingCategories = variantSpecs.slice(1);
@@ -274,7 +282,7 @@ const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVar
                   <div className="absolute -bottom-[1px] left-1/2 h-0 w-0 -translate-x-1/2 border-x-[3px] border-t-[6px] border-x-transparent border-t-gray-400" />
                 </div>
                 <span className="mt-2 inline-block whitespace-nowrap text-[12px] leading-none text-gray-400 [writing-mode:vertical-rl]">
-                  1.5ft
+                  {dimensions.height}
                 </span>
               </div>
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 flex flex-row items-center">
@@ -283,7 +291,7 @@ const SpecificationsSection: React.FC<SpecificationsSectionProps> = ({ activeVar
                   <div className="absolute left-0 top-1/2 h-0 w-0 -translate-y-1/2 border-y-[3px] border-r-[6px] border-y-transparent border-r-gray-400" />
                   <div className="absolute right-0 top-1/2 h-0 w-0 -translate-y-1/2 border-y-[3px] border-l-[6px] border-y-transparent border-l-gray-400" />
                 </div>
-                <span className="text-[12px] text-gray-400 ml-2 whitespace-nowrap">1.5ft</span>
+                <span className="text-[12px] text-gray-400 ml-2 whitespace-nowrap">{dimensions.width}</span>
               </div>
             </div>
           </div>
