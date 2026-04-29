@@ -259,9 +259,9 @@ const BenefitsSection: React.FC = () => {
   const stage2TranslateY = 80 * (1 - Math.min(1, stage2Opacity));
 
   return (
-    <div ref={containerRef} className={`${sectionShell} relative w-full`} style={{ height: '500vh' }}>
+    <div ref={containerRef} className="relative w-full" style={{ height: '500vh' }}>
       <section className="sticky top-20 sm:top-24 w-full h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] bg-white overflow-hidden flex flex-col">
-        <div className={`${sectionContainer} relative h-full flex flex-col`}>
+        <div className={`${sectionContainer} ${sectionShell} relative h-full flex flex-col`}>
         
         {/* Persistent Sticky Header */}
         <div className="relative z-50 bg-white pt-6 pb-4">

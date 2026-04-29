@@ -22,7 +22,7 @@ export const TrustAndMarketingSection: React.FC = () => {
     <section className={`relative w-full overflow-hidden bg-white ${sectionShell} ${sectionY}`}>
       <div className={sectionContainer}>
         <div className="overflow-hidden rounded-[32px] border border-slate-200 bg-white lg:grid lg:grid-cols-12">
-          <div className="relative lg:col-span-7 flex flex-col justify-center px-6 sm:px-8 md:px-10 lg:px-12 py-10 md:py-12 lg:py-14 min-h-[460px] md:min-h-[520px]">
+          <div className="relative overflow-hidden lg:col-span-7 flex flex-col justify-center px-6 sm:px-8 md:px-10 lg:px-12 py-10 md:py-12 lg:py-14 min-h-[460px] md:min-h-[520px]">
             <div className="absolute inset-0 z-0">
               <img
                 src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=2000&auto=format&fit=crop"
