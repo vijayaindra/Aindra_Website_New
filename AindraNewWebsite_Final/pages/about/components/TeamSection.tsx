@@ -23,7 +23,7 @@ import vijayTeamImage from '../../../assets/Aindra_team/Vijay.jpg';
 import charanTeamImage from '../../../assets/Aindra_team/Charan.jpg';
 import abhyanandTeamImage from '../../../assets/Aindra_team/Abhyanand.jpg';
 import farhanTeamImage from '../../../assets/Aindra_team/Farhan.jpeg';
-import harshithaTeamImage from '../../../assets/Aindra_team/Harshitha.png';
+import harshithaTeamImage from '../../../assets/Aindra_team/Harshitha-optimized.webp';
 import anilImage from '../../../assets/Advisors/Anil.jpg';
 import arunImage from '../../../assets/Advisors/Arun-Venkatesh.png';
 import drShantiImage from '../../../assets/Advisors/Dr_shanti.jpeg';
@@ -294,6 +294,8 @@ const TeamSection: React.FC = () => {
                     <img
                       src={member.image}
                       alt={member.name}
+                      loading="lazy"
+                      decoding="async"
                       className={`relative z-10 w-full h-full transition-all duration-700 ${
                         member.isLogo
                           ? 'object-contain p-0 w-[82%] h-[82%] scale-[1.08] grayscale group-hover:grayscale-0'

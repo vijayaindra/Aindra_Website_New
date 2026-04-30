@@ -5,6 +5,7 @@ import economicTimesLogo from '../assets/media/economic-times.png';
 import techcircleLogo from '../assets/media/techcircle.png';
 import geektimeLogo from '../assets/media/geektime.png';
 import venturebeatLogo from '../assets/media/venturebeat.png';
+import backgroundImage from '../assets/ProductImages/Background Image.png';
 import { SectionEyebrow } from './SectionEyebrow';
 import { sectionContainer, sectionShell, sectionY } from './layout';
 
@@ -25,7 +26,7 @@ export const TrustAndMarketingSection: React.FC = () => {
           <div className="relative overflow-hidden lg:col-span-7 flex flex-col justify-center px-6 sm:px-8 md:px-10 lg:px-12 py-10 md:py-12 lg:py-14 min-h-[460px] md:min-h-[520px]">
             <div className="absolute inset-0 z-0">
               <img
-                src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=2000&auto=format&fit=crop"
+                src={backgroundImage}
                 alt="Medical Background"
                 className="w-full h-full object-cover scale-110 blur-[40px] opacity-70"
               />
@@ -56,12 +57,12 @@ export const TrustAndMarketingSection: React.FC = () => {
               </div>
 
               <div className="pt-4 flex flex-wrap gap-3">
-                <button className="px-8 py-3 bg-white text-slate-900 rounded-full font-bold text-sm tracking-wider uppercase hover:bg-slate-100 transition-all">
+                <a href="#/about#credibility" className="px-8 py-3 bg-white text-slate-900 rounded-full font-bold text-sm tracking-wider uppercase hover:bg-slate-100 transition-all inline-flex items-center justify-center">
                   View Validation Data
-                </button>
-                <button className="px-8 py-3 border border-white/30 text-white rounded-full font-bold text-sm tracking-wider uppercase hover:bg-white/10 transition-all">
+                </a>
+                <a href="#/about#credibility" className="px-8 py-3 border border-white/30 text-white rounded-full font-bold text-sm tracking-wider uppercase hover:bg-white/10 transition-all inline-flex items-center justify-center">
                   Clinical Publications
-                </button>
+                </a>
               </div>
             </div>
           </div>

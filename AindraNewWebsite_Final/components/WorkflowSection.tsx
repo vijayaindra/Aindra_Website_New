@@ -1,5 +1,6 @@
 
 import React from 'react';
+import backgroundImage from '../assets/ProductImages/Background Image.png';
 
 export const WorkflowSection: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ export const WorkflowSection: React.FC = () => {
       {/* Background with Medical Aesthetics */}
       <div className="absolute inset-0 z-0 bg-[#f8fbff]">
         <img 
-          src="https://images.unsplash.com/photo-1631553127988-3475968f583f?q=80&w=2400&auto=format&fit=crop" 
+          src={backgroundImage}
           alt="H&E Stained Tissue Slide Background" 
           className="w-full h-full object-cover filter saturate-[1.2] contrast-[1.05] brightness-[0.2]"
         />

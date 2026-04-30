@@ -1,6 +1,6 @@
 
 import React from 'react';
-import clustrImage from '../../../assets/ProductImages/Clustr.jpg';
+import clustrImage from '../../../assets/ProductImages/Clustr-optimized.webp';
 import { sectionContainerWide, sectionShell } from '../../../components/layout';
 
 const Hero: React.FC = () => {

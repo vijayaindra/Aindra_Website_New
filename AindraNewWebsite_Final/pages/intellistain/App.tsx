@@ -44,9 +44,7 @@ const App: React.FC = () => {
         ) : activeSection === 'RESOURCES' ? (
           <ResourcesSection />
         ) : (
-          <div className="py-40 text-center text-gray-400 font-medium bg-gray-50 border-y border-gray-100">
-            {activeSection} content coming soon...
-          </div>
+          <BenefitsSection />
         )}
         
         <FAQSection />

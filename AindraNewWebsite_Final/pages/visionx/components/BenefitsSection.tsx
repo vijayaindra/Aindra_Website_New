@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { VISIONX_VARIANT_EVENT } from './Hero';
 import { sectionContainer, sectionShell } from '../../../components/layout';
+import visionXImage from '../../../assets/ProductImages/VisionX2 (1).png';
+import visionX6Image from '../../../assets/ProductImages/VX6.png';
+import visionXFImage from '../../../assets/ProductImages/FWSI.jpg';
+import intellistainImage from '../../../assets/ProductImages/IS-15.png';
+import astraImage from '../../../assets/ProductImages/AstraThumbnail.png';
 
 type VisionXVariant = 'VX1' | 'VX6' | 'VX mini' | 'VXF';
 
@@ -22,11 +27,11 @@ interface VisionXContent {
 }
 
 const featureImages = [
-  'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000',
-  'https://images.unsplash.com/photo-1579154234431-da711f1ae5f1?auto=format&fit=crop&q=80&w=1000',
-  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000',
-  'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1000',
-  'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000',
+  visionXImage,
+  visionX6Image,
+  visionXFImage,
+  intellistainImage,
+  astraImage,
 ];
 
 const visionXContent: Record<'VX1' | 'VX6' | 'VX mini' | 'VXF', VisionXContent> = {

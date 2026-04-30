@@ -372,36 +372,37 @@ const BenefitsSection: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const transitionPoint = 0.4; 
+  const transitionPoint = 0.5; 
   
-  const item1EnterProgress = Math.max(0, Math.min(1, scrollProgress / 0.1));
-  const item1ExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.15) / 0.1));
+  const item1EnterProgress = Math.max(0, Math.min(1, scrollProgress / 0.16));
+  const item1ExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.24) / 0.16));
   const item1Opacity = item1EnterProgress * (1 - item1ExitProgress);
   const item1TranslateY = (40 * (1 - item1EnterProgress)) - (100 * item1ExitProgress);
 
-  const item2EnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.05) / 0.1));
-  const item2ExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.18) / 0.1));
+  const item2EnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.08) / 0.16));
+  const item2ExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.28) / 0.16));
   const item2Opacity = item2EnterProgress * (1 - item2ExitProgress);
   const item2TranslateY = (80 * (1 - item2EnterProgress)) - (200 * item2ExitProgress);
 
-  const item3EnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.22) / 0.1));
-  const item3ExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.35) / 0.1));
+  const item3EnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.32) / 0.16));
+  const item3ExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.52) / 0.16));
   const item3Opacity = item3EnterProgress * (1 - item3ExitProgress);
   const item3TranslateY = (40 * (1 - item3EnterProgress)) - (100 * item3ExitProgress);
 
-  const item4EnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.25) / 0.1));
-  const item4ExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.38) / 0.1));
+  const item4EnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.36) / 0.16));
+  const item4ExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.56) / 0.16));
   const item4Opacity = item4EnterProgress * (1 - item4ExitProgress);
   const item4TranslateY = (80 * (1 - item4EnterProgress)) - (200 * item4ExitProgress);
 
-  const positionsEnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.38) * 10));
+  const positionsEnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.58) * 6));
   const positionsOpacity = positionsEnterProgress;
   const positionsTranslateY = 60 * (1 - positionsEnterProgress);
 
-  const stage1Opacity = Math.max(0, Math.min(1, (transitionPoint - scrollProgress) * 12));
+  const stage1Opacity = Math.max(0, Math.min(1, (transitionPoint - scrollProgress) * 7));
 
   return (
-    <div ref={containerRef} className={`${sectionShell} relative w-full`} style={{ height: '460vh' }}>
+    <>
+    <div ref={containerRef} className={`${sectionShell} relative w-full`} style={{ height: '620vh' }}>
       <section className="sticky top-20 sm:top-24 w-full h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] bg-white flex flex-col overflow-hidden">
         
         <div className="relative z-50 bg-white pt-6 pb-4">
@@ -520,11 +521,11 @@ const BenefitsSection: React.FC = () => {
             transform: `translateY(${positionsTranslateY}px)`
           }}
         >
-          {/* Jobs List - Still indented to match design */}
-          <div className="flex mb-12">
-            <div className="hidden md:block w-[120px] md:w-[160px] mr-6 md:mr-10 shrink-0"></div>
-            <div className="flex-1 pr-4 md:pr-12">
-              <div className="flex flex-col border-b border-gray-100 max-w-4xl">
+          {/* Jobs List - aligned to same content column as section heading */}
+          <div className="flex flex-col md:flex-row items-start mb-12 w-full">
+            <div className="w-full md:w-[20%] shrink-0 mb-6 md:mb-0" />
+            <div className="w-full md:flex-1 md:pl-10">
+              <div className="flex flex-col border-b border-gray-100 max-w-[1000px]">
                 {jobs.map((job) => (
                   <JobItem key={job.id} job={job} />
                 ))}
@@ -532,15 +533,17 @@ const BenefitsSection: React.FC = () => {
             </div>
           </div>
           
-          {/* Application Form - Full Width Stretched */}
-          <div className="w-full">
-            <ApplicationForm />
-          </div>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white via-white/70 to-transparent pointer-events-none z-40"></div>
       </section>
     </div>
+    <div className={`${sectionShell} bg-white pb-24`}>
+      <div className={sectionContainer}>
+        <ApplicationForm />
+      </div>
+    </div>
+    </>
   );
 };
 
