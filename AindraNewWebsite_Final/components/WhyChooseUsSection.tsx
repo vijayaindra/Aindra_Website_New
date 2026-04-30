@@ -28,7 +28,7 @@ export const WhyChooseUsSection: React.FC = () => {
           </div>
           <div className="col-span-12 lg:col-span-9">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium text-slate-900 leading-[1.15] md:leading-[1.1] max-w-4xl tracking-tight text-balance">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+              Intelligent diagnostic screening designed for faster, more accurate clinical outcomes.
             </h2>
           </div>
         </div>

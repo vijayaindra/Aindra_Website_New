@@ -57,12 +57,12 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: 'Sudhir Kumar',
-    role: 'Electronics & Embedded Engineer',
+    role: 'Embedded Engineer',
     image: sudhirTeamImage
   },
   {
     name: 'Vijay Kumar',
-    role: 'Team Lead',
+    role: 'Software Team Lead',
     image: vijayTeamImage
   },
   {
