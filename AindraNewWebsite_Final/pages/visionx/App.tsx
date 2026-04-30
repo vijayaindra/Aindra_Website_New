@@ -37,7 +37,7 @@ const App: React.FC = () => {
         {activeSection === 'OVERVIEW' ? (
           <BenefitsSection />
         ) : activeSection === 'IMAGE QUALITY' ? (
-          <ImageQualitySection />
+          <ImageQualitySection activeVariant={activeVariant} />
         ) : activeSection === 'SPECIFICATIONS' ? (
           <SpecificationsSection activeVariant={activeVariant} />
         ) : activeSection === 'RESOURCES' ? (

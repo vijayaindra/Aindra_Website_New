@@ -36,17 +36,17 @@ const ImageQualitySection: React.FC = () => {
 
       <div className="flex flex-col">
         <QualityRow 
-          title="Cytology"
+          title="Cytology-PAP"
           description={commonDescription}
           imageUrl={cytologyPapImage}
         />
         <QualityRow 
-          title="Histology"
+          title="Histology-H&E"
           description={commonDescription}
           imageUrl={histologyHeImage}
         />
         <QualityRow 
-          title="Hematology"
+          title="Hematology-Gemisa"
           description={commonDescription}
           imageUrl={hematologyGemisaImage}
         />
