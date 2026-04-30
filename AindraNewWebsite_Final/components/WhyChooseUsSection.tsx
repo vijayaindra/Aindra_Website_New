@@ -1,19 +1,28 @@
 
 import React, { useState } from 'react';
-import imageDesign from '../assets/image_design.png';
+import hospitalImage from '../assets/Why_choose_us/Hospital.png';
+import diagnosticLabImage from '../assets/Why_choose_us/Diagnostic Lab.png';
+import clinicsImage from '../assets/Why_choose_us/Clinics.png';
+import medEdImage from '../assets/Why_choose_us/Med Ed.png';
 import { SectionEyebrow } from './SectionEyebrow';
-import { sectionContainer, sectionShell, sectionY } from './layout';
+import { sectionContainer, sectionShell } from './layout';
 
 export const WhyChooseUsSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Hospitals');
   const tabs = ['Hospitals', 'Diagnostic Labs', 'Clinics', 'MedEd'];
+  const tabImages: Record<string, string> = {
+    Hospitals: hospitalImage,
+    'Diagnostic Labs': diagnosticLabImage,
+    Clinics: clinicsImage,
+    MedEd: medEdImage,
+  };
 
   return (
-    <section className={`relative ${sectionY} ${sectionShell} bg-white overflow-hidden`}>
+    <section className={`relative py-10 md:py-12 lg:py-14 ${sectionShell} bg-white overflow-hidden`}>
       <div className={sectionContainer}>
         
         {/* Top Header Row */}
-        <div className="grid grid-cols-12 gap-6 md:gap-8 items-start mb-12 md:mb-24">
+        <div className="grid grid-cols-12 gap-6 md:gap-8 items-start mb-8 md:mb-12">
           <div className="col-span-12 lg:col-span-3 pt-2">
             <SectionEyebrow label="Why Choose Us" />
           </div>
@@ -49,11 +58,11 @@ export const WhyChooseUsSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Exact provided image design */}
-          <div className="col-span-12 lg:col-span-7 flex items-center justify-center lg:justify-end py-8 md:py-12 order-1 lg:order-2">
+          {/* Right Column: Tab-specific visual */}
+          <div className="col-span-12 lg:col-span-7 flex items-center justify-center lg:justify-end py-2 md:py-4 order-1 lg:order-2">
             <img
-              src={imageDesign}
-              alt="Why choose us visual design"
+              src={tabImages[activeTab]}
+              alt={`${activeTab} visual`}
               className="w-full max-w-[620px] h-auto object-contain"
             />
           </div>

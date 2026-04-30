@@ -53,6 +53,14 @@ const getCurrentRoute = (): string => {
   return VALID_ROUTES.has(pathRoute) ? pathRoute : '/';
 };
 
+const getCurrentSectionAnchor = (): string | null => {
+  const hashRoute = window.location.hash.replace(/^#/, '');
+  const anchorIndex = hashRoute.indexOf('#');
+  if (anchorIndex === -1) return null;
+  const anchor = hashRoute.slice(anchorIndex + 1).trim().toLowerCase();
+  return anchor || null;
+};
+
 const HomePage: React.FC = () => {
   return (
     <div className="relative min-h-screen selection:bg-cyan-100 bg-[#f5f7fa] scroll-smooth">
@@ -106,6 +114,20 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    const targetAnchor = getCurrentSectionAnchor();
+
+    if (targetAnchor) {
+      window.requestAnimationFrame(() => {
+        const target = document.getElementById(targetAnchor);
+        if (target) {
+          target.scrollIntoView({ behavior: 'auto', block: 'start' });
+          return;
+        }
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      });
+      return;
+    }
+
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, [route]);
 

@@ -27,7 +27,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({ isOpen, onClose }) => {
   const navLinks = [
     { label: 'Home', href: '#/' },
     { label: 'About us', href: '#/about' },
-    { label: 'Credibility', href: '#/clustr' },
+    { label: 'Credibility', href: '#/about#credibility' },
     { label: 'Careers', href: '#/careers' },
   ];
 

@@ -12,7 +12,7 @@ const credibilityItems = [
 
 const CredibilitySection: React.FC = () => {
   return (
-    <section className={`${sectionShell} w-full bg-[#f0f7ff] pb-16 md:pb-20 lg:pb-24 overflow-hidden`}>
+    <section id="credibility" className={`${sectionShell} w-full bg-[#f0f7ff] pb-16 md:pb-20 lg:pb-24 overflow-hidden`}>
       <div className={sectionContainer}>
         {/* Header Section */}
         <div className="flex flex-col md:flex-row items-start mb-16 w-full">

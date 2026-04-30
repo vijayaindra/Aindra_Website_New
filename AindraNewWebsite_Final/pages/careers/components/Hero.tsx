@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { sectionContainerWide, sectionShell } from '../../../components/layout';
-import imageDesign from '../../../assets/image_design.png';
+import imageDesign from '../../../assets/Why_choose_us/image_design.png';
 
 const Hero: React.FC = () => {
   return (
