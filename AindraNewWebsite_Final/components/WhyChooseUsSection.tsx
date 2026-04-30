@@ -18,7 +18,10 @@ export const WhyChooseUsSection: React.FC = () => {
   };
 
   return (
-    <section className={`relative py-10 md:py-12 lg:py-14 ${sectionShell} bg-white overflow-hidden`}>
+    <section
+      className={`relative py-10 md:py-12 lg:py-14 ${sectionShell} bg-white overflow-hidden`}
+      style={{ backgroundColor: '#ffffff' }}
+    >
       <div className={sectionContainer}>
         
         {/* Top Header Row */}
@@ -60,11 +63,13 @@ export const WhyChooseUsSection: React.FC = () => {
 
           {/* Right Column: Tab-specific visual */}
           <div className="col-span-12 lg:col-span-7 flex items-center justify-center lg:justify-end py-2 md:py-4 order-1 lg:order-2">
-            <img
-              src={tabImages[activeTab]}
-              alt={`${activeTab} visual`}
-              className="w-full max-w-[620px] h-auto object-contain"
-            />
+            <div className="w-full max-w-[620px] aspect-square bg-white overflow-hidden flex items-center justify-center">
+              <img
+                src={tabImages[activeTab]}
+                alt={`${activeTab} visual`}
+                className="w-full h-full object-contain object-center bg-white"
+              />
+            </div>
           </div>
 
         </div>

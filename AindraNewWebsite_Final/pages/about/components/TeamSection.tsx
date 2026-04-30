@@ -286,9 +286,9 @@ const TeamSection: React.FC = () => {
               {visibleMembers.map((member, index) => (
                 <div key={index} className="flex flex-col group">
                   <div className="rounded-xl overflow-hidden bg-white shadow-sm border border-gray-100 transition-all duration-500 group-hover:shadow-xl group-hover:border-blue-100">
-                    <div className={`${member.isLogo ? 'h-[250px] sm:h-[300px]' : 'aspect-square sm:aspect-auto sm:h-[300px]'} bg-[#f7fbff] flex items-center justify-center relative overflow-hidden`}>
+                    <div className={`${member.isLogo ? 'h-[280px] sm:h-[300px]' : 'aspect-square sm:aspect-auto sm:h-[300px]'} bg-[#f7fbff] flex items-center justify-center relative overflow-hidden`}>
                     <div
-                      className="absolute inset-0 scale-110 bg-center bg-cover blur-md opacity-45 transition-all duration-700 group-hover:opacity-60"
+                      className="absolute inset-0 scale-110 bg-center bg-cover blur-md opacity-45 grayscale transition-all duration-700 group-hover:opacity-60"
                       style={{ backgroundImage: `url(${member.image})` }}
                     />
                     <img
@@ -296,7 +296,7 @@ const TeamSection: React.FC = () => {
                       alt={member.name}
                       className={`relative z-10 w-full h-full transition-all duration-700 ${
                         member.isLogo
-                          ? 'object-contain p-6 sm:p-8 grayscale-0'
+                          ? 'object-contain p-0 w-[82%] h-[82%] scale-[1.08] grayscale group-hover:grayscale-0'
                           : 'object-contain grayscale group-hover:grayscale-0'
                       }`}
                     />
