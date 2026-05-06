@@ -1,6 +1,10 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { sectionContainer, sectionShell } from '../../../components/layout';
+import enhancedEfficiencyIcon from '../../../assets/Icon/Enhanced Efficiency.png';
+import workplaceFlexibilityIcon from '../../../assets/Icon/Workplace Flexibility.png';
+import riskEliminationIcon from '../../../assets/Icon/Risk Elimination.png';
+import expandedExpertiseIcon from '../../../assets/Icon/Expanded Expertise.png';
 
 interface Feature {
   id: number;
@@ -75,18 +79,24 @@ const features: Feature[] = [
   }
 ];
 
-const AIChipIcon = () => (
-  <svg width="62" height="62" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#00AEEF] mb-6">
-    <rect x="25" y="25" width="50" height="50" rx="6" stroke="currentColor" strokeWidth="3.5" />
-    <rect x="38" y="38" width="24" height="24" rx="3" stroke="currentColor" strokeWidth="3.5" />
-    <path d="M35 25V18M45 25V18M55 25V18M65 25V18" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"/>
-    <path d="M35 82V75M45 82V75M55 82V75M65 82V75" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"/>
-    <path d="M18 35H25M18 45H25M18 55H25M18 65H25" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"/>
-    <path d="M75 35H82M75 45H82M75 55H82M75 65H82" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"/>
-    <path d="M30 12C20.0589 12 12 20.0589 12 30M12 70C12 79.9411 20.0589 88 30 88M70 88C79.9411 88 88 79.9411 88 70M88 30C88 20.0589 79.9411 12 70 12" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"/>
-    <text x="50%" y="54%" dominantBaseline="middle" textAnchor="middle" fill="currentColor" fontSize="15" fontWeight="900" fontFamily="Inter">AI</text>
-  </svg>
-);
+const BENEFIT_ICON_WRAPPER_CLASS = 'w-16 h-16 flex items-center justify-center mb-5 shrink-0';
+const BENEFIT_ICON_CLASS = 'w-[62px] h-[62px] object-contain block';
+
+const benefitIconByTitle: Record<string, string> = {
+  'Enhanced Efficiency': enhancedEfficiencyIcon,
+  'Workplace Flexibility': workplaceFlexibilityIcon,
+  'Risk Elimination': riskEliminationIcon,
+  'Expanded Expertise': expandedExpertiseIcon,
+};
+
+const BenefitIcon = ({ title }: { title: string }) => {
+  const icon = benefitIconByTitle[title];
+  return (
+    <div className={BENEFIT_ICON_WRAPPER_CLASS}>
+      {icon ? <img src={icon} alt={`${title} icon`} className={BENEFIT_ICON_CLASS} /> : null}
+    </div>
+  );
+};
 
 const FeatureCard = ({
   title,
@@ -100,7 +110,7 @@ const FeatureCard = ({
   style?: React.CSSProperties;
 }) => (
   <div className={`flex flex-col items-start w-full max-w-[340px] ${className}`} style={style}>
-    <AIChipIcon />
+    <BenefitIcon title={title} />
     <h3 className="text-[21px] font-bold text-[#111827] mb-3 tracking-tight">{title}</h3>
     <p className="text-[14px] leading-[1.6] text-gray-500 font-normal">
       {description}
