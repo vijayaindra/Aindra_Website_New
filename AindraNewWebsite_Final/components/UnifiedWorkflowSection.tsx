@@ -173,7 +173,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
                       {step.title}
                     </h3>
 
-                    <div className="relative w-full max-w-5xl aspect-[1590/559] overflow-hidden flex items-center justify-center">
+                    <div className="relative w-full max-w-[92vw] xl:max-w-7xl aspect-[1590/559] overflow-hidden flex items-center justify-center">
                       <img
                         src={step.imageSrc}
                         alt={step.title}
