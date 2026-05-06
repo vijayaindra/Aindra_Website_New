@@ -6,6 +6,10 @@ import intellistain30Image from '../../../assets/ProductImages/IS-30.png';
 import visionXImage from '../../../assets/ProductImages/VisionX2 (1).png';
 import visionX6Image from '../../../assets/ProductImages/VX6.png';
 import astraImage from '../../../assets/ProductImages/AstraThumbnail.png';
+import reagentSavingsIcon from '../../../assets/Icon/Reagent Savings.png';
+import routineEfficiencyIcon from '../../../assets/Icon/Routine Efficiency.png';
+import spaceOptimizationIcon from '../../../assets/Icon/Space Optimization.png';
+import superiorConsistencyIcon from '../../../assets/Icon/Superior Consistency.png';
 
 type IntellistainVariant = 'IS15' | 'IS30';
 
@@ -159,17 +163,24 @@ const intellistainContent: Record<IntellistainVariant, IntellistainContent> = {
   },
 };
 
-const AIChipIcon = () => (
-  <svg width="58" height="58" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#00AEEF] mb-6">
-    <rect x="25" y="25" width="50" height="50" rx="8" stroke="currentColor" strokeWidth="2.5" />
-    <rect x="38" y="38" width="24" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
-    <path d="M35 25V18M45 25V18M55 25V18M65 25V18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M35 82V75M45 82V75M55 82V75M65 82V75" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M18 35H25M18 45H25M18 55H25M18 65H25" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M75 35H82M75 45H82M75 55H82M75 65H82" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-    <text x="50%" y="54%" dominantBaseline="middle" textAnchor="middle" fill="currentColor" fontSize="14" fontWeight="800" fontFamily="Inter">AI</text>
-  </svg>
-);
+const BENEFIT_ICON_WRAPPER_CLASS = 'w-16 h-16 flex items-center justify-center mb-5 shrink-0';
+const BENEFIT_ICON_CLASS = 'w-[62px] h-[62px] object-contain block';
+
+const benefitIconByTitle: Record<string, string> = {
+  'Reagent Savings': reagentSavingsIcon,
+  'Routine Efficiency': routineEfficiencyIcon,
+  'Space Optimization': spaceOptimizationIcon,
+  'Superior Consistency': superiorConsistencyIcon,
+};
+
+const BenefitIcon = ({ title }: { title: string }) => {
+  const icon = benefitIconByTitle[title];
+  return (
+    <div className={BENEFIT_ICON_WRAPPER_CLASS}>
+      {icon ? <img src={icon} alt={`${title} icon`} className={BENEFIT_ICON_CLASS} /> : null}
+    </div>
+  );
+};
 
 const FeatureCard = ({
   title,
@@ -183,7 +194,7 @@ const FeatureCard = ({
   style?: React.CSSProperties;
 }) => (
   <div className={`flex flex-col items-start w-full max-w-[340px] transition-all duration-1000 ease-out ${className}`} style={style}>
-    <AIChipIcon />
+    <BenefitIcon title={title} />
     <h3 className="text-[21px] font-bold text-[#111827] mb-3 tracking-tight">{title}</h3>
     <p className="text-[14px] leading-[1.6] text-gray-500 font-normal">
       {description}
