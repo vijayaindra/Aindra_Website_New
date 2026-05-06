@@ -10,7 +10,6 @@ import { sectionContainer } from './layout';
 interface WorkflowStep {
   id: string;
   title: string;
-  caption: string;
   imageSrc: string;
 }
 
@@ -22,25 +21,21 @@ export const UnifiedWorkflowSection: React.FC = () => {
     {
       id: '01',
       title: 'Sample Preparation',
-      caption: 'It has survived not only five centuries, but also the leap into electronic typesetting.',
       imageSrc: samplePreparationImage,
     },
     {
       id: '02',
       title: 'Digitization of Slide',
-      caption: 'It has survived not only five centuries, but also the leap into electronic typesetting.',
       imageSrc: digitizationSlideImage,
     },
     {
       id: '03',
       title: 'AI Based Image Analysis',
-      caption: 'It has survived not only five centuries, but also the leap into electronic typesetting.',
       imageSrc: aiImageAnalysisImage,
     },
     {
       id: '04',
       title: 'Review and Reporting',
-      caption: 'It has survived not only five centuries, but also the leap into electronic typesetting.',
       imageSrc: reviewReportingImage,
     },
   ];
@@ -84,7 +79,6 @@ export const UnifiedWorkflowSection: React.FC = () => {
                   loading="lazy"
                 />
               </div>
-              <p className="mt-2 text-sm text-slate-600">{step.caption}</p>
             </article>
           ))}
         </div>
@@ -189,9 +183,6 @@ export const UnifiedWorkflowSection: React.FC = () => {
                       <div className="absolute right-0 top-1/2 w-screen h-[1px] bg-slate-100 translate-x-full"></div>
                     </div>
 
-                    <p className="mt-6 md:mt-8 text-slate-700 text-sm md:text-lg font-light leading-relaxed max-w-2xl px-1">
-                      {step.caption}
-                    </p>
                   </div>
                 </div>
               );

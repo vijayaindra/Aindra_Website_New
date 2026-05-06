@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from 'react';
 interface WorkflowStep {
   id: string;
   title: string;
-  caption: string;
   illustration: React.ReactNode;
 }
 
@@ -16,7 +15,6 @@ export const ProductSection: React.FC = () => {
     {
       id: '01',
       title: 'Sample Preparation & Staining',
-      caption: 'It has survived not only five centuries, but also the leap into electronic typesetting.',
       illustration: (
         <svg viewBox="0 0 1000 400" className="w-full h-full text-[#00a3ff]" fill="none" stroke="currentColor" strokeWidth="1">
           {/* Slides in perspective */}
@@ -49,7 +47,6 @@ export const ProductSection: React.FC = () => {
     {
       id: '02',
       title: 'Digitization of Slides',
-      caption: 'It has survived not only five centuries, but also the leap into electronic typesetting.',
       illustration: (
         <svg viewBox="0 0 1000 400" className="w-full h-full text-[#00a3ff]" fill="none" stroke="currentColor" strokeWidth="1">
           {/* Scanning Arm */}
@@ -73,7 +70,6 @@ export const ProductSection: React.FC = () => {
     {
       id: '03',
       title: 'AI-Based Image Analysis',
-      caption: 'It has survived not only five centuries, but also the leap into electronic typesetting.',
       illustration: (
         <svg viewBox="0 0 1000 400" className="w-full h-full text-[#00a3ff]" fill="none" stroke="currentColor" strokeWidth="1">
           {/* Neural nodes and connections */}
@@ -99,7 +95,6 @@ export const ProductSection: React.FC = () => {
     {
       id: '04',
       title: 'Review & Reporting',
-      caption: 'It has survived not only five centuries, but also the leap into electronic typesetting.',
       illustration: (
         <svg viewBox="0 0 1000 400" className="w-full h-full text-[#00a3ff]" fill="none" stroke="currentColor" strokeWidth="1">
           {/* Central Diagnostic Platform */}
@@ -215,9 +210,6 @@ export const ProductSection: React.FC = () => {
                   </div>
 
                   {/* Bottom Caption (Matches screenshots) */}
-                  <p className="mt-12 text-slate-800 text-lg md:text-xl font-light leading-relaxed max-w-3xl">
-                    {step.caption}
-                  </p>
                 </div>
               </div>
             );
