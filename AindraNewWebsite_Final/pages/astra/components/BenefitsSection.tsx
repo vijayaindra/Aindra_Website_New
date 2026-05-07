@@ -81,8 +81,8 @@ const features: Feature[] = [
   }
 ];
 
-const BENEFIT_ICON_WRAPPER_CLASS = 'w-36 h-36 flex items-center justify-center mb-5 shrink-0';
-const BENEFIT_ICON_CLASS = 'w-[144px] h-[144px] object-contain block';
+const BENEFIT_ICON_WRAPPER_CLASS = 'mb-5 shrink-0 w-fit';
+const BENEFIT_ICON_CLASS = 'h-[144px] w-auto object-contain block';
 
 const benefitIconByTitle: Record<string, string> = {
   'Accelerated Diagnosis': acceleratedDiagnosisIcon,
