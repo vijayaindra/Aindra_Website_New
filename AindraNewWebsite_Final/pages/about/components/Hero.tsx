@@ -5,35 +5,35 @@ import imageDesign from '../../../assets/Why_choose_us/image_design.png';
 
 const Hero: React.FC = () => {
   return (
-    <section className={`${sectionShell} pt-4 pb-14 md:pb-20`}>
-      <div className={sectionContainerWide}>
-        <div className="mb-6">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-2">About us</h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 font-medium mb-6">Precision Staining Seamlessly Scaled</p>
-          <hr className="border-gray-200" />
-        </div>
-        
-        <div className="relative w-full aspect-[21/9] overflow-hidden rounded-sm shadow-lg mt-8 mb-24">
-          <img 
-            src={imageDesign}
-            alt="Scientific research team in lab" 
-            className="w-full h-full object-cover"
-          />
+    <section className="product-hero-section">
+      <div className={`product-hero-body flex flex-col md:flex-row ${sectionShell} ${sectionContainerWide} relative`}>
+        <div className="w-full md:w-1/2 z-10 pr-0 md:pr-14 lg:pr-20">
+          <h1 className="product-hero-title font-bold tracking-tight text-gray-900 mb-6 md:mb-8">
+            About Us
+          </h1>
+          <div className="w-24 h-[1px] bg-gray-200 mb-8"></div>
+          <p className="product-hero-description text-gray-500 font-normal">
+            At Aindra, we build healthcare technology solutions for faster, smarter, and more accessible diagnostics.
+          </p>
+          <p className="product-hero-description text-gray-500 font-normal mt-4">
+            We aim to empower healthcare providers with reliable tools for early detection and better patient outcomes.
+          </p>
         </div>
 
-        <div className="w-full text-center px-0 md:px-2 mb-16 md:mb-20">
-          <div className="mx-auto w-full max-w-[1520px]">
-            <h2 className="text-[22px] md:text-[30px] lg:text-[38px] font-bold text-[#00AEEF] leading-[1.3] mb-12 tracking-tight">
-              "Our mission is to democratize healthcare by making medical imaging accessible to everyone around the world."
-            </h2>
-            <div className="flex flex-col items-end pr-4 md:pr-10">
-              <p className="text-gray-600 text-lg md:text-xl font-semibold">
-                — Adarsh Natrajan
-              </p>
-              <p className="text-gray-400 text-base md:text-lg">
-                Founder, Aindra Systems
-              </p>
+        <div className="w-full md:w-1/2 relative flex items-center justify-center mt-8 md:mt-0">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="product-hero-image-wrap rounded-full border border-gray-100 relative opacity-40">
+              <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gray-100"></div>
+              <div className="absolute left-1/2 top-0 h-full w-[1px] bg-gray-100"></div>
             </div>
+          </div>
+
+          <div className="relative z-10 product-hero-image-wrap drop-shadow-2xl transition-all duration-700 ease-in-out transform">
+            <img
+              src={imageDesign}
+              alt="About Aindra"
+              className="product-hero-image animate-in fade-in duration-700"
+            />
           </div>
         </div>
       </div>

@@ -12,9 +12,9 @@ const Hero: React.FC = () => {
           </h1>
           <div className="w-24 h-[1px] bg-gray-200 mb-8"></div>
           <p className="product-hero-description text-gray-500 font-normal">
-            Astra automates and standardizes slide staining to reduce variability,
-            eliminate manual errors, and cut down on repeat tests freeing your lab
-            to focus on what matters: delivering fast, confident diagnostic results.
+            Astra is an AI-powered screening algorithm trained on various cancer
+            types to support initial case assessment, highlight suspicious regions,
+            and assist pathologists in faster and more informed diagnostic review.
           </p>
         </div>
 
