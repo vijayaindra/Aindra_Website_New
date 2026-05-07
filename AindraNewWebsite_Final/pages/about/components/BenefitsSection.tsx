@@ -84,7 +84,7 @@ const BenefitsSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-14 md:gap-y-16 gap-x-14 md:gap-x-20 md:pl-[180px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-14 md:gap-y-16 gap-x-12 md:gap-x-16 md:pl-10">
           {benefits.map((benefit) => (
             <BenefitItem
               key={benefit.title}
