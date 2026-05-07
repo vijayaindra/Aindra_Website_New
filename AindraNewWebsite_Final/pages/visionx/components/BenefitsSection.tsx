@@ -10,6 +10,18 @@ import costEfficiencyIcon from '../../../assets/Icon/Cost Efficiency.png';
 import remoteCollaborationIcon from '../../../assets/Icon/Remote Collaboration.png';
 import rapidTurnaroundIcon from '../../../assets/Icon/Rapid Turnaround.png';
 import spaceSavingDesignIcon from '../../../assets/Icon/Space-Saving Design.png';
+import highThroughputEfficiencyIcon from '../../../assets/Icon/High-Throughput Efficiency.png';
+import unmatchedReliabilityIcon from '../../../assets/Icon/Unmatched Reliability.png';
+import scalableOperationsIcon from '../../../assets/Icon/Scalable Operations.png';
+import enhancedDiagnosticsIcon from '../../../assets/Icon/Enhanced Diagnostics.png';
+import affordableEntryIcon from '../../../assets/Icon/Affordable Entry.png';
+import flexibleDeploymentIcon from '../../../assets/Icon/Flexible Deployment.png';
+import ultimatePortabilityIcon from '../../../assets/Icon/Ultimate Portability.png';
+import instantProductivityIcon from '../../../assets/Icon/Instant Productivity.png';
+import rapidDigitalTransitionIcon from '../../../assets/Icon/Rapid Digital Transition.png';
+import seamlessIntegrationIcon from '../../../assets/Icon/Seamless Integration.png';
+import brilliantFluorescenceCaptureIcon from '../../../assets/Icon/Brilliant Fluorescence Capture.png';
+import customizableForAnyLabIcon from '../../../assets/Icon/Customizable for Any Lab.png';
 
 type VisionXVariant = 'VX1' | 'VX6' | 'VX mini' | 'VXF';
 
@@ -293,6 +305,18 @@ const benefitIconByTitle: Record<string, string> = {
   'Remote Collaboration': remoteCollaborationIcon,
   'Rapid Turnaround': rapidTurnaroundIcon,
   'Space-Saving Design': spaceSavingDesignIcon,
+  'High-Throughput Efficiency': highThroughputEfficiencyIcon,
+  'Unmatched Reliability': unmatchedReliabilityIcon,
+  'Scalable Operations': scalableOperationsIcon,
+  'Enhanced Diagnostics': enhancedDiagnosticsIcon,
+  'Affordable Entry': affordableEntryIcon,
+  'Flexible Deployment': flexibleDeploymentIcon,
+  'Ultimate Portability': ultimatePortabilityIcon,
+  'Instant Productivity': instantProductivityIcon,
+  'Rapid Digital Transition': rapidDigitalTransitionIcon,
+  'Seamless Integration': seamlessIntegrationIcon,
+  'Brilliant Fluorescence Capture': brilliantFluorescenceCaptureIcon,
+  'Customizable for Any Lab': customizableForAnyLabIcon,
 };
 
 const BenefitIcon = ({ title }: { title: string }) => {

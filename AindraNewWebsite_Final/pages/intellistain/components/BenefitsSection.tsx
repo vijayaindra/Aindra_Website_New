@@ -10,6 +10,10 @@ import reagentSavingsIcon from '../../../assets/Icon/Reagent Savings.png';
 import routineEfficiencyIcon from '../../../assets/Icon/Routine Efficiency.png';
 import spaceOptimizationIcon from '../../../assets/Icon/Space Optimization.png';
 import superiorConsistencyIcon from '../../../assets/Icon/Superior Consistency.png';
+import operationalSavingsIcon from '../../../assets/Icon/Operational Savings.png';
+import labVersatilityIcon from '../../../assets/Icon/Lab Versatility.png';
+import highVolumeProductivityIcon from '../../../assets/Icon/High-Volume Productivity.png';
+import unrivaledConsistencyIcon from '../../../assets/Icon/Unrivaled Consistency.png';
 
 type IntellistainVariant = 'IS15' | 'IS30';
 
@@ -42,24 +46,24 @@ const intellistainContent: Record<IntellistainVariant, IntellistainContent> = {
   IS15: {
     benefits: [
       {
-        title: 'Space Optimization',
+        title: 'Operational Savings',
         description:
-          'Compact 18x18-inch footprint fits effortlessly in small labs without sacrificing performance.',
+          'Optimized reagent troughs slash waste and costs for larger batches.',
       },
       {
-        title: 'Superior Consistency',
+        title: 'Lab Versatility',
         description:
-          'Dip mechanics with agitation ensures clear, reproducible staining for histology and cytology slides.',
+          'Supports all slide types, integrating seamlessly into digital pathology workflows.',
       },
       {
-        title: 'Reagent Savings',
+        title: 'High-Volume Productivity',
         description:
-          'Intelligent trough design minimizes waste, filling only half for smaller loads to cut costs.',
+          'Handles 30 slides per run, ideal for busy labs needing scalable staining.',
       },
       {
-        title: 'Routine Efficiency',
+        title: 'Unrivaled Consistency',
         description:
-          'One-stop solution for all staining needs, freeing staff for higher-value tasks.',
+          'Advanced dip mechanics deliver exceptional staining quality every time.',
       },
     ],
     features: [
@@ -103,24 +107,24 @@ const intellistainContent: Record<IntellistainVariant, IntellistainContent> = {
   IS30: {
     benefits: [
       {
-        title: 'High-Volume Productivity',
+        title: 'Reagent Savings',
         description:
-          'Handles 30 slides per run, ideal for busy labs needing scalable staining.',
+          'Intelligent trough design minimizes waste, filling only half for smaller loads to cut costs.',
       },
       {
-        title: 'Unrivaled Consistency',
+        title: 'Routine Efficiency',
         description:
-          'Advanced dip mechanics deliver exceptional staining quality every time.',
+          'One-stop solution for all staining needs, freeing staff for higher-value tasks.',
       },
       {
-        title: 'Operational Savings',
+        title: 'Space Optimization',
         description:
-          'Optimized reagent troughs slash waste and costs for larger batches.',
+          'Compact 18x18-inch footprint fits effortlessly in small labs without sacrificing performance.',
       },
       {
-        title: 'Lab Versatility',
+        title: 'Superior Consistency',
         description:
-          'Supports all slide types, integrating seamlessly into digital pathology workflows.',
+          'Dip mechanics with agitation ensures clear, reproducible staining for histology and cytology slides.',
       },
     ],
     features: [
@@ -171,6 +175,10 @@ const benefitIconByTitle: Record<string, string> = {
   'Routine Efficiency': routineEfficiencyIcon,
   'Space Optimization': spaceOptimizationIcon,
   'Superior Consistency': superiorConsistencyIcon,
+  'Operational Savings': operationalSavingsIcon,
+  'Lab Versatility': labVersatilityIcon,
+  'High-Volume Productivity': highVolumeProductivityIcon,
+  'Unrivaled Consistency': unrivaledConsistencyIcon,
 };
 
 const BenefitIcon = ({ title }: { title: string }) => {
