@@ -10,6 +10,75 @@
     body {
       font-family: 'Inter', sans-serif;
     }
+
+    :root {
+      --product-shell-offset-mobile: 80px;
+      --product-shell-offset-desktop: 96px;
+    }
+
+    .product-hero-section {
+      position: relative;
+      width: 100%;
+      background: #fff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100svh - var(--product-shell-offset-mobile));
+    }
+
+    .product-hero-selector {
+      padding-top: 28px;
+      padding-bottom: 30px;
+    }
+
+    .product-hero-body {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      padding-top: 12px;
+      padding-bottom: 34px;
+    }
+
+    .product-hero-title {
+      font-size: clamp(42px, 4.2vw, 72px);
+      line-height: 1.05;
+    }
+
+    .product-hero-description {
+      font-size: clamp(20px, 1.3vw, 22px);
+      line-height: 1.55;
+      max-width: 560px;
+    }
+
+    .product-hero-image-wrap {
+      width: min(42vw, 620px);
+      height: min(42vw, 620px);
+      min-width: 280px;
+      min-height: 280px;
+    }
+
+    .product-hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .product-tabs-wrapper {
+      margin-top: 0;
+      border-top: 1px solid #f3f4f6;
+      background: #fff;
+    }
+
+    @media (min-width: 768px) {
+      .product-hero-section {
+        min-height: calc(100svh - var(--product-shell-offset-desktop));
+      }
+
+      .product-hero-body {
+        padding-top: 22px;
+        padding-bottom: 24px;
+      }
+    }
   </style>
 </head>
 <body class="bg-white text-slate-900 overflow-x-hidden">

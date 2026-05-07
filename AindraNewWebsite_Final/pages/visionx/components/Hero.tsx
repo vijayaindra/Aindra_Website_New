@@ -83,9 +83,9 @@ const Hero: React.FC<HeroProps> = ({
   const tabs = ['OVERVIEW', 'IMAGE QUALITY', 'SPECIFICATIONS', 'RESOURCES'];
 
   return (
-    <section className="relative w-full bg-white overflow-hidden min-h-[70vh] md:min-h-[85vh] flex flex-col">
+    <section className="product-hero-section">
       {/* Product Selector at top - Exact match of provided reference visuals */}
-      <div className={`${sectionShell} pt-8 pb-12`}>
+      <div className={`${sectionShell} product-hero-selector`}>
         <div className={`${sectionContainerWide} flex justify-center items-center`}>
         <div className="flex items-center space-x-4 bg-[#f0f2f4]/30 p-1">
           {variants.map((variant) => (
@@ -102,44 +102,44 @@ const Hero: React.FC<HeroProps> = ({
         </div>
       </div>
 
-      <div className={`flex-grow flex flex-col md:flex-row items-center ${sectionShell} ${sectionContainerWide} pt-4 pb-16 md:pb-20 relative`}>
+      <div className={`product-hero-body flex flex-col md:flex-row ${sectionShell} ${sectionContainerWide} relative`}>
         {/* Left Content */}
         <div className="w-full md:w-1/2 z-10 pr-0 md:pr-14 lg:pr-20">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-6 md:mb-8 leading-tight">
+          <h1 className="product-hero-title font-bold tracking-tight text-gray-900 mb-6 md:mb-8">
             VisionX {selectedVariant === 'VX1' ? '1 slide' : selectedVariant}
           </h1>
           <div className="w-24 h-[1px] bg-gray-200 mb-8"></div>
-          <p className="text-lg md:text-xl text-gray-500 font-normal leading-relaxed max-w-[540px]">
-            VisionX automates and standardizes slide staining to reduce variability, 
-            eliminate manual errors, and cut down on repeat tests freeing your lab 
+          <p className="product-hero-description text-gray-500 font-normal">
+            VisionX automates and standardizes slide staining to reduce variability,
+            eliminate manual errors, and cut down on repeat tests freeing your lab
             to focus on what matters: delivering fast, confident diagnostic results.
           </p>
         </div>
 
         {/* Right Content - Machine Image & Graphics */}
-        <div className="w-full md:w-1/2 relative h-[300px] sm:h-[380px] md:h-[500px] flex items-center justify-center mt-6 md:mt-0">
+        <div className="w-full md:w-1/2 relative flex items-center justify-center mt-8 md:mt-0">
           {/* Decorative circular graphic */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[360px] h-[360px] sm:w-[500px] sm:h-[500px] md:w-[600px] md:h-[600px] rounded-full border border-gray-100 relative opacity-40">
+            <div className="product-hero-image-wrap rounded-full border border-gray-100 relative opacity-40">
               <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gray-100"></div>
               <div className="absolute left-1/2 top-0 h-full w-[1px] bg-gray-100"></div>
             </div>
           </div>
           
           {/* Machine Image */}
-          <div className="relative z-10 w-[260px] sm:w-[340px] md:w-[450px] drop-shadow-2xl transition-all duration-700 ease-in-out transform">
+          <div className="relative z-10 product-hero-image-wrap drop-shadow-2xl transition-all duration-700 ease-in-out transform">
             <img
               key={selectedVariant}
               src={activeVariantData.image}
               alt={`VisionX ${selectedVariant} Device`}
-              className={`w-full h-auto object-contain animate-in fade-in duration-700 ${activeVariantData.softenBackground ? 'mix-blend-multiply' : ''}`}
+              className={`product-hero-image animate-in fade-in duration-700 ${activeVariantData.softenBackground ? 'mix-blend-multiply' : ''}`}
             />
           </div>
         </div>
       </div>
 
       {/* Bottom Tabs Bar */}
-      <div className="w-full border-t border-gray-100 bg-white absolute bottom-0">
+      <div className="w-full product-tabs-wrapper">
         <div className={`${sectionContainerWide} ${sectionShell} flex gap-4 sm:gap-8 overflow-x-auto`}>
           {tabs.map((tab) => (
             <button 
