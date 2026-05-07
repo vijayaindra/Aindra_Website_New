@@ -7,12 +7,12 @@ const WhoWeAre: React.FC = () => {
     <section className={`${sectionShell} w-full bg-white py-16 md:py-20 lg:py-24`}>
       <div className={`flex flex-col md:flex-row ${sectionContainer}`}>
         {/* Side Label matching the site pattern */}
-        <div className="w-full md:w-[20%] shrink-0 pt-2 mr-0 md:mr-8 mb-8 md:mb-0">
+        <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10 mb-8 md:mb-0">
           <div className="flex flex-col items-start w-full">
-            <span className="text-[12px] font-bold tracking-[0.08em] uppercase mb-1.5 ml-0.5 text-[#00AEEF]">
+            <span className="text-[12px] font-bold tracking-[0.08em] uppercase mb-1 text-[#00AEEF]">
               WHO WE ARE
             </span>
-            <div className="relative w-full flex items-center pr-1">
+            <div className="relative w-full flex items-center pr-1 mt-1">
               <div className="flex-grow h-[1px] bg-gray-200"></div>
               <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]"></div>
             </div>
@@ -20,8 +20,8 @@ const WhoWeAre: React.FC = () => {
         </div>
 
         {/* Main Content Area */}
-        <div className="flex-1 md:pl-2">
-          <h2 className="text-[32px] md:text-[44px] lg:text-[52px] font-extrabold leading-[1.1] text-gray-900 tracking-tight mb-12 max-w-5xl">
+        <div className="flex-1 md:pl-10">
+          <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] mb-12 max-w-[1000px]">
             Let's build the future together
           </h2>
           

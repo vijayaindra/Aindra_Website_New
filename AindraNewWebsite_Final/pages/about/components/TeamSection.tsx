@@ -232,21 +232,21 @@ const TeamSection: React.FC = () => {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row items-start mb-20 w-full">
           {/* Section Label: Standardized width and padding */}
-          <div className="w-full md:w-[20%] shrink-0 mb-6 md:mb-0">
+          <div className="w-[120px] md:w-[160px] shrink-0 mr-6 md:mr-10 mb-6 md:mb-0">
             <div className="flex flex-col w-full">
-              <span className="text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase mb-2">
+              <span className="text-[12px] font-bold tracking-[0.08em] text-[#00AEEF] uppercase">
                 TEAM
               </span>
-              <div className="flex items-center w-full">
-                <div className="flex-1 h-[1px] bg-gray-300"></div>
-                <div className="w-[10px] h-[10px] rounded-full border border-gray-400 bg-white mr-2"></div>
+              <div className="relative w-full flex items-center pr-1 mt-1">
+                <div className="flex-grow h-[1px] bg-gray-200"></div>
+                <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]"></div>
               </div>
             </div>
           </div>
           
           {/* Headline: Aligned with the grid */}
           <div className="flex-1 md:pl-10">
-            <h2 className="text-[24px] md:text-[34px] lg:text-[42px] font-bold text-[#111827] leading-[1.2] tracking-tight max-w-[800px]">
+            <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold text-[#111827] leading-[1.2] tracking-[-0.015em] max-w-[1000px]">
               We are a team dedicated to innovating traditional healthcare
             </h2>
           </div>

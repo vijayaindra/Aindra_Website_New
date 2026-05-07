@@ -108,23 +108,23 @@ const JourneySection: React.FC = () => {
     <section className={`${sectionShell} w-full bg-white py-16 md:py-20 lg:py-24`}>
       <div className={sectionContainer}>
         <div className="flex flex-col md:flex-row items-start mb-14 md:mb-16">
-          <div className="w-full md:w-[140px] shrink-0 mb-8 md:mb-0">
-            <span className="text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase mb-2 block">OUR JOURNEY</span>
-            <div className="flex items-center w-full">
-              <div className="flex-1 h-[1px] bg-gray-200" />
-              <div className="w-[10px] h-[10px] rounded-full border border-gray-300 bg-white" />
+          <div className="w-[120px] md:w-[160px] shrink-0 mr-6 md:mr-10 mb-8 md:mb-0">
+            <span className="text-[12px] font-bold tracking-[0.08em] text-[#00AEEF] uppercase block">OUR JOURNEY</span>
+            <div className="relative w-full flex items-center pr-1 mt-1">
+              <div className="flex-grow h-[1px] bg-gray-200" />
+              <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]" />
             </div>
           </div>
 
-          <div className="flex-1 md:pl-4">
-            <h2 className="text-[22px] md:text-[30px] lg:text-[38px] font-bold text-[#111827] leading-[1.2] tracking-tight max-w-[920px]">
+          <div className="flex-1 md:pl-10">
+            <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold text-[#111827] leading-[1.2] tracking-[-0.015em] max-w-[1000px]">
               Our path from a small lab to a global leader in medical AI diagnostics.
             </h2>
           </div>
         </div>
 
         <div className="flex gap-0">
-          <div className="hidden md:block w-[140px] shrink-0">
+          <div className="hidden md:block w-[120px] md:w-[160px] mr-6 md:mr-10 shrink-0">
             <div className="sticky top-28">
               <span className="block text-[80px] lg:text-[110px] font-light leading-[0.85] text-[#60A5FA] tracking-tighter select-none">20</span>
             </div>

@@ -33,21 +33,21 @@ const ImpactSection: React.FC = () => {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row items-start mb-16 w-full">
           {/* Section Label */}
-          <div className="w-full md:w-[25%] lg:w-[20%] shrink-0 mb-8 md:mb-0">
+          <div className="w-[120px] md:w-[160px] shrink-0 mr-6 md:mr-10 mb-8 md:mb-0">
             <div className="flex flex-col w-full">
-              <span className="text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase mb-2 pl-6 md:pl-10">
+              <span className="text-[12px] font-bold tracking-[0.08em] text-[#00AEEF] uppercase">
                 OUR IMPACT
               </span>
-              <div className="flex items-center w-full">
-                <div className="flex-1 h-[1px] bg-gray-200"></div>
-                <div className="w-[10px] h-[10px] rounded-full border border-gray-300 bg-white mr-2"></div>
+              <div className="relative w-full flex items-center pr-1 mt-1">
+                <div className="flex-grow h-[1px] bg-gray-200"></div>
+                <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]"></div>
               </div>
             </div>
           </div>
           
           {/* Headline */}
-          <div className="flex-1 px-6 md:px-12 lg:pr-24 md:pl-8">
-            <h2 className="text-[22px] md:text-[30px] lg:text-[38px] font-bold text-[#111827] leading-[1.2] tracking-tight max-w-[900px]">
+          <div className="flex-1 md:pl-10">
+            <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold text-[#111827] leading-[1.2] tracking-[-0.015em] max-w-[1000px]">
               Democratizing healthcare by making precision diagnostics accessible globally.
             </h2>
           </div>

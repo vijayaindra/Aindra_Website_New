@@ -407,7 +407,7 @@ const BenefitsSection: React.FC = () => {
         
         <div className="relative z-50 bg-white pt-6 pb-4">
           <div className={`${sectionContainer} flex flex-col md:flex-row items-start w-full`}>
-            <div className="w-full md:w-[20%] shrink-0 pt-1 mb-6 md:mb-0">
+            <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10 mb-6 md:mb-0">
               <div className="flex flex-col items-start w-full">
                 <div className="h-4 relative w-full overflow-hidden">
                    <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-700 ease-in-out ${scrollProgress < transitionPoint ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>

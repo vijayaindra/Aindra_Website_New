@@ -1,76 +1,83 @@
-
 import React from 'react';
 import { sectionContainer, sectionShell } from '../../../components/layout';
 
-const values = [
+const benefits = [
   {
-    id: "01",
-    title: "Good design means great business.",
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    title: 'Purpose-driven innovation',
+    description:
+      'We build practical healthcare technologies that directly improve screening quality, clinical confidence, and patient outcomes.',
+    circleOnLeft: true,
   },
   {
-    id: "02",
-    title: "Longterm positive brand image.",
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    title: 'Clinical reliability first',
+    description:
+      'Our solutions are designed for consistent performance in real-world labs with strong focus on diagnostic relevance and workflow stability.',
+    circleOnLeft: false,
   },
   {
-    id: "03",
-    title: "Always top of mind for your customers.",
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
-  }
+    title: 'Collaborative growth mindset',
+    description:
+      'We combine multidisciplinary expertise and open collaboration to deliver scalable, future-ready healthcare innovation.',
+    circleOnLeft: true,
+  },
+  {
+    title: 'Accessible impact at scale',
+    description:
+      'Our mission is to make precision diagnostics faster, smarter, and more accessible across diverse healthcare environments.',
+    circleOnLeft: false,
+  },
 ];
+
+const BenefitItem = ({
+  title,
+  description,
+  circleOnLeft = true,
+}: {
+  title: string;
+  description: string;
+  circleOnLeft?: boolean;
+}) => (
+  <div className={`flex items-center gap-8 ${circleOnLeft ? 'flex-row' : 'flex-row-reverse'}`}>
+    <div className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-[#EBF0F3] shrink-0" />
+    <div className="max-w-md">
+      <h3 className="text-[24px] font-semibold text-gray-900 mb-4 tracking-tight">{title}</h3>
+      <p className="text-[17px] leading-relaxed text-gray-600 font-normal">{description}</p>
+    </div>
+  </div>
+);
 
 const BenefitsSection: React.FC = () => {
   return (
     <section className={`${sectionShell} w-full bg-white py-16 md:py-20 lg:py-24`}>
       <div className={sectionContainer}>
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row items-start mb-20 w-full">
-          {/* Section Label: "OUR VALUES" positioned to the absolute left */}
-          <div className="w-full md:w-[20%] shrink-0 mb-8 md:mb-0">
-            <div className="flex flex-col w-full">
-                <span className="text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase mb-2">
-                OUR VALUES
+        <div className="flex flex-col md:flex-row items-start w-full mb-14 md:mb-16">
+          <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10 mb-6 md:mb-0">
+            <div className="flex flex-col items-start w-full">
+              <span className="text-[12px] font-bold tracking-[0.08em] uppercase" style={{ color: '#00AEEF' }}>
+                BENEFITS
               </span>
-              <div className="flex items-center w-full">
-                <div className="flex-1 h-[1px] bg-gray-200"></div>
-                <div className="w-[10px] h-[10px] rounded-full border border-gray-300 bg-white mr-2"></div>
+              <div className="relative w-full flex items-center pr-1 mt-1">
+                <div className="flex-grow h-[1px] bg-gray-200" />
+                <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]" />
               </div>
             </div>
           </div>
-          
-          {/* Headline */}
-          <div className="flex-1 md:pl-10">
-            <h2 className="text-[22px] md:text-[30px] lg:text-[38px] font-bold text-[#111827] leading-[1.2] tracking-tight max-w-[900px]">
-              By partnering with great companies and brands, we create beautiful products
+
+          <div className="w-full md:flex-1 md:pl-10">
+            <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">
+              Building healthcare technology that makes diagnostics faster, smarter, and more accessible.
             </h2>
           </div>
         </div>
 
-        {/* Values List: IDs align with "OUR VALUES" text above */}
-        <div className="w-full border-t border-gray-200">
-          {values.map((value) => (
-            <div 
-              key={value.id} 
-              className="flex flex-col md:flex-row border-b border-gray-200 group hover:bg-gray-50/50 transition-colors"
-            >
-              {/* ID Column - Aligning with the "OUR VALUES" column */}
-              <div className="w-full md:w-[20%] shrink-0 py-10 md:py-14 border-r border-gray-100/50">
-                <span className="text-[16px] md:text-[20px] font-semibold text-gray-900">
-                  {value.id}
-                </span>
-              </div>
-
-              {/* Content Column */}
-              <div className="flex-1 py-10 md:py-14 md:pl-10">
-                <h3 className="text-[20px] md:text-[24px] font-bold text-gray-900 mb-5 tracking-tight">
-                  {value.title}
-                </h3>
-                <p className="text-[14px] md:text-[15px] leading-[1.8] text-gray-500 max-w-[850px] font-normal">
-                  {value.description}
-                </p>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-14 md:gap-y-16 gap-x-14 md:gap-x-20 md:pl-[180px]">
+          {benefits.map((benefit) => (
+            <BenefitItem
+              key={benefit.title}
+              title={benefit.title}
+              description={benefit.description}
+              circleOnLeft={benefit.circleOnLeft}
+            />
           ))}
         </div>
       </div>
