@@ -6,6 +6,7 @@ import clustrImage from '../../../assets/ProductImages/ClustrHomePage.png';
 import cervAstraImage from '../../../assets/ProductImages/CervAstra.png';
 import lungAstraImage from '../../../assets/ProductImages/LungAstra.png';
 import proAstraImage from '../../../assets/ProductImages/ProAstra.png';
+import { SectionEyebrow } from '../../../components/SectionEyebrow';
 
 const journeyImages = [
   imageDesign,
@@ -109,11 +110,7 @@ const JourneySection: React.FC = () => {
       <div className={sectionContainer}>
         <div className="flex flex-col md:flex-row items-start mb-14 md:mb-16">
           <div className="w-[120px] md:w-[160px] shrink-0 mr-6 md:mr-10 mb-8 md:mb-0">
-            <span className="text-[12px] font-bold tracking-[0.08em] text-[#00AEEF] uppercase block">OUR JOURNEY</span>
-            <div className="relative w-full flex items-center pr-1 mt-1">
-              <div className="flex-grow h-[1px] bg-gray-200" />
-              <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]" />
-            </div>
+            <SectionEyebrow label="Our Journey" />
           </div>
 
           <div className="flex-1 md:pl-10">

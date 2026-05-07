@@ -2,6 +2,7 @@
 import React from 'react';
 import { sectionContainer, sectionShell } from '../../../components/layout';
 import imageDesign from '../../../assets/Why_choose_us/image_design.png';
+import { SectionEyebrow } from '../../../components/SectionEyebrow';
 
 const stats = [
   {
@@ -34,15 +35,7 @@ const ImpactSection: React.FC = () => {
         <div className="flex flex-col md:flex-row items-start mb-16 w-full">
           {/* Section Label */}
           <div className="w-[120px] md:w-[160px] shrink-0 mr-6 md:mr-10 mb-8 md:mb-0">
-            <div className="flex flex-col w-full">
-              <span className="text-[12px] font-bold tracking-[0.08em] text-[#00AEEF] uppercase">
-                OUR IMPACT
-              </span>
-              <div className="relative w-full flex items-center pr-1 mt-1">
-                <div className="flex-grow h-[1px] bg-gray-200"></div>
-                <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]"></div>
-              </div>
-            </div>
+            <SectionEyebrow label="Our Impact" />
           </div>
           
           {/* Headline */}

@@ -31,6 +31,7 @@ import rajanImage from '../../../assets/Advisors/Rajan.jpg';
 import vijaysimhaImage from '../../../assets/Advisors/Vijaysimha.jpg';
 import adityaAjmeraImage from '../../../assets/Advisors/aditya-ajmera.jpg';
 import bhushanImage from '../../../assets/Advisors/bhushan.jpg';
+import { SectionEyebrow } from '../../../components/SectionEyebrow';
 
 interface TeamMember {
   name: string;
@@ -233,15 +234,7 @@ const TeamSection: React.FC = () => {
         <div className="flex flex-col md:flex-row items-start mb-20 w-full">
           {/* Section Label: Standardized width and padding */}
           <div className="w-[120px] md:w-[160px] shrink-0 mr-6 md:mr-10 mb-6 md:mb-0">
-            <div className="flex flex-col w-full">
-              <span className="text-[12px] font-bold tracking-[0.08em] text-[#00AEEF] uppercase">
-                TEAM
-              </span>
-              <div className="relative w-full flex items-center pr-1 mt-1">
-                <div className="flex-grow h-[1px] bg-gray-200"></div>
-                <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]"></div>
-              </div>
-            </div>
+            <SectionEyebrow label="Team" />
           </div>
           
           {/* Headline: Aligned with the grid */}

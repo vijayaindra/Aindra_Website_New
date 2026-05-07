@@ -3,6 +3,7 @@ import { submitCareerApplication } from '../../../services/careerApplicationServ
 import { sendCareerApplicationEmail } from '../../../services/emailService';
 import type { CareerApplicationPayload } from '../../../types/careerApplication';
 import { sectionContainer, sectionShell } from '../../../components/layout';
+import { SectionEyebrow } from '../../../components/SectionEyebrow';
 
 interface JobOpening {
   id: number;
@@ -402,6 +403,7 @@ const BenefitsSection: React.FC = () => {
   const stage1Opacity = scrollProgress <= transitionPoint
     ? 1
     : clamp01(1 - ((scrollProgress - transitionPoint) / 0.10));
+  const eyebrowLabel = scrollProgress < transitionPoint ? 'Benefits' : 'Positions';
 
   return (
     <>
@@ -411,20 +413,7 @@ const BenefitsSection: React.FC = () => {
         <div className="relative z-50 bg-white pt-6 pb-4">
           <div className={`${sectionContainer} flex flex-col md:flex-row items-start w-full`}>
             <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10 mb-6 md:mb-0">
-              <div className="flex flex-col items-start w-full">
-                <div className="h-4 relative w-full overflow-hidden">
-                  <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-1000 ease-in-out ${scrollProgress < transitionPoint ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
-                    BENEFITS
-                  </span>
-                  <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-1000 ease-in-out ${scrollProgress >= transitionPoint ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
-                    POSITIONS
-                  </span>
-                </div>
-                <div className="relative w-full flex items-center pr-1 mt-1">
-                  <div className="flex-grow h-[1px] bg-gray-200"></div>
-                  <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]"></div>
-                </div>
-              </div>
+              <SectionEyebrow label={eyebrowLabel} />
             </div>
             <div className="flex-1 mt-0 relative overflow-hidden min-h-[136px] md:min-h-[172px] md:pl-10">
               <h2 className={`absolute inset-0 text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px] transition-all duration-1000 ${scrollProgress < transitionPoint ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>

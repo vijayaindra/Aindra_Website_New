@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { sectionContainer, sectionShell } from '../../../components/layout';
+import { SectionEyebrow } from '../../../components/SectionEyebrow';
 
 const WhoWeAre: React.FC = () => {
   return (
@@ -8,15 +9,7 @@ const WhoWeAre: React.FC = () => {
       <div className={`flex flex-col md:flex-row ${sectionContainer}`}>
         {/* Side Label matching the site pattern */}
         <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10 mb-8 md:mb-0">
-          <div className="flex flex-col items-start w-full">
-            <span className="text-[12px] font-bold tracking-[0.08em] uppercase mb-1 text-[#00AEEF]">
-              WHO WE ARE
-            </span>
-            <div className="relative w-full flex items-center pr-1 mt-1">
-              <div className="flex-grow h-[1px] bg-gray-200"></div>
-              <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]"></div>
-            </div>
-          </div>
+          <SectionEyebrow label="Who We Are" />
         </div>
 
         {/* Main Content Area */}

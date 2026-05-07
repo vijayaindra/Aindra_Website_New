@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { SectionEyebrow } from '../../../components/SectionEyebrow';
 
 interface Feature {
   id: number;
@@ -153,6 +154,7 @@ const BenefitsSection: React.FC = () => {
 
   const stage2TranslateY = 80 * (1 - stage2Opacity);
   const stage3TranslateY = 80 * (1 - stage3Opacity);
+  const eyebrowLabel = scrollProgress < transition1 ? 'Benefits' : scrollProgress < transition2 ? 'Features' : 'Comparison';
 
   return (
     <div ref={containerRef} className="relative w-full" style={{ height: '800vh' }}>
@@ -162,23 +164,7 @@ const BenefitsSection: React.FC = () => {
         <div className="relative z-50 bg-white px-4 md:px-6 pt-6 pb-4">
           <div className="flex flex-col md:flex-row items-start w-full">
             <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10">
-              <div className="flex flex-col items-start w-full">
-                <div className="h-4 relative w-full overflow-hidden">
-                   <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-700 ease-in-out ${scrollProgress < transition1 ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
-                    BENEFITS
-                  </span>
-                  <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-700 ease-in-out ${scrollProgress >= transition1 && scrollProgress < transition2 ? 'translate-y-0 opacity-100' : scrollProgress < transition1 ? 'translate-y-full opacity-0' : '-translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
-                    FEATURES
-                  </span>
-                  <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-700 ease-in-out ${scrollProgress >= transition2 ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
-                    COMPARISON
-                  </span>
-                </div>
-                <div className="relative w-full flex items-center pr-1 mt-1">
-                  <div className="flex-grow h-[1px] bg-gray-200"></div>
-                  <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]"></div>
-                </div>
-              </div>
+              <SectionEyebrow label={eyebrowLabel} />
             </div>
             <div className="flex-1 mt-0">
               <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">

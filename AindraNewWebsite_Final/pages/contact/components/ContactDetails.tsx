@@ -1,5 +1,6 @@
 import React from 'react';
 import { sectionContainer, sectionShell } from '../../../components/layout';
+import { SectionEyebrow } from '../../../components/SectionEyebrow';
 
 const ContactDetails: React.FC = () => {
   const officeAddress =
@@ -14,15 +15,7 @@ const ContactDetails: React.FC = () => {
       <div className={`${sectionContainer} relative`}>
         <div className="flex flex-col md:flex-row items-start mb-12 md:mb-16 w-full">
           <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10 mb-6 md:mb-0">
-            <div className="flex flex-col items-start w-full">
-              <span className="text-[12px] font-bold tracking-[0.08em] text-[#00AEEF] uppercase">
-                CONTACT
-              </span>
-              <div className="relative w-full flex items-center pr-1 mt-1">
-                <div className="flex-grow h-[1px] bg-gray-200"></div>
-                <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]"></div>
-              </div>
-            </div>
+            <SectionEyebrow label="Contact" />
           </div>
           <div className="flex-1 md:pl-10">
             <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">
