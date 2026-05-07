@@ -1,5 +1,9 @@
 import React from 'react';
 import { sectionContainer, sectionShell } from '../../../components/layout';
+import purposeDrivenInnovationImage from '../../../assets/Aindra_team/Purpose-driven innovation.png';
+import clinicalReliabilityFirstImage from '../../../assets/Aindra_team/Clinical reliability first.png';
+import collaborativeGrowthMindsetImage from '../../../assets/Aindra_team/Collaborative growth mindset.png';
+import accessibleImpactAtScaleImage from '../../../assets/Aindra_team/Accessible impact at scale.png';
 
 const benefits = [
   {
@@ -7,24 +11,28 @@ const benefits = [
     description:
       'We build practical healthcare technologies that directly improve screening quality, clinical confidence, and patient outcomes.',
     circleOnLeft: true,
+    image: purposeDrivenInnovationImage,
   },
   {
     title: 'Clinical reliability first',
     description:
       'Our solutions are designed for consistent performance in real-world labs with strong focus on diagnostic relevance and workflow stability.',
     circleOnLeft: false,
+    image: clinicalReliabilityFirstImage,
   },
   {
     title: 'Collaborative growth mindset',
     description:
       'We combine multidisciplinary expertise and open collaboration to deliver scalable, future-ready healthcare innovation.',
     circleOnLeft: true,
+    image: collaborativeGrowthMindsetImage,
   },
   {
     title: 'Accessible impact at scale',
     description:
       'Our mission is to make precision diagnostics faster, smarter, and more accessible across diverse healthcare environments.',
     circleOnLeft: false,
+    image: accessibleImpactAtScaleImage,
   },
 ];
 
@@ -32,13 +40,19 @@ const BenefitItem = ({
   title,
   description,
   circleOnLeft = true,
+  image,
 }: {
   title: string;
   description: string;
   circleOnLeft?: boolean;
+  image: string;
 }) => (
-  <div className={`flex items-center gap-8 ${circleOnLeft ? 'flex-row' : 'flex-row-reverse'}`}>
-    <div className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-[#EBF0F3] shrink-0" />
+  <div className="flex items-center gap-8 flex-row">
+    <img
+      src={image}
+      alt={title}
+      className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover object-center shrink-0 block"
+    />
     <div className="max-w-md">
       <h3 className="text-[24px] font-semibold text-gray-900 mb-4 tracking-tight">{title}</h3>
       <p className="text-[17px] leading-relaxed text-gray-600 font-normal">{description}</p>
@@ -77,6 +91,7 @@ const BenefitsSection: React.FC = () => {
               title={benefit.title}
               description={benefit.description}
               circleOnLeft={benefit.circleOnLeft}
+              image={benefit.image}
             />
           ))}
         </div>
