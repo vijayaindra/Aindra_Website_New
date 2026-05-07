@@ -54,7 +54,7 @@ const BenefitsSection: React.FC = () => {
           <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10 mb-6 md:mb-0">
             <div className="flex flex-col items-start w-full">
               <span className="text-[12px] font-bold tracking-[0.08em] uppercase" style={{ color: '#00AEEF' }}>
-                BENEFITS
+                OUR VALUES
               </span>
               <div className="relative w-full flex items-center pr-1 mt-1">
                 <div className="flex-grow h-[1px] bg-gray-200" />

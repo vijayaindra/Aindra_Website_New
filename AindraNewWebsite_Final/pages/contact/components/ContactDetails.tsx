@@ -1,4 +1,5 @@
 import React from 'react';
+import { sectionContainer, sectionShell } from '../../../components/layout';
 
 const ContactDetails: React.FC = () => {
   const officeAddress =
@@ -9,21 +10,25 @@ const ContactDetails: React.FC = () => {
     'https://www.google.com/maps?q=Aindra%20Systems,%2026,%2019th%20Cross%20Rd,%2024th%20Main%20Rd,%20JP%20Nagar%20Phase%205,%20J.%20P.%20Nagar,%20Bengaluru,%20Karnataka%20560078&z=18&output=embed';
 
   return (
-    <section className="w-full bg-white pt-10 md:pt-20 pb-0 relative overflow-hidden">
-      <div className="mx-auto w-full max-w-[1520px] px-4 md:px-6 relative">
-        {/* Top Left "CONTACT" Indicator */}
-        <div className="hidden md:flex absolute left-6 md:left-12 top-0 flex-col items-start z-20">
-          <span className="text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase">CONTACT</span>
-          <div className="flex items-center w-16 mt-1">
-            <div className="h-[1px] flex-1 bg-gray-200"></div>
-            <div className="w-1.5 h-1.5 rounded-full border border-gray-300 bg-white -ml-[2px]"></div>
+    <section className={`${sectionShell} w-full bg-white pt-10 md:pt-20 pb-0 relative overflow-hidden`}>
+      <div className={`${sectionContainer} relative`}>
+        <div className="flex flex-col md:flex-row items-start mb-12 md:mb-16 w-full">
+          <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10 mb-6 md:mb-0">
+            <div className="flex flex-col items-start w-full">
+              <span className="text-[12px] font-bold tracking-[0.08em] text-[#00AEEF] uppercase">
+                CONTACT
+              </span>
+              <div className="relative w-full flex items-center pr-1 mt-1">
+                <div className="flex-grow h-[1px] bg-gray-200"></div>
+                <div className="w-[8px] h-[8px] border border-gray-300 rounded-full bg-white -ml-[4px]"></div>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div className="mb-12 md:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-[40px] font-extrabold text-gray-900 tracking-tight ml-0 md:ml-40">
-            Get in touch with us
-          </h2>
+          <div className="flex-1 md:pl-10">
+            <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px]">
+              Get in touch with us
+            </h2>
+          </div>
         </div>
 
         {/* Staggered Contact Info Section */}
@@ -92,7 +97,7 @@ const ContactDetails: React.FC = () => {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[1520px] px-4 md:px-6 relative z-0 pb-12 md:pb-16">
+      <div className={`${sectionContainer} relative z-0 pb-12 md:pb-16`}>
         <div className="relative mt-8 sm:mt-10 md:mt-14 overflow-hidden rounded-xl sm:rounded-2xl border border-slate-200 shadow-[0_20px_45px_rgba(15,23,42,0.08)]">
           <div className="w-full h-[320px] min-[390px]:h-[340px] sm:h-[430px] md:h-[500px] lg:h-[560px]">
             <iframe
