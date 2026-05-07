@@ -357,6 +357,7 @@ const ApplicationForm = () => {
 const BenefitsSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -372,37 +373,39 @@ const BenefitsSection: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const transitionPoint = 0.5; 
-  
-  const item1EnterProgress = Math.max(0, Math.min(1, scrollProgress / 0.16));
-  const item1ExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.24) / 0.16));
+  const transitionPoint = 0.76;
+
+  const item1EnterProgress = clamp01(scrollProgress / 0.24);
+  const item1ExitProgress = clamp01((scrollProgress - 0.26) / 0.14);
   const item1Opacity = item1EnterProgress * (1 - item1ExitProgress);
   const item1TranslateY = (40 * (1 - item1EnterProgress)) - (100 * item1ExitProgress);
 
-  const item2EnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.08) / 0.16));
-  const item2ExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.28) / 0.16));
+  const item2EnterProgress = clamp01((scrollProgress - 0.10) / 0.24);
+  const item2ExitProgress = clamp01((scrollProgress - 0.30) / 0.14);
   const item2Opacity = item2EnterProgress * (1 - item2ExitProgress);
   const item2TranslateY = (80 * (1 - item2EnterProgress)) - (200 * item2ExitProgress);
 
-  const item3EnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.32) / 0.16));
-  const item3ExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.52) / 0.16));
+  const item3EnterProgress = clamp01((scrollProgress - 0.46) / 0.20);
+  const item3ExitProgress = clamp01((scrollProgress - 0.68) / 0.20);
   const item3Opacity = item3EnterProgress * (1 - item3ExitProgress);
   const item3TranslateY = (40 * (1 - item3EnterProgress)) - (100 * item3ExitProgress);
 
-  const item4EnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.36) / 0.16));
-  const item4ExitProgress = Math.max(0, Math.min(1, (scrollProgress - 0.56) / 0.16));
+  const item4EnterProgress = clamp01((scrollProgress - 0.50) / 0.20);
+  const item4ExitProgress = clamp01((scrollProgress - 0.72) / 0.20);
   const item4Opacity = item4EnterProgress * (1 - item4ExitProgress);
   const item4TranslateY = (80 * (1 - item4EnterProgress)) - (200 * item4ExitProgress);
 
-  const positionsEnterProgress = Math.max(0, Math.min(1, (scrollProgress - 0.58) * 6));
+  const positionsEnterProgress = clamp01((scrollProgress - 0.78) / 0.18);
   const positionsOpacity = positionsEnterProgress;
   const positionsTranslateY = 60 * (1 - positionsEnterProgress);
 
-  const stage1Opacity = Math.max(0, Math.min(1, (transitionPoint - scrollProgress) * 7));
+  const stage1Opacity = scrollProgress <= transitionPoint
+    ? 1
+    : clamp01(1 - ((scrollProgress - transitionPoint) / 0.10));
 
   return (
     <>
-    <div ref={containerRef} className={`${sectionShell} relative w-full`} style={{ height: '620vh' }}>
+    <div ref={containerRef} className={`${sectionShell} relative w-full`} style={{ height: '760vh' }}>
       <section className="sticky top-20 sm:top-24 w-full h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] bg-white flex flex-col overflow-hidden">
         
         <div className="relative z-50 bg-white pt-6 pb-4">
@@ -410,10 +413,10 @@ const BenefitsSection: React.FC = () => {
             <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10 mb-6 md:mb-0">
               <div className="flex flex-col items-start w-full">
                 <div className="h-4 relative w-full overflow-hidden">
-                   <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-700 ease-in-out ${scrollProgress < transitionPoint ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
+                  <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-1000 ease-in-out ${scrollProgress < transitionPoint ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
                     BENEFITS
                   </span>
-                  <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-700 ease-in-out ${scrollProgress >= transitionPoint ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
+                  <span className={`absolute inset-0 text-[12px] font-bold tracking-[0.08em] uppercase transition-all duration-1000 ease-in-out ${scrollProgress >= transitionPoint ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`} style={{ color: '#00AEEF' }}>
                     POSITIONS
                   </span>
                 </div>
@@ -424,10 +427,10 @@ const BenefitsSection: React.FC = () => {
               </div>
             </div>
             <div className="flex-1 mt-0 relative overflow-hidden min-h-[136px] md:min-h-[172px] md:pl-10">
-              <h2 className={`absolute inset-0 text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px] transition-all duration-700 ${scrollProgress < transitionPoint ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
+              <h2 className={`absolute inset-0 text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px] transition-all duration-1000 ${scrollProgress < transitionPoint ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
                 Our team values focus, dedication, innovation and the power of what can happen when they converge.
               </h2>
-              <h2 className={`absolute inset-0 text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px] transition-all duration-700 ${scrollProgress >= transitionPoint ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
+              <h2 className={`absolute inset-0 text-[28px] md:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px] transition-all duration-1000 ${scrollProgress >= transitionPoint ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
                 Current openings at Aindra Systems
               </h2>
             </div>
@@ -450,7 +453,7 @@ const BenefitsSection: React.FC = () => {
                   transform: `translateY(${item1TranslateY}px)`,
                   visibility: item1Opacity < 0.01 ? 'hidden' : 'visible'
                 }}
-                className="transition-all duration-300 ease-out pointer-events-auto"
+                className="transition-all duration-600 ease-out pointer-events-auto"
               >
                 <BenefitItem 
                   title="Health and wellness" 
@@ -466,7 +469,7 @@ const BenefitsSection: React.FC = () => {
                   alignSelf: 'flex-end',
                   visibility: item2Opacity < 0.01 ? 'hidden' : 'visible'
                 }}
-                className="transition-all duration-300 ease-out md:pr-24 pointer-events-auto"
+                className="transition-all duration-600 ease-out md:pr-24 pointer-events-auto"
               >
                 <BenefitItem 
                   title="Work-life balance" 
@@ -483,7 +486,7 @@ const BenefitsSection: React.FC = () => {
                   transform: `translateY(${item3TranslateY}px)`,
                   visibility: item3Opacity < 0.01 ? 'hidden' : 'visible'
                 }}
-                className="transition-all duration-300 ease-out pointer-events-auto"
+                className="transition-all duration-600 ease-out pointer-events-auto"
               >
                 <BenefitItem 
                   title="Paid time-off" 
@@ -499,7 +502,7 @@ const BenefitsSection: React.FC = () => {
                   alignSelf: 'flex-end',
                   visibility: item4Opacity < 0.01 ? 'hidden' : 'visible'
                 }}
-                className="transition-all duration-300 ease-out md:pr-16 pointer-events-auto"
+                className="transition-all duration-600 ease-out md:pr-16 pointer-events-auto"
               >
                 <BenefitItem 
                   title="Educational assistance" 

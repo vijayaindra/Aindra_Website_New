@@ -124,7 +124,7 @@ const JourneySection: React.FC = () => {
         </div>
 
         <div className="flex gap-0">
-          <div className="hidden md:block w-[120px] md:w-[160px] mr-6 md:mr-10 shrink-0">
+          <div className="hidden md:block w-[90px] md:w-[120px] mr-2 md:mr-4 shrink-0">
             <div className="sticky top-28">
               <span className="block text-[80px] lg:text-[110px] font-light leading-[0.85] text-[#60A5FA] tracking-tighter select-none">20</span>
             </div>
