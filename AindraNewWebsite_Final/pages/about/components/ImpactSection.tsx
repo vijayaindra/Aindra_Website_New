@@ -1,22 +1,22 @@
 
 import React from 'react';
 import { sectionContainer, sectionShell } from '../../../components/layout';
-import imageDesign from '../../../assets/Why_choose_us/image_design.png';
+import worldMap from '../../../assets/Aindra_team/WorldMap.png';
 import { SectionEyebrow } from '../../../components/SectionEyebrow';
 
 const stats = [
   {
-    value: "100+",
+    value: "10+",
     label: "Healthcare institutions",
     subLabel: "served"
   },
   {
-    value: "10M+",
+    value: "100+",
     label: "Pathology slides",
     subLabel: "processed"
   },
   {
-    value: "25+",
+    value: "5+",
     label: "Cities",
     subLabel: "deployed"
   },
@@ -48,19 +48,12 @@ const ImpactSection: React.FC = () => {
 
         {/* Map Visualization */}
         <div className="w-full mb-24">
-          <div className="relative mx-auto w-full max-w-[1520px] group">
+          <div className="mx-auto w-full max-w-[1520px]">
             <img
-              src={imageDesign}
+              src={worldMap}
               alt="Global impact map"
-              className="w-full h-auto opacity-20 grayscale transition-opacity duration-700 group-hover:opacity-30"
+              className="w-full h-auto"
             />
-            {/* Custom SVG Overlay for the highlighted effect from the image */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-full h-full bg-blue-500/5 mix-blend-multiply rounded-3xl"></div>
-              <p className="absolute bottom-4 left-4 text-[10px] text-gray-400 font-medium tracking-widest uppercase">
-                Aindra Global Deployment Network v4.2
-              </p>
-            </div>
           </div>
         </div>
 
@@ -69,19 +62,19 @@ const ImpactSection: React.FC = () => {
           <div className="mx-auto w-full max-w-[1520px] py-16">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
               {stats.map((stat, index) => (
-                <div key={index} className="flex flex-col items-start relative">
+                <div key={index} className="flex flex-col items-center text-center relative">
                   {/* Vertical Divider for desktop */}
                   {index !== 0 && (
                     <div className="hidden lg:block absolute left-[-40px] top-0 bottom-0 w-[1px] bg-gray-200"></div>
                   )}
                   
-                  <div className="flex items-baseline space-x-1 mb-2">
+                  <div className="flex items-baseline justify-center space-x-1 mb-2">
                     <span className="text-[48px] md:text-[56px] font-bold text-[#00AEEF] tracking-tighter leading-none">
                       {stat.value}
                     </span>
                   </div>
                   
-                  <div className="flex flex-col">
+                  <div className="flex flex-col items-center">
                     <span className="text-[14px] md:text-[16px] font-semibold text-gray-900 leading-tight">
                       {stat.label}
                     </span>

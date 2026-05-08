@@ -53,7 +53,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: 'Shakeel Ahmed Desai',
-    role: 'Regional Sales Head',
+    role: 'Sales Head',
     image: shakeelTeamImage
   },
   {
