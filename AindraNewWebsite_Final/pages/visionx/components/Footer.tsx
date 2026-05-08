@@ -1,4 +1,5 @@
 import React from 'react';
+import aindraLogo from '../../../assets/Aindra_team/Aindra logo.png';
 
 const Footer: React.FC = () => {
   return (
@@ -6,9 +7,7 @@ const Footer: React.FC = () => {
       <div className="mx-auto w-full max-w-[1520px]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-12 md:pb-14">
           <div className="flex items-center justify-center lg:justify-start">
-            <div className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-[-0.03em] text-[#00AEEF] flex items-baseline">
-              Ai<span className="relative">NDRA</span>
-            </div>
+            <img src={aindraLogo} alt="Aindra" className="h-16 sm:h-20 lg:h-24 w-auto object-contain" />
           </div>
 
           <div className="flex flex-col sm:flex-row gap-10 lg:gap-16 relative">

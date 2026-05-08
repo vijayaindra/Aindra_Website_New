@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { NavMenu } from './NavMenu';
 import { sectionContainerWide, sectionShell } from './layout';
+import aindraLogo from '../assets/Aindra_team/Aindra logo.png';
 
 export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,8 +12,8 @@ export const Navbar: React.FC = () => {
       <nav className={`fixed top-0 left-0 w-full z-50 bg-white/85 backdrop-blur-md border-b border-slate-100/80 ${sectionShell}`}>
         <div className={`${sectionContainerWide} flex items-center justify-between py-3 sm:py-4`}>
           <div className="flex items-center space-x-2">
-            <a href="#/" className="text-xl sm:text-2xl font-extrabold tracking-tighter text-[#11b6e8]">
-              AiNDRA
+            <a href="#/" className="inline-flex items-center">
+              <img src={aindraLogo} alt="Aindra" className="h-16 sm:h-20 w-auto object-contain" />
             </a>
           </div>
 
