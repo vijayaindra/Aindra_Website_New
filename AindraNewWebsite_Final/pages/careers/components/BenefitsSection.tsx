@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { submitCareerApplication } from '../../../services/careerApplicationService';
-import { sendCareerApplicationEmail } from '../../../services/emailService';
+import { sendAutoReplyEmail, sendCareerApplicationEmail } from '../../../services/emailService';
 import type { CareerApplicationPayload } from '../../../types/careerApplication';
 import { sectionContainer, sectionShell } from '../../../components/layout';
 import { SectionEyebrow } from '../../../components/SectionEyebrow';
@@ -79,17 +79,17 @@ const ApplicationForm = () => {
     positionApplyingFor: '',
     yearsOfExperience: '',
     availableFrom: '',
-    cvFileName: '',
-    coverLetterFileName: '',
+    cvFileUrl: '',
+    coverLetterFileUrl: '',
     motivation: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
-
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const PHONE_REGEX = /^\+?[0-9()\-\s]{7,20}$/;
   const LINKEDIN_REGEX = /^https?:\/\/(www\.)?linkedin\.com\/.+/i;
+  const URL_REGEX = /^https?:\/\/\S+$/i;
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -106,20 +106,6 @@ const ApplicationForm = () => {
       setSubmitState('idle');
       setSubmitMessage('');
     }
-  };
-
-  const handleFileChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    field: 'cvFileName' | 'coverLetterFileName'
-  ) => {
-    const file = event.target.files?.[0];
-    setFormData((prev) => ({ ...prev, [field]: file ? file.name : '' }));
-    setErrors((prev) => {
-      if (!prev[field]) return prev;
-      const next = { ...prev };
-      delete next[field];
-      return next;
-    });
   };
 
   const validate = () => {
@@ -140,8 +126,11 @@ const ApplicationForm = () => {
     if (!formData.positionApplyingFor.trim()) nextErrors.positionApplyingFor = 'Position is required.';
     if (!formData.yearsOfExperience.trim()) nextErrors.yearsOfExperience = 'Experience is required.';
     if (!formData.availableFrom.trim()) nextErrors.availableFrom = 'Availability is required.';
-    if (!formData.cvFileName.trim()) nextErrors.cvFileName = 'CV file is required.';
-    if (!formData.coverLetterFileName.trim()) nextErrors.coverLetterFileName = 'Cover letter file is required.';
+    if (!formData.cvFileUrl.trim()) nextErrors.cvFileUrl = 'CV Google Drive link is required.';
+    else if (!URL_REGEX.test(formData.cvFileUrl.trim())) nextErrors.cvFileUrl = 'Enter a valid URL.';
+    if (formData.coverLetterFileUrl.trim() && !URL_REGEX.test(formData.coverLetterFileUrl.trim())) {
+      nextErrors.coverLetterFileUrl = 'Enter a valid URL.';
+    }
     if (!formData.motivation.trim()) nextErrors.motivation = 'This field is required.';
 
     return nextErrors;
@@ -159,8 +148,8 @@ const ApplicationForm = () => {
       positionApplyingFor: '',
       yearsOfExperience: '',
       availableFrom: '',
-      cvFileName: '',
-      coverLetterFileName: '',
+      cvFileUrl: '',
+      coverLetterFileUrl: '',
       motivation: '',
     });
     setErrors({});
@@ -189,8 +178,8 @@ const ApplicationForm = () => {
       positionApplyingFor: formData.positionApplyingFor.trim(),
       yearsOfExperience: formData.yearsOfExperience.trim(),
       availableFrom: formData.availableFrom.trim(),
-      cvFileName: formData.cvFileName.trim(),
-      coverLetterFileName: formData.coverLetterFileName.trim(),
+      cvFileUrl: formData.cvFileUrl.trim(),
+      coverLetterFileUrl: formData.coverLetterFileUrl.trim() || undefined,
       motivation: formData.motivation.trim(),
     };
 
@@ -199,13 +188,22 @@ const ApplicationForm = () => {
 
     const persistenceResult = await submitCareerApplication(payload);
     const emailResult = await sendCareerApplicationEmail(payload);
+    const autoReplyResult = await sendAutoReplyEmail({
+      recipientEmail: payload.email,
+      recipientName: `${payload.firstName} ${payload.lastName}`.trim(),
+      formType: 'career_application',
+    });
 
     if (persistenceResult.success && emailResult.success) {
       setSubmitState('success');
       setSubmitMessage(
         persistenceResult.mode === 'firebase'
-          ? 'Application submitted successfully. Email sent to contactus@aindra.in.'
-          : 'Application submitted in local safe mode and email sent to contactus@aindra.in.'
+          ? autoReplyResult.success
+            ? 'Application submitted successfully. Email sent to contactus@aindra.in and auto-reply sent to your email.'
+            : `Application submitted successfully. Email sent to contactus@aindra.in, but auto-reply could not be sent (${autoReplyResult.error ?? 'unknown error'}).`
+          : autoReplyResult.success
+            ? 'Application submitted in local safe mode, email sent to contactus@aindra.in, and auto-reply sent to your email.'
+            : `Application submitted in local safe mode and email sent to contactus@aindra.in, but auto-reply could not be sent (${autoReplyResult.error ?? 'unknown error'}).`
       );
       resetForm();
       return;
@@ -213,7 +211,11 @@ const ApplicationForm = () => {
 
     if (persistenceResult.success && !emailResult.success) {
       setSubmitState('success');
-      setSubmitMessage('Application saved successfully, but email sending failed. Please check EmailJS configuration.');
+      setSubmitMessage(
+        `Application saved successfully, but email sending failed${
+          emailResult.error ? ` (${emailResult.error})` : '. Please check EmailJS configuration.'
+        }`
+      );
       resetForm();
       return;
     }
@@ -304,24 +306,26 @@ const ApplicationForm = () => {
             <input name="availableFrom" value={formData.availableFrom} onChange={handleChange} type="text" placeholder="Date or Notice Period" className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm" />
           </FormField>
 
-          <FormField label="CV" sublabel="Accepted file types: pdf, doc, docx, txt, rtf" error={errors.cvFileName}>
-            <div className="flex items-center gap-4">
-              <label className="cursor-pointer">
-                <input type="file" className="hidden" onChange={(event) => handleFileChange(event, 'cvFileName')} />
-                <span className="px-6 py-2 inline-block bg-white rounded-full text-[11px] font-bold uppercase shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors">Choose File</span>
-              </label>
-              <span className="text-[11px] text-gray-400 uppercase tracking-wider">{formData.cvFileName || 'Max 10MB'}</span>
-            </div>
+          <FormField label="CV Google Drive Link" error={errors.cvFileUrl}>
+            <input
+              name="cvFileUrl"
+              value={formData.cvFileUrl}
+              onChange={handleChange}
+              type="url"
+              placeholder="Paste Google Drive CV link"
+              className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm"
+            />
           </FormField>
 
-          <FormField label="Cover Letter" sublabel="Accepted file types: pdf, doc, docx, txt, rtf" error={errors.coverLetterFileName}>
-            <div className="flex items-center gap-4">
-              <label className="cursor-pointer">
-                <input type="file" className="hidden" onChange={(event) => handleFileChange(event, 'coverLetterFileName')} />
-                <span className="px-6 py-2 inline-block bg-white rounded-full text-[11px] font-bold uppercase shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors">Choose File</span>
-              </label>
-              <span className="text-[11px] text-gray-400 uppercase tracking-wider">{formData.coverLetterFileName || 'Max 10MB'}</span>
-            </div>
+          <FormField label="Cover Letter Google Drive Link" required={false} error={errors.coverLetterFileUrl}>
+            <input
+              name="coverLetterFileUrl"
+              value={formData.coverLetterFileUrl}
+              onChange={handleChange}
+              type="url"
+              placeholder="Paste Google Drive cover letter link"
+              className="w-full px-5 py-3 rounded-full bg-white border-none shadow-sm focus:ring-2 focus:ring-[#00AEEF] outline-none text-sm"
+            />
           </FormField>
 
           <div className="md:col-span-2">

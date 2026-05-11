@@ -4,6 +4,7 @@ import {
   submitProductSupportEnquiry,
 } from '../../../services/contactEnquiryService';
 import {
+  sendAutoReplyEmail,
   sendContactEnquiryEmail,
   sendProductSupportEmail,
 } from '../../../services/emailService';
@@ -25,7 +26,7 @@ interface ProductSupportStep2Values {
   device: string;
   softwareVersion: string;
   issueDescription: string;
-  attachmentFileName: string;
+  supportFileUrl: string;
 }
 
 type SharedFieldErrors = Partial<Record<keyof SharedContactFields, string>>;
@@ -69,11 +70,12 @@ const INITIAL_PRODUCT_SUPPORT_STEP2: ProductSupportStep2Values = {
   device: '',
   softwareVersion: '',
   issueDescription: '',
-  attachmentFileName: '',
+  supportFileUrl: '',
 };
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^\+?[0-9()\-\s]{7,20}$/;
+const URL_REGEX = /^https?:\/\/\S+$/i;
 
 interface RadioOptionProps {
   label: string;
@@ -292,6 +294,10 @@ const validateSupportStep2 = (values: ProductSupportStep2Values): SupportStep2Er
     errors.issueDescription = 'Issue description is required.';
   }
 
+  if (values.supportFileUrl.trim() && !URL_REGEX.test(values.supportFileUrl.trim())) {
+    errors.supportFileUrl = 'Enter a valid URL.';
+  }
+
   return errors;
 };
 
@@ -448,15 +454,6 @@ const ContactHero: React.FC = () => {
     });
   };
 
-  const handleSupportFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-
-    setSupportStep2Form((prev) => ({
-      ...prev,
-      attachmentFileName: file ? file.name : '',
-    }));
-  };
-
   const handleSupportContinue = () => {
     const errors = validateSharedFields(supportStep1Form);
     if (Object.keys(errors).length > 0) {
@@ -495,13 +492,22 @@ const ContactHero: React.FC = () => {
 
     const persistenceResult = await submitContactEnquiry(payload);
     const emailResult = await sendContactEnquiryEmail(payload);
+    const autoReplyResult = await sendAutoReplyEmail({
+      recipientEmail: payload.email,
+      recipientName: payload.fullName,
+      formType: 'contact_enquiry',
+    });
 
     if (persistenceResult.success && emailResult.success) {
       setContactSubmitStatus('success');
       setContactSubmitMessage(
         persistenceResult.mode === 'firebase'
-          ? 'Enquiry submitted successfully. Email sent to contactus@aindra.in.'
-          : 'Enquiry submitted in local safe mode and email sent to contactus@aindra.in.'
+          ? autoReplyResult.success
+            ? 'Enquiry submitted successfully. Email sent to contactus@aindra.in and auto-reply sent to your email.'
+            : `Enquiry submitted successfully. Email sent to contactus@aindra.in, but auto-reply could not be sent (${autoReplyResult.error ?? 'unknown error'}).`
+          : autoReplyResult.success
+            ? 'Enquiry submitted in local safe mode, email sent to contactus@aindra.in, and auto-reply sent to your email.'
+            : `Enquiry submitted in local safe mode and email sent to contactus@aindra.in, but auto-reply could not be sent (${autoReplyResult.error ?? 'unknown error'}).`
       );
       setContactExpertsForm(INITIAL_CONTACT_EXPERTS_FORM);
       setContactErrors({});
@@ -510,7 +516,11 @@ const ContactHero: React.FC = () => {
 
     if (persistenceResult.success && !emailResult.success) {
       setContactSubmitStatus('success');
-      setContactSubmitMessage('Enquiry saved successfully, but email sending failed. Please check EmailJS configuration.');
+      setContactSubmitMessage(
+        `Enquiry saved successfully, but email sending failed${
+          emailResult.error ? ` (${emailResult.error})` : '. Please check EmailJS configuration.'
+        }`
+      );
       setContactExpertsForm(INITIAL_CONTACT_EXPERTS_FORM);
       setContactErrors({});
       return;
@@ -554,7 +564,7 @@ const ContactHero: React.FC = () => {
       device: supportStep2Form.device.trim(),
       softwareVersion: supportStep2Form.softwareVersion.trim() || undefined,
       issueDescription: supportStep2Form.issueDescription.trim(),
-      attachmentFileName: supportStep2Form.attachmentFileName || undefined,
+      supportFileUrl: supportStep2Form.supportFileUrl.trim() || undefined,
     };
 
     setSupportSubmitStatus('submitting');
@@ -562,13 +572,22 @@ const ContactHero: React.FC = () => {
 
     const persistenceResult = await submitProductSupportEnquiry(payload);
     const emailResult = await sendProductSupportEmail(payload);
+    const autoReplyResult = await sendAutoReplyEmail({
+      recipientEmail: payload.email,
+      recipientName: payload.fullName,
+      formType: 'product_support',
+    });
 
     if (persistenceResult.success && emailResult.success) {
       setSupportSubmitStatus('success');
       setSupportSubmitMessage(
         persistenceResult.mode === 'firebase'
-          ? 'Support request submitted successfully. Email sent to contactus@aindra.in.'
-          : 'Support request submitted in local safe mode and email sent to contactus@aindra.in.'
+          ? autoReplyResult.success
+            ? 'Support request submitted successfully. Email sent to contactus@aindra.in and auto-reply sent to your email.'
+            : `Support request submitted successfully. Email sent to contactus@aindra.in, but auto-reply could not be sent (${autoReplyResult.error ?? 'unknown error'}).`
+          : autoReplyResult.success
+            ? 'Support request submitted in local safe mode, email sent to contactus@aindra.in, and auto-reply sent to your email.'
+            : `Support request submitted in local safe mode and email sent to contactus@aindra.in, but auto-reply could not be sent (${autoReplyResult.error ?? 'unknown error'}).`
       );
       setSupportStep1Form(INITIAL_SHARED_FIELDS);
       setSupportStep2Form(INITIAL_PRODUCT_SUPPORT_STEP2);
@@ -580,7 +599,11 @@ const ContactHero: React.FC = () => {
 
     if (persistenceResult.success && !emailResult.success) {
       setSupportSubmitStatus('success');
-      setSupportSubmitMessage('Support request saved successfully, but email sending failed. Please check EmailJS configuration.');
+      setSupportSubmitMessage(
+        `Support request saved successfully, but email sending failed${
+          emailResult.error ? ` (${emailResult.error})` : '. Please check EmailJS configuration.'
+        }`
+      );
       setSupportStep1Form(INITIAL_SHARED_FIELDS);
       setSupportStep2Form(INITIAL_PRODUCT_SUPPORT_STEP2);
       setSupportStep1Errors({});
@@ -711,6 +734,20 @@ const ContactHero: React.FC = () => {
                   </div>
 
                   <form className="max-w-[700px] mx-auto" onSubmit={handleSupportSubmit} noValidate>
+                    {supportSubmitStatus !== 'idle' && (
+                      <p
+                        className={`mb-6 text-[12px] font-semibold ${
+                          supportSubmitStatus === 'success'
+                            ? 'text-emerald-600'
+                            : supportSubmitStatus === 'submitting'
+                              ? 'text-[#00AEEF]'
+                              : 'text-red-500'
+                        }`}
+                      >
+                        {supportSubmitMessage}
+                      </p>
+                    )}
+
                     {supportStep === 1 ? (
                       <>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
@@ -762,10 +799,6 @@ const ContactHero: React.FC = () => {
                           onChange={(event) => handleSupportStep1Input(event as React.ChangeEvent<HTMLInputElement>)}
                           error={supportStep1Errors.email}
                         />
-
-                        {supportSubmitStatus === 'error' && supportSubmitMessage && (
-                          <p className="mb-4 text-[12px] font-semibold text-red-500">{supportSubmitMessage}</p>
-                        )}
 
                         <div className="mt-12">
                           <button
@@ -831,44 +864,15 @@ const ContactHero: React.FC = () => {
                           multiline
                         />
 
-                        <div className="mb-12">
-                          <label className="text-[10px] font-extrabold text-gray-900 tracking-wider uppercase block mb-1">
-                            PLEASE UPLOAD A PICTURE SHOWING THE PROBLEM
-                          </label>
-                          <p className="text-[11px] text-gray-400 mb-6 font-medium">
-                            Accepted file types: pdf, doc, docx, txt, rtf
-                          </p>
-
-                          <div className="flex items-center space-x-6">
-                            <label className="cursor-pointer">
-                              <input
-                                type="file"
-                                className="hidden"
-                                onChange={handleSupportFileChange}
-                              />
-                              <div className="px-10 py-2.5 bg-[#f0f0f0] border border-gray-300 rounded-full text-[12px] font-bold text-gray-700 hover:bg-gray-200 transition-colors shadow-sm uppercase tracking-wide">
-                                CHOOSE FILE
-                              </div>
-                            </label>
-                            <span className="text-[12px] text-gray-400 font-medium italic">
-                              {supportStep2Form.attachmentFileName || 'max file size 10 mb'}
-                            </span>
-                          </div>
-                        </div>
-
-                        {supportSubmitStatus !== 'idle' && (
-                          <p
-                            className={`mb-4 text-[12px] font-semibold ${
-                              supportSubmitStatus === 'success'
-                                ? 'text-emerald-600'
-                                : supportSubmitStatus === 'submitting'
-                                  ? 'text-[#00AEEF]'
-                                  : 'text-red-500'
-                            }`}
-                          >
-                            {supportSubmitMessage}
-                          </p>
-                        )}
+                        <InputField
+                          label="ISSUE FILE / SCREENSHOT GOOGLE DRIVE LINK"
+                          placeholder="Paste Google Drive link for screenshot/file"
+                          required={false}
+                          name="supportFileUrl"
+                          value={supportStep2Form.supportFileUrl}
+                          onChange={handleSupportStep2Input}
+                          error={supportStep2Errors.supportFileUrl}
+                        />
 
                         <div className="mt-12 grid grid-cols-2 gap-6">
                           <button

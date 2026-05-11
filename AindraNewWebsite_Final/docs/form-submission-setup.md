@@ -17,19 +17,21 @@ Forms covered:
 Fill these in `.env`:
 
 ```env
-VITE_EMAILJS_SERVICE_ID=
-VITE_EMAILJS_CONTACT_TEMPLATE_ID=
-VITE_EMAILJS_SUPPORT_TEMPLATE_ID=
-VITE_EMAILJS_CAREERS_TEMPLATE_ID=
-VITE_EMAILJS_PUBLIC_KEY=
+VITE_EMAILJS_SERVICE_ID=service_budof9s
+VITE_EMAILJS_CONTACT_TEMPLATE_ID=template_os61632
+VITE_EMAILJS_SUPPORT_TEMPLATE_ID=template_os61632
+VITE_EMAILJS_CAREERS_TEMPLATE_ID=template_os61632
+VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID=template_5qsg92j
+VITE_EMAILJS_PUBLIC_KEY=EaramfOV-nIkxQwiM
 ```
 
 You must create:
 - 1 EmailJS service
-- 3 EmailJS templates:
+- 4 EmailJS templates:
   - Contact
   - Support
   - Careers
+  - Auto-reply
 
 Email destination: `contactus@aindra.in`
 
@@ -98,7 +100,7 @@ Use matching variable names in EmailJS templates.
 - `device`
 - `software_version`
 - `issue_description`
-- `attachment_file_name`
+- `support_file_url`
 - `submitted_at`
 
 ### Careers template variables
@@ -115,23 +117,21 @@ Use matching variable names in EmailJS templates.
 - `years_of_experience`
 - `available_from`
 - `motivation`
-- `cv_file_name`
-- `cover_letter_file_name`
+- `cv_file_url`
+- `cover_letter_file_url`
 - `submitted_at`
 
 ---
 
-## 4) File Upload Note (Important)
-
-Current UI captures only selected file names (`cv_file_name`, `cover_letter_file_name`, support attachment name).
+## 4) Drive Link Note (Important)
 
 Current behavior:
-- File names are sent in email and persisted
-- Actual binary files are **not** uploaded/sent by EmailJS
-
-Best production path for real attachments:
-- Upload files to Firebase Storage (or backend storage)
-- Include generated secure file URL in Firestore + Email template variables
+- Careers form collects Google Drive URLs:
+  - `cv_file_url` (required)
+  - `cover_letter_file_url` (optional)
+- Product support form collects Google Drive URL:
+  - `support_file_url` (optional)
+- No binary file attachment is sent via EmailJS.
 
 ---
 
@@ -165,4 +165,3 @@ npm run dev
   - Verify Firebase keys and `VITE_USE_FIREBASE_CONTENT=true`
 - No effect after env edits:
   - Restart dev server (Vite loads env at startup)
-

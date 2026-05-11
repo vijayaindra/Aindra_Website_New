@@ -33,5 +33,5 @@ export interface ProductSupportEnquiryPayload extends SharedContactFields {
   device: string;
   softwareVersion?: string;
   issueDescription: string;
-  attachmentFileName?: string;
+  supportFileUrl?: string;
 }

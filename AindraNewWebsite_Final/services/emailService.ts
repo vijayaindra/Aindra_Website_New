@@ -22,6 +22,8 @@ const getEmailConfig = () => {
   };
 };
 
+const getAutoReplyTemplateId = (): string => import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID ?? '';
+
 const isEmailConfigured = (kind: EmailTemplateKind): boolean => {
   const { serviceId, publicKey } = getEmailConfig();
   const templateId = getTemplateId(kind);
@@ -48,12 +50,28 @@ const sendEmail = async (
     });
     return { success: true };
   } catch (error) {
+    const message =
+      typeof error === 'object' && error !== null && 'text' in error && typeof (error as { text?: unknown }).text === 'string'
+        ? (error as { text: string }).text
+        : error instanceof Error
+          ? error.message
+          : 'Unknown EmailJS error';
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Unknown EmailJS error',
+      error: message,
     };
   }
 };
+
+const getErrorMessage = (error: unknown, fallback: string): string => {
+  if (typeof error === 'object' && error !== null && 'text' in error) {
+    const text = (error as { text?: unknown }).text;
+    if (typeof text === 'string' && text.trim()) return text;
+  }
+  if (error instanceof Error && error.message.trim()) return error.message;
+  return fallback;
+};
+
 
 export const sendContactEnquiryEmail = async (
   payload: ContactEnquiryPayload
@@ -87,7 +105,7 @@ export const sendProductSupportEmail = async (
     device: payload.device,
     software_version: payload.softwareVersion ?? '',
     issue_description: payload.issueDescription,
-    attachment_file_name: payload.attachmentFileName ?? '',
+    support_file_url: payload.supportFileUrl ?? '',
     submitted_at: new Date().toISOString(),
   });
 };
@@ -109,8 +127,50 @@ export const sendCareerApplicationEmail = async (
     years_of_experience: payload.yearsOfExperience,
     available_from: payload.availableFrom,
     motivation: payload.motivation,
-    cv_file_name: payload.cvFileName,
-    cover_letter_file_name: payload.coverLetterFileName,
+    cv_file_url: payload.cvFileUrl,
+    cover_letter_file_url: payload.coverLetterFileUrl ?? '',
     submitted_at: new Date().toISOString(),
   });
+};
+
+export const sendAutoReplyEmail = async (payload: {
+  recipientEmail: string;
+  recipientName: string;
+  formType: 'contact_enquiry' | 'product_support' | 'career_application';
+}): Promise<EmailSendResult> => {
+  const { serviceId, publicKey } = getEmailConfig();
+  const templateId = getAutoReplyTemplateId();
+
+  if (!serviceId || !publicKey || !templateId) {
+    return {
+      success: false,
+      error: 'EmailJS auto-reply is not configured. Missing env values.',
+    };
+  }
+
+  try {
+    await emailjs.send(
+      serviceId,
+      templateId,
+      {
+        to_email: payload.recipientEmail,
+        email: payload.recipientEmail,
+        user_email: payload.recipientEmail,
+        to_name: payload.recipientName,
+        name: payload.recipientName,
+        user_name: payload.recipientName,
+        reply_to: 'contactus@aindra.in',
+        form_type: payload.formType,
+        submitted_at: new Date().toISOString(),
+      },
+      { publicKey }
+    );
+    return { success: true };
+  } catch (error) {
+    const message = getErrorMessage(error, 'Unknown EmailJS auto-reply error');
+    return {
+      success: false,
+      error: message,
+    };
+  }
 };

@@ -10,8 +10,8 @@ export interface CareerApplicationPayload {
   positionApplyingFor: string;
   yearsOfExperience: string;
   availableFrom: string;
-  cvFileName: string;
-  coverLetterFileName: string;
+  cvFileUrl: string;
+  coverLetterFileUrl?: string;
   motivation: string;
 }
 
