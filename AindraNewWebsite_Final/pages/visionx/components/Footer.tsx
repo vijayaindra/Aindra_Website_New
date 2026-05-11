@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
               <a href="#/" className="text-[16px] font-bold text-gray-800 hover:text-[#00AEEF] transition-colors">Home</a>
               <a href="#/astra" className="text-[16px] font-bold text-gray-800 hover:text-[#00AEEF] transition-colors">Solutions</a>
               <a href="#/about" className="text-[16px] font-bold text-gray-800 hover:text-[#00AEEF] transition-colors">About</a>
-              <a href="#/clustr" className="text-[16px] font-bold text-gray-800 hover:text-[#00AEEF] transition-colors">Credibility</a>
+              <a href="#/clustr" className="text-[16px] font-bold text-gray-800 hover:text-[#00AEEF] transition-colors">Integrity</a>
             </div>
             <div className="flex flex-col space-y-3">
               <span className="text-[16px] font-bold text-gray-800">Products</span>

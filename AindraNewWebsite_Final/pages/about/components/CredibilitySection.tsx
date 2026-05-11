@@ -19,7 +19,7 @@ const CredibilitySection: React.FC = () => {
         <div className="flex flex-col md:flex-row items-start mb-16 w-full">
           {/* Section Label */}
           <div className="w-[120px] md:w-[160px] shrink-0 mr-6 md:mr-10 mb-6 md:mb-0">
-            <SectionEyebrow label="Credibility" />
+            <SectionEyebrow label="Integrity" />
           </div>
           
           {/* Headline */}
