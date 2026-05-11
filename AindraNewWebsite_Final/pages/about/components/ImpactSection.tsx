@@ -11,7 +11,7 @@ const stats = [
     subLabel: "served"
   },
   {
-    value: "100+",
+    value: "10K+",
     label: "Pathology slides",
     subLabel: "processed"
   },

@@ -10,10 +10,10 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <nav className={`fixed top-0 left-0 w-full z-50 bg-white/85 backdrop-blur-md border-b border-slate-100/80 ${sectionShell}`}>
-        <div className={`${sectionContainerWide} flex items-center justify-between py-0.5 sm:py-1`}>
+        <div className={`${sectionContainerWide} flex items-center justify-between py-0 sm:py-0.5`}>
           <div className="flex items-center space-x-2">
             <a href="#/" className="inline-flex items-center">
-              <img src={aindraLogo} alt="Aindra" className="h-20 sm:h-24 w-auto object-contain" />
+              <img src={aindraLogo} alt="Aindra" className="h-16 sm:h-20 w-auto object-contain" />
             </a>
           </div>
 
