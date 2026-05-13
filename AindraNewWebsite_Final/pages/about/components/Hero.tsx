@@ -20,32 +20,30 @@ const Hero: React.FC = () => {
           </p>
         </div>
 
-        <div className="w-full md:w-1/2 relative flex items-center justify-center mt-8 md:mt-0">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-full max-w-[560px] aspect-[16/10] rounded-full border border-gray-100 relative opacity-40">
-              <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gray-100"></div>
-              <div className="absolute left-1/2 top-0 h-full w-[1px] bg-gray-100"></div>
+        <div className="w-full md:w-1/2 mt-8 md:mt-0">
+          <div className="relative flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-full max-w-[560px] aspect-[16/10] rounded-full border border-gray-100 relative opacity-40">
+                <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gray-100"></div>
+                <div className="absolute left-1/2 top-0 h-full w-[1px] bg-gray-100"></div>
+              </div>
+            </div>
+
+            <div className="relative z-10 w-full max-w-[560px] aspect-[16/10] drop-shadow-2xl transition-all duration-700 ease-in-out transform">
+              <img
+                src={careersImage}
+                alt="About Aindra"
+                className="w-full h-full object-contain animate-in fade-in duration-700"
+              />
             </div>
           </div>
 
-          <div className="relative z-10 w-full max-w-[560px] aspect-[16/10] drop-shadow-2xl transition-all duration-700 ease-in-out transform">
-            <img
-              src={careersImage}
-              alt="About Aindra"
-              className="w-full h-full object-contain animate-in fade-in duration-700"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className={`${sectionShell} ${sectionContainerWide}`}>
-        <div className="w-full md:w-1/2 md:ml-auto -mt-28 md:-mt-56 lg:-mt-64">
-          <div className="relative z-10 w-full px-2 md:px-0">
+          <div className="relative z-10 w-full px-2 md:px-0 mt-4 md:mt-5 lg:mt-6">
             <p className="text-center text-[18px] md:text-[22px] leading-[1.3] font-bold text-[#00000]">
               "Our mission is to democratize healthcare by making medical imaging accessible to everyone around the world."
             </p>
             <div className="mt-3 md:mt-4 text-right">
-              <p className="text-[20px] md:text-[=26px] leading-[1.1] font-semibold text-gray-700">— Adarsh Natrajan</p>
+              <p className="text-[20px] md:text-[26px] leading-[1.1] font-semibold text-gray-700">— Adarsh Natrajan</p>
               <p className="text-[15px] md:text-[20px] leading-[1.2] text-gray-400">Founder, Aindra Systems</p>
             </div>
           </div>

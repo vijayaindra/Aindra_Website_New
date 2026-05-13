@@ -61,7 +61,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
 
   return (
     <>
-    <section className="lg:hidden w-full bg-white px-4 sm:px-4 md:px-6 py-16 md:py-20">
+    <section className="xl:hidden w-full bg-white px-4 sm:px-4 md:px-6 py-16 md:py-20">
       <div className={sectionContainer}>
         <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
           We’ve condensed the pathology workflow from staining to screening into four steps.
@@ -85,8 +85,8 @@ export const UnifiedWorkflowSection: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className="relative hidden lg:block h-[900vh] bg-white">
-      <section className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+    <div ref={containerRef} className="relative hidden xl:block h-[900vh] bg-white">
+      <section className="sticky top-20 sm:top-24 h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] w-full flex flex-col items-center justify-center overflow-hidden">
         
         {/* Persistent Background */}
         <div

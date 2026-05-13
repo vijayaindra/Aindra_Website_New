@@ -82,7 +82,7 @@ export const ProductsShowcaseSection: React.FC = () => {
 
   return (
     <>
-    <section className={`lg:hidden w-full ${sectionShell} ${sectionY} bg-white`}>
+    <section className={`xl:hidden w-full ${sectionShell} ${sectionY} bg-white`}>
       <div className={sectionContainer}>
         <div className="mb-8">
           <SectionEyebrow label="Our Products" />
@@ -121,9 +121,9 @@ export const ProductsShowcaseSection: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className="relative hidden lg:block h-[600vh] bg-white">
+    <div ref={containerRef} className="relative hidden xl:block h-[600vh] bg-white">
       {/* Sticky Content Frame */}
-      <section className={`sticky top-0 h-screen w-full overflow-hidden flex flex-col ${sectionY} ${sectionShell}`}>
+      <section className={`sticky top-20 sm:top-24 h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] w-full overflow-hidden flex flex-col ${sectionY} ${sectionShell}`}>
         <div className={sectionContainer}>
         
         {/* PERSISTENT HEADER */}
@@ -147,7 +147,7 @@ export const ProductsShowcaseSection: React.FC = () => {
               
               {/* Vertical Scroll Bar (Indicator) */}
               <div 
-                className="absolute right-0 w-[4px] bg-[#00a3ff] hidden lg:block transition-all duration-700 cubic-bezier(0.23, 1, 0.32, 1) rounded-full shadow-[0_0_12px_rgba(0,163,255,0.4)]"
+                className="absolute right-0 w-[4px] bg-[#00a3ff] hidden xl:block transition-all duration-700 cubic-bezier(0.23, 1, 0.32, 1) rounded-full shadow-[0_0_12px_rgba(0,163,255,0.4)]"
                 style={{ 
                   top: `${activeIndex * STEPPER_ITEM_HEIGHT}px`, 
                   height: `${STEPPER_ITEM_HEIGHT - 10}px` 

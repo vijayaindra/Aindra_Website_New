@@ -74,7 +74,7 @@ export const SolutionsShowcase: React.FC = () => {
 
   return (
     <>
-    <section className={`lg:hidden w-full bg-[#f8fbff] ${sectionShell} ${sectionY}`}>
+    <section className={`xl:hidden w-full bg-[#f8fbff] ${sectionShell} ${sectionY}`}>
       <div className={sectionContainer}>
         <SectionEyebrow label="Our Solutions" />
         <h2 className="mt-3 text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight max-w-3xl">
@@ -97,9 +97,9 @@ export const SolutionsShowcase: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className="relative hidden lg:block h-[400vh] bg-[#f8fbff]">
+    <div ref={containerRef} className="relative hidden xl:block h-[400vh] bg-[#f8fbff]">
       {/* Sticky Frame */}
-      <section className={`sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden ${sectionShell} ${sectionY}`}>
+      <section className={`sticky top-20 sm:top-24 h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] w-full flex items-center justify-center overflow-hidden ${sectionShell} ${sectionY}`}>
         
         <div className={sectionContainer}>
           {/* Section Header */}
@@ -195,7 +195,7 @@ export const SolutionsShowcase: React.FC = () => {
         </div>
 
         {/* Vertical Pagination Indicator (Far Right) */}
-        <div className="absolute right-12 top-1/2 -translate-y-1/2 hidden lg:flex flex-col space-y-4">
+        <div className="absolute right-12 top-1/2 -translate-y-1/2 hidden xl:flex flex-col space-y-4">
           {solutions.map((_, idx) => (
             <div 
               key={idx}
