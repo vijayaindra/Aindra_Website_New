@@ -86,7 +86,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
     </section>
 
     <div ref={containerRef} className="relative hidden xl:block h-[900vh] bg-white">
-      <section className="sticky top-20 sm:top-24 h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] w-full flex flex-col items-center justify-center overflow-hidden">
+      <section className="sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px] w-full flex flex-col items-center justify-center overflow-hidden">
         
         {/* Persistent Background */}
         <div

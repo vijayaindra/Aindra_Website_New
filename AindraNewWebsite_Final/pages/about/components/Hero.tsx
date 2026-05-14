@@ -20,8 +20,8 @@ const Hero: React.FC = () => {
           </p>
         </div>
 
-        <div className="w-full md:w-1/2 mt-8 md:mt-0">
-          <div className="relative flex items-center justify-center">
+        <div className="w-full md:w-1/2 mt-8 md:mt-0 flex flex-col items-center md:items-end">
+          <div className="relative flex items-center justify-center w-full max-w-[560px]">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-full max-w-[560px] aspect-[16/10] rounded-full border border-gray-100 relative opacity-40">
                 <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gray-100"></div>
@@ -38,7 +38,7 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative z-10 w-full px-2 md:px-0 mt-4 md:mt-5 lg:mt-6">
+          <div className="relative z-10 w-full max-w-[560px] px-2 md:px-0 mt-2 md:mt-3 lg:mt-4">
             <p className="text-center text-[18px] md:text-[22px] leading-[1.3] font-bold text-[#00000]">
               "Our mission is to democratize healthcare by making medical imaging accessible to everyone around the world."
             </p>

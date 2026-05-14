@@ -143,7 +143,7 @@ export const ProductSection: React.FC = () => {
   return (
     <div ref={sectionRef} className="relative h-[500vh] bg-white">
       {/* Sticky Frame */}
-      <section className="sticky top-20 sm:top-24 h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] w-full flex flex-col items-center justify-center overflow-hidden">
+      <section className="sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px] w-full flex flex-col items-center justify-center overflow-hidden">
         
         {/* Persistent Background (The Tissue Slide) */}
         <div className="absolute inset-0 z-0">

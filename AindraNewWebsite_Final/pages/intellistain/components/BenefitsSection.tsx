@@ -286,11 +286,11 @@ const BenefitsSection: React.FC = () => {
 
   return (
     <div ref={containerRef} className="relative w-full" style={{ height: '500vh' }}>
-      <section className="sticky top-20 sm:top-24 w-full h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] bg-white overflow-hidden flex flex-col">
+      <section className="sticky top-20 sm:top-24 w-full h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px] bg-white overflow-hidden flex flex-col">
         <div className={`${sectionContainer} ${sectionShell} relative h-full flex flex-col`}>
         
         {/* Persistent Sticky Header */}
-        <div className="relative z-50 bg-white pt-6 pb-4">
+        <div className="relative z-50 bg-white pt-4 xl:pt-6 pb-3 xl:pb-4">
           <div className="flex flex-col md:flex-row items-start w-full">
             <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10">
               <SectionEyebrow label={eyebrowLabel} />
@@ -318,7 +318,7 @@ const BenefitsSection: React.FC = () => {
             <div className="flex-1 relative h-full">
               {/* Initial right-side vertical cards stack (Exits first) */}
               <div 
-                className="absolute right-0 top-12 w-[340px] flex flex-col space-y-16"
+                className="absolute right-0 top-6 xl:top-10 2xl:top-12 w-[340px] flex flex-col space-y-12 xl:space-y-16"
                 style={{ 
                   opacity: yellowOpacity,
                   transform: `translateY(${yellowTranslateY}px)`,
@@ -337,7 +337,7 @@ const BenefitsSection: React.FC = () => {
 
               {/* Bottom Horizontal Row */}
               <div 
-                className="absolute left-0 bottom-24 w-full flex flex-col md:flex-row gap-x-12"
+                className="absolute left-0 bottom-10 xl:bottom-16 2xl:bottom-24 w-full flex flex-col md:flex-row gap-x-12"
                 style={{ 
                   opacity: greenOpacity,
                   transform: `translateY(${greenTranslateY}px)`,

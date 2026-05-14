@@ -121,25 +121,25 @@ export const ProductsShowcaseSection: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className="relative hidden xl:block h-[600vh] bg-white">
+    <div ref={containerRef} className="relative hidden xl:block h-[540vh] 2xl:h-[600vh] bg-white">
       {/* Sticky Content Frame */}
-      <section className={`sticky top-20 sm:top-24 h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] w-full overflow-hidden flex flex-col ${sectionY} ${sectionShell}`}>
+      <section className={`sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] w-full overflow-hidden flex flex-col ${sectionY} ${sectionShell}`}>
         <div className={sectionContainer}>
         
         {/* PERSISTENT HEADER */}
-        <div className="relative z-20 grid grid-cols-12 gap-8 mb-10 lg:mb-14">
+        <div className="relative z-20 grid grid-cols-12 gap-5 xl:gap-6 2xl:gap-8 mb-5 xl:mb-7 2xl:mb-14">
           <div className="col-span-12 lg:col-span-3">
             <SectionEyebrow label="Our Products" />
           </div>
           <div className="col-span-12 lg:col-span-9">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium text-slate-900 leading-[1.1] max-w-4xl">
+            <h2 className="text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl font-medium text-slate-900 leading-[1.08] max-w-4xl">
               A Unified Ecosystem for Computational Pathology.
             </h2>
           </div>
         </div>
 
         {/* DYNAMIC CONTENT AREA */}
-        <div className="relative z-10 grid grid-cols-12 gap-10 flex-1 items-center h-full">
+        <div className="relative z-10 grid grid-cols-12 gap-4 xl:gap-6 2xl:gap-10 flex-1 items-center h-full">
           
           {/* Left Side: Vertical Stepper - Refined for Perfect Alignment */}
           <div className="col-span-12 lg:col-span-3 h-full flex items-center pr-2">
@@ -172,7 +172,7 @@ export const ProductsShowcaseSection: React.FC = () => {
           </div>
 
           {/* Center: Dynamic Image Transition Area */}
-          <div className="col-span-12 lg:col-span-6 flex justify-center h-full items-center relative">
+          <div className="col-span-12 lg:col-span-5 2xl:col-span-6 flex justify-center h-full items-center relative">
              {products.map((p, idx) => {
                const start = idx * progressPerItem;
                const end = (idx + 1) * progressPerItem;
@@ -229,12 +229,12 @@ export const ProductsShowcaseSection: React.FC = () => {
                         </div>
                       </div>
                     ) : (
-                      <div className="relative w-full max-w-[760px] lg:max-w-[860px]">
+                      <div className="relative w-full max-w-[700px] xl:max-w-[760px] 2xl:max-w-[860px]">
                         <div className="absolute inset-0 bg-blue-50 blur-[100px] rounded-full opacity-60"></div>
                         <img 
                           src={p.image} 
                           alt={p.name} 
-                          className={`relative z-10 w-full h-auto max-h-[62vh] lg:max-h-[70vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
+                          className={`relative z-10 w-full h-auto max-h-[46vh] xl:max-h-[52vh] 2xl:max-h-[70vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
                           onError={(e) => {
                             e.currentTarget.src = "https://images.unsplash.com/photo-1579165466541-71835479444a?q=80&w=800&auto=format&fit=crop";
                           }}
@@ -247,7 +247,7 @@ export const ProductsShowcaseSection: React.FC = () => {
           </div>
 
           {/* Right Side: Product Details */}
-          <div className="col-span-12 lg:col-span-3 pl-0 lg:pl-6 h-full flex items-center relative">
+          <div className="col-span-12 lg:col-span-4 2xl:col-span-3 pl-0 xl:pl-2 2xl:pl-6 h-full flex items-center relative">
             {products.map((p, idx) => {
                const start = idx * progressPerItem;
                const end = (idx + 1) * progressPerItem;
@@ -267,31 +267,31 @@ export const ProductsShowcaseSection: React.FC = () => {
                return (
                  <div 
                   key={p.id}
-                  className="absolute inset-x-0 lg:left-8 space-y-7 lg:space-y-9 transition-all duration-300 ease-out"
+                  className="absolute inset-x-0 xl:left-2 2xl:left-8 space-y-4 xl:space-y-5 2xl:space-y-9 transition-all duration-300 ease-out"
                   style={{ 
                     opacity: Math.max(0, resolvedOpacity),
                     transform: `translateY(${translateY}px)`,
                     visibility: isActive || resolvedOpacity > 0.02 ? 'visible' : 'hidden',
                   }}
                  >
-                   <div className="space-y-5 lg:space-y-7">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-8 h-8 lg:w-10 lg:h-10 bg-[#00a3ff] rounded-md flex items-center justify-center text-sm font-black text-white shadow-xl shadow-blue-200">
+                   <div className="space-y-4 xl:space-y-5 2xl:space-y-7">
+                    <div className="flex items-center space-x-3 xl:space-x-4">
+                      <div className="w-7 h-7 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 bg-[#00a3ff] rounded-md flex items-center justify-center text-xs xl:text-sm font-black text-white shadow-xl shadow-blue-200">
                         {p.id}
                       </div>
-                      <h3 className="text-5xl lg:text-6xl font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-2 lg:pb-3">
+                      <h3 className="text-[50px] xl:text-[56px] 2xl:text-6xl font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-1.5 xl:pb-3">
                         {p.name}
                       </h3>
                     </div>
-                    <p className="text-lg lg:text-xl text-slate-500 leading-relaxed font-light max-w-md">
+                    <p className="text-base xl:text-lg 2xl:text-xl text-slate-500 leading-[1.35] font-light max-w-md">
                       {p.description}
                     </p>
                   </div>
                   
-                  <div className="pt-2 lg:pt-4">
-                    <a href={p.href} className="group inline-flex items-center space-x-4 px-10 lg:px-12 py-4 bg-slate-900 text-white rounded-full font-bold text-[12px] lg:text-[13px] tracking-widest uppercase hover:bg-[#00a3ff] transition-all shadow-xl shadow-slate-200 active:scale-95">
+                  <div className="pt-1 xl:pt-2 2xl:pt-4">
+                    <a href={p.href} className="group inline-flex items-center space-x-4 px-7 xl:px-9 2xl:px-12 py-3 xl:py-3.5 2xl:py-4 bg-slate-900 text-white rounded-full font-bold text-[11px] xl:text-[12px] 2xl:text-[13px] tracking-widest uppercase hover:bg-[#00a3ff] transition-all shadow-xl shadow-slate-200 active:scale-95">
                       <span>Explore {p.name}</span>
-                      <svg className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 xl:w-4 xl:h-4 2xl:w-5 2xl:h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </a>

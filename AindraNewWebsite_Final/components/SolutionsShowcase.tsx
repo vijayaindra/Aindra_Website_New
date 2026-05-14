@@ -99,7 +99,7 @@ export const SolutionsShowcase: React.FC = () => {
 
     <div ref={containerRef} className="relative hidden xl:block h-[400vh] bg-[#f8fbff]">
       {/* Sticky Frame */}
-      <section className={`sticky top-20 sm:top-24 h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] w-full flex items-center justify-center overflow-hidden ${sectionShell} ${sectionY}`}>
+      <section className={`sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px] w-full flex items-center justify-center overflow-hidden ${sectionShell} ${sectionY}`}>
         
         <div className={sectionContainer}>
           {/* Section Header */}
