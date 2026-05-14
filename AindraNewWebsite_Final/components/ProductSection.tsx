@@ -143,7 +143,7 @@ export const ProductSection: React.FC = () => {
   return (
     <div ref={sectionRef} className="relative h-[500vh] bg-white">
       {/* Sticky Frame */}
-      <section className="sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px] w-full flex flex-col items-center justify-center overflow-hidden">
+      <section className="sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px] max-[900px]:top-16 max-[900px]:h-[calc(100svh-4rem)] max-[900px]:min-h-[540px] max-[900px]:overflow-y-auto max-[820px]:min-h-[500px] w-full flex flex-col items-center justify-center overflow-hidden">
         
         {/* Persistent Background (The Tissue Slide) */}
         <div className="absolute inset-0 z-0">
@@ -175,7 +175,7 @@ export const ProductSection: React.FC = () => {
         </div>
 
         {/* Content Viewport: Horizontal Movement Area */}
-        <div className="relative w-full max-w-7xl px-6 md:px-12 lg:px-24 h-[60vh]">
+          <div className="relative w-full max-w-7xl px-6 md:px-12 lg:px-24 h-[60vh] max-[900px]:h-[56vh] max-[820px]:h-[54vh]">
           {steps.map((step, idx) => {
             // Horizontal shift: Current step is at 0, prev is -100%, next is 100%
             const xPos = (idx - scrollProgress * (steps.length)) * 100;
@@ -193,12 +193,12 @@ export const ProductSection: React.FC = () => {
               >
                 <div className="w-full">
                   {/* ID Indicator */}
-                  <div className="text-[140px] md:text-[200px] font-bold text-[#00a3ff] leading-none tracking-tight -mb-6 opacity-80">
+                  <div className="text-[140px] md:text-[200px] max-[900px]:text-[108px] font-bold text-[#00a3ff] leading-none tracking-tight -mb-6 opacity-80">
                     {step.id}
                   </div>
                   
                   {/* Step Title */}
-                  <h3 className="text-3xl md:text-5xl font-medium text-slate-900 mb-12">
+                  <h3 className="text-3xl md:text-5xl max-[900px]:text-3xl max-[900px]:mb-7 font-medium text-slate-900 mb-12">
                     {step.title}
                   </h3>
 

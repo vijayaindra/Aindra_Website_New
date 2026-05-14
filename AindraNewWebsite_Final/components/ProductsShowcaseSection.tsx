@@ -20,6 +20,7 @@ interface ProductData {
 
 export const ProductsShowcaseSection: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isCompactHeight, setIsCompactHeight] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const products: ProductData[] = [
@@ -73,12 +74,22 @@ export const ProductsShowcaseSection: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsCompactHeight(window.innerHeight <= 900);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Map 0-1 progress to a "staircase" index for clean state transitions
   const activeIndex = Math.min(products.length - 1, Math.floor(scrollProgress * products.length));
   const progressPerItem = 1 / products.length;
 
   // Fixed height for each stepper item to ensure perfect bar alignment
-  const STEPPER_ITEM_HEIGHT = 80;
+  const STEPPER_ITEM_HEIGHT = isCompactHeight ? 62 : 80;
 
   return (
     <>
@@ -123,23 +134,23 @@ export const ProductsShowcaseSection: React.FC = () => {
 
     <div ref={containerRef} className="relative hidden xl:block h-[540vh] 2xl:h-[600vh] bg-white">
       {/* Sticky Content Frame */}
-      <section className={`sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] w-full overflow-hidden flex flex-col ${sectionY} ${sectionShell}`}>
+      <section className={`sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] max-[900px]:top-16 max-[900px]:h-[calc(100svh-4rem)] max-[900px]:min-h-[540px] max-[900px]:overflow-y-auto max-[820px]:min-h-[500px] w-full overflow-hidden flex flex-col ${sectionY} ${sectionShell}`}>
         <div className={sectionContainer}>
         
         {/* PERSISTENT HEADER */}
-        <div className="relative z-20 grid grid-cols-12 gap-5 xl:gap-6 2xl:gap-8 mb-5 xl:mb-7 2xl:mb-14">
+        <div className="relative z-20 grid grid-cols-12 gap-5 xl:gap-6 2xl:gap-8 mb-5 xl:mb-7 2xl:mb-14 max-[900px]:mb-4">
           <div className="col-span-12 lg:col-span-3">
             <SectionEyebrow label="Our Products" />
           </div>
           <div className="col-span-12 lg:col-span-9">
-            <h2 className="text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl font-medium text-slate-900 leading-[1.08] max-w-4xl">
+            <h2 className="text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl max-[900px]:text-[38px] max-[900px]:leading-[1.04] font-medium text-slate-900 leading-[1.08] max-w-4xl">
               A Unified Ecosystem for Computational Pathology.
             </h2>
           </div>
         </div>
 
         {/* DYNAMIC CONTENT AREA */}
-        <div className="relative z-10 grid grid-cols-12 gap-4 xl:gap-6 2xl:gap-10 flex-1 items-center h-full">
+        <div className="relative z-10 grid grid-cols-12 gap-4 xl:gap-6 2xl:gap-10 max-[900px]:gap-4 flex-1 items-center h-full">
           
           {/* Left Side: Vertical Stepper - Refined for Perfect Alignment */}
           <div className="col-span-12 lg:col-span-3 h-full flex items-center pr-2">
@@ -163,7 +174,7 @@ export const ProductsShowcaseSection: React.FC = () => {
                   <span className={`block text-lg font-black tracking-tighter mb-0.5 transition-colors duration-500 ${idx === activeIndex ? 'text-[#00a3ff]' : 'text-slate-400'}`}>
                     {p.id}
                   </span>
-                  <span className={`text-sm lg:text-[15px] font-black uppercase tracking-tight block leading-[1.2] transition-colors duration-500 ${idx === activeIndex ? 'text-slate-900' : 'text-slate-300'}`}>
+                    <span className={`text-sm lg:text-[15px] max-[900px]:text-[13px] font-black uppercase tracking-tight block leading-[1.2] transition-colors duration-500 ${idx === activeIndex ? 'text-slate-900' : 'text-slate-300'}`}>
                     {p.title}
                   </span>
                 </div>
@@ -234,7 +245,7 @@ export const ProductsShowcaseSection: React.FC = () => {
                         <img 
                           src={p.image} 
                           alt={p.name} 
-                          className={`relative z-10 w-full h-auto max-h-[46vh] xl:max-h-[52vh] 2xl:max-h-[70vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
+                          className={`relative z-10 w-full h-auto max-h-[46vh] xl:max-h-[52vh] 2xl:max-h-[70vh] max-[900px]:max-h-[41vh] max-[820px]:max-h-[38vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
                           onError={(e) => {
                             e.currentTarget.src = "https://images.unsplash.com/photo-1579165466541-71835479444a?q=80&w=800&auto=format&fit=crop";
                           }}
@@ -247,7 +258,7 @@ export const ProductsShowcaseSection: React.FC = () => {
           </div>
 
           {/* Right Side: Product Details */}
-          <div className="col-span-12 lg:col-span-4 2xl:col-span-3 pl-0 xl:pl-2 2xl:pl-6 h-full flex items-center relative">
+          <div className="col-span-12 lg:col-span-4 2xl:col-span-3 pl-0 xl:pl-2 2xl:pl-6 h-full flex items-center relative max-[900px]:pb-6">
             {products.map((p, idx) => {
                const start = idx * progressPerItem;
                const end = (idx + 1) * progressPerItem;
@@ -267,7 +278,7 @@ export const ProductsShowcaseSection: React.FC = () => {
                return (
                  <div 
                   key={p.id}
-                  className="absolute inset-x-0 xl:left-2 2xl:left-8 space-y-4 xl:space-y-5 2xl:space-y-9 transition-all duration-300 ease-out"
+                  className="absolute inset-x-0 xl:left-2 2xl:left-8 space-y-4 xl:space-y-5 2xl:space-y-9 max-[900px]:space-y-3 transition-all duration-300 ease-out"
                   style={{ 
                     opacity: Math.max(0, resolvedOpacity),
                     transform: `translateY(${translateY}px)`,
@@ -279,17 +290,17 @@ export const ProductsShowcaseSection: React.FC = () => {
                       <div className="w-7 h-7 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 bg-[#00a3ff] rounded-md flex items-center justify-center text-xs xl:text-sm font-black text-white shadow-xl shadow-blue-200">
                         {p.id}
                       </div>
-                      <h3 className="text-[50px] xl:text-[56px] 2xl:text-6xl font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-1.5 xl:pb-3">
+                      <h3 className="text-[50px] xl:text-[56px] 2xl:text-6xl max-[900px]:text-[38px] max-[820px]:text-[34px] font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-1.5 xl:pb-3">
                         {p.name}
                       </h3>
                     </div>
-                    <p className="text-base xl:text-lg 2xl:text-xl text-slate-500 leading-[1.35] font-light max-w-md">
+                    <p className="text-base xl:text-lg 2xl:text-xl max-[900px]:text-[15px] max-[900px]:leading-[1.35] text-slate-500 leading-[1.35] font-light max-w-md">
                       {p.description}
                     </p>
                   </div>
                   
                   <div className="pt-1 xl:pt-2 2xl:pt-4">
-                    <a href={p.href} className="group inline-flex items-center space-x-4 px-7 xl:px-9 2xl:px-12 py-3 xl:py-3.5 2xl:py-4 bg-slate-900 text-white rounded-full font-bold text-[11px] xl:text-[12px] 2xl:text-[13px] tracking-widest uppercase hover:bg-[#00a3ff] transition-all shadow-xl shadow-slate-200 active:scale-95">
+                    <a href={p.href} className="group inline-flex items-center space-x-4 px-7 xl:px-9 2xl:px-12 max-[900px]:px-7 py-3 xl:py-3.5 2xl:py-4 max-[900px]:py-2.5 bg-slate-900 text-white rounded-full font-bold text-[11px] xl:text-[12px] 2xl:text-[13px] tracking-widest uppercase hover:bg-[#00a3ff] transition-all shadow-xl shadow-slate-200 active:scale-95">
                       <span>Explore {p.name}</span>
                       <svg className="w-4 h-4 xl:w-4 xl:h-4 2xl:w-5 2xl:h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

@@ -99,7 +99,7 @@ export const SolutionsShowcase: React.FC = () => {
 
     <div ref={containerRef} className="relative hidden xl:block h-[400vh] bg-[#f8fbff]">
       {/* Sticky Frame */}
-      <section className={`sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px] w-full flex items-center justify-center overflow-hidden ${sectionShell} ${sectionY}`}>
+      <section className={`sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px] max-[900px]:top-16 max-[900px]:h-[calc(100svh-4rem)] max-[900px]:min-h-[540px] max-[900px]:overflow-y-auto max-[820px]:min-h-[500px] w-full flex items-center justify-center overflow-hidden ${sectionShell} ${sectionY}`}>
         
         <div className={sectionContainer}>
           {/* Section Header */}
@@ -108,7 +108,7 @@ export const SolutionsShowcase: React.FC = () => {
               <SectionEyebrow label="Our Solutions" />
             </div>
             <div className="col-span-12 lg:col-span-9">
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium text-slate-900 leading-[1.1] max-w-4xl">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl max-[900px]:text-[38px] max-[900px]:leading-[1.05] font-medium text-slate-900 leading-[1.1] max-w-4xl">
                 AI modules for every stage of clinical pathology.
               </h2>
             </div>
@@ -117,7 +117,7 @@ export const SolutionsShowcase: React.FC = () => {
           <div className="grid grid-cols-12 gap-10 items-center">
             
             {/* Left side: Timeline Nav + Description */}
-            <div className="col-span-12 lg:col-span-3 relative flex flex-col justify-center order-2 lg:order-1 h-[500px]">
+            <div className="col-span-12 lg:col-span-3 relative flex flex-col justify-center order-2 lg:order-1 h-[500px] max-[900px]:h-[420px]">
               
               {/* The Connecting Line & Names */}
               <div className="relative mb-12">
@@ -161,7 +161,7 @@ export const SolutionsShowcase: React.FC = () => {
                     className={`absolute inset-0 transition-all duration-700 ease-in-out
                       ${idx === activeIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
                   >
-                    <p className="text-xl lg:text-2xl text-slate-500 leading-relaxed font-light max-w-md">
+                    <p className="text-xl lg:text-2xl max-[900px]:text-base max-[900px]:leading-[1.35] text-slate-500 leading-relaxed font-light max-w-md">
                       {s.description}
                     </p>
                   </div>
