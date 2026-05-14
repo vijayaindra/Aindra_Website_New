@@ -134,7 +134,7 @@ export const ProductsShowcaseSection: React.FC = () => {
 
     <div ref={containerRef} className="relative hidden xl:block h-[540vh] 2xl:h-[600vh] bg-white">
       {/* Sticky Content Frame */}
-      <section className={`sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] max-[900px]:top-16 max-[900px]:h-[calc(100svh-4rem)] max-[900px]:min-h-[540px] max-[900px]:overflow-y-auto max-[820px]:min-h-[500px] w-full overflow-hidden flex flex-col ${sectionY} ${sectionShell}`}>
+      <section className={`sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] max-[900px]:top-16 max-[900px]:h-[calc(100svh-4rem)] max-[900px]:min-h-[540px] max-[900px]:overflow-visible max-[820px]:min-h-[500px] w-full overflow-hidden flex flex-col ${sectionY} ${sectionShell}`}>
         <div className={sectionContainer}>
         
         {/* PERSISTENT HEADER */}
@@ -143,7 +143,7 @@ export const ProductsShowcaseSection: React.FC = () => {
             <SectionEyebrow label="Our Products" />
           </div>
           <div className="col-span-12 lg:col-span-9">
-            <h2 className="text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl max-[900px]:text-[38px] max-[900px]:leading-[1.04] font-medium text-slate-900 leading-[1.08] max-w-4xl">
+            <h2 className="text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl max-[900px]:text-[44px] max-[900px]:leading-[1.02] font-medium text-slate-900 leading-[1.08] max-w-4xl">
               A Unified Ecosystem for Computational Pathology.
             </h2>
           </div>
@@ -258,7 +258,7 @@ export const ProductsShowcaseSection: React.FC = () => {
           </div>
 
           {/* Right Side: Product Details */}
-          <div className="col-span-12 lg:col-span-4 2xl:col-span-3 pl-0 xl:pl-2 2xl:pl-6 h-full flex items-center relative max-[900px]:pb-6">
+          <div className="col-span-12 lg:col-span-4 2xl:col-span-3 pl-0 xl:pl-2 2xl:pl-6 h-full flex items-center relative">
             {products.map((p, idx) => {
                const start = idx * progressPerItem;
                const end = (idx + 1) * progressPerItem;
@@ -290,7 +290,7 @@ export const ProductsShowcaseSection: React.FC = () => {
                       <div className="w-7 h-7 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 bg-[#00a3ff] rounded-md flex items-center justify-center text-xs xl:text-sm font-black text-white shadow-xl shadow-blue-200">
                         {p.id}
                       </div>
-                      <h3 className="text-[50px] xl:text-[56px] 2xl:text-6xl max-[900px]:text-[38px] max-[820px]:text-[34px] font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-1.5 xl:pb-3">
+                      <h3 className="text-[50px] xl:text-[56px] 2xl:text-6xl max-[900px]:text-[44px] max-[820px]:text-[40px] font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-1.5 xl:pb-3">
                         {p.name}
                       </h3>
                     </div>

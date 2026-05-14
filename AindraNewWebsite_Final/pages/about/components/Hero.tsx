@@ -6,7 +6,7 @@ import careersImage from '../../../assets/Aindra_team/Careers.png';
 const Hero: React.FC = () => {
   return (
     <section className="product-hero-section">
-      <div className={`product-hero-body flex flex-col md:flex-row md:items-start ${sectionShell} ${sectionContainerWide} relative`}>
+      <div className={`product-hero-body flex flex-col md:flex-row ${sectionShell} ${sectionContainerWide} relative`}>
         <div className="w-full md:w-1/2 z-10 pr-0 md:pr-14 lg:pr-20">
           <h1 className="product-hero-title font-bold tracking-tight text-gray-900 mb-6 md:mb-8">
             About Us
@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
           </p>
         </div>
 
-        <div className="w-full md:w-1/2 mt-8 md:mt-0 flex flex-col items-center md:items-end md:justify-start">
+        <div className="w-full md:w-1/2 mt-8 md:mt-0 flex flex-col items-center md:items-end">
           <div className="relative flex items-center justify-center w-full max-w-[560px]">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-full max-w-[560px] aspect-[16/10] rounded-full border border-gray-100 relative opacity-40">
@@ -38,7 +38,7 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative z-10 w-full max-w-[560px] px-2 md:px-0 mt-1 md:mt-2">
+          <div className="relative z-10 w-full max-w-[560px] px-2 md:px-0 mt-2 md:mt-3 lg:mt-4">
             <p className="text-center text-[18px] md:text-[22px] leading-[1.3] font-bold text-[#00000]">
               "Our mission is to democratize healthcare by making medical imaging accessible to everyone around the world."
             </p>

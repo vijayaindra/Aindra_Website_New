@@ -15,7 +15,6 @@ interface WorkflowStep {
 
 export const UnifiedWorkflowSection: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isCompactHeight, setIsCompactHeight] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const steps: WorkflowStep[] = [
@@ -53,13 +52,6 @@ export const UnifiedWorkflowSection: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const onResize = () => setIsCompactHeight(window.innerHeight <= 900);
-    onResize();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-
   const totalSlides = steps.length + 1; 
   const currentSlideProgress = scrollProgress * (totalSlides - 1);
   const introX = (0 - currentSlideProgress) * 100;
@@ -94,7 +86,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
     </section>
 
     <div ref={containerRef} className="relative hidden xl:block h-[900vh] bg-white">
-      <section className="sticky top-20 sm:top-24 max-[900px]:top-16 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] max-[900px]:h-[calc(100svh-4rem)] min-h-[700px] xl:min-h-[740px] max-[900px]:min-h-[540px] max-[820px]:min-h-[500px] w-full flex flex-col items-center justify-center overflow-hidden max-[900px]:overflow-y-auto">
+      <section className="sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px] w-full flex flex-col items-center justify-center overflow-hidden">
         
         {/* Persistent Background */}
         <div
@@ -121,7 +113,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
           }}
         >
           <div className="max-w-5xl text-center">
-            <p className="text-xl md:text-3xl lg:text-4xl xl:text-5xl max-[900px]:text-[28px] max-[900px]:leading-[1.15] font-medium leading-tight text-slate-900 text-balance px-4">
+            <p className="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-medium leading-tight text-slate-900 text-balance px-4">
               We’ve condensed the entire pathology lab from <span className="text-[#00a3ff] font-bold">staining</span> to <span className="text-[#00a3ff] font-bold">screening</span> into a unified digital workflow in 4 steps. No more fragmented tools or data silos. Just a seamless journey from physical glass to clinical insight.
             </p>
           </div>
@@ -132,7 +124,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
           
           {/* Custom Stepper - Fades in */}
           <div 
-            className="absolute top-24 md:top-32 max-[900px]:top-16 w-full flex justify-center z-50 transition-opacity duration-500 px-6"
+            className="absolute top-24 md:top-32 w-full flex justify-center z-50 transition-opacity duration-500 px-6"
             style={{ opacity: stepperOpacity }}
           >
             <div className="relative flex items-center w-full max-w-[340px] h-12">
@@ -156,7 +148,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
           </div>
 
           {/* Slides Viewport */}
-          <div className="relative w-full max-w-6xl px-6 md:px-12 h-[80vh] max-[900px]:h-[68vh] max-[820px]:h-[66vh] flex flex-col justify-center">
+          <div className="relative w-full max-w-6xl px-6 md:px-12 h-[80vh] flex flex-col justify-center">
             {steps.map((step, idx) => {
               const xPos = (idx + 1 - currentSlideProgress) * 100;
               const opacity = 1 - Math.abs(idx + 1 - currentSlideProgress) * 1.2;
@@ -173,15 +165,15 @@ export const UnifiedWorkflowSection: React.FC = () => {
                   }}
                 >
                   <div className="w-full flex flex-col">
-                    <div className="text-7xl md:text-[140px] max-[900px]:text-[96px] font-bold text-[#00a3ff] leading-[0.8] tracking-tight mb-2 opacity-90 select-none">
+                    <div className="text-7xl md:text-[140px] font-bold text-[#00a3ff] leading-[0.8] tracking-tight mb-2 opacity-90 select-none">
                       {step.id}
                     </div>
                     
-                    <h3 className="text-xl md:text-4xl max-[900px]:text-3xl font-medium text-slate-900 mb-4 md:mb-6 max-[900px]:mb-3">
+                    <h3 className="text-xl md:text-4xl font-medium text-slate-900 mb-4 md:mb-6">
                       {step.title}
                     </h3>
 
-                    <div className="relative w-full max-w-[92vw] xl:max-w-7xl aspect-[1590/559] max-[900px]:aspect-[16/7] overflow-hidden flex items-center justify-center">
+                    <div className="relative w-full max-w-[92vw] xl:max-w-7xl aspect-[1590/559] overflow-hidden flex items-center justify-center">
                       <img
                         src={step.imageSrc}
                         alt={step.title}
