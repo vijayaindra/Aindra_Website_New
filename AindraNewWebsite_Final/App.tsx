@@ -67,7 +67,7 @@ const HomePage: React.FC = () => {
       <Navbar />
 
       <main className="relative z-10">
-        <section className={`relative ${sectionShell} pt-28 sm:pt-32 lg:pt-36 pb-14 md:pb-16 lg:pb-20 overflow-hidden`}>
+        <section className={`relative ${sectionShell} pt-28 sm:pt-32 lg:pt-36 pb-14 md:pb-16 lg:pb-20 overflow-visible lg:overflow-hidden`}>
           <div className={sectionContainerWide}>
             <Hero />
             <div className="mt-12 md:mt-16 lg:mt-20">

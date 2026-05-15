@@ -4,13 +4,13 @@ import backgroundImage from '../assets/ProductImages/Background Image.png';
 
 export const Hero: React.FC = () => {
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative min-h-[60vh] py-4 md:py-8">
+    <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative min-h-[clamp(420px,60vh,760px)] max-[900px]:min-h-[520px] py-4 md:py-8 max-[900px]:py-3">
       {/* Left Content: Large Heading */}
       <div className="lg:col-span-7 z-20">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4.1rem] font-bold leading-[1.1] tracking-tight text-[#111d3a] text-balance max-w-4xl">
+        <h1 className="text-[clamp(2rem,6vw,4.1rem)] font-bold leading-[1.1] tracking-tight text-[#111d3a] text-balance max-w-4xl">
           Reducing Screening Time by 60% with Unified Ecosystem for Computational Pathology.
         </h1>
-        <p className="mt-6 md:mt-8 text-base sm:text-lg md:text-2xl lg:text-3xl text-[#6f8098] max-w-3xl leading-relaxed">
+        <p className="mt-6 md:mt-8 max-[900px]:mt-5 text-[clamp(1rem,2.3vw,2rem)] text-[#6f8098] max-w-3xl leading-relaxed">
           Empowering pathologists with 99% diagnostic consistency and point-of-care AI-assisted detection.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
@@ -31,7 +31,7 @@ export const Hero: React.FC = () => {
 
       {/* Right Content: Circular Image & Mission Statement */}
       <div className="lg:col-span-5 flex flex-col items-center lg:items-end justify-center relative mt-8 lg:mt-0">
-        <div className="relative w-full max-w-[280px] sm:max-w-[360px] md:max-w-[420px] lg:max-w-[560px] aspect-square flex items-center justify-center">
+        <div className="relative w-full max-w-[280px] sm:max-w-[360px] md:max-w-[420px] lg:max-w-[560px] max-[900px]:max-w-[460px] aspect-square flex items-center justify-center">
           {/* Main Hero Image in a large circular frame */}
           <div className="absolute inset-0 rounded-full overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] ring-1 ring-[#e9edf3] z-10 bg-[#f7f9fc]">
             <img 

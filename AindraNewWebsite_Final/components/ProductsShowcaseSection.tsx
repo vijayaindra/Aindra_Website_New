@@ -76,7 +76,7 @@ export const ProductsShowcaseSection: React.FC = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsCompactHeight(window.innerHeight <= 900);
+      setIsCompactHeight(window.innerHeight <= 780);
     };
 
     handleResize();
@@ -93,7 +93,7 @@ export const ProductsShowcaseSection: React.FC = () => {
 
   return (
     <>
-    <section className={`xl:hidden w-full ${sectionShell} ${sectionY} bg-white`}>
+    <section className={`lg:hidden w-full ${sectionShell} ${sectionY} bg-white`}>
       <div className={sectionContainer}>
         <div className="mb-8">
           <SectionEyebrow label="Our Products" />
@@ -132,25 +132,25 @@ export const ProductsShowcaseSection: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className={`relative hidden xl:block ${isCompactHeight ? 'h-[380vh]' : 'h-[540vh] 2xl:h-[600vh]'} bg-white`}>
+    <div ref={containerRef} className={`relative hidden lg:block ${isCompactHeight ? 'h-[440vh]' : 'h-[540vh] 2xl:h-[600vh]'} bg-white`}>
       {/* Sticky Content Frame */}
-      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)]' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? 'min-h-[500px] py-6' : `min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] ${sectionY}`} max-[900px]:top-16 max-[900px]:h-[calc(100svh-4rem)] max-[900px]:min-h-[500px] max-[820px]:min-h-[460px] w-full ${isCompactHeight ? 'overflow-visible' : 'overflow-hidden'} flex flex-col bg-white isolate ${sectionShell}`}>
+      <section className={`sticky ${isCompactHeight ? 'top-20 h-[calc(100svh-5rem)] py-2 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] ${sectionY}`} max-[900px]:top-14 max-[900px]:h-[calc(100svh-3.5rem)] max-[900px]:py-3 max-[900px]:min-h-0 max-[820px]:h-[calc(100svh-3.25rem)] w-full overflow-hidden flex flex-col bg-white isolate ${sectionShell}`}>
         <div className={sectionContainer}>
         
         {/* PERSISTENT HEADER */}
-        <div className="relative z-20 grid grid-cols-12 gap-5 xl:gap-6 2xl:gap-8 mb-5 xl:mb-7 2xl:mb-14 max-[900px]:mb-3">
+        <div className={`relative z-20 grid grid-cols-12 gap-5 xl:gap-6 2xl:gap-8 ${isCompactHeight ? 'mb-3' : 'mb-5 xl:mb-7 2xl:mb-14'} max-[900px]:mb-2`}>
           <div className="col-span-12 lg:col-span-3">
             <SectionEyebrow label="Our Products" />
           </div>
           <div className="col-span-12 lg:col-span-9">
-            <h2 className={`${isCompactHeight ? 'text-3xl md:text-5xl xl:text-[46px] 2xl:text-6xl' : 'text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl'} max-[900px]:text-[40px] max-[900px]:leading-[1.03] font-medium text-slate-900 leading-[1.08] max-w-4xl`}>
+            <h2 className={`${isCompactHeight ? 'text-[clamp(1.9rem,2.7vw,2.35rem)] md:text-[clamp(2rem,2.9vw,2.45rem)]' : 'text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl'} max-[900px]:text-[34px] max-[900px]:leading-[1.04] font-medium text-slate-900 leading-[1.08] max-w-4xl`}>
               A Unified Ecosystem for Computational Pathology.
             </h2>
           </div>
         </div>
 
         {/* DYNAMIC CONTENT AREA */}
-        <div className="relative z-10 grid grid-cols-12 gap-4 xl:gap-6 2xl:gap-10 max-[900px]:gap-4 flex-1 items-center h-full">
+        <div className={`relative z-10 grid grid-cols-12 ${isCompactHeight ? 'gap-3' : 'gap-4 xl:gap-6 2xl:gap-10'} max-[900px]:gap-3 flex-1 items-center h-full`}>
           
           {/* Left Side: Vertical Stepper - Refined for Perfect Alignment */}
           <div className="col-span-12 lg:col-span-3 h-full flex items-center pr-2">
@@ -245,7 +245,7 @@ export const ProductsShowcaseSection: React.FC = () => {
                         <img 
                           src={p.image} 
                           alt={p.name} 
-                          className={`relative z-10 w-full h-auto max-h-[46vh] xl:max-h-[52vh] 2xl:max-h-[70vh] max-[900px]:max-h-[39vh] max-[820px]:max-h-[35vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
+                          className={`relative z-10 w-full h-auto max-h-[46vh] xl:max-h-[52vh] 2xl:max-h-[70vh] max-[900px]:max-h-[34vh] max-[820px]:max-h-[31vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
                           onError={(e) => {
                             e.currentTarget.src = "https://images.unsplash.com/photo-1579165466541-71835479444a?q=80&w=800&auto=format&fit=crop";
                           }}
@@ -290,7 +290,7 @@ export const ProductsShowcaseSection: React.FC = () => {
                       <div className="w-7 h-7 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 bg-[#00a3ff] rounded-md flex items-center justify-center text-xs xl:text-sm font-black text-white shadow-xl shadow-blue-200">
                         {p.id}
                       </div>
-                      <h3 className="text-[50px] xl:text-[56px] 2xl:text-6xl max-[900px]:text-[44px] max-[820px]:text-[40px] font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-1.5 xl:pb-3">
+                      <h3 className={`${isCompactHeight ? 'text-[40px] xl:text-[44px] max-[900px]:text-[36px] max-[820px]:text-[33px]' : 'text-[50px] xl:text-[56px] 2xl:text-6xl max-[900px]:text-[44px] max-[820px]:text-[40px]'} font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-1.5 xl:pb-3`}>
                         {p.name}
                       </h3>
                     </div>

@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
       <div className={sectionContainer}>
         <div className="flex flex-col md:flex-row border-b border-slate-300 pb-12 md:pb-16">
           <div className="flex-1 flex items-center justify-center md:justify-start pb-10 md:pb-0">
-            <img src={aindraLogo} alt="Aindra" className="h-40 sm:h-48 lg:h-56 xl:h-64 w-auto object-contain select-none" />
+            <img src={aindraLogo} alt="Aindra" className="h-24 sm:h-28 lg:h-32 xl:h-36 w-auto object-contain select-none" />
           </div>
 
           <div className="hidden md:block w-px bg-slate-300 mx-8 lg:mx-12"></div>

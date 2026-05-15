@@ -43,7 +43,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsCompactHeight(window.innerHeight <= 900);
+      setIsCompactHeight(window.innerHeight <= 850);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -71,7 +71,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
 
   return (
     <>
-    <section className="xl:hidden w-full bg-white px-4 sm:px-4 md:px-6 py-16 md:py-20">
+    <section className="lg:hidden w-full bg-white px-4 sm:px-4 md:px-6 py-16 md:py-20">
       <div className={sectionContainer}>
         <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
           We’ve condensed the pathology workflow from staining to screening into four steps.
@@ -95,8 +95,8 @@ export const UnifiedWorkflowSection: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className="relative hidden xl:block h-[900vh] bg-white">
-      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)]' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? 'min-h-[460px] py-4' : 'min-h-[700px] xl:min-h-[740px]'} w-full flex flex-col items-center justify-center overflow-hidden`}>
+    <div ref={containerRef} className={`relative hidden lg:block ${isCompactHeight ? 'h-[760vh]' : 'h-[900vh]'} bg-white`}>
+      <section className={`sticky ${isCompactHeight ? 'top-14 h-[calc(100svh-3.5rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : 'min-h-[700px] xl:min-h-[740px]'} max-[900px]:top-14 max-[900px]:h-[calc(100svh-3.5rem)] max-[900px]:py-3 max-[900px]:min-h-0 w-full flex flex-col items-center justify-center overflow-visible lg:overflow-hidden`}>
         
         {/* Persistent Background */}
         <div
@@ -123,7 +123,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
           }}
         >
           <div className={`${isCompactHeight ? 'max-w-4xl' : 'max-w-5xl'} text-center`}>
-            <p className={`${isCompactHeight ? 'text-lg md:text-2xl lg:text-[2rem] xl:text-[2.15rem]' : 'text-xl md:text-3xl lg:text-4xl xl:text-5xl'} font-medium leading-tight text-slate-900 text-balance px-4`}>
+            <p className={`${isCompactHeight ? 'text-[clamp(1.4rem,2.7vw,1.95rem)] md:text-[clamp(1.6rem,2.9vw,2.1rem)]' : 'text-xl md:text-3xl lg:text-4xl xl:text-5xl'} font-medium leading-tight text-slate-900 text-balance px-4`}>
               We’ve condensed the entire pathology lab from <span className="text-[#00a3ff] font-bold">staining</span> to <span className="text-[#00a3ff] font-bold">screening</span> into a unified digital workflow in 4 steps. No more fragmented tools or data silos. Just a seamless journey from physical glass to clinical insight.
             </p>
           </div>
@@ -158,7 +158,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
           </div>
 
           {/* Slides Viewport */}
-          <div className={`relative w-full max-w-6xl px-6 md:px-12 ${isCompactHeight ? 'h-[58vh] scale-[0.82] origin-top mt-10' : 'h-[80vh]'} flex flex-col justify-center`}>
+          <div className={`relative w-full max-w-6xl px-6 md:px-12 ${isCompactHeight ? 'h-[56vh] scale-[0.8] origin-top mt-8' : 'h-[80vh]'} flex flex-col justify-center`}>
             {steps.map((step, idx) => {
               const xPos = (idx + 1 - currentSlideProgress) * 100;
               const opacity = 1 - Math.abs(idx + 1 - currentSlideProgress) * 1.2;

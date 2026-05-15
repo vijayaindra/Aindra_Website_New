@@ -48,7 +48,7 @@ export const SolutionsShowcase: React.FC = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsCompactHeight(window.innerHeight <= 900);
+      setIsCompactHeight(window.innerHeight <= 780);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -84,7 +84,7 @@ export const SolutionsShowcase: React.FC = () => {
 
   return (
     <>
-    <section className={`xl:hidden w-full bg-[#f8fbff] ${sectionShell} ${sectionY}`}>
+    <section className={`lg:hidden w-full bg-[#f8fbff] ${sectionShell} ${sectionY}`}>
       <div className={sectionContainer}>
         <SectionEyebrow label="Our Solutions" />
         <h2 className="mt-3 text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight max-w-3xl">
@@ -107,30 +107,30 @@ export const SolutionsShowcase: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className="relative z-10 hidden xl:block h-[400vh] bg-[#f8fbff]">
+    <div ref={containerRef} className={`relative z-10 hidden lg:block ${isCompactHeight ? 'h-[430vh]' : 'h-[400vh]'} bg-[#f8fbff]`}>
       {/* Sticky Frame */}
-      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)]' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? 'min-h-[500px] py-6' : `min-h-[700px] xl:min-h-[740px] ${sectionY}`} w-full flex items-center justify-center ${isCompactHeight ? 'overflow-visible' : 'overflow-hidden'} ${sectionShell}`}>
+      <section className={`sticky ${isCompactHeight ? 'top-20 h-[calc(100svh-5rem)] py-2 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[700px] xl:min-h-[740px] ${sectionY}`} max-[900px]:top-14 max-[900px]:h-[calc(100svh-3.5rem)] max-[900px]:py-3 max-[900px]:min-h-0 max-[820px]:h-[calc(100svh-3.25rem)] w-full flex items-center justify-center overflow-hidden ${sectionShell}`}>
         
         <div className={sectionContainer}>
           {/* Section Header */}
-          <div className="relative z-20 grid grid-cols-12 gap-8 mb-8 lg:mb-14">
+          <div className={`relative z-20 grid grid-cols-12 gap-8 ${isCompactHeight ? 'mb-4' : 'mb-8 lg:mb-14'}`}>
             <div className="col-span-12 lg:col-span-3">
               <SectionEyebrow label="Our Solutions" />
             </div>
             <div className="col-span-12 lg:col-span-9">
-              <h2 className={`${isCompactHeight ? 'text-3xl md:text-5xl lg:text-[46px]' : 'text-3xl md:text-5xl lg:text-6xl'} font-medium text-slate-900 leading-[1.1] max-w-4xl`}>
+              <h2 className={`${isCompactHeight ? 'text-[clamp(1.9rem,2.7vw,2.3rem)] md:text-[clamp(2rem,2.85vw,2.4rem)]' : 'text-3xl md:text-5xl lg:text-6xl'} font-medium text-slate-900 leading-[1.1] max-w-4xl`}>
                 AI modules for every stage of clinical pathology.
               </h2>
             </div>
           </div>
 
-          <div className="grid grid-cols-12 gap-10 items-center">
+          <div className={`grid grid-cols-12 items-center ${isCompactHeight ? 'gap-6' : 'gap-10'}`}>
             
             {/* Left side: Timeline Nav + Description */}
-            <div className={`col-span-12 lg:col-span-3 relative flex flex-col justify-center order-2 lg:order-1 ${isCompactHeight ? 'h-[380px]' : 'h-[500px]'}`}>
+            <div className={`col-span-12 lg:col-span-3 relative flex flex-col justify-center order-2 lg:order-1 ${isCompactHeight ? 'h-[320px]' : 'h-[500px]'}`}>
               
               {/* The Connecting Line & Names */}
-              <div className="relative mb-12">
+              <div className={`relative ${isCompactHeight ? 'mb-7' : 'mb-12'}`}>
                 {/* Background Line */}
                 <div className="absolute left-[3px] top-4 bottom-4 w-[2px] bg-slate-100 rounded-full"></div>
                 
@@ -144,7 +144,7 @@ export const SolutionsShowcase: React.FC = () => {
                   }}
                 ></div>
 
-                <div className="flex flex-col space-y-7">
+                <div className={`flex flex-col ${isCompactHeight ? 'space-y-5' : 'space-y-7'}`}>
                   {solutions.map((s, idx) => (
                     <button 
                       key={s.id}
@@ -154,7 +154,7 @@ export const SolutionsShowcase: React.FC = () => {
                       <div className={`relative w-2 h-2 rounded-full border-2 transition-all duration-500 z-10
                         ${idx === activeIndex ? 'bg-cyan-500 border-cyan-500 scale-125' : 'bg-white border-slate-200 group-hover:border-slate-400'}`}
                       />
-                  <span className={`text-2xl ${isCompactHeight ? 'lg:text-[28px]' : 'lg:text-3xl'} font-bold tracking-tight transition-all duration-500
+                  <span className={`text-2xl ${isCompactHeight ? 'lg:text-[24px]' : 'lg:text-3xl'} font-bold tracking-tight transition-all duration-500
                         ${idx === activeIndex ? 'text-slate-900 translate-x-1' : 'text-slate-300 group-hover:text-slate-500'}`}>
                         {s.name}
                       </span>
@@ -164,14 +164,14 @@ export const SolutionsShowcase: React.FC = () => {
               </div>
 
               {/* Description swapping */}
-              <div className={`relative ${isCompactHeight ? 'h-36' : 'h-44'}`}>
+              <div className={`relative ${isCompactHeight ? 'h-28' : 'h-44'}`}>
                 {solutions.map((s, idx) => (
                   <div 
                     key={s.id}
                     className={`absolute inset-0 transition-all duration-700 ease-in-out
                       ${idx === activeIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
                   >
-                    <p className={`${isCompactHeight ? 'text-lg lg:text-xl' : 'text-xl lg:text-2xl'} text-slate-500 leading-relaxed font-light max-w-md`}>
+                    <p className={`${isCompactHeight ? 'text-base lg:text-lg' : 'text-xl lg:text-2xl'} text-slate-500 leading-relaxed font-light max-w-md`}>
                       {s.description}
                     </p>
                   </div>
@@ -180,7 +180,7 @@ export const SolutionsShowcase: React.FC = () => {
             </div>
 
             {/* Right side: Medical Illustration swapping with glows */}
-            <div className="col-span-12 lg:col-span-9 relative aspect-[11/6] order-1 lg:order-2">
+            <div className={`col-span-12 lg:col-span-9 relative order-1 lg:order-2 ${isCompactHeight ? 'aspect-[11/6] max-h-[42vh]' : 'aspect-[11/6]'}`}>
               {solutions.map((s, idx) => (
                 <div 
                   key={idx}

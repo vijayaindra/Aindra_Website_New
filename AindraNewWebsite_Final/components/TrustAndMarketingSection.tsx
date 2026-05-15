@@ -20,10 +20,10 @@ const mediaLogos = [
 
 export const TrustAndMarketingSection: React.FC = () => {
   return (
-    <section className={`relative w-full overflow-hidden bg-white ${sectionShell} ${sectionY}`}>
+    <section className={`relative w-full overflow-visible lg:overflow-hidden bg-white ${sectionShell} ${sectionY}`}>
       <div className={sectionContainer}>
         <div className="overflow-hidden rounded-[32px] border border-slate-200 bg-white lg:grid lg:grid-cols-12">
-          <div className="relative overflow-hidden lg:col-span-7 flex flex-col justify-center px-6 sm:px-8 md:px-10 lg:px-12 py-10 md:py-12 lg:py-14 min-h-[460px] md:min-h-[520px]">
+          <div className="relative overflow-hidden lg:col-span-7 flex flex-col justify-center px-6 sm:px-8 md:px-10 lg:px-12 py-10 md:py-12 lg:py-14 max-[900px]:py-8 min-h-[420px] md:min-h-[520px] max-[900px]:min-h-[380px]">
             <div className="absolute inset-0 z-0">
               <img
                 src={backgroundImage}
@@ -34,10 +34,10 @@ export const TrustAndMarketingSection: React.FC = () => {
             </div>
 
             <div className="relative z-10 space-y-8 max-w-2xl">
-              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl max-[900px]:text-[clamp(1.8rem,3.2vw,2.45rem)] font-medium text-white tracking-tight leading-tight">
                 Medical-Grade AI. Validated for Clinical Use.
               </h2>
-              <p className="text-white/80 text-base sm:text-lg md:text-2xl lg:text-3xl font-light leading-relaxed">
+              <p className="text-white/80 text-base sm:text-lg md:text-2xl lg:text-3xl max-[900px]:text-[clamp(1rem,2.1vw,1.35rem)] font-light leading-relaxed">
                 Aindra is building the new standard for computational pathology with 10M+ slides processed across 50+ cities.
               </p>
 
@@ -67,7 +67,7 @@ export const TrustAndMarketingSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-5 bg-white flex flex-col justify-start px-6 sm:px-8 md:px-10 lg:px-12 py-10 md:py-12 lg:py-14 border-t lg:border-t-0 lg:border-l border-slate-100">
+          <div className="lg:col-span-5 bg-white flex flex-col justify-start px-6 sm:px-8 md:px-10 lg:px-12 py-10 md:py-12 lg:py-14 max-[900px]:py-8 border-t lg:border-t-0 lg:border-l border-slate-100">
             <div className="space-y-6 md:space-y-7">
               <SectionEyebrow label="In the Media" />
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-slate-900 tracking-tight leading-tight">
