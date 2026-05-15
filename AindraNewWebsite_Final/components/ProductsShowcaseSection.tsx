@@ -132,18 +132,18 @@ export const ProductsShowcaseSection: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className="relative hidden xl:block h-[540vh] 2xl:h-[600vh] bg-white">
+    <div ref={containerRef} className={`relative hidden xl:block ${isCompactHeight ? 'h-[380vh]' : 'h-[540vh] 2xl:h-[600vh]'} bg-white`}>
       {/* Sticky Content Frame */}
-      <section className={`sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] max-[900px]:top-16 max-[900px]:h-[calc(100svh-4rem)] max-[900px]:min-h-[540px] max-[900px]:overflow-visible max-[820px]:min-h-[500px] w-full overflow-hidden flex flex-col ${sectionY} ${sectionShell}`}>
+      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)]' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? 'min-h-[500px] py-6' : `min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] ${sectionY}`} max-[900px]:top-16 max-[900px]:h-[calc(100svh-4rem)] max-[900px]:min-h-[500px] max-[820px]:min-h-[460px] w-full ${isCompactHeight ? 'overflow-visible' : 'overflow-hidden'} flex flex-col bg-white isolate ${sectionShell}`}>
         <div className={sectionContainer}>
         
         {/* PERSISTENT HEADER */}
-        <div className="relative z-20 grid grid-cols-12 gap-5 xl:gap-6 2xl:gap-8 mb-5 xl:mb-7 2xl:mb-14 max-[900px]:mb-4">
+        <div className="relative z-20 grid grid-cols-12 gap-5 xl:gap-6 2xl:gap-8 mb-5 xl:mb-7 2xl:mb-14 max-[900px]:mb-3">
           <div className="col-span-12 lg:col-span-3">
             <SectionEyebrow label="Our Products" />
           </div>
           <div className="col-span-12 lg:col-span-9">
-            <h2 className="text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl max-[900px]:text-[44px] max-[900px]:leading-[1.02] font-medium text-slate-900 leading-[1.08] max-w-4xl">
+            <h2 className={`${isCompactHeight ? 'text-3xl md:text-5xl xl:text-[46px] 2xl:text-6xl' : 'text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl'} max-[900px]:text-[40px] max-[900px]:leading-[1.03] font-medium text-slate-900 leading-[1.08] max-w-4xl`}>
               A Unified Ecosystem for Computational Pathology.
             </h2>
           </div>
@@ -245,7 +245,7 @@ export const ProductsShowcaseSection: React.FC = () => {
                         <img 
                           src={p.image} 
                           alt={p.name} 
-                          className={`relative z-10 w-full h-auto max-h-[46vh] xl:max-h-[52vh] 2xl:max-h-[70vh] max-[900px]:max-h-[41vh] max-[820px]:max-h-[38vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
+                          className={`relative z-10 w-full h-auto max-h-[46vh] xl:max-h-[52vh] 2xl:max-h-[70vh] max-[900px]:max-h-[39vh] max-[820px]:max-h-[35vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
                           onError={(e) => {
                             e.currentTarget.src = "https://images.unsplash.com/photo-1579165466541-71835479444a?q=80&w=800&auto=format&fit=crop";
                           }}

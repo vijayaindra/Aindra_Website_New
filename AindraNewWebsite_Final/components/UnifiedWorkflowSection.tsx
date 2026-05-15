@@ -15,6 +15,7 @@ interface WorkflowStep {
 
 export const UnifiedWorkflowSection: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isCompactHeight, setIsCompactHeight] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const steps: WorkflowStep[] = [
@@ -39,6 +40,15 @@ export const UnifiedWorkflowSection: React.FC = () => {
       imageSrc: reviewReportingImage,
     },
   ];
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsCompactHeight(window.innerHeight <= 900);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,7 +96,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
     </section>
 
     <div ref={containerRef} className="relative hidden xl:block h-[900vh] bg-white">
-      <section className="sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px] w-full flex flex-col items-center justify-center overflow-hidden">
+      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)]' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? 'min-h-[460px] py-4' : 'min-h-[700px] xl:min-h-[740px]'} w-full flex flex-col items-center justify-center overflow-hidden`}>
         
         {/* Persistent Background */}
         <div
@@ -105,15 +115,15 @@ export const UnifiedWorkflowSection: React.FC = () => {
 
         {/* Narrative Intro Content - Now a Sliding Page */}
         <div 
-          className="absolute inset-0 z-20 flex items-center justify-center px-6 md:px-12 lg:px-24 pointer-events-none transition-transform duration-75 ease-out"
+          className={`absolute inset-0 z-20 flex justify-center px-6 md:px-12 lg:px-24 pointer-events-none transition-transform duration-75 ease-out ${isCompactHeight ? 'items-start pt-16 md:pt-20' : 'items-center'}`}
           style={{ 
             opacity: Math.max(0, introOpacity),
             transform: `translateX(${introX}%)`,
             visibility: introOpacity > 0 ? 'visible' : 'hidden',
           }}
         >
-          <div className="max-w-5xl text-center">
-            <p className="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-medium leading-tight text-slate-900 text-balance px-4">
+          <div className={`${isCompactHeight ? 'max-w-4xl' : 'max-w-5xl'} text-center`}>
+            <p className={`${isCompactHeight ? 'text-lg md:text-2xl lg:text-[2rem] xl:text-[2.15rem]' : 'text-xl md:text-3xl lg:text-4xl xl:text-5xl'} font-medium leading-tight text-slate-900 text-balance px-4`}>
               We’ve condensed the entire pathology lab from <span className="text-[#00a3ff] font-bold">staining</span> to <span className="text-[#00a3ff] font-bold">screening</span> into a unified digital workflow in 4 steps. No more fragmented tools or data silos. Just a seamless journey from physical glass to clinical insight.
             </p>
           </div>
@@ -124,7 +134,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
           
           {/* Custom Stepper - Fades in */}
           <div 
-            className="absolute top-24 md:top-32 w-full flex justify-center z-50 transition-opacity duration-500 px-6"
+            className={`absolute ${isCompactHeight ? 'top-12 md:top-16' : 'top-24 md:top-32'} w-full flex justify-center z-50 transition-opacity duration-500 px-6`}
             style={{ opacity: stepperOpacity }}
           >
             <div className="relative flex items-center w-full max-w-[340px] h-12">
@@ -148,7 +158,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
           </div>
 
           {/* Slides Viewport */}
-          <div className="relative w-full max-w-6xl px-6 md:px-12 h-[80vh] flex flex-col justify-center">
+          <div className={`relative w-full max-w-6xl px-6 md:px-12 ${isCompactHeight ? 'h-[58vh] scale-[0.82] origin-top mt-10' : 'h-[80vh]'} flex flex-col justify-center`}>
             {steps.map((step, idx) => {
               const xPos = (idx + 1 - currentSlideProgress) * 100;
               const opacity = 1 - Math.abs(idx + 1 - currentSlideProgress) * 1.2;
@@ -165,7 +175,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
                   }}
                 >
                   <div className="w-full flex flex-col">
-                    <div className="text-7xl md:text-[140px] font-bold text-[#00a3ff] leading-[0.8] tracking-tight mb-2 opacity-90 select-none">
+                    <div className={`${isCompactHeight ? 'text-5xl md:text-[96px]' : 'text-7xl md:text-[140px]'} font-bold text-[#00a3ff] leading-[0.8] tracking-tight mb-2 opacity-90 select-none`}>
                       {step.id}
                     </div>
                     
