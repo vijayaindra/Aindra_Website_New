@@ -23,11 +23,6 @@ export interface SharedContactFields {
   email: string;
 }
 
-export interface ContactEnquiryPayload extends SharedContactFields {
-  flowType: 'contact_experts';
-  message: string;
-}
-
 export interface ProductSupportEnquiryPayload extends SharedContactFields {
   flowType: 'product_support';
   device: string;

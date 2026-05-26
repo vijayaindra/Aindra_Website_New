@@ -1,8 +1,8 @@
 import emailjs from '@emailjs/browser';
-import type { ContactEnquiryPayload, ProductSupportEnquiryPayload } from '../types/contactEnquiry';
+import type { ProductSupportEnquiryPayload } from '../types/contactEnquiry';
 import type { CareerApplicationPayload } from '../types/careerApplication';
 
-type EmailTemplateKind = 'contact' | 'support' | 'careers';
+type EmailTemplateKind = 'support' | 'careers';
 
 export interface EmailSendResult {
   success: boolean;
@@ -10,7 +10,6 @@ export interface EmailSendResult {
 }
 
 const getTemplateId = (kind: EmailTemplateKind): string => {
-  if (kind === 'contact') return import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID ?? '';
   if (kind === 'support') return import.meta.env.VITE_EMAILJS_SUPPORT_TEMPLATE_ID ?? '';
   return import.meta.env.VITE_EMAILJS_CAREERS_TEMPLATE_ID ?? '';
 };
@@ -72,24 +71,6 @@ const getErrorMessage = (error: unknown, fallback: string): string => {
   return fallback;
 };
 
-
-export const sendContactEnquiryEmail = async (
-  payload: ContactEnquiryPayload
-): Promise<EmailSendResult> => {
-  return sendEmail('contact', {
-    to_email: 'contactus@aindra.in',
-    form_type: 'contact_enquiry',
-    full_name: payload.fullName,
-    email: payload.email,
-    phone: payload.phoneNumber,
-    company: payload.companyName,
-    country: payload.country,
-    user_type: payload.userType,
-    message: payload.message,
-    submitted_at: new Date().toISOString(),
-  });
-};
-
 export const sendProductSupportEmail = async (
   payload: ProductSupportEnquiryPayload
 ): Promise<EmailSendResult> => {
@@ -136,7 +117,7 @@ export const sendCareerApplicationEmail = async (
 export const sendAutoReplyEmail = async (payload: {
   recipientEmail: string;
   recipientName: string;
-  formType: 'contact_enquiry' | 'product_support' | 'career_application';
+  formType: 'product_support' | 'career_application';
 }): Promise<EmailSendResult> => {
   const { serviceId, publicKey } = getEmailConfig();
   const templateId = getAutoReplyTemplateId();

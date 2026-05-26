@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import {
-  submitContactEnquiry,
   submitProductSupportEnquiry,
 } from '../../../services/contactEnquiryService';
 import {
   sendAutoReplyEmail,
-  sendContactEnquiryEmail,
   sendProductSupportEmail,
 } from '../../../services/emailService';
 import type {
-  ContactEnquiryPayload,
   ContactUserType,
   ProductSupportEnquiryPayload,
   SharedContactFields,
 } from '../../../types/contactEnquiry';
 
-type ActiveTab = 'product' | 'experts';
+type ActiveTab = 'product';
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error';
-
-interface ContactExpertsFormValues extends SharedContactFields {
-  message: string;
-}
 
 interface ProductSupportStep2Values {
   device: string;
@@ -30,7 +23,6 @@ interface ProductSupportStep2Values {
 }
 
 type SharedFieldErrors = Partial<Record<keyof SharedContactFields, string>>;
-type ContactFieldErrors = Partial<Record<keyof ContactExpertsFormValues, string>>;
 type SupportStep2Errors = Partial<Record<keyof ProductSupportStep2Values, string>>;
 
 const COUNTRY_OPTIONS = ['India', 'United States', 'Germany'];
@@ -59,11 +51,6 @@ const INITIAL_SHARED_FIELDS: SharedContactFields = {
   companyName: '',
   phoneNumber: '',
   email: '',
-};
-
-const INITIAL_CONTACT_EXPERTS_FORM: ContactExpertsFormValues = {
-  ...INITIAL_SHARED_FIELDS,
-  message: '',
 };
 
 const INITIAL_PRODUCT_SUPPORT_STEP2: ProductSupportStep2Values = {
@@ -273,16 +260,6 @@ const validateSharedFields = (values: SharedContactFields): SharedFieldErrors =>
   return errors;
 };
 
-const validateContactExpertsForm = (values: ContactExpertsFormValues): ContactFieldErrors => {
-  const errors: ContactFieldErrors = validateSharedFields(values);
-
-  if (!values.message.trim()) {
-    errors.message = 'Message is required.';
-  }
-
-  return errors;
-};
-
 const validateSupportStep2 = (values: ProductSupportStep2Values): SupportStep2Errors => {
   const errors: SupportStep2Errors = {};
 
@@ -302,22 +279,10 @@ const validateSupportStep2 = (values: ProductSupportStep2Values): SupportStep2Er
 };
 
 const ContactHero: React.FC = () => {
-  const getTabFromHash = (): ActiveTab => {
-    const hash = window.location.hash || '';
-    const query = hash.includes('?') ? hash.split('?')[1] : '';
-    const params = new URLSearchParams(query);
-    return params.get('tab') === 'experts' ? 'experts' : 'product';
-  };
+  const getTabFromHash = (): ActiveTab => 'product';
 
   const [activeTab, setActiveTab] = useState<ActiveTab>(getTabFromHash);
   const [supportStep, setSupportStep] = useState<1 | 2>(1);
-
-  const [contactExpertsForm, setContactExpertsForm] = useState<ContactExpertsFormValues>(
-    INITIAL_CONTACT_EXPERTS_FORM
-  );
-  const [contactErrors, setContactErrors] = useState<ContactFieldErrors>({});
-  const [contactSubmitStatus, setContactSubmitStatus] = useState<SubmitStatus>('idle');
-  const [contactSubmitMessage, setContactSubmitMessage] = useState('');
 
   const [supportStep1Form, setSupportStep1Form] = useState<SharedContactFields>(INITIAL_SHARED_FIELDS);
   const [supportStep2Form, setSupportStep2Form] = useState<ProductSupportStep2Values>(
@@ -328,25 +293,37 @@ const ContactHero: React.FC = () => {
   const [supportSubmitStatus, setSupportSubmitStatus] = useState<SubmitStatus>('idle');
   const [supportSubmitMessage, setSupportSubmitMessage] = useState('');
 
+  const normalizeTabInHash = () => {
+    const hash = window.location.hash || '#/contact';
+    if (!hash.startsWith('#/contact')) return;
+    const query = hash.includes('?') ? hash.split('?')[1] : '';
+    const params = new URLSearchParams(query);
+    if (params.get('tab') === 'experts' || !params.get('tab')) {
+      params.set('tab', 'product');
+      window.history.replaceState(null, '', `#/contact?${params.toString()}`);
+    }
+  };
+
   const resetStatuses = () => {
-    setContactSubmitStatus('idle');
-    setContactSubmitMessage('');
     setSupportSubmitStatus('idle');
     setSupportSubmitMessage('');
   };
 
-  const handleTabSelect = (tab: ActiveTab) => {
-    setActiveTab(tab);
+  const handleTabSelect = () => {
+    setActiveTab('product');
     setSupportStep(1);
     resetStatuses();
 
     const params = new URLSearchParams(window.location.hash.split('?')[1] ?? '');
-    params.set('tab', tab);
+    params.set('tab', 'product');
     window.history.replaceState(null, '', `#/contact?${params.toString()}`);
   };
 
   useEffect(() => {
+    normalizeTabInHash();
+
     const handleHashChange = () => {
+      normalizeTabInHash();
       const nextTab = getTabFromHash();
       setActiveTab(nextTab);
       setSupportStep(1);
@@ -356,45 +333,6 @@ const ContactHero: React.FC = () => {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
-
-  const handleContactExpertsInput = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = event.target;
-
-    setContactExpertsForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    setContactErrors((prev) => {
-      if (!prev[name as keyof ContactExpertsFormValues]) {
-        return prev;
-      }
-
-      const next = { ...prev };
-      delete next[name as keyof ContactExpertsFormValues];
-      return next;
-    });
-
-    if (contactSubmitStatus !== 'idle') {
-      setContactSubmitStatus('idle');
-      setContactSubmitMessage('');
-    }
-  };
-
-  const handleContactExpertsUserTypeChange = (userType: ContactUserType) => {
-    setContactExpertsForm((prev) => ({ ...prev, userType }));
-
-    setContactErrors((prev) => {
-      if (!prev.userType) {
-        return prev;
-      }
-      const next = { ...prev };
-      delete next.userType;
-      return next;
-    });
-  };
 
   const handleSupportStep1Input = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -465,82 +403,6 @@ const ContactHero: React.FC = () => {
     setSupportStep(2);
   };
 
-  const handleContactExpertsSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const errors = validateContactExpertsForm(contactExpertsForm);
-    if (Object.keys(errors).length > 0) {
-      setContactErrors(errors);
-      setContactSubmitStatus('error');
-      setContactSubmitMessage('Please fix the highlighted fields and try again.');
-      return;
-    }
-
-    const payload: ContactEnquiryPayload = {
-      flowType: 'contact_experts',
-      fullName: contactExpertsForm.fullName.trim(),
-      country: contactExpertsForm.country.trim(),
-      userType: contactExpertsForm.userType,
-      companyName: contactExpertsForm.companyName.trim(),
-      phoneNumber: contactExpertsForm.phoneNumber.trim(),
-      email: contactExpertsForm.email.trim(),
-      message: contactExpertsForm.message.trim(),
-    };
-
-    setContactSubmitStatus('submitting');
-    setContactSubmitMessage('Submitting your enquiry...');
-
-    const persistenceResult = await submitContactEnquiry(payload);
-    const emailResult = await sendContactEnquiryEmail(payload);
-    const autoReplyResult = await sendAutoReplyEmail({
-      recipientEmail: payload.email,
-      recipientName: payload.fullName,
-      formType: 'contact_enquiry',
-    });
-
-    if (persistenceResult.success && emailResult.success) {
-      setContactSubmitStatus('success');
-      setContactSubmitMessage(
-        persistenceResult.mode === 'firebase'
-          ? autoReplyResult.success
-            ? 'Enquiry submitted successfully. Email sent to contactus@aindra.in and auto-reply sent to your email.'
-            : `Enquiry submitted successfully. Email sent to contactus@aindra.in, but auto-reply could not be sent (${autoReplyResult.error ?? 'unknown error'}).`
-          : autoReplyResult.success
-            ? 'Enquiry submitted in local safe mode, email sent to contactus@aindra.in, and auto-reply sent to your email.'
-            : `Enquiry submitted in local safe mode and email sent to contactus@aindra.in, but auto-reply could not be sent (${autoReplyResult.error ?? 'unknown error'}).`
-      );
-      setContactExpertsForm(INITIAL_CONTACT_EXPERTS_FORM);
-      setContactErrors({});
-      return;
-    }
-
-    if (persistenceResult.success && !emailResult.success) {
-      setContactSubmitStatus('success');
-      setContactSubmitMessage(
-        `Enquiry saved successfully, but email sending failed${
-          emailResult.error ? ` (${emailResult.error})` : '. Please check EmailJS configuration.'
-        }`
-      );
-      setContactExpertsForm(INITIAL_CONTACT_EXPERTS_FORM);
-      setContactErrors({});
-      return;
-    }
-
-    if (!persistenceResult.success && emailResult.success) {
-      setContactSubmitStatus('success');
-      setContactSubmitMessage('Email sent successfully, but Firestore/local save failed.');
-      setContactExpertsForm(INITIAL_CONTACT_EXPERTS_FORM);
-      setContactErrors({});
-      return;
-    }
-
-    setContactSubmitStatus('error');
-    setContactSubmitMessage(
-      emailResult.error ??
-        persistenceResult.error ??
-        'Unable to submit your enquiry right now. Please try again.'
-    );
-  };
 
   const handleSupportSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -647,37 +509,17 @@ const ContactHero: React.FC = () => {
           <div className="lg:col-span-4 flex flex-col">
             <button
               type="button"
-              onClick={() => handleTabSelect('product')}
+              onClick={handleTabSelect}
               className={`group w-full text-left cursor-pointer border-b border-gray-100 pb-8 mb-8 flex justify-between items-center transition-all ${activeTab === 'product' ? 'pl-4' : 'hover:pl-2'}`}
             >
               <div className="flex flex-col space-y-2">
                 <h3 className={`text-[20px] font-bold transition-colors ${activeTab === 'product' ? 'text-[#00AEEF]' : 'text-gray-400 group-hover:text-[#00AEEF]'}`}>
-                  Product Support
+                  Request Demo
                 </h3>
                 <p className="text-[14px] text-gray-500">I am a client and need support with my Aindra product</p>
               </div>
               <div
                 className={`w-7 h-7 rounded-full flex items-center justify-center text-white shadow-md transition-all ${activeTab === 'product' ? 'bg-[#00AEEF] shadow-blue-200' : 'bg-gray-200 group-hover:bg-[#00AEEF]'}`}
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </div>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleTabSelect('experts')}
-              className={`group w-full text-left cursor-pointer border-b border-gray-100 pb-8 flex justify-between items-center transition-all ${activeTab === 'experts' ? 'pl-4' : 'hover:pl-2'}`}
-            >
-              <div className="flex flex-col space-y-2">
-                <h3 className={`text-[20px] font-extrabold transition-colors ${activeTab === 'experts' ? 'text-[#00AEEF]' : 'text-gray-900 group-hover:text-[#00AEEF]'}`}>
-                  Contact our experts
-                </h3>
-                <p className="text-[14px] text-gray-500">Want to ask us a specific question?</p>
-              </div>
-              <div
-                className={`w-7 h-7 rounded-full flex items-center justify-center text-white transition-all ${activeTab === 'experts' ? 'bg-[#00AEEF] shadow-md shadow-blue-200' : 'bg-gray-400 group-hover:bg-[#00AEEF]'}`}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -690,19 +532,14 @@ const ContactHero: React.FC = () => {
             <div className="w-full bg-[#EBF8FF] rounded-[20px] md:rounded-[24px] p-5 sm:p-7 md:p-10 lg:p-12 shadow-sm border border-blue-100/50">
               <div className="text-center mb-10">
                 <h2 className="text-2xl md:text-[30px] font-extrabold text-gray-900 mb-2">
-                  {activeTab === 'product'
-                    ? 'Need help with your Aindra product?'
-                    : 'Have a question? Speak with our experts'}
+                  Need help with your Aindra product?
                 </h2>
                 <p className="text-[14px] text-gray-500 font-medium">
-                  {activeTab === 'product'
-                    ? 'Let us know how we can assist you.'
-                    : "We'll get back within 1 business days"}
+                  Let us know how we can assist you.
                 </p>
               </div>
 
-              {activeTab === 'product' ? (
-                <>
+              <>
                   <div className="flex flex-col items-center mb-16 relative">
                     <div className="flex items-center justify-between w-full max-w-[400px] relative z-10">
                       <div className="flex flex-col items-center">
@@ -893,93 +730,7 @@ const ContactHero: React.FC = () => {
                       </div>
                     )}
                   </form>
-                </>
-              ) : (
-                <form className="max-w-[700px] mx-auto" onSubmit={handleContactExpertsSubmit} noValidate>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
-                    <InputField
-                      label="YOUR FULL NAME"
-                      placeholder="Amit Ravishankar"
-                      name="fullName"
-                      value={contactExpertsForm.fullName}
-                      onChange={handleContactExpertsInput}
-                      error={contactErrors.fullName}
-                    />
-
-                    <CountryField
-                      name="country"
-                      value={contactExpertsForm.country}
-                      onChange={handleContactExpertsInput}
-                      error={contactErrors.country}
-                    />
-                  </div>
-
-                  <UserTypeField
-                    value={contactExpertsForm.userType}
-                    onChange={handleContactExpertsUserTypeChange}
-                    error={contactErrors.userType}
-                  />
-
-                  <InputField
-                    label="COMPANY / NAME OF INSTITUTION"
-                    placeholder="Your institution name"
-                    name="companyName"
-                    value={contactExpertsForm.companyName}
-                    onChange={handleContactExpertsInput}
-                    error={contactErrors.companyName}
-                  />
-                  <InputField
-                    label="PHONE NUMBER"
-                    placeholder="+91 4567387256"
-                    name="phoneNumber"
-                    value={contactExpertsForm.phoneNumber}
-                    onChange={handleContactExpertsInput}
-                    error={contactErrors.phoneNumber}
-                  />
-                  <InputField
-                    label="EMAIL"
-                    placeholder="Amit@company.com"
-                    type="email"
-                    name="email"
-                    value={contactExpertsForm.email}
-                    onChange={handleContactExpertsInput}
-                    error={contactErrors.email}
-                  />
-                  <InputField
-                    label="MESSAGE"
-                    placeholder="What is your question?"
-                    name="message"
-                    value={contactExpertsForm.message}
-                    onChange={handleContactExpertsInput}
-                    error={contactErrors.message}
-                    multiline
-                  />
-
-                  {contactSubmitStatus !== 'idle' && (
-                    <p
-                      className={`mb-4 text-[12px] font-semibold ${
-                        contactSubmitStatus === 'success'
-                          ? 'text-emerald-600'
-                          : contactSubmitStatus === 'submitting'
-                            ? 'text-[#00AEEF]'
-                            : 'text-red-500'
-                      }`}
-                    >
-                      {contactSubmitMessage}
-                    </p>
-                  )}
-
-                  <div className="mt-12">
-                    <button
-                      type="submit"
-                      disabled={contactSubmitStatus === 'submitting'}
-                      className="w-full bg-[#56A8E8] hover:bg-[#4096D8] disabled:bg-[#8ec6ee] disabled:cursor-not-allowed text-white font-bold py-3.5 rounded-xl transition-all shadow-md shadow-blue-200/50 uppercase tracking-widest text-[13px]"
-                    >
-                      {contactSubmitStatus === 'submitting' ? 'SUBMITTING...' : 'SUBMIT ENQUIRY'}
-                    </button>
-                  </div>
-                </form>
-              )}
+              </>
             </div>
           </div>
         </div>

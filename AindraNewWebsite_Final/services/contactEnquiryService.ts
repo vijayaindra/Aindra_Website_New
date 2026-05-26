@@ -1,12 +1,9 @@
 import type {
-  ContactEnquiryPayload,
   ContactEnquirySubmissionResult,
   ProductSupportEnquiryPayload,
 } from '../types/contactEnquiry';
 
-const CONTACT_ENQUIRIES_COLLECTION = 'contactEnquiries';
 const PRODUCT_SUPPORT_COLLECTION = 'productSupportEnquiries';
-const CONTACT_FALLBACK_STORAGE_KEY = 'aindra:contactEnquiries';
 const PRODUCT_SUPPORT_FALLBACK_STORAGE_KEY = 'aindra:productSupportEnquiries';
 
 const shouldUseFirebaseSubmissions = (): boolean => {
@@ -111,12 +108,6 @@ const submitEnquiry = async (
       error: error instanceof Error ? error.message : 'Unknown submission error',
     };
   }
-};
-
-export const submitContactEnquiry = async (
-  payload: ContactEnquiryPayload
-): Promise<ContactEnquirySubmissionResult> => {
-  return submitEnquiry(payload, CONTACT_ENQUIRIES_COLLECTION, CONTACT_FALLBACK_STORAGE_KEY);
 };
 
 export const submitProductSupportEnquiry = async (

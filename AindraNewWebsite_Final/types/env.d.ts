@@ -11,7 +11,6 @@ interface ImportMetaEnv {
   readonly VITE_USE_FIREBASE_CONTENT?: string;
   readonly VITE_FIREBASE_STORAGE_BASE_PATH?: string;
   readonly VITE_EMAILJS_SERVICE_ID?: string;
-  readonly VITE_EMAILJS_CONTACT_TEMPLATE_ID?: string;
   readonly VITE_EMAILJS_SUPPORT_TEMPLATE_ID?: string;
   readonly VITE_EMAILJS_CAREERS_TEMPLATE_ID?: string;
   readonly VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID?: string;
