@@ -422,14 +422,14 @@ const BenefitsSection: React.FC = () => {
   return (
     <>
     <div ref={containerRef} className={`${sectionShell} relative w-full`} style={{ height: '760vh' }}>
-      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)]' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} w-full ${isCompactHeight ? 'min-h-[520px] py-4' : 'min-h-[700px] xl:min-h-[740px]'} bg-white flex flex-col ${isCompactHeight ? 'overflow-visible' : 'overflow-hidden'}`}>
+      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] min-h-0 py-3' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] w-full ${isCompactHeight ? '' : 'min-h-[700px] xl:min-h-[740px]'} bg-white flex flex-col overflow-visible lg:overflow-hidden`}>
         
         <div className="relative z-50 bg-white pt-6 pb-4">
           <div className={`${sectionContainer} flex flex-col md:flex-row items-start w-full`}>
             <div className="w-[120px] md:w-[160px] shrink-0 pt-1 mr-6 md:mr-10 mb-6 md:mb-0">
               <SectionEyebrow label={eyebrowLabel} />
             </div>
-            <div className={`flex-1 mt-0 relative overflow-hidden ${isCompactHeight ? 'min-h-[104px]' : 'min-h-[136px] md:min-h-[172px]'} md:pl-10`}>
+            <div className={`flex-1 mt-0 relative overflow-visible lg:overflow-hidden ${isCompactHeight ? 'min-h-[104px]' : 'min-h-[136px] md:min-h-[172px]'} md:pl-10`}>
               <h2 className={`absolute inset-0 ${isCompactHeight ? 'text-[24px] md:text-[30px] lg:text-[34px]' : 'text-[28px] md:text-[34px] lg:text-[40px]'} font-extrabold leading-[1.2] text-[#111827] tracking-[-0.015em] max-w-[1000px] transition-all duration-1000 ${scrollProgress < transitionPoint ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
                 Our team values focus, dedication, innovation and the power of what can happen when they converge.
               </h2>

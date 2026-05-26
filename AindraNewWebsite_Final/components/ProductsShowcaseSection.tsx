@@ -134,16 +134,16 @@ export const ProductsShowcaseSection: React.FC = () => {
 
     <div ref={containerRef} className={`relative hidden lg:block ${isCompactHeight ? 'h-[440vh]' : 'h-[540vh] 2xl:h-[600vh]'} bg-white`}>
       {/* Sticky Content Frame */}
-      <section className={`sticky ${isCompactHeight ? 'top-20 h-[calc(100svh-5rem)] py-2 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] ${sectionY}`} max-[900px]:top-14 max-[900px]:h-[calc(100svh-3.5rem)] max-[900px]:py-3 max-[900px]:min-h-0 max-[820px]:h-[calc(100svh-3.25rem)] w-full overflow-hidden flex flex-col bg-white isolate ${sectionShell}`}>
+      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] ${sectionY}`} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] max-[900px]:top-14 max-[900px]:h-[calc(100svh-3.5rem)] max-[900px]:py-3 max-[900px]:min-h-0 max-[820px]:h-[calc(100svh-3.25rem)] w-full overflow-visible lg:overflow-hidden flex flex-col bg-white isolate ${sectionShell}`}>
         <div className={sectionContainer}>
         
         {/* PERSISTENT HEADER */}
-        <div className={`relative z-20 grid grid-cols-12 gap-5 xl:gap-6 2xl:gap-8 ${isCompactHeight ? 'mb-3' : 'mb-5 xl:mb-7 2xl:mb-14'} max-[900px]:mb-2`}>
+        <div className={`relative z-20 grid grid-cols-12 gap-5 xl:gap-6 2xl:gap-8 ${isCompactHeight ? 'mb-3' : 'mb-5 xl:mb-7 2xl:mb-14'} max-h-[900px]:mb-3 max-h-[820px]:mb-2 max-[900px]:mb-2`}>
           <div className="col-span-12 lg:col-span-3">
             <SectionEyebrow label="Our Products" />
           </div>
           <div className="col-span-12 lg:col-span-9">
-            <h2 className={`${isCompactHeight ? 'text-[clamp(1.9rem,2.7vw,2.35rem)] md:text-[clamp(2rem,2.9vw,2.45rem)]' : 'text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl'} max-[900px]:text-[34px] max-[900px]:leading-[1.04] font-medium text-slate-900 leading-[1.08] max-w-4xl`}>
+            <h2 className={`${isCompactHeight ? 'text-[clamp(1.9rem,2.7vw,2.35rem)] md:text-[clamp(2rem,2.9vw,2.45rem)]' : 'text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl'} max-h-[900px]:text-[clamp(2.2rem,3.2vw,2.9rem)] max-h-[900px]:leading-[1.05] max-h-[820px]:text-[clamp(2rem,3vw,2.6rem)] max-[900px]:text-[34px] max-[900px]:leading-[1.04] font-medium text-slate-900 leading-[1.08] max-w-4xl`}>
               A Unified Ecosystem for Computational Pathology.
             </h2>
           </div>
@@ -245,7 +245,7 @@ export const ProductsShowcaseSection: React.FC = () => {
                         <img 
                           src={p.image} 
                           alt={p.name} 
-                          className={`relative z-10 w-full h-auto max-h-[46vh] xl:max-h-[52vh] 2xl:max-h-[70vh] max-[900px]:max-h-[34vh] max-[820px]:max-h-[31vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
+                          className={`relative z-10 w-full h-auto max-h-[46vh] xl:max-h-[52vh] 2xl:max-h-[70vh] max-h-[900px]:max-h-[38vh] max-h-[820px]:max-h-[35vh] max-[900px]:max-h-[34vh] max-[820px]:max-h-[31vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
                           onError={(e) => {
                             e.currentTarget.src = "https://images.unsplash.com/photo-1579165466541-71835479444a?q=80&w=800&auto=format&fit=crop";
                           }}

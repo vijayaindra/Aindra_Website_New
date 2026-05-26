@@ -9,6 +9,7 @@ interface WorkflowStep {
 
 export const ProductSection: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isCompactHeight, setIsCompactHeight] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   
   const steps: WorkflowStep[] = [
@@ -127,6 +128,15 @@ export const ProductSection: React.FC = () => {
   ];
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsCompactHeight(window.innerHeight <= 850);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
       const { top, height } = sectionRef.current.getBoundingClientRect();
@@ -141,9 +151,11 @@ export const ProductSection: React.FC = () => {
   const activeIndex = Math.min(steps.length - 1, Math.floor(scrollProgress * (steps.length + 0.1)));
 
   return (
-    <div ref={sectionRef} className="relative h-[500vh] bg-white">
+    <div ref={sectionRef} className={`relative ${isCompactHeight ? 'h-[420vh]' : 'h-[500vh]'} bg-white`}>
       {/* Sticky Frame */}
-      <section className="sticky top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px] w-full flex flex-col items-center justify-center overflow-hidden">
+      <section
+        className={`sticky ${isCompactHeight ? 'top-14 h-[calc(100svh-3.5rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px]'} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] w-full flex flex-col items-center justify-center overflow-visible lg:overflow-hidden`}
+      >
         
         {/* Persistent Background (The Tissue Slide) */}
         <div className="absolute inset-0 z-0">
@@ -157,7 +169,7 @@ export const ProductSection: React.FC = () => {
         </div>
 
         {/* Top Centered Horizontal Stepper */}
-        <div className="absolute top-16 w-full flex justify-center z-50">
+        <div className={`absolute ${isCompactHeight ? 'top-10' : 'top-16'} w-full flex justify-center z-50`}>
           <div className="relative flex items-center w-64">
             <div className="absolute top-1/2 left-0 w-full h-[1px] bg-slate-200 -translate-y-1/2"></div>
             <div className="flex justify-between w-full relative">
@@ -175,7 +187,7 @@ export const ProductSection: React.FC = () => {
         </div>
 
         {/* Content Viewport: Horizontal Movement Area */}
-        <div className="relative w-full max-w-7xl px-6 md:px-12 lg:px-24 h-[60vh]">
+        <div className={`relative w-full max-w-7xl px-6 md:px-12 lg:px-24 ${isCompactHeight ? 'h-[52vh]' : 'h-[60vh]'} max-h-[900px]:h-[50vh] max-h-[820px]:h-[46vh]`}>
           {steps.map((step, idx) => {
             // Horizontal shift: Current step is at 0, prev is -100%, next is 100%
             const xPos = (idx - scrollProgress * (steps.length)) * 100;
@@ -193,12 +205,12 @@ export const ProductSection: React.FC = () => {
               >
                 <div className="w-full">
                   {/* ID Indicator */}
-                  <div className="text-[140px] md:text-[200px] font-bold text-[#00a3ff] leading-none tracking-tight -mb-6 opacity-80">
+                  <div className={`${isCompactHeight ? 'text-[100px] md:text-[140px]' : 'text-[140px] md:text-[200px]'} font-bold text-[#00a3ff] leading-none tracking-tight -mb-6 opacity-80`}>
                     {step.id}
                   </div>
                   
                   {/* Step Title */}
-                  <h3 className="text-3xl md:text-5xl font-medium text-slate-900 mb-12">
+                  <h3 className={`${isCompactHeight ? 'text-2xl md:text-4xl mb-8' : 'text-3xl md:text-5xl mb-12'} font-medium text-slate-900`}>
                     {step.title}
                   </h3>
 

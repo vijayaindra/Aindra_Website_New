@@ -109,16 +109,16 @@ export const SolutionsShowcase: React.FC = () => {
 
     <div ref={containerRef} className={`relative z-10 hidden lg:block ${isCompactHeight ? 'h-[430vh]' : 'h-[400vh]'} bg-[#f8fbff]`}>
       {/* Sticky Frame */}
-      <section className={`sticky ${isCompactHeight ? 'top-20 h-[calc(100svh-5rem)] py-2 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[700px] xl:min-h-[740px] ${sectionY}`} max-[900px]:top-14 max-[900px]:h-[calc(100svh-3.5rem)] max-[900px]:py-3 max-[900px]:min-h-0 max-[820px]:h-[calc(100svh-3.25rem)] w-full flex items-center justify-center overflow-hidden ${sectionShell}`}>
+      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[700px] xl:min-h-[740px] ${sectionY}`} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] max-[900px]:top-14 max-[900px]:h-[calc(100svh-3.5rem)] max-[900px]:py-3 max-[900px]:min-h-0 max-[820px]:h-[calc(100svh-3.25rem)] w-full flex items-center justify-center overflow-visible lg:overflow-hidden ${sectionShell}`}>
         
         <div className={sectionContainer}>
           {/* Section Header */}
-          <div className={`relative z-20 grid grid-cols-12 gap-8 ${isCompactHeight ? 'mb-4' : 'mb-8 lg:mb-14'}`}>
+          <div className={`relative z-20 grid grid-cols-12 gap-8 ${isCompactHeight ? 'mb-4' : 'mb-8 lg:mb-14'} max-h-[900px]:mb-4 max-h-[820px]:mb-3`}>
             <div className="col-span-12 lg:col-span-3">
               <SectionEyebrow label="Our Solutions" />
             </div>
             <div className="col-span-12 lg:col-span-9">
-              <h2 className={`${isCompactHeight ? 'text-[clamp(1.9rem,2.7vw,2.3rem)] md:text-[clamp(2rem,2.85vw,2.4rem)]' : 'text-3xl md:text-5xl lg:text-6xl'} font-medium text-slate-900 leading-[1.1] max-w-4xl`}>
+              <h2 className={`${isCompactHeight ? 'text-[clamp(1.9rem,2.7vw,2.3rem)] md:text-[clamp(2rem,2.85vw,2.4rem)]' : 'text-3xl md:text-5xl lg:text-6xl'} max-h-[900px]:text-[clamp(2.2rem,3.2vw,2.9rem)] max-h-[900px]:leading-[1.05] max-h-[820px]:text-[clamp(2rem,3vw,2.6rem)] font-medium text-slate-900 leading-[1.1] max-w-4xl`}>
                 AI modules for every stage of clinical pathology.
               </h2>
             </div>
@@ -180,7 +180,7 @@ export const SolutionsShowcase: React.FC = () => {
             </div>
 
             {/* Right side: Medical Illustration swapping with glows */}
-            <div className={`col-span-12 lg:col-span-9 relative order-1 lg:order-2 ${isCompactHeight ? 'aspect-[11/6] max-h-[42vh]' : 'aspect-[11/6]'}`}>
+            <div className={`col-span-12 lg:col-span-9 relative order-1 lg:order-2 ${isCompactHeight ? 'aspect-[11/6] max-h-[42vh]' : 'aspect-[11/6]'} max-h-[900px]:max-h-[40vh] max-h-[820px]:max-h-[37vh]`}>
               {solutions.map((s, idx) => (
                 <div 
                   key={idx}
