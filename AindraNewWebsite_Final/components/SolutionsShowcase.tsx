@@ -137,7 +137,7 @@ export const SolutionsShowcase: React.FC = () => {
             <div className="col-span-12 lg:col-span-3">
               <SectionEyebrow label="Our Solutions" />
             </div>
-            <div className="col-span-12 lg:col-span-9">
+            <div className="col-span-12 lg:col-span-9 lg:translate-x-24 xl:translate-x-32">
               <h2 className={`${isCompactHeight ? 'text-[clamp(1.9rem,2.7vw,2.3rem)] md:text-[clamp(2rem,2.85vw,2.4rem)]' : 'text-3xl md:text-5xl lg:text-6xl'} max-h-[900px]:text-[clamp(2.2rem,3.2vw,2.9rem)] max-h-[900px]:leading-[1.05] max-h-[820px]:text-[clamp(2rem,3vw,2.6rem)] font-medium text-slate-900 leading-[1.1] max-w-4xl`}>
                 AI modules for every stage of clinical pathology.
               </h2>
@@ -164,7 +164,7 @@ export const SolutionsShowcase: React.FC = () => {
                   }}
                 ></div>
 
-                <div className={`flex flex-col ${isCompactHeight ? 'space-y-5' : 'space-y-7'}`}>
+                <div className={`flex flex-col ${isCompactHeight ? 'space-y-4' : 'space-y-5'}`}>
                   {solutions.map((s, idx) => (
                     <button 
                       key={s.id}
@@ -174,7 +174,7 @@ export const SolutionsShowcase: React.FC = () => {
                       <div className={`relative w-2 h-2 rounded-full border-2 transition-all duration-500 z-10
                         ${idx === activeIndex ? 'bg-cyan-500 border-cyan-500 scale-125' : 'bg-white border-slate-200 group-hover:border-slate-400'}`}
                       />
-                  <span className={`text-2xl ${isCompactHeight ? 'lg:text-[24px]' : 'lg:text-3xl'} font-bold tracking-tight transition-all duration-500
+                  <span className={`text-xl ${isCompactHeight ? 'lg:text-[21px]' : 'lg:text-[2rem]'} font-bold tracking-tight transition-all duration-500
                         ${idx === activeIndex ? 'text-[#00A0E9] translate-x-1' : 'text-slate-300 group-hover:text-slate-500'}`}>
                         {s.name}
                       </span>
@@ -184,14 +184,16 @@ export const SolutionsShowcase: React.FC = () => {
               </div>
 
               {/* Description swapping */}
-              <div className={`relative ${isCompactHeight ? 'h-28' : 'h-44'}`}>
+              <div className={`relative ${isCompactHeight ? 'min-h-[170px]' : 'min-h-[220px]'}`}>
                 {solutions.map((s, idx) => (
                   <div 
                     key={s.id}
                     className={`absolute inset-0 transition-all duration-700 ease-in-out
                       ${idx === activeIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
                   >
-                    <p className={`${isCompactHeight ? 'text-base lg:text-lg' : 'text-xl lg:text-2xl'} text-slate-500 leading-relaxed font-light max-w-md`}>
+                    <p
+                      className={`${isCompactHeight ? 'text-[14px] lg:text-[15px]' : 'text-base lg:text-lg'} text-slate-500 leading-relaxed font-light max-w-md`}
+                    >
                       {s.description}
                     </p>
                   </div>
@@ -200,7 +202,7 @@ export const SolutionsShowcase: React.FC = () => {
             </div>
 
             {/* Right side: Medical Illustration swapping with glows */}
-            <div className={`col-span-12 lg:col-span-9 relative order-1 lg:order-2 ${isCompactHeight ? 'aspect-[11/6] max-h-[42vh]' : 'aspect-[11/6]'} max-h-[900px]:max-h-[40vh] max-h-[820px]:max-h-[37vh]`}>
+            <div className={`col-span-12 lg:col-span-9 relative order-1 lg:order-2 lg:translate-x-24 xl:translate-x-32 ${isCompactHeight ? 'aspect-[11/6] max-h-[38vh]' : 'aspect-[11/6] max-h-[50vh]'} max-h-[900px]:max-h-[36vh] max-h-[820px]:max-h-[34vh]`}>
               {solutions.map((s, idx) => (
                 <div 
                   key={idx}
@@ -224,15 +226,6 @@ export const SolutionsShowcase: React.FC = () => {
           </div>
         </div>
 
-        {/* Vertical Pagination Indicator (Far Right) */}
-        <div className="absolute right-12 top-1/2 -translate-y-1/2 hidden xl:flex flex-col space-y-4">
-          {solutions.map((_, idx) => (
-            <div 
-              key={idx}
-              className={`w-1 rounded-full transition-all duration-700 ${idx === activeIndex ? 'bg-cyan-500 h-8' : 'bg-slate-200 h-2'}`}
-            />
-          ))}
-        </div>
       </section>
     </div>
     </>
