@@ -33,34 +33,34 @@ export const TrustAndMarketingSection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-slate-900/60"></div>
             </div>
 
-            <div className="relative z-10 space-y-9 max-w-[46rem]">
-              <h2 className="text-[2.05rem] sm:text-[2.35rem] md:text-[3.35rem] lg:text-[4.1rem] max-[900px]:text-[clamp(2rem,3.35vw,2.6rem)] font-medium text-white tracking-tight leading-[1.04]">
+            <div className="relative z-10 space-y-10 max-w-[48rem]">
+              <h2 className="text-[2.15rem] sm:text-[2.55rem] md:text-[3.65rem] lg:text-[4.45rem] max-[900px]:text-[clamp(2.08rem,3.45vw,2.72rem)] font-medium text-white tracking-tight leading-[1.03]">
                 Medical-Grade AI. Validated for Clinical Use.
               </h2>
-              <p className="text-white/80 text-[1.23rem] sm:text-[1.45rem] md:text-[1.95rem] lg:text-[2.15rem] max-[900px]:text-[clamp(1.12rem,2.25vw,1.45rem)] font-light leading-[1.32]">
+              <p className="text-white/80 text-[1.28rem] sm:text-[1.56rem] md:text-[2.08rem] lg:text-[2.3rem] max-[900px]:text-[clamp(1.16rem,2.35vw,1.52rem)] font-light leading-[1.3]">
                 Aindra is building the new standard for computational pathology with 10M+ slides processed across 50+ cities.
               </p>
 
-              <div className="flex items-start justify-between w-full max-w-[34rem] pt-3">
-                <div className="text-center min-w-[6.4rem]">
-                  <div className="w-20 h-20 sm:w-[5.5rem] sm:h-[5.5rem] rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[13px] sm:text-[15px] font-bold leading-tight mx-auto">CDSCO</div>
-                  <div className="mt-2.5 text-[13px] sm:text-sm text-white/70 uppercase tracking-wider">Approved</div>
+              <div className="flex items-start justify-between w-full max-w-[38rem] pt-4">
+                <div className="text-center min-w-[7rem]">
+                  <div className="w-[5.6rem] h-[5.6rem] sm:w-[6rem] sm:h-[6rem] rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[14px] sm:text-[16px] font-bold leading-tight mx-auto">CDSCO</div>
+                  <div className="mt-3 text-[14px] sm:text-[15px] text-white/70 uppercase tracking-wider">Approved</div>
                 </div>
-                <div className="text-center min-w-[6.4rem]">
-                  <div className="w-20 h-20 sm:w-[5.5rem] sm:h-[5.5rem] rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[13px] sm:text-[15px] font-bold leading-tight mx-auto">CE-IVD</div>
-                  <div className="mt-2.5 text-[13px] sm:text-sm text-white/70 uppercase tracking-wider">Certified</div>
+                <div className="text-center min-w-[7rem]">
+                  <div className="w-[5.6rem] h-[5.6rem] sm:w-[6rem] sm:h-[6rem] rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[14px] sm:text-[16px] font-bold leading-tight mx-auto">CE-IVD</div>
+                  <div className="mt-3 text-[14px] sm:text-[15px] text-white/70 uppercase tracking-wider">Certified</div>
                 </div>
-                <div className="text-center min-w-[6.4rem]">
-                  <div className="w-20 h-20 sm:w-[5.5rem] sm:h-[5.5rem] rounded-full border border-white/30 text-white/90 flex items-center justify-center text-xs sm:text-[13px] font-bold leading-tight px-1 mx-auto">ISO 13485</div>
-                  <div className="mt-2.5 text-[13px] sm:text-sm text-white/70 uppercase tracking-wider">Compliant</div>
+                <div className="text-center min-w-[7rem]">
+                  <div className="w-[5.6rem] h-[5.6rem] sm:w-[6rem] sm:h-[6rem] rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[13px] sm:text-[14px] font-bold leading-tight px-1 mx-auto">ISO 13485</div>
+                  <div className="mt-3 text-[14px] sm:text-[15px] text-white/70 uppercase tracking-wider">Compliant</div>
                 </div>
               </div>
 
-              <div className="pt-5 flex flex-wrap gap-4">
-                <a href="#/about#credibility" className="px-9 sm:px-10 py-3.5 sm:py-4 bg-white text-slate-900 rounded-full font-bold text-[15px] sm:text-base tracking-wider uppercase hover:bg-slate-100 transition-all inline-flex items-center justify-center">
+              <div className="pt-6 flex flex-wrap gap-4">
+                <a href="#/about#credibility" className="px-10 sm:px-11 py-4 sm:py-[1.05rem] bg-white text-slate-900 rounded-full font-bold text-base sm:text-[1.04rem] tracking-wider uppercase hover:bg-slate-100 transition-all inline-flex items-center justify-center">
                   View Validation Data
                 </a>
-                <a href="#/about#credibility" className="px-9 sm:px-10 py-3.5 sm:py-4 border border-white/30 text-white rounded-full font-bold text-[15px] sm:text-base tracking-wider uppercase hover:bg-white/10 transition-all inline-flex items-center justify-center">
+                <a href="#/about#credibility" className="px-10 sm:px-11 py-4 sm:py-[1.05rem] border border-white/30 text-white rounded-full font-bold text-base sm:text-[1.04rem] tracking-wider uppercase hover:bg-white/10 transition-all inline-flex items-center justify-center">
                   Clinical Publications
                 </a>
               </div>

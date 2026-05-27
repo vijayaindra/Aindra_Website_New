@@ -18,6 +18,7 @@ interface Solution {
 
 export const SolutionsShowcase: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [isCompactHeight, setIsCompactHeight] = useState(false);
   const [isLaptopHeight, setIsLaptopHeight] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -84,6 +85,7 @@ export const SolutionsShowcase: React.FC = () => {
         Math.max(0, Math.round(scrollProgress * (solutions.length - 1)))
       );
       
+      setScrollProgress(scrollProgress);
       setActiveIndex(index);
     };
 
@@ -101,6 +103,10 @@ export const SolutionsShowcase: React.FC = () => {
     const targetScroll = scrollStart + (index * step);
     window.scrollTo({ top: targetScroll, behavior: 'smooth' });
   };
+
+  const stepCount = Math.max(1, solutions.length - 1);
+  const segmentIndex = Math.max(0, Math.min(stepCount - 1, activeIndex - 1));
+  const segmentFill = activeIndex > 0 ? 1 : 0;
 
   return (
     <>
@@ -162,8 +168,8 @@ export const SolutionsShowcase: React.FC = () => {
                 <div 
                   className="absolute left-[3px] w-[2px] bg-cyan-500 transition-all duration-700 rounded-full"
                   style={{ 
-                    top: '16px',
-                    height: `calc((100% - 32px) * ${(activeIndex / Math.max(1, solutions.length - 1))})`
+                    top: `calc(16px + ((100% - 32px) / ${stepCount}) * ${segmentIndex})`,
+                    height: `calc(((100% - 32px) / ${stepCount}) * ${segmentFill})`
                   }}
                 ></div>
 
