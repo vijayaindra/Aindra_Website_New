@@ -23,7 +23,7 @@ export const TrustAndMarketingSection: React.FC = () => {
     <section className={`relative w-full overflow-visible lg:overflow-hidden bg-white ${sectionShell} ${sectionY}`}>
       <div className={sectionContainer}>
         <div className="overflow-hidden rounded-[32px] border border-slate-200 bg-white lg:grid lg:grid-cols-12">
-          <div className="relative overflow-hidden lg:col-span-7 flex flex-col justify-center px-6 sm:px-8 md:px-10 lg:px-12 py-10 md:py-12 lg:py-14 max-[900px]:py-8 min-h-[420px] md:min-h-[520px] max-[900px]:min-h-[380px]">
+          <div className="relative overflow-hidden lg:col-span-7 flex flex-col justify-center px-7 sm:px-10 md:px-12 lg:px-14 py-12 md:py-14 lg:py-16 max-[900px]:py-10 min-h-[460px] md:min-h-[560px] max-[900px]:min-h-[420px]">
             <div className="absolute inset-0 z-0">
               <img
                 src={backgroundImage}
@@ -33,34 +33,34 @@ export const TrustAndMarketingSection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-slate-900/60"></div>
             </div>
 
-            <div className="relative z-10 space-y-8 max-w-2xl">
-              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl max-[900px]:text-[clamp(1.8rem,3.2vw,2.45rem)] font-medium text-white tracking-tight leading-tight">
+            <div className="relative z-10 space-y-9 max-w-[46rem]">
+              <h2 className="text-[2.05rem] sm:text-[2.35rem] md:text-[3.35rem] lg:text-[4.1rem] max-[900px]:text-[clamp(2rem,3.35vw,2.6rem)] font-medium text-white tracking-tight leading-[1.04]">
                 Medical-Grade AI. Validated for Clinical Use.
               </h2>
-              <p className="text-white/80 text-base sm:text-lg md:text-2xl lg:text-3xl max-[900px]:text-[clamp(1rem,2.1vw,1.35rem)] font-light leading-relaxed">
+              <p className="text-white/80 text-[1.23rem] sm:text-[1.45rem] md:text-[1.95rem] lg:text-[2.15rem] max-[900px]:text-[clamp(1.12rem,2.25vw,1.45rem)] font-light leading-[1.32]">
                 Aindra is building the new standard for computational pathology with 10M+ slides processed across 50+ cities.
               </p>
 
-              <div className="flex items-center gap-4 pt-2">
-                <div className="text-center">
-                  <div className="w-12 h-12 rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[10px] font-bold">CDSCO</div>
-                  <div className="mt-1 text-[10px] text-white/60 uppercase tracking-wider">Approved</div>
+              <div className="flex items-start justify-between w-full max-w-[34rem] pt-3">
+                <div className="text-center min-w-[6.4rem]">
+                  <div className="w-20 h-20 sm:w-[5.5rem] sm:h-[5.5rem] rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[13px] sm:text-[15px] font-bold leading-tight mx-auto">CDSCO</div>
+                  <div className="mt-2.5 text-[13px] sm:text-sm text-white/70 uppercase tracking-wider">Approved</div>
                 </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[10px] font-bold">CE-IVD</div>
-                  <div className="mt-1 text-[10px] text-white/60 uppercase tracking-wider">Certified</div>
+                <div className="text-center min-w-[6.4rem]">
+                  <div className="w-20 h-20 sm:w-[5.5rem] sm:h-[5.5rem] rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[13px] sm:text-[15px] font-bold leading-tight mx-auto">CE-IVD</div>
+                  <div className="mt-2.5 text-[13px] sm:text-sm text-white/70 uppercase tracking-wider">Certified</div>
                 </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 rounded-full border border-white/30 text-white/90 flex items-center justify-center text-[10px] font-bold">ISO 13485</div>
-                  <div className="mt-1 text-[10px] text-white/60 uppercase tracking-wider">Compliant</div>
+                <div className="text-center min-w-[6.4rem]">
+                  <div className="w-20 h-20 sm:w-[5.5rem] sm:h-[5.5rem] rounded-full border border-white/30 text-white/90 flex items-center justify-center text-xs sm:text-[13px] font-bold leading-tight px-1 mx-auto">ISO 13485</div>
+                  <div className="mt-2.5 text-[13px] sm:text-sm text-white/70 uppercase tracking-wider">Compliant</div>
                 </div>
               </div>
 
-              <div className="pt-4 flex flex-wrap gap-3">
-                <a href="#/about#credibility" className="px-8 py-3 bg-white text-slate-900 rounded-full font-bold text-sm tracking-wider uppercase hover:bg-slate-100 transition-all inline-flex items-center justify-center">
+              <div className="pt-5 flex flex-wrap gap-4">
+                <a href="#/about#credibility" className="px-9 sm:px-10 py-3.5 sm:py-4 bg-white text-slate-900 rounded-full font-bold text-[15px] sm:text-base tracking-wider uppercase hover:bg-slate-100 transition-all inline-flex items-center justify-center">
                   View Validation Data
                 </a>
-                <a href="#/about#credibility" className="px-8 py-3 border border-white/30 text-white rounded-full font-bold text-sm tracking-wider uppercase hover:bg-white/10 transition-all inline-flex items-center justify-center">
+                <a href="#/about#credibility" className="px-9 sm:px-10 py-3.5 sm:py-4 border border-white/30 text-white rounded-full font-bold text-[15px] sm:text-base tracking-wider uppercase hover:bg-white/10 transition-all inline-flex items-center justify-center">
                   Clinical Publications
                 </a>
               </div>

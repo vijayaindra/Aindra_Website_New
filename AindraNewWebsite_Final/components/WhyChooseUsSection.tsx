@@ -4,7 +4,6 @@ import diagnosticLabImage from '../assets/Why_choose_us/Diagnostic Lab.png';
 import clinicsImage from '../assets/Why_choose_us/Clinics.png';
 import medEdImage from '../assets/Why_choose_us/Med Ed.png';
 import { SectionEyebrow } from './SectionEyebrow';
-import { ScrollSectionLeftNav } from './ScrollSectionLeftNav';
 import { sectionContainer, sectionShell } from './layout';
 
 export const WhyChooseUsSection: React.FC = () => {
@@ -120,16 +119,29 @@ export const WhyChooseUsSection: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-12 gap-8 lg:gap-24 items-center">
-              <div className={`col-span-12 lg:col-span-3 relative flex flex-col justify-center order-2 lg:order-1 ${isCompactHeight ? 'h-[320px]' : 'h-[500px]'}`}>
-                <ScrollSectionLeftNav
-                  items={tabs}
-                  activeIndex={activeIndex}
-                  onSelect={scrollToTab}
-                  isCompactHeight={isCompactHeight}
-                />
+              <div className="col-span-12 lg:col-span-5 flex flex-col justify-center h-full order-2 lg:order-1">
+                <div className="flex flex-col w-full">
+                  {tabs.map((tab, index) => (
+                    <button
+                      key={tab}
+                      onClick={() => scrollToTab(index)}
+                      className="group relative flex items-center justify-between w-full py-4 md:py-6 border-b border-slate-200 transition-all duration-500 text-left"
+                    >
+                      <span className={`text-xl md:text-2xl font-semibold transition-all duration-500 ${activeIndex === index ? 'text-[#00a3ff]' : 'text-slate-300 group-hover:text-slate-500'}`}>
+                        {tab}
+                      </span>
+
+                      <div className={`flex items-center justify-center w-8 h-8 rounded-full transition-all duration-500 ${activeIndex === index ? 'bg-[#00a3ff] text-white' : 'bg-slate-200 text-white group-hover:bg-slate-300'}`}>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              <div className="col-span-12 lg:col-span-9 flex items-center justify-center lg:justify-end py-2 md:py-4 order-1 lg:order-2">
+              <div className="col-span-12 lg:col-span-7 flex items-center justify-center lg:justify-end py-2 md:py-4 order-1 lg:order-2">
                 <div className="relative w-full max-w-[620px] aspect-square bg-white overflow-hidden flex items-center justify-center">
                   {tabs.map((tab, index) => (
                     <div

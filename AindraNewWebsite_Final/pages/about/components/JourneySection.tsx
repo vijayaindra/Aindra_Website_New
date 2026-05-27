@@ -1,7 +1,7 @@
 import React from 'react';
 import { sectionContainer, sectionShell } from '../../../components/layout';
 import imageDesign from '../../../assets/Why_choose_us/image_design.png';
-import astraImage from '../../../assets/ProductImages/Astra.png';
+import astraImage from '../../../assets/ProductImages/After.png';
 import clustrImage from '../../../assets/ProductImages/ClustrHomePage.png';
 import cervAstraImage from '../../../assets/ProductImages/CervAstra.png';
 import lungAstraImage from '../../../assets/ProductImages/LungAstra.png';

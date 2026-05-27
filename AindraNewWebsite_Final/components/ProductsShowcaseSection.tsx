@@ -2,10 +2,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import intellistainImage from '../assets/ProductImages/IS-15.png';
 import visionXImage from '../assets/ProductImages/VisionX2 (1).png';
-import astraImage from '../assets/ProductImages/Astra.png';
+import astraImage from '../assets/ProductImages/After.png';
 import clustrImage from '../assets/ProductImages/ClustrHomePage.png';
 import { SectionEyebrow } from './SectionEyebrow';
-import { ScrollSectionLeftNav } from './ScrollSectionLeftNav';
 import { sectionContainer, sectionShell, sectionY } from './layout';
 
 interface ProductData {
@@ -88,6 +87,7 @@ export const ProductsShowcaseSection: React.FC = () => {
   // Map 0-1 progress to a "staircase" index for clean state transitions
   const activeIndex = Math.min(products.length - 1, Math.floor(scrollProgress * products.length));
   const progressPerItem = 1 / products.length;
+  const STEPPER_ITEM_HEIGHT = isCompactHeight ? 62 : 80;
 
   const scrollToProduct = (index: number) => {
     if (!containerRef.current) return;
@@ -157,14 +157,33 @@ export const ProductsShowcaseSection: React.FC = () => {
         {/* DYNAMIC CONTENT AREA */}
         <div className={`relative z-10 grid grid-cols-12 ${isCompactHeight ? 'gap-3' : 'gap-4 xl:gap-6 2xl:gap-10'} max-[900px]:gap-3 flex-1 items-center h-full`}>
           
-          {/* Left Side: Vertical Stepper - Refined for Perfect Alignment */}
-          <div className={`col-span-12 lg:col-span-3 relative flex flex-col justify-center ${isCompactHeight ? 'h-[320px]' : 'h-[500px]'}`}>
-            <ScrollSectionLeftNav
-              items={products.map((p) => p.name)}
-              activeIndex={activeIndex}
-              onSelect={scrollToProduct}
-              isCompactHeight={isCompactHeight}
-            />
+          {/* Left Side: Original visual style, now clickable */}
+          <div className="col-span-12 lg:col-span-3 h-full flex items-center pr-2">
+            <div className="relative w-full" style={{ height: `${products.length * STEPPER_ITEM_HEIGHT}px` }}>
+              <div 
+                className="absolute right-0 w-[4px] bg-[#00a3ff] hidden xl:block transition-all duration-700 cubic-bezier(0.23, 1, 0.32, 1) rounded-full shadow-[0_0_12px_rgba(0,163,255,0.4)]"
+                style={{ 
+                  top: `${activeIndex * STEPPER_ITEM_HEIGHT}px`, 
+                  height: `${STEPPER_ITEM_HEIGHT - 10}px` 
+                }}
+              ></div>
+
+              {products.map((p, idx) => (
+                <button
+                  key={p.id}
+                  onClick={() => scrollToProduct(idx)}
+                  className={`w-full flex flex-col justify-center text-right pr-8 lg:pr-12 transition-all duration-700 ease-in-out ${idx === activeIndex ? 'opacity-100 scale-105 origin-right' : 'opacity-50 scale-95 origin-right hover:opacity-80'}`}
+                  style={{ height: `${STEPPER_ITEM_HEIGHT}px` }}
+                >
+                  <span className={`block text-lg font-black tracking-tighter mb-0.5 transition-colors duration-500 ${idx === activeIndex ? 'text-[#00a3ff]' : 'text-slate-400'}`}>
+                    {p.id}
+                  </span>
+                  <span className={`text-sm lg:text-[15px] max-[900px]:text-[13px] font-black uppercase tracking-tight block leading-[1.2] transition-colors duration-500 ${idx === activeIndex ? 'text-slate-900' : 'text-slate-300 group-hover:text-slate-500'}`}>
+                    {p.title}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Center: Dynamic Image Transition Area */}

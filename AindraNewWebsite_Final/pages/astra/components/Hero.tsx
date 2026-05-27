@@ -1,5 +1,5 @@
 import React from 'react';
-import astraImage from '../../../assets/ProductImages/Astra.png';
+import astraImage from '../../../assets/ProductImages/After.png';
 import { sectionContainerWide, sectionShell } from '../../../components/layout';
 
 const Hero: React.FC = () => {
