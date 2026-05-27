@@ -5,6 +5,7 @@ import lungAstraImage from '../assets/ProductImages/LungAstra.png';
 import proAstraImage from '../assets/ProductImages/ProAstra.png';
 import thyroAstraImage from '../assets/ProductImages/ThyroAstra.png';
 import { SectionEyebrow } from './SectionEyebrow';
+import { ScrollSectionLeftNav } from './ScrollSectionLeftNav';
 import { sectionContainer, sectionShell, sectionY } from './layout';
 
 interface Solution {
@@ -129,39 +130,12 @@ export const SolutionsShowcase: React.FC = () => {
             {/* Left side: Timeline Nav + Description */}
             <div className={`col-span-12 lg:col-span-3 relative flex flex-col justify-center order-2 lg:order-1 ${isCompactHeight ? 'h-[320px]' : 'h-[500px]'}`}>
               
-              {/* The Connecting Line & Names */}
-              <div className={`relative ${isCompactHeight ? 'mb-7' : 'mb-12'}`}>
-                {/* Background Line */}
-                <div className="absolute left-[3px] top-4 bottom-4 w-[2px] bg-slate-100 rounded-full"></div>
-                
-                {/* Active Line Segment */}
-                <div 
-                  className="absolute left-[3px] w-[2px] bg-cyan-500 transition-all duration-700 rounded-full"
-                  style={{ 
-                    top: `${activeIndex * 25}%`, 
-                    height: '25%',
-                    marginTop: '16px'
-                  }}
-                ></div>
-
-                <div className={`flex flex-col ${isCompactHeight ? 'space-y-5' : 'space-y-7'}`}>
-                  {solutions.map((s, idx) => (
-                    <button 
-                      key={s.id}
-                      onClick={() => scrollToSolution(idx)}
-                      className={`flex items-center space-x-6 group transition-all duration-500 text-left`}
-                    >
-                      <div className={`relative w-2 h-2 rounded-full border-2 transition-all duration-500 z-10
-                        ${idx === activeIndex ? 'bg-cyan-500 border-cyan-500 scale-125' : 'bg-white border-slate-200 group-hover:border-slate-400'}`}
-                      />
-                  <span className={`text-2xl ${isCompactHeight ? 'lg:text-[24px]' : 'lg:text-3xl'} font-bold tracking-tight transition-all duration-500
-                        ${idx === activeIndex ? 'text-slate-900 translate-x-1' : 'text-slate-300 group-hover:text-slate-500'}`}>
-                        {s.name}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <ScrollSectionLeftNav
+                items={solutions.map((s) => s.name)}
+                activeIndex={activeIndex}
+                onSelect={scrollToSolution}
+                isCompactHeight={isCompactHeight}
+              />
 
               {/* Description swapping */}
               <div className={`relative ${isCompactHeight ? 'h-28' : 'h-44'}`}>

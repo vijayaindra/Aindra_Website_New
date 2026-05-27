@@ -4,7 +4,7 @@ import samplePreparationImage from '../assets/ProductImages/Sample Preparation.p
 import digitizationSlideImage from '../assets/ProductImages/Digitization of Slide.png';
 import aiImageAnalysisImage from '../assets/ProductImages/AI Based Image Analysis.png';
 import reviewReportingImage from '../assets/ProductImages/Review and Reporting.png';
-import backgroundImage from '../assets/ProductImages/Background Image.png';
+import backgroundImage from '../assets/ProductImages/background_image.png';
 import { sectionContainer } from './layout';
 
 interface WorkflowStep {

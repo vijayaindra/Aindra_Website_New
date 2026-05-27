@@ -5,6 +5,7 @@ import visionXImage from '../assets/ProductImages/VisionX2 (1).png';
 import astraImage from '../assets/ProductImages/Astra.png';
 import clustrImage from '../assets/ProductImages/ClustrHomePage.png';
 import { SectionEyebrow } from './SectionEyebrow';
+import { ScrollSectionLeftNav } from './ScrollSectionLeftNav';
 import { sectionContainer, sectionShell, sectionY } from './layout';
 
 interface ProductData {
@@ -31,7 +32,7 @@ export const ProductsShowcaseSection: React.FC = () => {
       description: 'Automates the staining process with 100% consistency, reducing manual lab labor by 40% and ensuring high-quality slides for digital analysis.',
       image: intellistainImage,
       href: '#/intellistain',
-      imageClass: 'scale-[1.24]',
+      imageClass: 'scale-[1.08] xl:scale-[1.12]',
     },
     {
       id: '02',
@@ -40,7 +41,7 @@ export const ProductsShowcaseSection: React.FC = () => {
       description: 'High-resolution Brightfield whole slide scanner. Captures digital slides in under 60 seconds with sub-micron precision for seamless remote diagnostics.',
       image: visionXImage,
       href: '#/visionx',
-      imageClass: 'scale-[1.18]',
+      imageClass: 'scale-[1.04] xl:scale-[1.08]',
     },
     {
       id: '03',
@@ -49,7 +50,7 @@ export const ProductsShowcaseSection: React.FC = () => {
       description: 'Deep learning engine that automatically screens and flags suspicious morphological features, reducing primary screening time by 70% with 99% accuracy.',
       image: astraImage,
       href: '#/astra',
-      imageClass: 'scale-[1.08]',
+      imageClass: 'scale-[1.02] xl:scale-[1.05]',
     },
     {
       id: '04',
@@ -58,7 +59,7 @@ export const ProductsShowcaseSection: React.FC = () => {
       description: 'Centralized collaboration and reporting platform. Enables instant Bethesda & CAP guidelines standardized reports and remote case review from anywhere in the world.',
       image: clustrImage,
       href: '#/clustr',
-      imageClass: 'scale-[1.1]',
+      imageClass: 'scale-[1.03] xl:scale-[1.06]',
     },
   ];
 
@@ -88,8 +89,12 @@ export const ProductsShowcaseSection: React.FC = () => {
   const activeIndex = Math.min(products.length - 1, Math.floor(scrollProgress * products.length));
   const progressPerItem = 1 / products.length;
 
-  // Fixed height for each stepper item to ensure perfect bar alignment
-  const STEPPER_ITEM_HEIGHT = isCompactHeight ? 62 : 80;
+  const scrollToProduct = (index: number) => {
+    if (!containerRef.current) return;
+    const { top } = containerRef.current.getBoundingClientRect();
+    const targetScroll = window.scrollY + top + (index * window.innerHeight);
+    window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+  };
 
   return (
     <>
@@ -132,7 +137,7 @@ export const ProductsShowcaseSection: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className={`relative hidden lg:block ${isCompactHeight ? 'h-[440vh]' : 'h-[540vh] 2xl:h-[600vh]'} bg-white`}>
+    <div ref={containerRef} className={`relative z-10 hidden lg:block ${isCompactHeight ? 'h-[430vh]' : 'h-[400vh]'} bg-white`}>
       {/* Sticky Content Frame */}
       <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] ${sectionY}`} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] max-[900px]:top-14 max-[900px]:h-[calc(100svh-3.5rem)] max-[900px]:py-3 max-[900px]:min-h-0 max-[820px]:h-[calc(100svh-3.25rem)] w-full overflow-visible lg:overflow-hidden flex flex-col bg-white isolate ${sectionShell}`}>
         <div className={sectionContainer}>
@@ -153,33 +158,13 @@ export const ProductsShowcaseSection: React.FC = () => {
         <div className={`relative z-10 grid grid-cols-12 ${isCompactHeight ? 'gap-3' : 'gap-4 xl:gap-6 2xl:gap-10'} max-[900px]:gap-3 flex-1 items-center h-full`}>
           
           {/* Left Side: Vertical Stepper - Refined for Perfect Alignment */}
-          <div className="col-span-12 lg:col-span-3 h-full flex items-center pr-2">
-            <div className="relative w-full" style={{ height: `${products.length * STEPPER_ITEM_HEIGHT}px` }}>
-              
-              {/* Vertical Scroll Bar (Indicator) */}
-              <div 
-                className="absolute right-0 w-[4px] bg-[#00a3ff] hidden xl:block transition-all duration-700 cubic-bezier(0.23, 1, 0.32, 1) rounded-full shadow-[0_0_12px_rgba(0,163,255,0.4)]"
-                style={{ 
-                  top: `${activeIndex * STEPPER_ITEM_HEIGHT}px`, 
-                  height: `${STEPPER_ITEM_HEIGHT - 10}px` 
-                }}
-              ></div>
-              
-              {products.map((p, idx) => (
-                <div 
-                  key={p.id} 
-                  className={`flex flex-col justify-center text-right pr-8 lg:pr-12 transition-all duration-700 ease-in-out ${idx === activeIndex ? 'opacity-100 scale-105 origin-right' : 'opacity-10 scale-95 origin-right'}`}
-                  style={{ height: `${STEPPER_ITEM_HEIGHT}px` }}
-                >
-                  <span className={`block text-lg font-black tracking-tighter mb-0.5 transition-colors duration-500 ${idx === activeIndex ? 'text-[#00a3ff]' : 'text-slate-400'}`}>
-                    {p.id}
-                  </span>
-                    <span className={`text-sm lg:text-[15px] max-[900px]:text-[13px] font-black uppercase tracking-tight block leading-[1.2] transition-colors duration-500 ${idx === activeIndex ? 'text-slate-900' : 'text-slate-300'}`}>
-                    {p.title}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div className={`col-span-12 lg:col-span-3 relative flex flex-col justify-center ${isCompactHeight ? 'h-[320px]' : 'h-[500px]'}`}>
+            <ScrollSectionLeftNav
+              items={products.map((p) => p.name)}
+              activeIndex={activeIndex}
+              onSelect={scrollToProduct}
+              isCompactHeight={isCompactHeight}
+            />
           </div>
 
           {/* Center: Dynamic Image Transition Area */}
@@ -245,7 +230,7 @@ export const ProductsShowcaseSection: React.FC = () => {
                         <img 
                           src={p.image} 
                           alt={p.name} 
-                          className={`relative z-10 w-full h-auto max-h-[46vh] xl:max-h-[52vh] 2xl:max-h-[70vh] max-h-[900px]:max-h-[38vh] max-h-[820px]:max-h-[35vh] max-[900px]:max-h-[34vh] max-[820px]:max-h-[31vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
+                          className={`relative z-10 w-full h-auto max-h-[40vh] xl:max-h-[46vh] 2xl:max-h-[56vh] max-h-[900px]:max-h-[34vh] max-h-[820px]:max-h-[30vh] max-[900px]:max-h-[32vh] max-[820px]:max-h-[29vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
                           onError={(e) => {
                             e.currentTarget.src = "https://images.unsplash.com/photo-1579165466541-71835479444a?q=80&w=800&auto=format&fit=crop";
                           }}
