@@ -74,10 +74,16 @@ const getErrorMessage = (error: unknown, fallback: string): string => {
 export const sendProductSupportEmail = async (
   payload: ProductSupportEnquiryPayload
 ): Promise<EmailSendResult> => {
+  const nameParts = payload.fullName.trim().split(/\s+/).filter(Boolean);
+  const firstName = nameParts[0] ?? '';
+  const lastName = nameParts.slice(1).join(' ');
+
   return sendEmail('support', {
     to_email: 'contactus@aindra.in',
-    form_type: 'product_support',
+    form_type: 'demo_request',
     full_name: payload.fullName,
+    first_name: firstName,
+    last_name: lastName,
     email: payload.email,
     phone: payload.phoneNumber,
     company: payload.companyName,
@@ -87,6 +93,16 @@ export const sendProductSupportEmail = async (
     software_version: payload.softwareVersion ?? '',
     issue_description: payload.issueDescription,
     support_file_url: payload.supportFileUrl ?? '',
+    position_applying_for: '',
+    years_of_experience: '',
+    location: '',
+    gender: '',
+    linkedin_profile: '',
+    available_from: '',
+    cv_file_url: '',
+    cover_letter_file_url: '',
+    message: payload.issueDescription,
+    motivation: '',
     submitted_at: new Date().toISOString(),
   });
 };
@@ -94,13 +110,23 @@ export const sendProductSupportEmail = async (
 export const sendCareerApplicationEmail = async (
   payload: CareerApplicationPayload
 ): Promise<EmailSendResult> => {
+  const fullName = `${payload.firstName} ${payload.lastName}`.trim();
+
   return sendEmail('careers', {
     to_email: 'contactus@aindra.in',
     form_type: 'career_application',
+    full_name: fullName,
     first_name: payload.firstName,
     last_name: payload.lastName,
     email: payload.email,
     phone: payload.phoneNumber,
+    company: '',
+    country: '',
+    user_type: '',
+    device: '',
+    software_version: '',
+    issue_description: '',
+    support_file_url: '',
     location: payload.location,
     gender: payload.gender,
     linkedin_profile: payload.linkedinProfile,
@@ -110,6 +136,7 @@ export const sendCareerApplicationEmail = async (
     motivation: payload.motivation,
     cv_file_url: payload.cvFileUrl,
     cover_letter_file_url: payload.coverLetterFileUrl ?? '',
+    message: payload.motivation,
     submitted_at: new Date().toISOString(),
   });
 };

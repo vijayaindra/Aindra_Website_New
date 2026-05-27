@@ -95,8 +95,8 @@ export const UnifiedWorkflowSection: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className={`relative hidden lg:block ${isCompactHeight ? 'h-[760vh]' : 'h-[900vh]'} bg-white`}>
-      <section className={`sticky ${isCompactHeight ? 'top-14 h-[calc(100svh-3.5rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : 'min-h-[700px] xl:min-h-[740px]'} max-[900px]:top-14 max-[900px]:h-[calc(100svh-3.5rem)] max-[900px]:py-3 max-[900px]:min-h-0 w-full flex flex-col items-center justify-center overflow-visible lg:overflow-hidden`}>
+    <div ref={containerRef} className={`relative hidden lg:block ${isCompactHeight ? 'h-[700vh] max-h-[900px]:h-[660vh] max-h-[820px]:h-[620vh]' : 'h-[900vh]'} bg-white`}>
+      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : 'min-h-[700px] xl:min-h-[740px]'} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] w-full flex flex-col items-center justify-center overflow-visible lg:overflow-hidden`}>
         
         {/* Persistent Background */}
         <div
@@ -158,7 +158,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
           </div>
 
           {/* Slides Viewport */}
-          <div className={`relative w-full max-w-6xl px-6 md:px-12 ${isCompactHeight ? 'h-[56vh] scale-[0.8] origin-top mt-8' : 'h-[80vh]'} flex flex-col justify-center`}>
+          <div className={`relative w-full max-w-6xl px-6 md:px-12 ${isCompactHeight ? 'h-[54vh] max-h-[900px]:h-[50vh] max-h-[820px]:h-[46vh] scale-[0.82] max-h-[900px]:scale-[0.78] origin-top mt-8' : 'h-[80vh]'} flex flex-col justify-center`}>
             {steps.map((step, idx) => {
               const xPos = (idx + 1 - currentSlideProgress) * 100;
               const opacity = 1 - Math.abs(idx + 1 - currentSlideProgress) * 1.2;

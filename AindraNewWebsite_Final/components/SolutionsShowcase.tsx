@@ -19,6 +19,7 @@ interface Solution {
 export const SolutionsShowcase: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isCompactHeight, setIsCompactHeight] = useState(false);
+  const [isLaptopHeight, setIsLaptopHeight] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const solutions: Solution[] = [
@@ -65,6 +66,7 @@ export const SolutionsShowcase: React.FC = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsCompactHeight(window.innerHeight <= 780);
+      setIsLaptopHeight(window.innerHeight <= 1000);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -126,19 +128,19 @@ export const SolutionsShowcase: React.FC = () => {
     <div
       ref={containerRef}
       className="relative z-10 hidden lg:block bg-[#f8fbff]"
-      style={{ height: `${isCompactHeight ? solutions.length * 100 + 30 : solutions.length * 100}vh` }}
+      style={{ height: `${isCompactHeight ? solutions.length * 92 + 36 : isLaptopHeight ? solutions.length * 95 : solutions.length * 100}vh` }}
     >
       {/* Sticky Frame */}
-      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[700px] xl:min-h-[740px] ${sectionY}`} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] max-[900px]:top-14 max-[900px]:h-[calc(100svh-3.5rem)] max-[900px]:py-3 max-[900px]:min-h-0 max-[820px]:h-[calc(100svh-3.25rem)] w-full flex items-center justify-center overflow-visible lg:overflow-hidden ${sectionShell}`}>
+      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[700px] xl:min-h-[740px] ${sectionY}`} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] w-full flex items-center justify-center overflow-visible lg:overflow-hidden ${sectionShell}`}>
         
         <div className={sectionContainer}>
           {/* Section Header */}
-          <div className={`relative z-20 grid grid-cols-12 gap-8 ${isCompactHeight ? 'mb-4' : 'mb-8 lg:mb-14'} max-h-[900px]:mb-4 max-h-[820px]:mb-3`}>
+          <div className={`relative z-20 grid grid-cols-12 gap-8 ${isCompactHeight ? 'mb-4' : 'mb-8 lg:mb-14'} max-h-[1000px]:mb-5 max-h-[900px]:mb-4 max-h-[820px]:mb-3`}>
             <div className="col-span-12 lg:col-span-3">
               <SectionEyebrow label="Our Solutions" />
             </div>
-            <div className="col-span-12 lg:col-span-9 lg:translate-x-24 xl:translate-x-32">
-              <h2 className={`${isCompactHeight ? 'text-[clamp(1.9rem,2.7vw,2.3rem)] md:text-[clamp(2rem,2.85vw,2.4rem)]' : 'text-3xl md:text-5xl lg:text-6xl'} max-h-[900px]:text-[clamp(2.2rem,3.2vw,2.9rem)] max-h-[900px]:leading-[1.05] max-h-[820px]:text-[clamp(2rem,3vw,2.6rem)] font-medium text-slate-900 leading-[1.1] max-w-4xl`}>
+            <div className="col-span-12 lg:col-span-9 lg:translate-x-10 xl:translate-x-24 2xl:translate-x-32">
+              <h2 className={`${isCompactHeight ? 'text-[clamp(1.9rem,2.7vw,2.3rem)] md:text-[clamp(2rem,2.85vw,2.4rem)]' : 'text-3xl md:text-5xl lg:text-6xl'} max-h-[1000px]:text-[clamp(2.35rem,3.2vw,3rem)] max-h-[1000px]:leading-[1.06] max-h-[900px]:text-[clamp(2.2rem,3.2vw,2.9rem)] max-h-[900px]:leading-[1.05] max-h-[820px]:text-[clamp(2rem,3vw,2.6rem)] font-medium text-slate-900 leading-[1.1] max-w-4xl`}>
                 AI modules for every stage of clinical pathology.
               </h2>
             </div>
@@ -147,10 +149,10 @@ export const SolutionsShowcase: React.FC = () => {
           <div className={`grid grid-cols-12 items-center ${isCompactHeight ? 'gap-6' : 'gap-10'}`}>
             
             {/* Left side: Timeline Nav + Description */}
-            <div className={`col-span-12 lg:col-span-3 relative flex flex-col justify-center order-2 lg:order-1 ${isCompactHeight ? 'h-[320px]' : 'h-[500px]'}`}>
+            <div className={`col-span-12 lg:col-span-3 relative flex flex-col justify-center order-2 lg:order-1 ${isCompactHeight ? 'h-[320px]' : 'h-[500px]'} max-h-[1000px]:h-[430px] max-h-[900px]:h-[390px] max-h-[820px]:h-[350px]`}>
               
               {/* The Connecting Line & Names */}
-              <div className={`relative ${isCompactHeight ? 'mb-7' : 'mb-12'}`}>
+              <div className={`relative ${isCompactHeight ? 'mb-7' : 'mb-12'} max-h-[1000px]:mb-8 max-h-[900px]:mb-7`}>
                 {/* Background Line */}
                 <div className="absolute left-[3px] top-4 bottom-4 w-[2px] bg-slate-100 rounded-full"></div>
                 
@@ -164,7 +166,7 @@ export const SolutionsShowcase: React.FC = () => {
                   }}
                 ></div>
 
-                <div className={`flex flex-col ${isCompactHeight ? 'space-y-4' : 'space-y-5'}`}>
+                <div className={`flex flex-col ${isCompactHeight ? 'space-y-4' : 'space-y-5'} max-h-[1000px]:space-y-4 max-h-[900px]:space-y-3`}>
                   {solutions.map((s, idx) => (
                     <button 
                       key={s.id}
@@ -174,7 +176,7 @@ export const SolutionsShowcase: React.FC = () => {
                       <div className={`relative w-2 h-2 rounded-full border-2 transition-all duration-500 z-10
                         ${idx === activeIndex ? 'bg-cyan-500 border-cyan-500 scale-125' : 'bg-white border-slate-200 group-hover:border-slate-400'}`}
                       />
-                  <span className={`text-xl ${isCompactHeight ? 'lg:text-[21px]' : 'lg:text-[2rem]'} font-bold tracking-tight transition-all duration-500
+                  <span className={`text-xl ${isCompactHeight ? 'lg:text-[21px]' : 'lg:text-[2rem]'} max-h-[1000px]:lg:text-[28px] max-h-[900px]:lg:text-[24px] font-bold tracking-tight transition-all duration-500
                         ${idx === activeIndex ? 'text-[#00A0E9] translate-x-1' : 'text-slate-300 group-hover:text-slate-500'}`}>
                         {s.name}
                       </span>
@@ -184,16 +186,14 @@ export const SolutionsShowcase: React.FC = () => {
               </div>
 
               {/* Description swapping */}
-              <div className={`relative ${isCompactHeight ? 'min-h-[170px]' : 'min-h-[220px]'}`}>
+              <div className={`relative ${isCompactHeight ? 'min-h-[170px]' : 'min-h-[220px]'} max-h-[1000px]:min-h-[145px] max-h-[900px]:min-h-[120px]`}>
                 {solutions.map((s, idx) => (
                   <div 
                     key={s.id}
                     className={`absolute inset-0 transition-all duration-700 ease-in-out
                       ${idx === activeIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
                   >
-                    <p
-                      className={`${isCompactHeight ? 'text-[14px] lg:text-[15px]' : 'text-base lg:text-lg'} text-slate-500 leading-relaxed font-light max-w-md`}
-                    >
+                    <p className={`${isCompactHeight ? 'text-[14px] lg:text-[15px]' : 'text-base lg:text-lg'} max-h-[1000px]:text-[15px] max-h-[900px]:text-[14px] text-slate-500 leading-relaxed font-light max-w-md`}>
                       {s.description}
                     </p>
                   </div>
@@ -202,7 +202,7 @@ export const SolutionsShowcase: React.FC = () => {
             </div>
 
             {/* Right side: Medical Illustration swapping with glows */}
-            <div className={`col-span-12 lg:col-span-9 relative order-1 lg:order-2 lg:translate-x-24 xl:translate-x-32 ${isCompactHeight ? 'aspect-[11/6] max-h-[38vh]' : 'aspect-[11/6] max-h-[50vh]'} max-h-[900px]:max-h-[36vh] max-h-[820px]:max-h-[34vh]`}>
+            <div className={`col-span-12 lg:col-span-9 relative order-1 lg:order-2 lg:translate-x-10 xl:translate-x-24 2xl:translate-x-32 ${isCompactHeight ? 'aspect-[11/6] max-h-[36vh]' : 'aspect-[11/6] max-h-[50vh]'} max-h-[1000px]:max-h-[40vh] max-h-[900px]:max-h-[34vh] max-h-[820px]:max-h-[32vh]`}>
               {solutions.map((s, idx) => (
                 <div 
                   key={idx}

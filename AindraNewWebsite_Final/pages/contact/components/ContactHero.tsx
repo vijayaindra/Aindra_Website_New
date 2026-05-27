@@ -319,6 +319,11 @@ const ContactHero: React.FC = () => {
     window.history.replaceState(null, '', `#/contact?${params.toString()}`);
   };
 
+  const handleDemoSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    setSupportStep(2);
+    handleSupportSubmit(event);
+  };
+
   useEffect(() => {
     normalizeTabInHash();
 
@@ -505,72 +510,68 @@ const ContactHero: React.FC = () => {
 
         <hr className="border-gray-200 mb-12" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-4 flex flex-col">
             <button
               type="button"
               onClick={handleTabSelect}
-              className={`group w-full text-left cursor-pointer border-b border-gray-100 pb-8 mb-8 flex justify-between items-center transition-all ${activeTab === 'product' ? 'pl-4' : 'hover:pl-2'}`}
+              className={`group w-full text-left cursor-pointer border-b border-gray-200 pb-7 mb-6 flex justify-between items-center transition-all ${activeTab === 'product' ? 'pl-0' : 'hover:pl-0'}`}
             >
               <div className="flex flex-col space-y-2">
-                <h3 className={`text-[20px] font-bold transition-colors ${activeTab === 'product' ? 'text-[#00AEEF]' : 'text-gray-400 group-hover:text-[#00AEEF]'}`}>
+                <h3 className={`text-[38px] leading-none font-bold transition-colors ${activeTab === 'product' ? 'text-[#00AEEF]' : 'text-gray-400 group-hover:text-[#00AEEF]'}`}>
                   Request Demo
                 </h3>
-                <p className="text-[14px] text-gray-500">I am a client and need support with my Aindra product</p>
+                <p className="text-[22px] leading-[1.2] text-slate-600 font-medium">Experience Astra & Intellistain solutions first-hand</p>
               </div>
               <div
-                className={`w-7 h-7 rounded-full flex items-center justify-center text-white shadow-md transition-all ${activeTab === 'product' ? 'bg-[#00AEEF] shadow-blue-200' : 'bg-gray-200 group-hover:bg-[#00AEEF]'}`}
+                className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md transition-all ${activeTab === 'product' ? 'bg-[#00AEEF] shadow-blue-200' : 'bg-gray-200 group-hover:bg-[#00AEEF]'}`}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </div>
             </button>
+
+            <div className="rounded-[16px] border border-slate-200 bg-white p-6">
+              <p className="text-[14px] font-extrabold tracking-[0.08em] text-slate-900 uppercase mb-5">What to Expect</p>
+              <ul className="space-y-4">
+                <li className="flex gap-3">
+                  <span className="text-[#00AEEF] font-black mt-0.5">✓</span>
+                  <div>
+                    <p className="text-[17px] font-bold text-slate-900">Live Product Walkthrough</p>
+                    <p className="text-[14px] text-slate-500">See our stainers and scanners in action guided by a product specialist.</p>
+                  </div>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-[#00AEEF] font-black mt-0.5">✓</span>
+                  <div>
+                    <p className="text-[17px] font-bold text-slate-900">Tailored Workflow Plan</p>
+                    <p className="text-[14px] text-slate-500">Discuss how our high-throughput AI features fit into your specific lab setup.</p>
+                  </div>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-[#00AEEF] font-black mt-0.5">✓</span>
+                  <div>
+                    <p className="text-[17px] font-bold text-slate-900">Technical Q&A Session</p>
+                    <p className="text-[14px] text-slate-500">Get answers on slide specifications, diagnostic accuracy, and software interfaces.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div className="lg:col-span-8">
-            <div className="w-full bg-[#EBF8FF] rounded-[20px] md:rounded-[24px] p-5 sm:p-7 md:p-10 lg:p-12 shadow-sm border border-blue-100/50">
-              <div className="text-center mb-10">
-                <h2 className="text-2xl md:text-[30px] font-extrabold text-gray-900 mb-2">
-                  Need help with your Aindra product?
+            <div className="w-full bg-[#e9f3fa] rounded-[20px] md:rounded-[24px] p-6 sm:p-8 md:p-10 lg:p-12 shadow-sm border border-blue-100/50">
+              <div className="text-center mb-10 md:mb-12">
+                <h2 className="text-2xl md:text-[52px] leading-[1.1] font-extrabold text-gray-900 mb-3">
+                  Schedule a Personalized Demo
                 </h2>
-                <p className="text-[14px] text-gray-500 font-medium">
-                  Let us know how we can assist you.
+                <p className="text-[15px] md:text-[18px] text-gray-500 font-medium">
+                  Select your preferred system and we'll handle the rest.
                 </p>
               </div>
 
-              <>
-                  <div className="flex flex-col items-center mb-16 relative">
-                    <div className="flex items-center justify-between w-full max-w-[400px] relative z-10">
-                      <div className="flex flex-col items-center">
-                        <div
-                          className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold transition-all duration-300 ${supportStep >= 1 ? 'bg-[#00AEEF]' : 'bg-gray-400'}`}
-                        >
-                          {supportStep > 1 ? '✓' : '1'}
-                        </div>
-                        <span
-                          className={`mt-2 text-[10px] font-bold tracking-tight whitespace-nowrap transition-colors ${supportStep >= 1 ? 'text-gray-900' : 'text-gray-400'}`}
-                        >
-                          GENERAL INFORMATION
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <div
-                          className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold transition-all duration-300 ${supportStep >= 2 ? 'bg-[#00AEEF]' : 'bg-gray-500'}`}
-                        >
-                          2
-                        </div>
-                        <span
-                          className={`mt-2 text-[10px] font-bold tracking-tight whitespace-nowrap transition-colors ${supportStep >= 2 ? 'text-gray-900' : 'text-gray-400'}`}
-                        >
-                          ISSUE WITH DEVICE
-                        </span>
-                      </div>
-                    </div>
-                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[78%] h-[1px] bg-gray-300 -z-0"></div>
-                  </div>
-
-                  <form className="max-w-[700px] mx-auto" onSubmit={handleSupportSubmit} noValidate>
+              <form className="max-w-[700px] mx-auto" onSubmit={handleDemoSubmit} noValidate>
                     {supportSubmitStatus !== 'idle' && (
                       <p
                         className={`mb-6 text-[12px] font-semibold ${
@@ -585,9 +586,7 @@ const ContactHero: React.FC = () => {
                       </p>
                     )}
 
-                    {supportStep === 1 ? (
-                      <>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
                           <InputField
                             label="YOUR FULL NAME"
                             placeholder="Amit Ravishankar"
@@ -603,134 +602,94 @@ const ContactHero: React.FC = () => {
                             onChange={handleSupportStep1Input}
                             error={supportStep1Errors.country}
                           />
-                        </div>
+                    </div>
 
-                        <UserTypeField
-                          value={supportStep1Form.userType}
-                          onChange={handleSupportStep1UserTypeChange}
-                          error={supportStep1Errors.userType}
-                        />
+                    <UserTypeField
+                      value={supportStep1Form.userType}
+                      onChange={handleSupportStep1UserTypeChange}
+                      error={supportStep1Errors.userType}
+                    />
 
-                        <InputField
-                          label="COMPANY / NAME OF INSTITUTION"
-                          placeholder="Your institution name"
-                          name="companyName"
-                          value={supportStep1Form.companyName}
-                          onChange={(event) => handleSupportStep1Input(event as React.ChangeEvent<HTMLInputElement>)}
-                          error={supportStep1Errors.companyName}
-                        />
-                        <InputField
-                          label="PHONE NUMBER"
-                          placeholder="+91 4567387256"
-                          name="phoneNumber"
-                          value={supportStep1Form.phoneNumber}
-                          onChange={(event) => handleSupportStep1Input(event as React.ChangeEvent<HTMLInputElement>)}
-                          error={supportStep1Errors.phoneNumber}
-                        />
-                        <InputField
-                          label="EMAIL"
-                          placeholder="Amit@company.com"
-                          type="email"
-                          name="email"
-                          value={supportStep1Form.email}
-                          onChange={(event) => handleSupportStep1Input(event as React.ChangeEvent<HTMLInputElement>)}
-                          error={supportStep1Errors.email}
-                        />
-
-                        <div className="mt-12">
-                          <button
-                            type="button"
-                            onClick={handleSupportContinue}
-                            className="w-full bg-[#56A8E8] hover:bg-[#4096D8] text-white font-bold py-3.5 rounded-xl transition-all shadow-md shadow-blue-200/50 uppercase tracking-widest text-[13px]"
-                          >
-                            CONTINUE TO STEP 2
-                          </button>
-                        </div>
-                      </>
-                    ) : (
-                      <div className="animate-in fade-in duration-500">
-                        <div className="flex flex-col space-y-2 mb-8 relative">
-                          <label className="text-[10px] font-extrabold text-gray-900 tracking-wider uppercase">
-                            WHAT DEVICE ARE YOU REPORTING ABOUT? <span className="text-red-500">*</span>
-                          </label>
-                          <div className={`relative border-b ${supportStep2Errors.device ? 'border-red-400' : 'border-gray-300'}`}>
-                            <select
-                              name="device"
-                              value={supportStep2Form.device}
-                              onChange={(event) => handleSupportStep2Input(event as React.ChangeEvent<HTMLSelectElement>)}
-                              className="w-full bg-transparent py-2 text-[14px] appearance-none outline-none font-medium cursor-pointer"
-                            >
-                              <option value="">Select device</option>
-                              {DEVICE_OPTIONS.map((device) => (
-                                <option key={device} value={device}>
-                                  {device}
-                                </option>
-                              ))}
-                            </select>
-                            <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
-                              <svg className="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                  fillRule="evenodd"
-                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          {supportStep2Errors.device && (
-                            <p className="text-[11px] text-red-500 font-medium">{supportStep2Errors.device}</p>
-                          )}
-                        </div>
-
-                        <InputField
-                          label="SOFTWARE VERSION NUMBER FOR THE DEVICE"
-                          placeholder="e.g. v2.4.1"
-                          required={false}
-                          name="softwareVersion"
-                          value={supportStep2Form.softwareVersion}
-                          onChange={handleSupportStep2Input}
-                        />
-
-                        <InputField
-                          label="PLEASE BRIEFLY DESCRIBE THE ISSUE YOU'RE FACING"
-                          placeholder="Describe the problem..."
-                          name="issueDescription"
-                          value={supportStep2Form.issueDescription}
-                          onChange={handleSupportStep2Input}
-                          error={supportStep2Errors.issueDescription}
-                          multiline
-                        />
-
-                        <InputField
-                          label="ISSUE FILE / SCREENSHOT GOOGLE DRIVE LINK"
-                          placeholder="Paste Google Drive link for screenshot/file"
-                          required={false}
-                          name="supportFileUrl"
-                          value={supportStep2Form.supportFileUrl}
-                          onChange={handleSupportStep2Input}
-                          error={supportStep2Errors.supportFileUrl}
-                        />
-
-                        <div className="mt-12 grid grid-cols-2 gap-6">
-                          <button
-                            type="button"
-                            onClick={() => setSupportStep(1)}
-                            className="w-full bg-transparent border border-gray-400 text-gray-500 hover:text-gray-900 hover:border-gray-900 font-bold py-3.5 rounded-xl transition-all uppercase tracking-widest text-[13px]"
-                          >
-                            PREVIOUS
-                          </button>
-                          <button
-                            type="submit"
-                            disabled={supportSubmitStatus === 'submitting'}
-                            className="w-full bg-[#56A8E8] hover:bg-[#4096D8] disabled:bg-[#8ec6ee] disabled:cursor-not-allowed text-white font-bold py-3.5 rounded-xl transition-all shadow-md shadow-blue-200/50 uppercase tracking-widest text-[13px]"
-                          >
-                            {supportSubmitStatus === 'submitting' ? 'SUBMITTING...' : 'SUBMIT ENQUIRY'}
-                          </button>
+                    <div className="flex flex-col space-y-2 mb-8 relative">
+                      <label className="text-[10px] font-extrabold text-gray-900 tracking-wider uppercase">
+                        SELECT PRODUCT FOR DEMO <span className="text-red-500">*</span>
+                      </label>
+                      <div className={`relative border-b ${supportStep2Errors.device ? 'border-red-400' : 'border-gray-300'}`}>
+                        <select
+                          name="device"
+                          value={supportStep2Form.device}
+                          onChange={(event) => handleSupportStep2Input(event as React.ChangeEvent<HTMLSelectElement>)}
+                          className="w-full bg-transparent py-2 text-[14px] appearance-none outline-none font-medium cursor-pointer"
+                        >
+                          <option value="">Select a product...</option>
+                          {DEVICE_OPTIONS.map((device) => (
+                            <option key={device} value={device}>
+                              {device}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
+                          <svg className="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                              fillRule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
                         </div>
                       </div>
-                    )}
+                      {supportStep2Errors.device && (
+                        <p className="text-[11px] text-red-500 font-medium">{supportStep2Errors.device}</p>
+                      )}
+                    </div>
+
+                    <InputField
+                      label="COMPANY / NAME OF INSTITUTION"
+                      placeholder="e.g. Your Company or Organization"
+                      name="companyName"
+                      value={supportStep1Form.companyName}
+                      onChange={(event) => handleSupportStep1Input(event as React.ChangeEvent<HTMLInputElement>)}
+                      error={supportStep1Errors.companyName}
+                    />
+                    <InputField
+                      label="PHONE NUMBER"
+                      placeholder="+91 98765 43210"
+                      name="phoneNumber"
+                      value={supportStep1Form.phoneNumber}
+                      onChange={(event) => handleSupportStep1Input(event as React.ChangeEvent<HTMLInputElement>)}
+                      error={supportStep1Errors.phoneNumber}
+                    />
+                    <InputField
+                      label="EMAIL"
+                      placeholder="amit@hospital.com"
+                      type="email"
+                      name="email"
+                      value={supportStep1Form.email}
+                      onChange={(event) => handleSupportStep1Input(event as React.ChangeEvent<HTMLInputElement>)}
+                      error={supportStep1Errors.email}
+                    />
+
+                    <InputField
+                      label="ANY SPECIFIC DEMO REQUIREMENTS / QUESTIONS"
+                      placeholder="Tell us about your sample workload, preferred date/time, or special requirements..."
+                      required={false}
+                      name="issueDescription"
+                      value={supportStep2Form.issueDescription}
+                      onChange={handleSupportStep2Input}
+                      error={supportStep2Errors.issueDescription}
+                      multiline
+                    />
+
+                    <div className="mt-10">
+                      <button
+                        type="submit"
+                        disabled={supportSubmitStatus === 'submitting'}
+                        className="w-full bg-[#56A8E8] hover:bg-[#4096D8] disabled:bg-[#8ec6ee] disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-md shadow-blue-200/50 uppercase tracking-widest text-[13px]"
+                      >
+                        {supportSubmitStatus === 'submitting' ? 'SUBMITTING...' : 'SUBMIT DEMO REQUEST'}
+                      </button>
+                    </div>
                   </form>
-              </>
             </div>
           </div>
         </div>

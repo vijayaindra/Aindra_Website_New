@@ -137,9 +137,9 @@ export const ProductsShowcaseSection: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className={`relative z-10 hidden lg:block ${isCompactHeight ? 'h-[430vh]' : 'h-[400vh]'} bg-white`}>
+    <div ref={containerRef} className={`relative z-10 hidden lg:block ${isCompactHeight ? 'h-[410vh] max-h-[900px]:h-[390vh] max-h-[820px]:h-[370vh]' : 'h-[400vh]'} bg-white`}>
       {/* Sticky Content Frame */}
-      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] ${sectionY}`} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] max-[900px]:top-14 max-[900px]:h-[calc(100svh-3.5rem)] max-[900px]:py-3 max-[900px]:min-h-0 max-[820px]:h-[calc(100svh-3.25rem)] w-full overflow-visible lg:overflow-hidden flex flex-col bg-white isolate ${sectionShell}`}>
+      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] ${sectionY}`} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] w-full overflow-visible lg:overflow-hidden flex flex-col bg-white isolate ${sectionShell}`}>
         <div className={sectionContainer}>
         
         {/* PERSISTENT HEADER */}
