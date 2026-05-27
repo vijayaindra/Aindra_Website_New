@@ -92,7 +92,7 @@ export const WhyChooseUsSection: React.FC = () => {
             </div>
 
             <div className="col-span-12 lg:col-span-7 flex items-center justify-center lg:justify-end py-2 md:py-4 order-1 lg:order-2">
-              <div className="w-full max-w-[620px] aspect-square bg-white overflow-hidden flex items-center justify-center">
+              <div className="w-full max-w-[560px] xl:max-w-[580px] aspect-square bg-white overflow-hidden flex items-center justify-center">
                 <img
                   src={tabImages[activeTab]}
                   alt={`${activeTab} visual`}
@@ -142,16 +142,16 @@ export const WhyChooseUsSection: React.FC = () => {
               </div>
 
               <div className="col-span-12 lg:col-span-7 flex items-center justify-center lg:justify-end py-2 md:py-4 order-1 lg:order-2">
-                <div className="relative w-full max-w-[620px] aspect-square bg-white overflow-hidden flex items-center justify-center">
+                <div className="relative w-full max-w-[560px] xl:max-w-[580px] aspect-square bg-white overflow-hidden flex items-center justify-center max-h-[58vh] max-h-[900px]:max-h-[50vh] max-h-[820px]:max-h-[46vh]">
                   {tabs.map((tab, index) => (
                     <div
                       key={tab}
-                      className={`absolute transition-all duration-700 ease-in-out ${activeIndex === index ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+                      className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-in-out ${activeIndex === index ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
                     >
                       <img
                         src={tabImages[tab]}
                         alt={`${tab} visual`}
-                        className="w-full max-w-[620px] h-auto object-contain object-center bg-white"
+                        className="w-full h-full object-contain object-center bg-white"
                       />
                     </div>
                   ))}

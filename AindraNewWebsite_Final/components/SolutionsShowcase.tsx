@@ -61,8 +61,6 @@ export const SolutionsShowcase: React.FC = () => {
     }
   ];
 
-  const stepPercent = 100 / solutions.length;
-
   useEffect(() => {
     const handleResize = () => {
       setIsCompactHeight(window.innerHeight <= 780);
@@ -78,12 +76,12 @@ export const SolutionsShowcase: React.FC = () => {
       if (!containerRef.current) return;
       const { top, height } = containerRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      
-      // Calculate progress (0 to 1)
-      const scrollProgress = -top / (height - viewportHeight);
+
+      const scrollSpan = Math.max(1, height - viewportHeight);
+      const scrollProgress = Math.min(1, Math.max(0, -top / scrollSpan));
       const index = Math.min(
         solutions.length - 1,
-        Math.max(0, Math.floor(scrollProgress * solutions.length))
+        Math.max(0, Math.round(scrollProgress * (solutions.length - 1)))
       );
       
       setActiveIndex(index);
@@ -95,8 +93,12 @@ export const SolutionsShowcase: React.FC = () => {
 
   const scrollToSolution = (index: number) => {
     if (!containerRef.current) return;
-    const { top } = containerRef.current.getBoundingClientRect();
-    const targetScroll = window.scrollY + top + (index * window.innerHeight);
+    const { top, height } = containerRef.current.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const scrollStart = window.scrollY + top;
+    const scrollSpan = Math.max(0, height - viewportHeight);
+    const step = solutions.length > 1 ? scrollSpan / (solutions.length - 1) : 0;
+    const targetScroll = scrollStart + (index * step);
     window.scrollTo({ top: targetScroll, behavior: 'smooth' });
   };
 
@@ -160,9 +162,8 @@ export const SolutionsShowcase: React.FC = () => {
                 <div 
                   className="absolute left-[3px] w-[2px] bg-cyan-500 transition-all duration-700 rounded-full"
                   style={{ 
-                    top: `${activeIndex * stepPercent}%`, 
-                    height: `${stepPercent}%`,
-                    marginTop: '16px'
+                    top: '16px',
+                    height: `calc((100% - 32px) * ${(activeIndex / Math.max(1, solutions.length - 1))})`
                   }}
                 ></div>
 
@@ -176,7 +177,7 @@ export const SolutionsShowcase: React.FC = () => {
                       <div className={`relative w-2 h-2 rounded-full border-2 transition-all duration-500 z-10
                         ${idx === activeIndex ? 'bg-cyan-500 border-cyan-500 scale-125' : 'bg-white border-slate-200 group-hover:border-slate-400'}`}
                       />
-                  <span className={`text-xl ${isCompactHeight ? 'lg:text-[21px]' : 'lg:text-[2rem]'} max-h-[1000px]:lg:text-[28px] max-h-[900px]:lg:text-[24px] font-bold tracking-tight transition-all duration-500
+                  <span className={`text-xl md:text-2xl max-h-[950px]:text-[1.45rem] max-h-[900px]:text-[1.3rem] max-h-[820px]:text-[1.18rem] font-semibold tracking-tight transition-all duration-500
                         ${idx === activeIndex ? 'text-[#00A0E9] translate-x-1' : 'text-slate-300 group-hover:text-slate-500'}`}>
                         {s.name}
                       </span>
