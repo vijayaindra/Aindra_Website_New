@@ -22,12 +22,12 @@ export const Footer: React.FC = () => {
             </div>
 
             <div className="space-y-4 md:space-y-6">
-              <span className="block text-base md:text-lg font-medium text-slate-900">Solutions</span>
+              <span className="block text-base md:text-lg font-medium text-slate-900">Products</span>
               <div className="space-y-3 md:space-y-4">
-                <a href="#/astra" className="block text-base md:text-lg font-normal text-slate-400 hover:text-[#00a3ff] transition-colors">CervAstra</a>
-                <a href="#/astra" className="block text-base md:text-lg font-normal text-slate-400 hover:text-[#00a3ff] transition-colors">LungAstra</a>
-                <a href="#/astra" className="block text-base md:text-lg font-normal text-slate-400 hover:text-[#00a3ff] transition-colors">ThyroAstra</a>
-                <a href="#/astra" className="block text-base md:text-lg font-normal text-slate-400 hover:text-[#00a3ff] transition-colors">ProsAstra</a>
+                <a href="#/intellistain" className="block text-base md:text-lg font-normal text-slate-400 hover:text-[#00a3ff] transition-colors">Intellistain</a>
+                <a href="#/visionx" className="block text-base md:text-lg font-normal text-slate-400 hover:text-[#00a3ff] transition-colors">VisionX</a>
+                <a href="#/astra" className="block text-base md:text-lg font-normal text-slate-400 hover:text-[#00a3ff] transition-colors">Astra</a>
+                <a href="#/clustr" className="block text-base md:text-lg font-normal text-slate-400 hover:text-[#00a3ff] transition-colors">Clustr</a>
               </div>
             </div>
 
@@ -40,14 +40,6 @@ export const Footer: React.FC = () => {
               >
                 <span className="text-lg md:text-xl font-bold tracking-tight">in</span>
               </a>
-              <div className="w-full sm:w-auto">
-                <div className="text-[10px] font-bold tracking-[0.16em] text-slate-400 uppercase mb-2">Certifications</div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-2 py-1 border border-slate-300 text-[9px] text-slate-500 font-bold">CDSCO</span>
-                  <span className="px-2 py-1 border border-slate-300 text-[9px] text-slate-500 font-bold">CE-IVD</span>
-                  <span className="px-2 py-1 border border-slate-300 text-[9px] text-slate-500 font-bold">ISO 13485</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

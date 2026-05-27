@@ -24,68 +24,51 @@ const ContactDetails: React.FC = () => {
           </div>
         </div>
 
-        {/* Staggered Contact Info Section */}
-        <div className="relative min-h-[160px] mb-0">
-          <div className="relative grid grid-cols-1 md:grid-cols-3 h-full gap-y-8 md:gap-y-0">
-            
-            {/* Column 1: Empty */}
-            <div className="hidden md:flex flex-col items-center md:items-start z-10">
-              {/* This column remains empty for balanced staggered layout */}
-            </div>
-
-            {/* Column 2: Phone Number Only (Top row) */}
-            <div className="flex flex-col items-center md:items-start z-10">
-              {/* Phone Number */}
-              <div className="w-full flex justify-center md:justify-start md:pt-[60px]">
-                <div className="flex items-center space-x-6 md:-translate-x-[48px]">
-                  <div className="w-24 h-24 rounded-full bg-[#EBF8FF] flex items-center justify-center shrink-0 shadow-sm border border-blue-50/50">
-                    <svg className="w-10 h-10 text-[#56A8E8]" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-                    </svg>
-                  </div>
-                  <div className="flex flex-col bg-white pr-4 py-2">
-                    <span className="text-[17px] font-extrabold text-gray-900 mb-0.5 whitespace-nowrap">Phone Number</span>
-                    <span className="text-[14px] text-gray-500 font-medium tracking-wide">(+91) 95828 78299</span>
-                  </div>
+        <div className="mb-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-10">
+            <div className="w-full flex justify-center md:justify-start">
+              <div className="flex items-center space-x-6">
+                <div className="w-24 h-24 rounded-full bg-[#EBF8FF] flex items-center justify-center shrink-0 shadow-sm border border-blue-50/50">
+                  <svg className="w-10 h-10 text-[#56A8E8]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                  </svg>
+                </div>
+                <div className="flex flex-col bg-white pr-2 py-2">
+                  <span className="text-[17px] font-extrabold text-gray-900 mb-0.5 whitespace-nowrap">Phone Number</span>
+                  <span className="text-[14px] text-gray-500 font-medium tracking-wide">(+91) 95828 78299</span>
                 </div>
               </div>
             </div>
 
-            {/* Column 3: Email Address AND Office Location */}
-            <div className="flex flex-col items-center md:items-start z-10">
-              {/* Email Address */}
-              <div className="w-full flex justify-center md:justify-start md:pt-[60px]">
-                <div className="flex items-center space-x-6 md:-translate-x-[48px]">
-                  <div className="w-24 h-24 rounded-full bg-[#EBF8FF] flex items-center justify-center shrink-0 shadow-sm border border-blue-50/50">
-                    <svg className="w-10 h-10 text-[#56A8E8]" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                    </svg>
-                  </div>
-                  <div className="flex flex-col bg-white pr-4 py-2">
-                    <span className="text-[17px] font-extrabold text-gray-900 mb-0.5 whitespace-nowrap">Email Address</span>
-                    <span className="text-[14px] text-gray-500 font-medium tracking-wide">contactus@aindra.in</span>
-                  </div>
+            <div className="w-full flex justify-center md:justify-start">
+              <div className="flex items-center space-x-6">
+                <div className="w-24 h-24 rounded-full bg-[#EBF8FF] flex items-center justify-center shrink-0 shadow-sm border border-blue-50/50">
+                  <svg className="w-10 h-10 text-[#56A8E8]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                  </svg>
                 </div>
-              </div>
-
-              {/* Office Location */}
-              <div className="md:mt-[64px] w-full flex justify-center md:justify-start">
-                <div className="flex items-center space-x-6 md:-translate-x-[48px]">
-                  <div className="w-24 h-24 rounded-full bg-[#EBF8FF] flex items-center justify-center shrink-0 shadow-sm border border-blue-50/50">
-                    <svg className="w-10 h-10 text-[#56A8E8]" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                    </svg>
-                  </div>
-                  <div className="flex flex-col bg-white pr-4 py-2">
-                    <span className="text-[17px] font-extrabold text-gray-900 mb-0.5 whitespace-nowrap">Office Location</span>
-                    <span className="text-[13px] text-gray-500 font-medium leading-relaxed max-w-[220px]">
-                      {officeAddress}
-                    </span>
-                  </div>
+                <div className="flex flex-col bg-white pr-2 py-2">
+                  <span className="text-[17px] font-extrabold text-gray-900 mb-0.5 whitespace-nowrap">Email Address</span>
+                  <span className="text-[14px] text-gray-500 font-medium tracking-wide">contactus@aindra.in</span>
                 </div>
               </div>
             </div>
 
+            <div className="w-full flex justify-center md:justify-start">
+              <div className="flex items-center space-x-6">
+                <div className="w-24 h-24 rounded-full bg-[#EBF8FF] flex items-center justify-center shrink-0 shadow-sm border border-blue-50/50">
+                  <svg className="w-10 h-10 text-[#56A8E8]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  </svg>
+                </div>
+                <div className="flex flex-col bg-white pr-2 py-2">
+                  <span className="text-[17px] font-extrabold text-gray-900 mb-0.5 whitespace-nowrap">Office Location</span>
+                  <span className="text-[13px] text-gray-500 font-medium leading-relaxed max-w-[240px]">
+                    {officeAddress}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

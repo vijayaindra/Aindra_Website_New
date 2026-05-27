@@ -106,7 +106,7 @@ export const WhyChooseUsSection: React.FC = () => {
 
       <div ref={containerRef} className={`relative z-10 hidden lg:block ${isCompactHeight ? 'h-[410vh] max-h-[900px]:h-[390vh] max-h-[820px]:h-[370vh]' : 'h-[400vh]'} bg-white`}>
         <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px]'} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] w-full flex items-center justify-center overflow-visible lg:overflow-hidden ${sectionShell}`}>
-          <div className={sectionContainer}>
+          <div className={`${sectionContainer} ${isCompactHeight ? 'pt-5' : 'pt-10 xl:pt-12'} max-h-[900px]:pt-8 max-h-[820px]:pt-6`}>
             <div className="grid grid-cols-12 gap-6 md:gap-8 items-start mb-8 md:mb-12">
               <div className="col-span-12 lg:col-span-3 pt-2">
                 <SectionEyebrow label="Why Choose Us" />
