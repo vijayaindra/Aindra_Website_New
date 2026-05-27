@@ -2,7 +2,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { InvestorStrip } from './components/InvestorStrip';
 import { UnifiedWorkflowSection } from './components/UnifiedWorkflowSection';
 import { ProductsShowcaseSection } from './components/ProductsShowcaseSection';
 import { SolutionsShowcase } from './components/SolutionsShowcase';
@@ -70,9 +69,6 @@ const HomePage: React.FC = () => {
         <section className={`relative ${sectionShell} pt-28 sm:pt-32 lg:pt-36 pb-14 md:pb-16 lg:pb-20 overflow-visible lg:overflow-hidden`}>
           <div className={sectionContainerWide}>
             <Hero />
-            <div className="mt-12 md:mt-16 lg:mt-20">
-              <InvestorStrip />
-            </div>
           </div>
         </section>
 
