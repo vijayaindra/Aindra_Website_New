@@ -123,14 +123,14 @@ const JourneySection: React.FC = () => {
         <div className="flex gap-0">
           <div className="hidden md:block w-[90px] md:w-[120px] mr-2 md:mr-4 shrink-0">
             <div className="sticky top-28">
-              <span className="block text-[80px] lg:text-[110px] font-light leading-[0.85] text-[#60A5FA] tracking-tighter select-none">20</span>
+              <span className="block text-[80px] lg:text-[110px] font-light leading-[0.95] text-[#60A5FA] tracking-normal tabular-nums select-none">20</span>
             </div>
           </div>
 
           <div className="flex-1 space-y-12 md:space-y-14">
             {timelineEvents.map((event, index) => (
               <article key={event.subYear} className="grid grid-cols-[112px_1fr] lg:grid-cols-[128px_1fr] items-start gap-3 lg:gap-4 pb-10 border-b border-gray-100 last:border-b-0 last:pb-0">
-                <span className="text-[44px] sm:text-[72px] lg:text-[110px] font-light leading-[0.95] text-[#60A5FA] tracking-normal select-none whitespace-nowrap">
+                <span className="text-[44px] sm:text-[72px] lg:text-[110px] font-light leading-[0.95] text-[#60A5FA] tracking-normal tabular-nums text-right select-none whitespace-nowrap">
                   <span className="md:hidden">{`20${event.subYear}`}</span>
                   <span className="hidden md:inline">{event.subYear}</span>
                 </span>

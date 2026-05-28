@@ -9,6 +9,8 @@ export interface EmailSendResult {
   error?: string;
 }
 
+type UnifiedFormType = 'demo_request' | 'career_application';
+
 const getTemplateId = (kind: EmailTemplateKind): string => {
   if (kind === 'support') return import.meta.env.VITE_EMAILJS_SUPPORT_TEMPLATE_ID ?? '';
   return import.meta.env.VITE_EMAILJS_CAREERS_TEMPLATE_ID ?? '';
@@ -77,14 +79,18 @@ export const sendProductSupportEmail = async (
   const nameParts = payload.fullName.trim().split(/\s+/).filter(Boolean);
   const firstName = nameParts[0] ?? '';
   const lastName = nameParts.slice(1).join(' ');
+  const fullName = [firstName, lastName].filter(Boolean).join(' ');
 
   return sendEmail('support', {
     to_email: 'contactus@aindra.in',
     form_type: 'demo_request',
-    full_name: payload.fullName,
-    first_name: firstName,
-    last_name: lastName,
+    form_type_label: 'Demo Request',
+    email_subject: 'New Demo Request',
+    full_name: fullName,
+    first_name: '',
+    last_name: '',
     email: payload.email,
+    user_email: payload.email,
     phone: payload.phoneNumber,
     company: payload.companyName,
     country: payload.country,
@@ -115,10 +121,13 @@ export const sendCareerApplicationEmail = async (
   return sendEmail('careers', {
     to_email: 'contactus@aindra.in',
     form_type: 'career_application',
+    form_type_label: 'Career Application',
+    email_subject: 'New Career Application',
     full_name: fullName,
-    first_name: payload.firstName,
-    last_name: payload.lastName,
+    first_name: '',
+    last_name: '',
     email: payload.email,
+    user_email: payload.email,
     phone: payload.phoneNumber,
     company: '',
     country: '',
@@ -144,7 +153,7 @@ export const sendCareerApplicationEmail = async (
 export const sendAutoReplyEmail = async (payload: {
   recipientEmail: string;
   recipientName: string;
-  formType: 'product_support' | 'career_application';
+  formType: 'product_support' | 'career_application' | 'demo_request';
 }): Promise<EmailSendResult> => {
   const { serviceId, publicKey } = getEmailConfig();
   const templateId = getAutoReplyTemplateId();
@@ -155,6 +164,14 @@ export const sendAutoReplyEmail = async (payload: {
       error: 'EmailJS auto-reply is not configured. Missing env values.',
     };
   }
+
+  const normalizedFormType: UnifiedFormType =
+    payload.formType === 'career_application' ? 'career_application' : 'demo_request';
+  const formTypeLabel =
+    normalizedFormType === 'career_application' ? 'Career Application' : 'Demo Request';
+  const nameParts = payload.recipientName.trim().split(/\s+/).filter(Boolean);
+  const firstName = nameParts[0] ?? '';
+  const lastName = nameParts.slice(1).join(' ');
 
   try {
     await emailjs.send(
@@ -167,8 +184,18 @@ export const sendAutoReplyEmail = async (payload: {
         to_name: payload.recipientName,
         name: payload.recipientName,
         user_name: payload.recipientName,
+        full_name: payload.recipientName,
+        first_name: '',
+        last_name: '',
+        user_first_name: firstName,
+        user_last_name: lastName,
         reply_to: 'contactus@aindra.in',
-        form_type: payload.formType,
+        form_type: normalizedFormType,
+        form_type_label: formTypeLabel,
+        email_subject:
+          normalizedFormType === 'career_application'
+            ? 'Career Application Received'
+            : 'Demo Request Received',
         submitted_at: new Date().toISOString(),
       },
       { publicKey }
