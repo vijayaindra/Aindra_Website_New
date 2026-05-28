@@ -180,7 +180,7 @@ const BenefitsSection: React.FC = () => {
         </div>
 
         <div 
-          className="flex-grow relative z-10 overflow-hidden"
+          className="flex-grow relative z-10"
           style={{ 
             opacity: stage1Opacity,
             visibility: stage1Opacity < 0.01 ? 'hidden' : 'visible',
@@ -189,28 +189,18 @@ const BenefitsSection: React.FC = () => {
         >
             <div className="h-full flex flex-col md:flex-row w-full">
               <div className="hidden md:block w-[120px] md:w-[160px] mr-6 md:mr-10 shrink-0"></div>
-              <div className="flex-1 relative h-full">
-                <div
-                  className="absolute right-0 top-6 xl:top-10 2xl:top-12 w-[340px] flex flex-col space-y-12 xl:space-y-16"
-                  style={{
-                    opacity: yellowOpacity,
-                    transform: `translateY(${yellowTranslateY}px)`,
-                    visibility: yellowOpacity < 0.01 ? 'hidden' : 'visible',
-                  }}
-                >
+              <div
+                className="flex-1 pt-8 md:pt-10"
+                style={{
+                  opacity: Math.max(yellowOpacity, greenOpacity),
+                  transform: `translateY(${Math.min(yellowTranslateY, greenTranslateY)}px)`,
+                }}
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10 lg:gap-y-14 items-start">
                   <FeatureCard title={benefits[0].title} description={benefits[0].description} />
                   <FeatureCard title={benefits[1].title} description={benefits[1].description} />
-                </div>
-                <div
-                  className="absolute left-0 bottom-10 xl:bottom-16 2xl:bottom-24 w-full flex flex-col md:flex-row gap-x-12"
-                  style={{
-                    opacity: greenOpacity,
-                    transform: `translateY(${greenTranslateY}px)`,
-                    visibility: greenOpacity < 0.01 ? 'hidden' : 'visible',
-                  }}
-                >
-                  <FeatureCard title={benefits[2].title} description={benefits[2].description} className="flex-1" />
-                  <FeatureCard title={benefits[3].title} description={benefits[3].description} className="flex-1" />
+                  <FeatureCard title={benefits[2].title} description={benefits[2].description} />
+                  <FeatureCard title={benefits[3].title} description={benefits[3].description} />
                 </div>
               </div>
             </div>
