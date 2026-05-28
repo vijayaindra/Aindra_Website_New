@@ -82,7 +82,7 @@ export const SolutionsShowcase: React.FC = () => {
       const scrollProgress = Math.min(1, Math.max(0, -top / scrollSpan));
       const index = Math.min(
         solutions.length - 1,
-        Math.max(0, Math.round(scrollProgress * (solutions.length - 1)))
+        Math.max(0, Math.floor(scrollProgress * solutions.length))
       );
       
       setScrollProgress(scrollProgress);
@@ -136,7 +136,7 @@ export const SolutionsShowcase: React.FC = () => {
     <div
       ref={containerRef}
       className="relative z-10 hidden lg:block bg-[#f8fbff]"
-      style={{ height: `${isCompactHeight ? solutions.length * 92 + 36 : isLaptopHeight ? solutions.length * 95 : solutions.length * 100}vh` }}
+      style={{ height: `${isCompactHeight ? 330 : isLaptopHeight ? 350 : 370}vh` }}
     >
       {/* Sticky Frame */}
       <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[700px] xl:min-h-[740px] ${sectionY}`} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] w-full flex items-center justify-center overflow-visible lg:overflow-hidden ${sectionShell}`}>

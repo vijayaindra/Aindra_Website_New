@@ -62,8 +62,12 @@ export const UnifiedWorkflowSection: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const totalSlides = steps.length + 1; 
-  const currentSlideProgress = scrollProgress * (totalSlides - 1);
+  const totalSlides = steps.length + 1;
+  const workflowProgressMultiplier = 1.6;
+  const currentSlideProgress = Math.min(
+    totalSlides - 1,
+    scrollProgress * (totalSlides - 1) * workflowProgressMultiplier
+  );
   const introX = (0 - currentSlideProgress) * 100;
   const introOpacity = 1 - Math.abs(currentSlideProgress) * 1.5;
   const stepperOpacity = Math.max(0, Math.min(1, (currentSlideProgress - 0.2) * 2));
@@ -95,7 +99,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className={`relative hidden lg:block ${isCompactHeight ? 'h-[700vh] max-h-[900px]:h-[660vh] max-h-[820px]:h-[620vh]' : 'h-[900vh]'} bg-white`}>
+    <div ref={containerRef} className={`relative hidden lg:block ${isCompactHeight ? 'h-[440vh] max-h-[900px]:h-[420vh] max-h-[820px]:h-[400vh]' : 'h-[480vh]'} bg-white`}>
       <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : 'min-h-[700px] xl:min-h-[740px]'} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] w-full flex flex-col items-center justify-center overflow-visible lg:overflow-hidden`}>
         
         {/* Persistent Background */}

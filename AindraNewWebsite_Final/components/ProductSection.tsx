@@ -148,10 +148,10 @@ export const ProductSection: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const activeIndex = Math.min(steps.length - 1, Math.floor(scrollProgress * (steps.length + 0.1)));
+  const activeIndex = Math.min(steps.length - 1, Math.floor(scrollProgress * steps.length));
 
   return (
-    <div ref={sectionRef} className={`relative ${isCompactHeight ? 'h-[420vh]' : 'h-[500vh]'} bg-white`}>
+    <div ref={sectionRef} className={`relative ${isCompactHeight ? 'h-[320vh]' : 'h-[340vh]'} bg-white`}>
       {/* Sticky Frame */}
       <section
         className={`sticky ${isCompactHeight ? 'top-14 h-[calc(100svh-3.5rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] min-h-[700px] xl:min-h-[740px]'} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] w-full flex flex-col items-center justify-center overflow-visible lg:overflow-hidden`}
