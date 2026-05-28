@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import intellistain15Image from '../../../assets/ProductImages/IS-15.png';
 import intellistain30Image from '../../../assets/ProductImages/IS-30.png';
 import { sectionContainerWide, sectionShell } from '../../../components/layout';
@@ -11,23 +11,32 @@ interface ProductCardProps {
   name: string;
   imageSrc: string;
   active?: boolean;
+  compact?: boolean;
   onClick: () => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc, active = false, onClick }) => (
+const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc, active = false, compact = false, onClick }) => (
   <button 
     onClick={onClick}
-    className={`flex items-center transition-all duration-500 ease-in-out h-14 sm:h-16 md:h-[84px] overflow-hidden rounded-none ${
+    className={`flex items-center transition-all duration-500 ease-in-out overflow-hidden rounded-none ${
+      compact
+        ? active
+          ? 'h-11 sm:h-12 w-[112px] sm:w-[124px] px-2.5 sm:px-3'
+          : 'h-11 sm:h-12 w-[90px] sm:w-[98px] px-2'
+        : 'h-14 sm:h-16 md:h-[84px]'
+    } ${
       active 
-        ? 'bg-white shadow-[0_10px_35px_rgba(0,0,0,0.12)] w-[132px] sm:w-[160px] md:w-[180px] px-3 sm:px-4' 
-        : 'bg-[#f0f2f4] w-[96px] sm:w-[108px] md:w-[120px] px-2 sm:px-3 hover:bg-[#ebedef]'
+        ? `bg-white shadow-[0_10px_35px_rgba(0,0,0,0.12)] ${compact ? '' : 'w-[132px] sm:w-[160px] md:w-[180px] px-3 sm:px-4'}` 
+        : `bg-[#f0f2f4] hover:bg-[#ebedef] ${compact ? '' : 'w-[96px] sm:w-[108px] md:w-[120px] px-2 sm:px-3'}`
     }`}
   >
     <div className="flex items-center justify-between w-full">
-      <span className={`text-xs sm:text-sm md:text-[15px] font-bold tracking-tight transition-colors duration-300 ${active ? 'text-black' : 'text-gray-900'}`}>
+      <span className={`font-bold tracking-tight transition-colors duration-300 ${compact ? 'text-[12px] sm:text-[13px]' : 'text-xs sm:text-sm md:text-[15px]'} ${active ? 'text-black' : 'text-gray-900'}`}>
         {name}
       </span>
-      <div className={`transition-all duration-500 flex items-center justify-center overflow-hidden rounded-md ${active ? 'w-16 h-16' : 'w-10 h-10 opacity-60'}`}>
+      <div className={`transition-all duration-500 flex items-center justify-center overflow-hidden rounded-md ${
+        compact ? (active ? 'w-11 h-11' : 'w-8 h-8 opacity-60') : (active ? 'w-16 h-16' : 'w-10 h-10 opacity-60')
+      }`}>
         <img 
           src={imageSrc}
           alt={name} 
@@ -52,6 +61,8 @@ const Hero: React.FC<HeroProps> = ({
   onVariantChange,
 }) => {
   const [internalActiveVariant, setInternalActiveVariant] = useState<IntellistainVariant>('IS15');
+  const [showStickySelector, setShowStickySelector] = useState(false);
+  const heroBodyRef = useRef<HTMLDivElement | null>(null);
   const selectedVariant = activeVariant ?? internalActiveVariant;
 
   const variants = [
@@ -67,9 +78,28 @@ const Hero: React.FC<HeroProps> = ({
     onVariantChange?.(variant);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.dispatchEvent(new CustomEvent(INTELLISTAIN_VARIANT_EVENT, { detail: selectedVariant }));
   }, [selectedVariant]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroBody = heroBodyRef.current;
+      if (!heroBody) return;
+
+      const rect = heroBody.getBoundingClientRect();
+      const navbarOffset = window.innerWidth >= 640 ? 96 : 80;
+      setShowStickySelector(rect.bottom <= navbarOffset);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
 
   const tabs = ['OVERVIEW', 'STAINING QUALITY', 'SPECIFICATIONS', 'RESOURCES'];
 
@@ -92,7 +122,30 @@ const Hero: React.FC<HeroProps> = ({
         </div>
       </div>
 
-      <div className={`product-hero-body flex flex-col md:flex-row ${sectionShell} ${sectionContainerWide} relative`}>
+      <div
+        className={`fixed top-[76px] sm:top-[92px] left-0 right-0 z-40 pointer-events-none transition-all duration-300 ease-out ${
+          showStickySelector ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
+        }`}
+      >
+          <div className={`mx-auto w-fit max-w-[calc(100vw-1rem)] bg-white/90 backdrop-blur-sm border border-gray-200 shadow-[0_8px_24px_rgba(0,0,0,0.12)] px-2 py-1 overflow-x-auto transition-all duration-300 ease-out ${
+            showStickySelector ? 'pointer-events-auto' : 'pointer-events-none'
+          }`}>
+            <div className="flex items-center space-x-2 min-w-max">
+              {variants.map((variant) => (
+                <ProductCard
+                  key={`sticky-${variant.id}`}
+                  name={variant.label}
+                  imageSrc={variant.image}
+                  active={selectedVariant === variant.id}
+                  compact
+                  onClick={() => handleVariantSelect(variant.id)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+      <div ref={heroBodyRef} className={`product-hero-body flex flex-col md:flex-row ${sectionShell} ${sectionContainerWide} relative`}>
         {/* Left Content */}
         <div className="w-full md:w-1/2 z-10 pr-0 md:pr-14 lg:pr-20">
           <h1 className="product-hero-title font-bold tracking-tight text-gray-900 mb-6 md:mb-8">

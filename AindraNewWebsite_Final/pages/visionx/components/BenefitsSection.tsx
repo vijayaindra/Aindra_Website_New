@@ -437,7 +437,7 @@ const BenefitsSection: React.FC = () => {
   return (
     <div ref={containerRef} className="relative w-full" style={{ height: '500vh' }}>
       <section className="sticky top-20 sm:top-24 w-full h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] min-h-[700px] xl:min-h-[740px] bg-white overflow-visible lg:overflow-hidden flex flex-col">
-        <div className={`${sectionContainer} ${sectionShell} relative h-full flex flex-col`}>
+        <div className={`${sectionContainer} ${sectionShell} relative h-full flex flex-col pt-14 sm:pt-16`}>
         
         {/* Persistent Sticky Header */}
         <div className="relative z-50 bg-white pt-6 pb-4">
