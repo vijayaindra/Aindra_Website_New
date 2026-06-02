@@ -137,25 +137,25 @@ export const ProductsShowcaseSection: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className={`relative z-10 hidden lg:block ${isCompactHeight ? 'h-[410vh] max-h-[900px]:h-[390vh] max-h-[820px]:h-[370vh]' : 'h-[400vh]'} bg-white`}>
+    <div ref={containerRef} className={`relative z-10 hidden lg:block ${isCompactHeight ? 'h-[410vh] max-h-[900px]:h-[390vh] max-h-[820px]:h-[370vh] max-h-[800px]:h-[345vh] max-h-[750px]:h-[320vh] max-h-[700px]:h-[300vh]' : 'h-[400vh] max-h-[800px]:h-[345vh] max-h-[750px]:h-[320vh] max-h-[700px]:h-[300vh]'} bg-white`}>
       {/* Sticky Content Frame */}
-      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] ${sectionY}`} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] w-full overflow-visible lg:overflow-hidden flex flex-col bg-white isolate ${sectionShell}`}>
-        <div className={sectionContainer}>
+      <section className={`sticky ${isCompactHeight ? 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[620px] xl:min-h-[660px] 2xl:min-h-[740px] ${sectionY}`} max-h-[900px]:h-[calc(100svh-5rem)] sm:max-h-[900px]:h-[calc(100svh-6rem)] max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-5rem)] sm:max-h-[820px]:h-[calc(100svh-6rem)] max-h-[800px]:h-[calc(100svh-5rem)] sm:max-h-[800px]:h-[calc(100svh-6rem)] max-h-[800px]:py-2.5 max-h-[800px]:items-start max-h-[800px]:justify-start max-h-[750px]:h-[calc(100svh-5rem)] sm:max-h-[750px]:h-[calc(100svh-6rem)] max-h-[750px]:py-2 max-h-[750px]:items-start max-h-[750px]:justify-start max-h-[700px]:h-[calc(100svh-5rem)] sm:max-h-[700px]:h-[calc(100svh-6rem)] max-h-[700px]:items-start max-h-[700px]:justify-start w-full overflow-visible lg:overflow-hidden flex flex-col bg-white isolate ${sectionShell}`}>
+        <div className={`${sectionContainer} max-h-[800px]:pt-6 max-h-[750px]:pt-5 max-h-[700px]:pt-4`}>
         
         {/* PERSISTENT HEADER */}
-        <div className={`relative z-20 grid grid-cols-12 gap-5 xl:gap-6 2xl:gap-8 ${isCompactHeight ? 'mb-3' : 'mb-5 xl:mb-7 2xl:mb-14'} max-h-[900px]:mb-3 max-h-[820px]:mb-2 max-[900px]:mb-2`}>
+        <div className={`relative z-20 grid grid-cols-12 gap-5 xl:gap-6 2xl:gap-8 ${isCompactHeight ? 'mb-3' : 'mb-5 xl:mb-7 2xl:mb-14'} max-h-[900px]:mb-3 max-h-[820px]:mb-2 max-h-[800px]:mb-2.5 max-h-[750px]:mb-2 max-[900px]:mb-2`}>
           <div className="col-span-12 lg:col-span-3">
             <SectionEyebrow label="Our Products" />
           </div>
           <div className="col-span-12 lg:col-span-9">
-            <h2 className={`${isCompactHeight ? 'text-[clamp(1.9rem,2.7vw,2.35rem)] md:text-[clamp(2rem,2.9vw,2.45rem)]' : 'text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl'} max-h-[900px]:text-[clamp(2.2rem,3.2vw,2.9rem)] max-h-[900px]:leading-[1.05] max-h-[820px]:text-[clamp(2rem,3vw,2.6rem)] max-[900px]:text-[34px] max-[900px]:leading-[1.04] font-medium text-slate-900 leading-[1.08] max-w-4xl`}>
+            <h2 className={`${isCompactHeight ? 'text-[clamp(1.9rem,2.7vw,2.35rem)] md:text-[clamp(2rem,2.9vw,2.45rem)]' : 'text-3xl md:text-5xl xl:text-[56px] 2xl:text-6xl'} max-h-[900px]:text-[clamp(2.2rem,3.2vw,2.9rem)] max-h-[900px]:leading-[1.05] max-h-[820px]:text-[clamp(2rem,3vw,2.6rem)] max-h-[800px]:text-[clamp(2.2rem,3.65vw,3rem)] max-h-[800px]:max-w-[56rem] max-h-[750px]:text-[clamp(2rem,3.35vw,2.65rem)] max-h-[750px]:max-w-[50rem] max-h-[700px]:text-[clamp(1.85rem,3vw,2.4rem)] max-h-[700px]:max-w-[46rem] max-[900px]:text-[34px] max-[900px]:leading-[1.04] font-medium text-slate-900 leading-[1.08] max-w-4xl`}>
               A Unified Ecosystem for Computational Pathology.
             </h2>
           </div>
         </div>
 
         {/* DYNAMIC CONTENT AREA */}
-        <div className={`relative z-10 grid grid-cols-12 ${isCompactHeight ? 'gap-3' : 'gap-4 xl:gap-6 2xl:gap-10'} max-[900px]:gap-3 flex-1 items-center h-full`}>
+        <div className={`relative z-10 grid grid-cols-12 ${isCompactHeight ? 'gap-3' : 'gap-4 xl:gap-6 2xl:gap-10'} max-[900px]:gap-3 max-h-[800px]:gap-2.5 max-h-[750px]:gap-2 flex-1 items-center h-full`}>
           
           {/* Left Side: Original visual style, now clickable */}
           <div className="col-span-12 lg:col-span-3 h-full flex items-center pr-2">
@@ -175,10 +175,10 @@ export const ProductsShowcaseSection: React.FC = () => {
                   className={`w-full flex flex-col justify-center text-right pr-8 lg:pr-12 transition-all duration-700 ease-in-out ${idx === activeIndex ? 'opacity-100 scale-105 origin-right' : 'opacity-50 scale-95 origin-right hover:opacity-80'}`}
                   style={{ height: `${STEPPER_ITEM_HEIGHT}px` }}
                 >
-                  <span className={`block text-lg font-black tracking-tighter mb-0.5 transition-colors duration-500 ${idx === activeIndex ? 'text-[#00a3ff]' : 'text-slate-400'}`}>
+                  <span className={`block text-lg max-h-[800px]:text-[15px] max-h-[750px]:text-[14px] font-black tracking-tighter mb-0.5 transition-colors duration-500 ${idx === activeIndex ? 'text-[#00a3ff]' : 'text-slate-400'}`}>
                     {p.id}
                   </span>
-                  <span className={`text-sm lg:text-[15px] max-[900px]:text-[13px] font-black uppercase tracking-tight block leading-[1.2] transition-colors duration-500 ${idx === activeIndex ? 'text-slate-900' : 'text-slate-300 group-hover:text-slate-500'}`}>
+                  <span className={`text-sm lg:text-[15px] max-[900px]:text-[13px] max-h-[800px]:lg:text-[13px] max-h-[750px]:lg:text-[12px] font-black uppercase tracking-tight block leading-[1.2] transition-colors duration-500 ${idx === activeIndex ? 'text-slate-900' : 'text-slate-300 group-hover:text-slate-500'}`}>
                     {p.title}
                   </span>
                 </button>
@@ -244,12 +244,12 @@ export const ProductsShowcaseSection: React.FC = () => {
                         </div>
                       </div>
                     ) : (
-                      <div className="relative w-full max-w-[700px] xl:max-w-[760px] 2xl:max-w-[860px]">
+                      <div className="relative w-full max-w-[700px] xl:max-w-[760px] 2xl:max-w-[860px] max-h-[800px]:max-w-[660px] max-h-[750px]:max-w-[600px] max-h-[700px]:max-w-[540px]">
                         <div className="absolute inset-0 bg-blue-50 blur-[100px] rounded-full opacity-60"></div>
                         <img 
                           src={p.image} 
                           alt={p.name} 
-                          className={`relative z-10 w-full h-auto max-h-[40vh] xl:max-h-[46vh] 2xl:max-h-[56vh] max-h-[900px]:max-h-[34vh] max-h-[820px]:max-h-[30vh] max-[900px]:max-h-[32vh] max-[820px]:max-h-[29vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
+                          className={`relative z-10 w-full h-auto max-h-[40vh] xl:max-h-[46vh] 2xl:max-h-[56vh] max-h-[900px]:max-h-[34vh] max-h-[820px]:max-h-[30vh] max-h-[800px]:max-h-[36vh] max-h-[750px]:max-h-[33vh] max-h-[700px]:max-h-[29vh] max-[900px]:max-h-[32vh] max-[820px]:max-h-[29vh] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.1)] ${p.imageClass ?? ''}`}
                           onError={(e) => {
                             e.currentTarget.src = "https://images.unsplash.com/photo-1579165466541-71835479444a?q=80&w=800&auto=format&fit=crop";
                           }}
@@ -294,17 +294,17 @@ export const ProductsShowcaseSection: React.FC = () => {
                       <div className="w-7 h-7 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 bg-[#00a3ff] rounded-md flex items-center justify-center text-xs xl:text-sm font-black text-white shadow-xl shadow-blue-200">
                         {p.id}
                       </div>
-                      <h3 className={`${isCompactHeight ? 'text-[40px] xl:text-[44px] max-[900px]:text-[36px] max-[820px]:text-[33px]' : 'text-[50px] xl:text-[56px] 2xl:text-6xl max-[900px]:text-[44px] max-[820px]:text-[40px]'} font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-1.5 xl:pb-3`}>
+                      <h3 className={`${isCompactHeight ? 'text-[40px] xl:text-[44px] max-[900px]:text-[36px] max-[820px]:text-[33px]' : 'text-[50px] xl:text-[56px] 2xl:text-6xl max-[900px]:text-[44px] max-[820px]:text-[40px]'} max-h-[800px]:text-[42px] max-h-[750px]:text-[38px] max-h-[700px]:text-[33px] font-bold text-slate-900 tracking-tighter border-b-[4px] border-[#00a3ff]/20 inline-block pb-1.5 xl:pb-3`}>
                         {p.name}
                       </h3>
                     </div>
-                    <p className="text-base xl:text-lg 2xl:text-xl max-[900px]:text-[15px] max-[900px]:leading-[1.35] text-slate-500 leading-[1.35] font-light max-w-md">
+                    <p className="text-base xl:text-lg 2xl:text-xl max-[900px]:text-[15px] max-[900px]:leading-[1.35] max-h-[800px]:text-[15px] max-h-[750px]:text-[14px] max-h-[700px]:text-[13px] text-slate-500 leading-[1.35] font-light max-w-md">
                       {p.description}
                     </p>
                   </div>
                   
-                  <div className="pt-1 xl:pt-2 2xl:pt-4">
-                    <a href={p.href} className="group inline-flex items-center space-x-4 px-7 xl:px-9 2xl:px-12 max-[900px]:px-7 py-3 xl:py-3.5 2xl:py-4 max-[900px]:py-2.5 bg-slate-900 text-white rounded-full font-bold text-[11px] xl:text-[12px] 2xl:text-[13px] tracking-widest uppercase hover:bg-[#00a3ff] transition-all shadow-xl shadow-slate-200 active:scale-95">
+                  <div className="pt-1 xl:pt-2 2xl:pt-4 max-h-[800px]:pt-1 max-h-[750px]:pt-0.5">
+                    <a href={p.href} className="group inline-flex items-center space-x-4 px-7 xl:px-9 2xl:px-12 max-[900px]:px-7 py-3 xl:py-3.5 2xl:py-4 max-[900px]:py-2.5 max-h-[800px]:px-6 max-h-[800px]:py-2.5 max-h-[750px]:px-5 max-h-[750px]:py-2 bg-slate-900 text-white rounded-full font-bold text-[11px] xl:text-[12px] 2xl:text-[13px] max-h-[800px]:text-[10px] tracking-widest uppercase hover:bg-[#00a3ff] transition-all shadow-xl shadow-slate-200 active:scale-95">
                       <span>Explore {p.name}</span>
                       <svg className="w-4 h-4 xl:w-4 xl:h-4 2xl:w-5 2xl:h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

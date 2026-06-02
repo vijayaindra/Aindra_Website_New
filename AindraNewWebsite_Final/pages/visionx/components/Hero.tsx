@@ -63,8 +63,6 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({
-  onTabChange,
-  activeTab = 'OVERVIEW',
   activeVariant,
   onVariantChange,
 }) => {
@@ -110,8 +108,6 @@ const Hero: React.FC<HeroProps> = ({
       window.removeEventListener('resize', handleScroll);
     };
   }, []);
-
-  const tabs = ['OVERVIEW', 'IMAGE QUALITY', 'SPECIFICATIONS', 'RESOURCES'];
 
   return (
     <section className="product-hero-section">
@@ -193,21 +189,6 @@ const Hero: React.FC<HeroProps> = ({
         </div>
       </div>
 
-      {/* Bottom Tabs Bar */}
-      <div className="w-full product-tabs-wrapper">
-        <div className={`${sectionContainerWide} ${sectionShell} flex gap-4 sm:gap-8 overflow-x-auto`}>
-          {tabs.map((tab) => (
-            <button 
-              key={tab} 
-              onClick={() => onTabChange?.(tab)}
-              className={`shrink-0 py-4 text-[10px] sm:text-[11px] font-bold tracking-widest transition-all relative ${activeTab === tab ? 'text-[#00AEEF]' : 'text-gray-400 hover:text-gray-600'}`}
-            >
-              {tab}
-              {activeTab === tab && <div className="absolute bottom-0 left-0 w-full h-[3px] bg-[#00AEEF]"></div>}
-            </button>
-          ))}
-        </div>
-      </div>
     </section>
   );
 };

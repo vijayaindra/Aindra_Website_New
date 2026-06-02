@@ -99,8 +99,8 @@ export const UnifiedWorkflowSection: React.FC = () => {
       </div>
     </section>
 
-    <div ref={containerRef} className={`relative hidden lg:block ${isCompactHeight ? 'h-[440vh] max-h-[900px]:h-[420vh] max-h-[820px]:h-[400vh]' : 'h-[480vh]'} bg-white`}>
-      <section className={`sticky ${isCompactHeight ? 'top-16 h-[calc(100svh-4rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : 'min-h-[700px] xl:min-h-[740px]'} max-h-[900px]:top-16 max-h-[900px]:h-[calc(100svh-4rem)] max-h-[900px]:min-h-0 max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-3.5rem)] w-full flex flex-col items-center justify-center overflow-visible lg:overflow-hidden`}>
+    <div ref={containerRef} className={`relative hidden lg:block ${isCompactHeight ? 'h-[440vh] max-h-[900px]:h-[420vh] max-h-[820px]:h-[400vh] max-h-[800px]:h-[380vh] max-h-[750px]:h-[360vh] max-h-[700px]:h-[340vh]' : 'h-[480vh] max-h-[800px]:h-[400vh] max-h-[750px]:h-[380vh] max-h-[700px]:h-[360vh]'} bg-white`}>
+      <section className={`sticky ${isCompactHeight ? 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : 'min-h-[700px] xl:min-h-[740px]'} max-h-[900px]:h-[calc(100svh-5rem)] sm:max-h-[900px]:h-[calc(100svh-6rem)] max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-5rem)] sm:max-h-[820px]:h-[calc(100svh-6rem)] max-h-[800px]:h-[calc(100svh-5rem)] sm:max-h-[800px]:h-[calc(100svh-6rem)] max-h-[800px]:items-start max-h-[800px]:justify-start max-h-[800px]:py-2.5 max-h-[750px]:h-[calc(100svh-5rem)] sm:max-h-[750px]:h-[calc(100svh-6rem)] max-h-[750px]:py-2 max-h-[700px]:h-[calc(100svh-5rem)] sm:max-h-[700px]:h-[calc(100svh-6rem)] w-full flex flex-col items-center justify-center overflow-visible lg:overflow-hidden`}>
         
         {/* Persistent Background */}
         <div
@@ -119,15 +119,15 @@ export const UnifiedWorkflowSection: React.FC = () => {
 
         {/* Narrative Intro Content - Now a Sliding Page */}
         <div 
-          className={`absolute inset-0 z-20 flex justify-center px-6 md:px-12 lg:px-24 pointer-events-none transition-transform duration-75 ease-out ${isCompactHeight ? 'items-start pt-16 md:pt-20' : 'items-center'}`}
+          className={`absolute inset-0 z-20 flex justify-center px-6 md:px-12 lg:px-24 pointer-events-none transition-transform duration-75 ease-out ${isCompactHeight ? 'items-start pt-16 md:pt-20' : 'items-center'} max-h-[800px]:items-start max-h-[800px]:pt-14 max-h-[750px]:pt-11 max-h-[700px]:pt-9`}
           style={{ 
             opacity: Math.max(0, introOpacity),
             transform: `translateX(${introX}%)`,
             visibility: introOpacity > 0 ? 'visible' : 'hidden',
           }}
         >
-          <div className={`${isCompactHeight ? 'max-w-4xl' : 'max-w-5xl'} text-center`}>
-            <p className={`${isCompactHeight ? 'text-[clamp(1.4rem,2.7vw,1.95rem)] md:text-[clamp(1.6rem,2.9vw,2.1rem)]' : 'text-xl md:text-3xl lg:text-4xl xl:text-5xl'} font-medium leading-tight text-slate-900 text-balance px-4`}>
+          <div className={`${isCompactHeight ? 'max-w-4xl' : 'max-w-5xl'} max-h-[800px]:max-w-[60rem] max-h-[750px]:max-w-[54rem] text-center`}>
+            <p className={`${isCompactHeight ? 'text-[clamp(1.4rem,2.7vw,1.95rem)] md:text-[clamp(1.6rem,2.9vw,2.1rem)]' : 'text-xl md:text-3xl lg:text-4xl xl:text-5xl'} max-h-[800px]:text-[clamp(1.9rem,3.25vw,2.55rem)] max-h-[800px]:leading-[1.08] max-h-[750px]:text-[clamp(1.7rem,2.95vw,2.25rem)] max-h-[700px]:text-[clamp(1.5rem,2.7vw,2rem)] font-medium leading-tight text-slate-900 text-balance px-4`}>
               We’ve condensed the entire pathology lab from <span className="text-[#00a3ff] font-bold">staining</span> to <span className="text-[#00a3ff] font-bold">screening</span> into a unified digital workflow in 4 steps. No more fragmented tools or data silos. Just a seamless journey from physical glass to clinical insight.
             </p>
           </div>
@@ -138,7 +138,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
           
           {/* Custom Stepper - Fades in */}
           <div 
-            className={`absolute ${isCompactHeight ? 'top-12 md:top-16' : 'top-24 md:top-32'} w-full flex justify-center z-50 transition-opacity duration-500 px-6`}
+            className={`absolute ${isCompactHeight ? 'top-12 md:top-16' : 'top-24 md:top-32'} max-h-[800px]:top-10 max-h-[750px]:top-8 w-full flex justify-center z-50 transition-opacity duration-500 px-6`}
             style={{ opacity: stepperOpacity }}
           >
             <div className="relative flex items-center w-full max-w-[340px] h-12">
@@ -162,7 +162,7 @@ export const UnifiedWorkflowSection: React.FC = () => {
           </div>
 
           {/* Slides Viewport */}
-          <div className={`relative w-full max-w-6xl px-6 md:px-12 ${isCompactHeight ? 'h-[54vh] max-h-[900px]:h-[50vh] max-h-[820px]:h-[46vh] scale-[0.82] max-h-[900px]:scale-[0.78] origin-top mt-8' : 'h-[80vh]'} flex flex-col justify-center`}>
+          <div className={`relative w-full max-w-6xl px-6 md:px-12 ${isCompactHeight ? 'h-[54vh] max-h-[900px]:h-[50vh] max-h-[820px]:h-[46vh] scale-[0.82] max-h-[900px]:scale-[0.78] origin-top mt-8' : 'h-[80vh]'} max-h-[800px]:h-[44vh] max-h-[800px]:scale-[0.76] max-h-[750px]:h-[40vh] max-h-[750px]:scale-[0.72] max-h-[700px]:h-[36vh] max-h-[700px]:scale-[0.68] max-h-[800px]:origin-top max-h-[800px]:mt-6 max-h-[750px]:mt-4 flex flex-col justify-center`}>
             {steps.map((step, idx) => {
               const xPos = (idx + 1 - currentSlideProgress) * 100;
               const opacity = 1 - Math.abs(idx + 1 - currentSlideProgress) * 1.2;
@@ -179,11 +179,11 @@ export const UnifiedWorkflowSection: React.FC = () => {
                   }}
                 >
                   <div className="w-full flex flex-col">
-                    <div className={`${isCompactHeight ? 'text-5xl md:text-[96px]' : 'text-7xl md:text-[140px]'} font-bold text-[#00a3ff] leading-[0.8] tracking-tight mb-2 opacity-90 select-none`}>
+                    <div className={`${isCompactHeight ? 'text-5xl md:text-[96px]' : 'text-7xl md:text-[140px]'} max-h-[800px]:md:text-[84px] max-h-[750px]:md:text-[72px] max-h-[700px]:md:text-[64px] font-bold text-[#00a3ff] leading-[0.8] tracking-tight mb-2 opacity-90 select-none`}>
                       {step.id}
                     </div>
                     
-                    <h3 className="text-xl md:text-4xl font-medium text-slate-900 mb-4 md:mb-6">
+                    <h3 className="text-xl md:text-4xl max-h-[800px]:md:text-3xl max-h-[750px]:md:text-[1.7rem] max-h-[700px]:md:text-[1.5rem] font-medium text-slate-900 mb-4 md:mb-6 max-h-[800px]:mb-3 max-h-[750px]:mb-2.5">
                       {step.title}
                     </h3>
 
