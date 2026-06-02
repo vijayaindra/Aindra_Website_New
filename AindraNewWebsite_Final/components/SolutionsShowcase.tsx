@@ -8,6 +8,11 @@ import mammoAstraImage from '../assets/ProductImages/MammoAstra.png';
 import renoAstraImage from '../assets/ProductImages/RenoAstra.png';
 import { SectionEyebrow } from './SectionEyebrow';
 import { sectionContainer, sectionShell, sectionY } from './layout';
+import {
+  homeResponsiveConfig,
+  resolveHomeResponsiveValue,
+  useHomeResponsive,
+} from './responsive/homeResponsive';
 
 interface Solution {
   id: string;
@@ -19,9 +24,9 @@ interface Solution {
 export const SolutionsShowcase: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isCompactHeight, setIsCompactHeight] = useState(false);
-  const [isLaptopHeight, setIsLaptopHeight] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const responsive = useHomeResponsive();
+  const config = homeResponsiveConfig.solutionsShowcase;
 
   const solutions: Solution[] = [
     {
@@ -63,16 +68,6 @@ export const SolutionsShowcase: React.FC = () => {
   ];
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsCompactHeight(window.innerHeight <= 780);
-      setIsLaptopHeight(window.innerHeight <= 1000);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
       const { top, height } = containerRef.current.getBoundingClientRect();
@@ -107,6 +102,20 @@ export const SolutionsShowcase: React.FC = () => {
   const stepCount = Math.max(1, solutions.length - 1);
   const segmentIndex = Math.max(0, Math.min(stepCount - 1, activeIndex - 1));
   const segmentFill = activeIndex > 0 ? 1 : 0;
+  const sceneHeightVh = resolveHomeResponsiveValue(responsive, config.sceneHeightVh);
+  const stickyClass = resolveHomeResponsiveValue(responsive, config.stickyClass);
+  const containerClass = resolveHomeResponsiveValue(responsive, config.containerClass);
+  const headerGapClass = resolveHomeResponsiveValue(responsive, config.headerGapClass);
+  const contentGapClass = resolveHomeResponsiveValue(responsive, config.contentGapClass);
+  const timelineHeightClass = resolveHomeResponsiveValue(responsive, config.timelineHeightClass);
+  const timelineSpacingClass = resolveHomeResponsiveValue(responsive, config.timelineSpacingClass);
+  const solutionNameClass = resolveHomeResponsiveValue(responsive, config.solutionNameClass);
+  const descriptionMinHeightClass = resolveHomeResponsiveValue(responsive, config.descriptionMinHeightClass);
+  const descriptionTextClass = resolveHomeResponsiveValue(responsive, config.descriptionTextClass);
+  const visualClass = resolveHomeResponsiveValue(responsive, config.visualClass);
+  const headingClass = resolveHomeResponsiveValue(responsive, config.headingClass);
+  const leftColumnClass = resolveHomeResponsiveValue(responsive, config.leftColumnClass);
+  const visualColumnClass = resolveHomeResponsiveValue(responsive, config.visualColumnClass);
 
   return (
     <>
@@ -135,32 +144,32 @@ export const SolutionsShowcase: React.FC = () => {
 
     <div
       ref={containerRef}
-      className="relative z-10 hidden lg:block bg-[#f8fbff] max-h-[800px]:h-[315vh] max-h-[750px]:h-[300vh] max-h-[700px]:h-[285vh]"
-      style={{ height: `${isCompactHeight ? 330 : isLaptopHeight ? 350 : 370}vh` }}
+      className="relative z-10 hidden lg:block bg-[#f8fbff]"
+      style={{ height: `${sceneHeightVh}vh` }}
     >
       {/* Sticky Frame */}
-      <section className={`sticky ${isCompactHeight ? 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)] py-3 min-h-0' : 'top-20 sm:top-24 h-[calc(100svh-5rem)] sm:h-[calc(100svh-6rem)]'} ${isCompactHeight ? '' : `min-h-[700px] xl:min-h-[740px] ${sectionY}`} max-h-[900px]:h-[calc(100svh-5rem)] sm:max-h-[900px]:h-[calc(100svh-6rem)] max-h-[900px]:py-3 max-h-[820px]:h-[calc(100svh-5rem)] sm:max-h-[820px]:h-[calc(100svh-6rem)] max-h-[800px]:h-[calc(100svh-5rem)] sm:max-h-[800px]:h-[calc(100svh-6rem)] max-h-[800px]:py-2.5 max-h-[800px]:items-start max-h-[800px]:justify-start max-h-[750px]:h-[calc(100svh-5rem)] sm:max-h-[750px]:h-[calc(100svh-6rem)] max-h-[750px]:py-2 max-h-[750px]:items-start max-h-[750px]:justify-start max-h-[700px]:h-[calc(100svh-5rem)] sm:max-h-[700px]:h-[calc(100svh-6rem)] max-h-[700px]:items-start max-h-[700px]:justify-start w-full flex items-center justify-center overflow-visible lg:overflow-hidden ${sectionShell}`}>
+      <section className={`sticky ${stickyClass} ${!responsive.isShortDesktop ? sectionY : ''} ${sectionShell}`}>
         
-        <div className={`${sectionContainer} max-h-[800px]:pt-6 max-h-[750px]:pt-5 max-h-[700px]:pt-4`}>
+        <div className={`${sectionContainer} ${containerClass}`}>
           {/* Section Header */}
-          <div className={`relative z-20 grid grid-cols-12 gap-8 max-[1365px]:gap-6 ${isCompactHeight ? 'mb-4' : 'mb-8 lg:mb-14'} max-h-[1000px]:mb-5 max-h-[900px]:mb-4 max-h-[820px]:mb-3 max-h-[800px]:mb-4 max-h-[750px]:mb-3`}>
+          <div className={`relative z-20 grid grid-cols-12 gap-8 max-[1365px]:gap-6 ${headerGapClass}`}>
             <div className="col-span-12 lg:col-span-3">
               <SectionEyebrow label="Our Solutions" />
             </div>
             <div className="col-span-12 lg:col-span-9 lg:translate-x-10 max-[1365px]:translate-x-0 xl:translate-x-24 2xl:translate-x-32">
-              <h2 className={`${isCompactHeight ? 'text-[clamp(1.9rem,2.7vw,2.3rem)] md:text-[clamp(2rem,2.85vw,2.4rem)]' : 'text-3xl md:text-5xl lg:text-6xl'} max-[1365px]:text-[clamp(2.55rem,4.25vw,3.45rem)] max-[1365px]:max-w-3xl max-h-[1000px]:text-[clamp(2.35rem,3.2vw,3rem)] max-h-[1000px]:leading-[1.06] max-h-[900px]:text-[clamp(2.2rem,3.2vw,2.9rem)] max-h-[900px]:leading-[1.05] max-h-[820px]:text-[clamp(2rem,3vw,2.6rem)] max-h-[800px]:text-[clamp(2.2rem,3.7vw,3rem)] max-h-[800px]:max-w-[56rem] max-h-[800px]:leading-[1.03] max-h-[750px]:text-[clamp(2rem,3.4vw,2.7rem)] max-h-[750px]:max-w-[50rem] max-h-[700px]:text-[clamp(1.85rem,3.1vw,2.45rem)] max-h-[700px]:max-w-[46rem] font-medium text-slate-900 leading-[1.1] max-w-4xl`}>
+              <h2 className={headingClass}>
                 AI modules for every stage of clinical pathology.
               </h2>
             </div>
           </div>
 
-          <div className={`grid grid-cols-12 items-center ${isCompactHeight ? 'gap-6' : 'gap-10'} max-[1365px]:gap-6 max-h-[800px]:gap-5 max-h-[750px]:gap-4`}>
+          <div className={`grid grid-cols-12 items-center ${contentGapClass} max-[1365px]:gap-6`}>
             
             {/* Left side: Timeline Nav + Description */}
-            <div className={`col-span-12 lg:col-span-3 relative flex flex-col justify-center order-2 lg:order-1 ${isCompactHeight ? 'h-[320px]' : 'h-[500px]'} max-h-[1000px]:h-[430px] max-h-[900px]:h-[390px] max-h-[820px]:h-[350px] max-h-[800px]:h-[300px] max-h-[750px]:h-[275px] max-h-[700px]:h-[245px]`}>
+            <div className={`col-span-12 lg:col-span-3 relative flex flex-col order-2 lg:order-1 ${timelineHeightClass} ${leftColumnClass}`}>
               
               {/* The Connecting Line & Names */}
-              <div className={`relative ${isCompactHeight ? 'mb-7' : 'mb-12'} max-h-[1000px]:mb-8 max-h-[900px]:mb-7`}>
+              <div className={`relative ${responsive.isShortDesktop ? 'mb-7' : 'mb-12'}`}>
                 {/* Background Line */}
                 <div className="absolute left-[3px] top-4 bottom-4 w-[2px] bg-slate-100 rounded-full"></div>
                 
@@ -173,7 +182,7 @@ export const SolutionsShowcase: React.FC = () => {
                   }}
                 ></div>
 
-                <div className={`flex flex-col ${isCompactHeight ? 'space-y-4' : 'space-y-5'} max-h-[1000px]:space-y-4 max-h-[900px]:space-y-3 max-h-[800px]:space-y-3 max-h-[750px]:space-y-2.5`}>
+                <div className={`flex flex-col ${timelineSpacingClass}`}>
                   {solutions.map((s, idx) => (
                     <button 
                       key={s.id}
@@ -183,7 +192,7 @@ export const SolutionsShowcase: React.FC = () => {
                       <div className={`relative w-2 h-2 rounded-full border-2 transition-all duration-500 z-10
                         ${idx === activeIndex ? 'bg-cyan-500 border-cyan-500 scale-125' : 'bg-white border-slate-200 group-hover:border-slate-400'}`}
                       />
-                  <span className={`text-xl md:text-2xl max-h-[950px]:text-[1.45rem] max-h-[900px]:text-[1.3rem] max-h-[820px]:text-[1.18rem] max-h-[800px]:text-[1.12rem] max-h-[750px]:text-[1rem] font-semibold tracking-tight transition-all duration-500
+                  <span className={`${solutionNameClass}
                         ${idx === activeIndex ? 'text-[#00A0E9] translate-x-1' : 'text-slate-300 group-hover:text-slate-500'}`}>
                         {s.name}
                       </span>
@@ -193,14 +202,14 @@ export const SolutionsShowcase: React.FC = () => {
               </div>
 
               {/* Description swapping */}
-              <div className={`relative ${isCompactHeight ? 'min-h-[170px]' : 'min-h-[220px]'} max-h-[1000px]:min-h-[145px] max-h-[900px]:min-h-[120px] max-h-[800px]:min-h-[105px] max-h-[750px]:min-h-[92px]`}>
+              <div className={`relative ${descriptionMinHeightClass}`}>
                 {solutions.map((s, idx) => (
                   <div 
                     key={s.id}
                     className={`absolute inset-0 transition-all duration-700 ease-in-out
                       ${idx === activeIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
                   >
-                    <p className={`${isCompactHeight ? 'text-[14px] lg:text-[15px]' : 'text-base lg:text-lg'} max-h-[1000px]:text-[15px] max-h-[900px]:text-[14px] max-h-[800px]:text-[13px] max-h-[750px]:text-[12px] text-slate-500 leading-relaxed font-light max-w-md`}>
+                    <p className={descriptionTextClass}>
                       {s.description}
                     </p>
                   </div>
@@ -209,7 +218,7 @@ export const SolutionsShowcase: React.FC = () => {
             </div>
 
             {/* Right side: Medical Illustration swapping with glows */}
-          <div className={`col-span-12 lg:col-span-9 relative order-1 lg:order-2 lg:translate-x-10 max-[1365px]:translate-x-0 xl:translate-x-24 2xl:translate-x-32 ${isCompactHeight ? 'aspect-[11/6] max-h-[36vh]' : 'aspect-[11/6] max-h-[50vh]'} max-[1365px]:max-h-[44vh] max-h-[1000px]:max-h-[40vh] max-h-[900px]:max-h-[34vh] max-h-[820px]:max-h-[32vh] max-h-[800px]:max-h-[35vh] max-h-[750px]:max-h-[32vh] max-h-[700px]:max-h-[28vh]`}>
+          <div className={`col-span-12 lg:col-span-9 order-1 lg:order-2 max-[1365px]:translate-x-0 flex ${visualColumnClass} ${visualClass}`}>
               {solutions.map((s, idx) => (
                 <div 
                   key={idx}
